@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://drhvj658qc7gd"]
+
+[ext_resource type="PackedScene" uid="uid://c7yxr2v1shlxa" path="res://Cabinets/controls/_controls_joystick.tscn" id="1_joystick"]
+[ext_resource type="Script" uid="uid://dwkp40cgxycgv" path="res://Cabinets/controls/joystick.gd" id="2_joystick"]
+[ext_resource type="AudioStream" uid="uid://dtdjuqc8bvaca" path="res://audio/foley/edge1.wav" id="3_edge1"]
+[ext_resource type="AudioStream" uid="uid://ddhha6vi7ykgh" path="res://audio/foley/edge2.wav" id="4_edge2"]
+[ext_resource type="AudioStream" uid="uid://fyx2cigmg4gd" path="res://audio/foley/edge3.wav" id="5_edge3"]
+[ext_resource type="AudioStream" uid="uid://bwo8wwr7rbrjf" path="res://audio/foley/edge4.wav" id="6_edge4"]
+[ext_resource type="AudioStream" uid="uid://bpawdhelqldlb" path="res://audio/foley/edge5.wav" id="7_edge5"]
+[ext_resource type="AudioStream" uid="uid://fbtg71lq1qe3" path="res://audio/foley/rest1.wav" id="8_rest1"]
+[ext_resource type="AudioStream" uid="uid://qjhqpis6alrp" path="res://audio/foley/rest2.wav" id="9_rest2"]
+[ext_resource type="AudioStream" uid="uid://bvtvpmov81qh8" path="res://audio/foley/rest3.wav" id="10_rest3"]
+[ext_resource type="AudioStream" uid="uid://d27tmgckb6hkc" path="res://audio/foley/rest4.wav" id="11_rest4"]
+[ext_resource type="AudioStream" uid="uid://qxj4suakpqxh" path="res://audio/foley/rest5.wav" id="12_rest5"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_edge"]
+random_volume_offset_db = 3.0
+streams_count = 5
+stream_0/stream = ExtResource("3_edge1")
+stream_1/stream = ExtResource("4_edge2")
+stream_2/stream = ExtResource("5_edge3")
+stream_3/stream = ExtResource("6_edge4")
+stream_4/stream = ExtResource("7_edge5")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_rest"]
+random_volume_offset_db = 3.0
+streams_count = 5
+stream_0/stream = ExtResource("8_rest1")
+stream_1/stream = ExtResource("9_rest2")
+stream_2/stream = ExtResource("10_rest3")
+stream_3/stream = ExtResource("11_rest4")
+stream_4/stream = ExtResource("12_rest5")
+
+[node name="Joystick" unique_id=1619350208 instance=ExtResource("1_joystick")]
+script = ExtResource("2_joystick")
+stick = NodePath("Stick")
+
+[node name="EdgeSFX" type="AudioStreamPlayer3D" parent="." index="1" unique_id=1180314481]
+stream = SubResource("AudioStreamRandomizer_edge")
+volume_db = -35.0
+max_polyphony = 2
+
+[node name="RestSFX" type="AudioStreamPlayer3D" parent="." index="2" unique_id=1986452170]
+stream = SubResource("AudioStreamRandomizer_rest")
+volume_db = -40.0
+max_polyphony = 2

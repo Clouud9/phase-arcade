@@ -31,8 +31,8 @@ push_button = NodePath("Push_004")
 
 [node name="PressSFX" type="AudioStreamPlayer3D" parent="." index="1" unique_id=529857409]
 stream = SubResource("AudioStreamRandomizer_fnqky")
-volume_db = -35.0
+pitch_scale = 0.7
 
 [node name="ReleaseSFX" type="AudioStreamPlayer3D" parent="." index="2" unique_id=1226392587]
 stream = SubResource("AudioStreamRandomizer_jdb8j")
-volume_db = -40.0
+pitch_scale = 0.7

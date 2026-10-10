@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ciofuhj1xxdb7" path="res://stuff/interact_zone.tscn" id="6_mg4d7"]
 [ext_resource type="Script" uid="uid://cjchu44q7807" path="res://Cabinets/cabinet_audio.gd" id="7_sound"]
 [ext_resource type="Script" uid="uid://5hwfjkgng2dw" path="res://Cabinets/control_plane.gd" id="8_i5ll8"]
-[ext_resource type="PackedScene" uid="uid://c7yxr2v1shlxa" path="res://Cabinets/controls/_controls_joystick.tscn" id="8_iyoos"]
+[ext_resource type="PackedScene" uid="uid://drhvj658qc7gd" path="res://Cabinets/controls/joystick.tscn" id="8_iyoos"]
 [ext_resource type="PackedScene" uid="uid://dn8jrivrr16kr" path="res://Cabinets/controls/fire_button.tscn" id="8_jhqda"]
 [ext_resource type="PackedScene" uid="uid://cxh2i3oim0pkh" path="res://Cabinets/controls/bomb_button.tscn" id="9_jhqda"]
 
@@ -96,7 +96,7 @@ transform = Transform3D(1.475, 0, 0, 0, 1.4749999, -2.9802322e-08, 0, 2.9802322e
 [node name="BombButton" parent="ControlPlane" unique_id=1920776179 instance=ExtResource("9_jhqda")]
 transform = Transform3D(0.74319935, 0, 0, 0, 0.8775996, 0, 0, 0, 0.74319935, 0.194, -5.9604645e-08, -0.02000001)
 
-[node name="Joystick" parent="ControlPlane" unique_id=704790631 instance=ExtResource("8_iyoos")]
+[node name="Joystick" parent="ControlPlane" unique_id=1619350208 instance=ExtResource("8_iyoos")]
 transform = Transform3D(1.348, 0, 0, 0, 1.348, 0, 0, 0, 1.348, -0.135, 0, 0)
 
 [node name="Downsample" type="SubViewport" parent="." unique_id=2094865604]
