@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://y4ekvgp6ueol"]
+
+[ext_resource type="PackedScene" uid="uid://bg2pf70g26g1q" path="res://Cabinets/controls/_controls_lightgun.tscn" id="1_gpm1i"]
+
+[node name="Lightgun" type="Node3D" unique_id=152386206]
+
+[node name="Lightgun" parent="." unique_id=1797582438 instance=ExtResource("1_gpm1i")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, -0.0038011707, 0, -0.1990037)

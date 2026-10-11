@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://drhvj658qc7gd" path="res://Cabinets/controls/joystick.tscn" id="8_iyoos"]
 [ext_resource type="PackedScene" uid="uid://dn8jrivrr16kr" path="res://Cabinets/controls/fire_button.tscn" id="8_jhqda"]
 [ext_resource type="PackedScene" uid="uid://cxh2i3oim0pkh" path="res://Cabinets/controls/bomb_button.tscn" id="9_jhqda"]
+[ext_resource type="PackedScene" uid="uid://y4ekvgp6ueol" path="res://Cabinets/controls/lightgun.tscn" id="11_onb47"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mg4d7"]
 size = Vector3(0.55, 0.4, 0.01)
@@ -98,6 +99,10 @@ transform = Transform3D(0.74319935, 0, 0, 0, 0.8775996, 0, 0, 0, 0.74319935, 0.1
 
 [node name="Joystick" parent="ControlPlane" unique_id=1619350208 instance=ExtResource("8_iyoos")]
 transform = Transform3D(1.348, 0, 0, 0, 1.348, 0, 0, 0, 1.348, -0.135, 0, 0)
+
+[node name="Lightgun" parent="ControlPlane" unique_id=152386206 instance=ExtResource("11_onb47")]
+transform = Transform3D(0.697, 0, 0, 0, 0.65393525, 0.24120064, 0, -0.24120064, 0.65393525, 0.11278014, 0.43988812, 0.23775633)
+visible = false
 
 [node name="Downsample" type="SubViewport" parent="." unique_id=2094865604]
 scaling_3d_mode = 5
