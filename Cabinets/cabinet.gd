@@ -22,7 +22,6 @@ class_name ArcadeCabinet
 @export_range(1, 60, 1, "suffix:frames") var light_update_interval:int = 8
 
 @onready var game_parent = $SubViewport
-@onready var screen_mesh_node: MeshInstance3D = %Screen.get_node("SmArcadeCabAScreen")
 
 var curr_game:Node
 
@@ -47,13 +46,8 @@ func push_input(ev: InputEvent):
 
 # --- Lightgun Screen Input ---
 
-## The flattened screen mesh geometry, used to look up the mesh UV at a ray hit
-var _screen_verts: PackedVector3Array
-var _screen_uvs: PackedVector2Array
-var _screen_tris: PackedInt32Array
 ## Game-screen pixel of the last forwarded press, so the release lands in the same spot
 var _screen_pressed_pos := Vector2.INF
-## Whether the game viewport's GUI has been told the pointer is inside it
 
 ## Remaps a click on the physical screen into the game's own coordinate space and
 ## pushes it to the game viewport.
@@ -92,38 +86,10 @@ func _game_pos_at_click(screen_position: Vector2) -> Vector2:
 	var hit := get_world_3d().direct_space_state.intersect_ray(params)
 	if hit.is_empty():
 		return Vector2.INF
-	var uv := _screen_uv(hit.position)
+	var uv := RaySensor.uv_from_hit(hit)
 	if uv == Vector2.INF:
 		return Vector2.INF
 	return uv * Vector2($SubViewport.size)
-
-## Barycentrically interpolates the screen mesh UV at [param world_point], assuming
-## the point lies on (or very near) the mesh surface.
-func _screen_uv(world_point: Vector3) -> Vector2:
-	if _screen_tris.is_empty():
-		return Vector2.INF
-	var local: Vector3 = screen_mesh_node.global_transform.affine_inverse() * world_point
-	const EPS := 0.001
-	for i in range(0, _screen_tris.size(), 3):
-		var a: Vector3 = _screen_verts[_screen_tris[i]]
-		var b: Vector3 = _screen_verts[_screen_tris[i + 1]]
-		var c: Vector3 = _screen_verts[_screen_tris[i + 2]]
-		var bary := Geometry3D.get_triangle_barycentric_coords(local, a, b, c)
-		if bary.x >= -EPS and bary.y >= -EPS and bary.z >= -EPS:
-			return (
-				_screen_uvs[_screen_tris[i]] * bary.x
-				+ _screen_uvs[_screen_tris[i + 1]] * bary.y
-				+ _screen_uvs[_screen_tris[i + 2]] * bary.z
-			)
-	return Vector2.INF
-
-func _ensure_screen_geometry() -> void:
-	if not _screen_tris.is_empty() or screen_mesh_node == null or screen_mesh_node.mesh == null:
-		return
-	var arrays := screen_mesh_node.mesh.surface_get_arrays(0)
-	_screen_verts = arrays[Mesh.ARRAY_VERTEX]
-	_screen_uvs = arrays[Mesh.ARRAY_TEX_UV]
-	_screen_tris = arrays[Mesh.ARRAY_INDEX]
 
 var power:bool
 func set_power_state(on:bool):
@@ -220,7 +186,6 @@ func _update_screen_light() -> void:
 # --- Main ---
 
 func _ready() -> void:
-	_ensure_screen_geometry()
 	if test_mode:
 		set_power_state(true)
 	elif circuit != &"":

@@ -4,11 +4,12 @@
 [ext_resource type="Script" uid="uid://ctdmwrtullusu" path="res://Cabinets/screen.gd" id="1_m7trp"]
 [ext_resource type="Material" uid="uid://bdib37kfchtlb" path="res://Cabinets/screen material.tres" id="2_wxrux"]
 [ext_resource type="Shader" uid="uid://4ursucr8he68" path="res://Cabinets/crt_screen.gdshader" id="4_wxrux"]
+[ext_resource type="Script" uid="uid://byxyeo5pyrm8t" path="res://Cabinets/ray_sensor.gd" id="5_wxrux"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_23kub"]
 render_priority = 0
 shader = ExtResource("4_wxrux")
-shader_parameter/resolution = Vector2(320, 240)
+shader_parameter/resolution = Vector2(320, 180)
 shader_parameter/effect_strength = 1.0
 shader_parameter/scan_line_amount = 0.5
 shader_parameter/scan_line_strength = -8.0
@@ -39,6 +40,7 @@ mesh = ExtResource("1_hd6m2")
 [node name="RaySensor" type="StaticBody3D" parent="SmArcadeCabAScreen" unique_id=2074327699]
 collision_layer = 4
 collision_mask = 0
+script = ExtResource("5_wxrux")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SmArcadeCabAScreen/RaySensor" unique_id=880650731]
 shape = SubResource("ConcavePolygonShape3D_i5mj8")
