@@ -2,6 +2,7 @@ extends TextureButton
 
 func _pressed() -> void:
 	Game.get_game(self).add_score(1)
+	Game.play_sfx(self, "bang")
 	disabled = true
 	await  reposition()
 	disabled = false
@@ -12,6 +13,7 @@ func reposition():
 	var space = get_parent().get_global_rect()
 	space.size -= get_global_rect().size
 	global_position = Yute.random_point(space)
+	Game.play_sfx(self, "blooph")
 	visible = true
 
 func _ready() -> void:
