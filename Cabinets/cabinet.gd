@@ -33,6 +33,7 @@ func _interacted_by(operator:FirstPersonCharacter):
 func on_operator_release():
 	%ScreenInteractZone.active = true
 	input_tracker.reset()
+	_center_cursor()
 
 func get_observation_delta(from:Camera3D) -> CameraTransform:
 	return CameraTransform.new(%ObservationPoint, from)
@@ -49,6 +50,19 @@ func push_input(ev: InputEvent):
 ## Game-screen pixel of the last forwarded press, so the release lands in the same spot
 var _screen_pressed_pos := Vector2.INF
 
+## World-space point on the screen the operator is currently aiming at. Mirrors
+## [member InputTracker.cursor_pos], which holds the same point in game-viewport
+## pixels. Keeps its last on-screen value while the lightgun is aimed off-screen.
+var cursor_pos := Vector3.ZERO
+
+## Points both cursors at the centre of the screen. Also used to seed the cursors
+## before the lightgun has aimed anywhere.
+func _center_cursor() -> void:
+	input_tracker.cursor_pos = Vector2($SubViewport.size) / 2.0
+	var mesh_node: MeshInstance3D = %Screen.get_node_or_null("SmArcadeCabAScreen")
+	if mesh_node:
+		cursor_pos = mesh_node.global_transform * mesh_node.get_aabb().get_center()
+
 ## Remaps a click on the physical screen into the game's own coordinate space and
 ## pushes it to the game viewport.
 ##
@@ -57,39 +71,43 @@ var _screen_pressed_pos := Vector2.INF
 func _screen_click(event: InputEventMouseButton) -> void:
 	if event.button_index != MOUSE_BUTTON_LEFT:
 		return
-	var game_pos := _game_pos_at_click(event.position)
 	if event.pressed:
-		if game_pos == Vector2.INF:
+		if not _update_cursor(event.position):
 			return
-		_screen_pressed_pos = game_pos
-	else:
-		if _screen_pressed_pos == Vector2.INF:
-			return
-		game_pos = _screen_pressed_pos
-		_screen_pressed_pos = Vector2.INF
+		_screen_pressed_pos = input_tracker.cursor_pos
+	elif _screen_pressed_pos == Vector2.INF:
+		return
 	get_viewport().set_input_as_handled()
 	var local: InputEventMouseButton = event.duplicate() as InputEventMouseButton
-	local.position = game_pos
+	local.position = _screen_pressed_pos
 	$SubViewport.push_input(local, true)
+	if not event.pressed:
+		_screen_pressed_pos = Vector2.INF
 
-## Maps a main-window pixel to game-viewport pixels, or [constant Vector2.INF] when
-## the pixel doesn't land on the screen.
-func _game_pos_at_click(screen_position: Vector2) -> Vector2:
+## Raycasts a main-window pixel against the screen and returns the intersection,
+## or an empty dictionary when the pixel doesn't land on the screen.
+func _screen_hit(screen_position: Vector2) -> Dictionary:
 	var cam := get_viewport().get_camera_3d()
 	if cam == null:
 		cam = %ObservationPoint
 	if cam == null:
-		return Vector2.INF
+		return {}
 	var from := cam.project_ray_origin(screen_position)
 	var to := from + cam.project_ray_normal(screen_position) * 10.0
 	var params := PhysicsRayQueryParameters3D.create(from, to, Layers.physics3D["Lightgun"])
-	var hit := get_world_3d().direct_space_state.intersect_ray(params)
-	if hit.is_empty():
-		return Vector2.INF
-	var uv := RaySensor.uv_from_hit(hit)
+	return get_world_3d().direct_space_state.intersect_ray(params)
+
+## Updates [member cursor_pos] and [member InputTracker.cursor_pos] from a
+## main-window pixel, returning whether the pixel landed on the screen. The cursors
+## keep their last on-screen position when the pixel misses.
+func _update_cursor(screen_position: Vector2) -> bool:
+	var hit := _screen_hit(screen_position)
+	var uv := RaySensor.uv_from_hit(hit) if not hit.is_empty() else Vector2.INF
 	if uv == Vector2.INF:
-		return Vector2.INF
-	return uv * Vector2($SubViewport.size)
+		return false
+	cursor_pos = hit["position"]
+	input_tracker.cursor_pos = uv * Vector2($SubViewport.size)
+	return true
 
 var power:bool
 func set_power_state(on:bool):
@@ -198,11 +216,14 @@ func _ready() -> void:
 			_route_game_audio(player)
 	get_tree().node_added.connect(_route_game_audio)
 	downscale_texture = $Downsample.get_texture()
+	_center_cursor()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if test_mode:
 		if event is InputEventMouseButton:
 			_screen_click(event)
+		elif event is InputEventMouseMotion:
+			_update_cursor(event.position)
 		else:
 			push_input(event)
 

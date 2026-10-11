@@ -6,6 +6,7 @@ class_name InputTracker
 var movement: Vector2
 var firing: bool
 var bombing: bool
+var cursor_pos: Vector2
 
 var _input_left: float
 var _input_right: float
@@ -62,6 +63,7 @@ func reset():
 	movement = Vector2.ZERO
 	firing = false
 	bombing = false
+	cursor_pos = Vector2.ZERO
 	_input_left=0
 	_input_right=0
 	_input_up=0
