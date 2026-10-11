@@ -81,8 +81,43 @@ func _screen_click(event: InputEventMouseButton) -> void:
 	var local: InputEventMouseButton = event.duplicate() as InputEventMouseButton
 	local.position = _screen_pressed_pos
 	$SubViewport.push_input(local, true)
+	if not $SubViewport.is_input_handled():
+		_forward_3d_input(local, _screen_pressed_pos)
 	if not event.pressed:
 		_screen_pressed_pos = Vector2.INF
+
+## Delivers a mouse event to the [CollisionObject3D] input system of the game
+## running inside the [SubViewport], so [code]_input_event[/code] fires for
+## bodies with [member CollisionObject3D.input_ray_pickable] set.
+##
+## The engine's own viewport picking can't reach the game: the [SubViewport] is
+## drawn onto a curved mesh rather than hosted in a [SubViewportContainer], its
+## mouse never enters the viewport, and the operating camera keeps the mouse
+## captured. So the ray is cast here and the event dispatched by hand, mirroring
+## [code]Viewport::_collision_object_3d_input_event[/code].
+##
+## [param position] is in game-viewport pixels, matching
+## [member InputTracker.cursor_pos].
+func _forward_3d_input(event: InputEventMouse, position: Vector2) -> void:
+	var cam: Camera3D = $SubViewport.get_camera_3d()
+	if cam == null:
+		return
+	var from := cam.project_ray_origin(position)
+	var to := from + cam.project_ray_normal(position) * cam.far
+	var params := PhysicsRayQueryParameters3D.create(from, to)
+	params.collide_with_areas = true
+	var hit: Dictionary = $SubViewport.find_world_3d().direct_space_state.intersect_ray(params)
+	if hit.is_empty():
+		return
+	var collider := hit["collider"] as CollisionObject3D
+	if collider == null or not collider.input_ray_pickable:
+		return
+	var point: Vector3 = hit["position"]
+	var normal: Vector3 = hit["normal"]
+	var shape: int = hit["shape"]
+	if collider.has_method(&"_input_event"):
+		collider._input_event(cam, event, point, normal, shape)
+	collider.emit_signal(&"input_event", cam, event, point, normal, shape)
 
 ## Raycasts a main-window pixel against the screen and returns the intersection,
 ## or an empty dictionary when the pixel doesn't land on the screen.
@@ -211,7 +246,7 @@ func _ready() -> void:
 	else:
 		set_power_state(start_powered_on)
 	%ScreenInteractZone.interacted_by.connect(_interacted_by)
-	for type in [&"AudioStreamPlayer", &"AudioStreamPlayer2D"]:
+	for type in [&"AudioStreamPlayer", &"AudioStreamPlayer2D", &"AudioStreamPlayer3D"]:
 		for player in $SubViewport.find_children("*", type, true, false):
 			_route_game_audio(player)
 	get_tree().node_added.connect(_route_game_audio)
