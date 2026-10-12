@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c0lx67fxfndkx"]
+
+[node name="Button" type="Button" unique_id=142021540]
+offset_right = 8.0
+offset_bottom = 8.0
+alignment = 0
+autowrap_mode = 3
