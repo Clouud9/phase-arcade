@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://d15osh1q23d3s"]
+
+[ext_resource type="Material" uid="uid://bx2mma2aiaf8o" path="res://materials/Wood.tres" id="1_seabh"]
+[ext_resource type="Sky" uid="uid://mn5skbywvx8c" path="res://levels/gridmap-level/night_sky.tres" id="2_mmvl2"]
+[ext_resource type="PackedScene" uid="uid://bnrat3k8mdug0" path="res://Cabinets/cabinet.tscn" id="3_s5sl6"]
+[ext_resource type="PackedScene" uid="uid://civ3r62diebkh" path="res://Arcade Games/Invaders/space_invaders.tscn" id="4_7gimt"]
+[ext_resource type="PackedScene" uid="uid://uw0nw0gw7d6s" path="res://Arcade Games/Test Game/test_game.tscn" id="4_wtrpb"]
+[ext_resource type="PackedScene" uid="uid://c5qhyuctvc26m" path="res://player/player_character.tscn" id="5_7gimt"]
+[ext_resource type="PackedScene" uid="uid://t8qw54ck70xe" path="res://Arcade Games/Clickable Object Game/game.tscn" id="6_cbu77"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hetsb"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_hetsb"]
+
+[sub_resource type="Environment" id="Environment_hetsb"]
+background_mode = 2
+sky = ExtResource("2_mmvl2")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7gimt"]
+viewport_path = NodePath("Tooltip/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pr0px"]
+viewport_path = NodePath("Tooltip/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_cbu77"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_kwrnh"]
+viewport_path = NodePath("Tooltip/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2mo5l"]
+viewport_path = NodePath("Tooltip/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_p6yf7"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_sxwsx"]
+viewport_path = NodePath("Tooltip/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jyngi"]
+viewport_path = NodePath("Tooltip/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2yxne"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Floor" type="Node3D" unique_id=64609162]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1996228286]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=613583574]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+material_override = ExtResource("1_seabh")
+mesh = SubResource("PlaneMesh_hetsb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=540208828]
+shape = SubResource("WorldBoundaryShape3D_hetsb")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1983595458]
+environment = SubResource("Environment_hetsb")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=3093172]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.553733, 0)
+omni_range = 11.166759
+omni_attenuation = 2.0
+
+[node name="InvadersCabinet" parent="." unique_id=1752319625 instance=ExtResource("3_s5sl6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03958428, 0.10067248, -4.264267)
+game_scene = ExtResource("4_7gimt")
+start_powered_on = true
+
+[node name="SubViewport" parent="InvadersCabinet" index="2" unique_id=599290243]
+size = Vector2i(512, 480)
+crt_downscale = 2
+
+[node name="Screen" parent="InvadersCabinet/ScreenContainer" parent_id_path=PackedInt32Array(1752319625, 2132404432) index="0" unique_id=769819713]
+transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+resolution = Vector2(256, 240)
+
+[node name="Tooltip" parent="InvadersCabinet/ScreenContainer/ScreenInteractZone" parent_id_path=PackedInt32Array(1752319625, 1828705782) index="1" unique_id=1310991000]
+texture = SubResource("ViewportTexture_7gimt")
+
+[node name="Shadow" parent="InvadersCabinet/ScreenContainer/ScreenInteractZone/Tooltip" index="1" unique_id=1306854022]
+texture = SubResource("ViewportTexture_pr0px")
+
+[node name="TextureRect" parent="InvadersCabinet/Downsample" parent_id_path=PackedInt32Array(1752319625, 2094865604) index="0" unique_id=1900591909]
+texture = SubResource("ViewportTexture_cbu77")
+
+[node name="Cabinet2" parent="." unique_id=760474135 instance=ExtResource("3_s5sl6")]
+transform = Transform3D(-0.3325233, 0, 0.943095, 0, 1, 0, -0.943095, 0, -0.3325233, -4.4502363, 0.10067248, 1.1836023)
+game_scene = ExtResource("4_wtrpb")
+start_powered_on = true
+
+[node name="Tooltip" parent="Cabinet2/ScreenContainer/ScreenInteractZone" parent_id_path=PackedInt32Array(760474135, 1828705782) index="1" unique_id=1310991000]
+texture = SubResource("ViewportTexture_kwrnh")
+
+[node name="Shadow" parent="Cabinet2/ScreenContainer/ScreenInteractZone/Tooltip" index="1" unique_id=1306854022]
+texture = SubResource("ViewportTexture_2mo5l")
+
+[node name="FireButton" parent="Cabinet2/ControlPlane" parent_id_path=PackedInt32Array(760474135, 872288392) index="0" unique_id=1609050805]
+visible = false
+
+[node name="BombButton" parent="Cabinet2/ControlPlane" parent_id_path=PackedInt32Array(760474135, 872288392) index="1" unique_id=1920776179]
+visible = false
+
+[node name="Joystick" parent="Cabinet2/ControlPlane" parent_id_path=PackedInt32Array(760474135, 872288392) index="2" unique_id=1619350208]
+visible = false
+
+[node name="Lightgun" parent="Cabinet2/ControlPlane" parent_id_path=PackedInt32Array(760474135, 872288392) index="3" unique_id=152386206]
+visible = true
+
+[node name="TextureRect" parent="Cabinet2/Downsample" parent_id_path=PackedInt32Array(760474135, 2094865604) index="0" unique_id=1900591909]
+texture = SubResource("ViewportTexture_p6yf7")
+
+[node name="Cabinet3" parent="." unique_id=1060145127 instance=ExtResource("3_s5sl6")]
+transform = Transform3D(-0.7002816, 0, -0.7138666, 0, 1, 0, 0.7138666, 0, -0.7002816, 4.2680864, 0.10067248, 4.9137206)
+game_scene = ExtResource("6_cbu77")
+start_powered_on = true
+
+[node name="Tooltip" parent="Cabinet3/ScreenContainer/ScreenInteractZone" parent_id_path=PackedInt32Array(1060145127, 1828705782) index="1" unique_id=1310991000]
+texture = SubResource("ViewportTexture_sxwsx")
+
+[node name="Shadow" parent="Cabinet3/ScreenContainer/ScreenInteractZone/Tooltip" index="1" unique_id=1306854022]
+texture = SubResource("ViewportTexture_jyngi")
+
+[node name="FireButton" parent="Cabinet3/ControlPlane" parent_id_path=PackedInt32Array(1060145127, 872288392) index="0" unique_id=1609050805]
+visible = false
+
+[node name="BombButton" parent="Cabinet3/ControlPlane" parent_id_path=PackedInt32Array(1060145127, 872288392) index="1" unique_id=1920776179]
+visible = false
+
+[node name="Joystick" parent="Cabinet3/ControlPlane" parent_id_path=PackedInt32Array(1060145127, 872288392) index="2" unique_id=1619350208]
+visible = false
+
+[node name="Lightgun" parent="Cabinet3/ControlPlane" parent_id_path=PackedInt32Array(1060145127, 872288392) index="3" unique_id=152386206]
+visible = true
+
+[node name="TextureRect" parent="Cabinet3/Downsample" parent_id_path=PackedInt32Array(1060145127, 2094865604) index="0" unique_id=1900591909]
+texture = SubResource("ViewportTexture_2yxne")
+
+[node name="FirstPersonCharacter" parent="." unique_id=743034332 instance=ExtResource("5_7gimt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02393341, 0, -0.056792498)
+
+[editable path="InvadersCabinet"]
+[editable path="InvadersCabinet/ScreenContainer/ScreenInteractZone"]
+[editable path="Cabinet2"]
+[editable path="Cabinet2/ScreenContainer/ScreenInteractZone"]
+[editable path="Cabinet3"]
+[editable path="Cabinet3/ScreenContainer/ScreenInteractZone"]
