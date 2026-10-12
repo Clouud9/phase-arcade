@@ -35,6 +35,10 @@ This documentation focuses on video game cabinets but if you'd like to make some
 	- [Customizing your cabinet](#customizing-your-cabinet)
 - [Other things](#other-things)
 	- [Score and Highscore](#score-and-highscore)
+	- [Project Settings](#project-settings)
+		- [Low tick rate](#low-tick-rate)
+		- [Interpolation](#interpolation)
+	- [Other ways to help](#other-ways-to-help)
 
 The first step is downloading [Godot 4.7](https://godotengine.org/download/archive/4.7.2-stable) if you don't have it already. Games made with other versions of Godot will probably work, and if not, they can probably be ported. But 4.7 is what we're using.
 
