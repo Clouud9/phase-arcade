@@ -31,7 +31,7 @@ Create a folder for your game in `Arcade Games`, then pick whichever template pr
 The game root will have a script attached: [`game.gd`](Arcade Games/game.gd). Right click to find '*Open Documentation*', which will tell you more about it. There is a lot of existing code in this project, and we've done our best to document the parts that you might want or need to use. Be sure to read the documentation, and let us know if there are any issues with it. This guide is specifically for the high-level details that aren't covered in the docs, so it won't suffice on its own.
 You may want to click `*Extend Script*` on your root node to have your own root script without breaking compatibility. We recommend relying on the `Game` class where you can, as it will make it easier for us to fix any bugs and to ensure compatibility.
 ## Testing your game
-You'll see file called [closet.tscn](closet.tscn) in the repo root. This is where you can run your game on one of the cabinets. Click on the Cabinet node and track your game's tscn into the cabinet's `Game Scene` slot in the inspector panel.
+You'll see file called [closet.tscn](closet.tscn) in the repo root. This is where you can run your game on one of the cabinets. Click on the Cabinet node and drag your game's tscn into the cabinet's `Game Scene` slot in the inspector panel.
 
 ![Yo, if you're blind, that sucks, dude. I'm sorry to hear that](Images/add_game_to_cabinet.jpg)
 
@@ -64,17 +64,17 @@ If you find something which isn't documented and should be, let us know.
 
 Here are the aspects of the cabinet you'll likely want to modify in descending order of importance
 #### Screen Size
-the `SubViewport` `size` property controls screen size and synchronizes it with the other components automatically. At higher resolutions like 640x480, you may want to increase `crt downscale` to reduce artifacts, we're working on an automatic fix for this problem. You may still want to increase for it aesthetic purposes.
+the `SubViewport` `size` property controls screen size and synchronizes it with the other components automatically. At higher resolutions like 640x480, you may want to increase `crt downscale` to reduce artifacts, we're working on an automatic fix for this problem. You may still want to increase it for aesthetic purposes.
 Note: The 3D and UI game should adapt automatically to the new screen size, but **the 2D preset will require manually managing the game size**. In general for 2D games, screen size will have a lot of gameplay consequences so it's worth nailing down early. In general we recommend going with the smallest size you feel like you can get away with.
 #### CRT Filter
 The `Screen` has a CRT filter on it, we've chosen reasonable defaults but you're welcome to experiment. Many of the settings alter the color and contrast, so be sure to check that your game looks as good on the screen as it does in your editor.
 #### Screen Illumination
-We're using Godot 4.7's new AreaLights to illuminate the cabinet from the screen. It's not physically accurate because doing it physically accurately would be unbelievably expensive, so you may have to dial in some setting to make the effect look good for your particular game. If yout game is relatively dark, you may want to increase the Energy on the `ScreenLight`. `Downsample` is the SubViewport which creates the texture for the light's color. Increasing the size can help smooth out flickering caused by a low sample size, but also exponentially costs performance. Increasing the cabinet's `light_update_interval` will also reduce flickering by smoothing the transition over time, but this will make it less responsive.
+We're using Godot 4.7's new AreaLights to illuminate the cabinet from the screen. It's not physically accurate because doing it physically accurately would be unbelievably expensive, so you may have to dial in some setting to make the effect look good for your particular game. If your game is relatively dark, you may want to increase the Energy on the `ScreenLight`. `Downsample` is the SubViewport which creates the texture for the light's color. Increasing the size can help smooth out flickering caused by a low sample size, but also exponentially costs performance. Increasing the cabinet's `light_update_interval` will also reduce flickering by smoothing the transition over time, but this will make it less responsive.
 
 Increasing `light_update_interval` can also improve performance, however if recalculating the lighting is causing noticable lag spikes then this will only space those out. If it's a common problem we'll look at implementing a smarter sampling method that lets us use a smaller sample texture in the future.
 
 #### Controls
-`ControlPlane` manages the controls. Set visibility off on the ones you aren't using. Feel free to move them and scale them you your liking. For best results, use the transform property editor instead if the gizmo. The gizmo doesn't operate in local space.
+`ControlPlane` manages the controls. Set visibility off on the ones you aren't using. Feel free to move them and scale them you your liking. For best results, use the transform property editor instead of the gizmo. The gizmo doesn't operate in local space.
 
 ![](Images/transform-property.png)
 

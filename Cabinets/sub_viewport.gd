@@ -1,8 +1,13 @@
 @tool
 extends SubViewport
 
-@export var screen:Node3D
-@export_range(0,4,1) var crt_downscale:int=1:
+## The [CRTScreen] that this viewport's texture will get drawn to.
+## Setting this allows keeping the aspect-ratio and CRT resolutuion in sync
+@export var screen:CRTScreen
+## The resolution of the CRT will be this [member size] divided by this number.
+## Some games look better with this set higher.
+## It also reduce artefacts when rendering at higher resolutions
+@export_range(1,4,1) var crt_downscale:int=1:
 	set(v):
 		crt_downscale=v
 		if is_node_ready():

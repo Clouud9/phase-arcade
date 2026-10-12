@@ -1,23 +1,24 @@
 extends Node3D
 class_name ArcadeCabinet
-## A marvelous device which contians a whole other game
+## A marvelous device which contains a whole other game
 
+## doesn't currently do anything
 @export var game_name:StringName
 ## Put your game here
 @export var game_scene:PackedScene
-## Start powered on, and automatically recieve inputs. Useful for standalone testing.
+## Start powered on, and automatically receive inputs. Useful for standalone testing.
 @export var test_mode = false
 ## For level design use: If false, will need to be powered on by an external call.
 ## This is ignored in test mode
 @export var start_powered_on:bool
 ## Subscribe to a named circuit, which controls power state.
-## See [HandyLight] for more infos
+## See [HandyLight] for more information
 ## This overrides [member start_powered_on]
 @export var circuit:StringName
 ## How often the ScreenLight is updated based on the screen's color.
-## Setting this higher will reduce flickering and improve performance,
-## but may fail to sell certain dramatic effects.
-##
+## Setting this higher will reduce flickering but may fail to sell certain dramatic effects.
+## Note that although a higher value can improve performance, If updating the light every frame causes lag,
+## updating the light every n frames will still cause lag every n frames. So it's not a real solution
 ## Increasing the Downsample size will also reduce flickering, but at an exponential cost to performance
 @export_range(1, 60, 1, "suffix:frames") var light_update_interval:int = 8
 
@@ -30,6 +31,7 @@ var curr_game:Node
 func _interacted_by(operator:FirstPersonCharacter):
 	operator.set_active_cabinet(self)
 
+## Called when the player stops playing the cabinet
 func on_operator_release():
 	%ScreenInteractZone.active = true
 	input_tracker.reset()
@@ -47,7 +49,6 @@ func push_input(ev: InputEvent):
 
 # --- Lightgun Screen Input ---
 
-## Game-screen pixel of the last forwarded press, so the release lands in the same spot
 var _screen_pressed_pos := Vector2.INF
 
 ## World-space point on the screen the operator is currently aiming at. Mirrors
@@ -55,19 +56,12 @@ var _screen_pressed_pos := Vector2.INF
 ## pixels. Keeps its last on-screen value while the lightgun is aimed off-screen.
 var cursor_pos := Vector3.ZERO
 
-## Points both cursors at the centre of the screen. Also used to seed the cursors
-## before the lightgun has aimed anywhere.
 func _center_cursor() -> void:
 	input_tracker.cursor_pos = Vector2($SubViewport.size) / 2.0
 	var mesh_node: MeshInstance3D = %Screen.get_node_or_null("SmArcadeCabAScreen")
 	if mesh_node:
 		cursor_pos = mesh_node.global_transform * mesh_node.get_aabb().get_center()
 
-## Remaps a click on the physical screen into the game's own coordinate space and
-## pushes it to the game viewport.
-##
-## Only watchable when no player is operating the cabinet: [member test_mode] uses
-## the cabinet's own [code]%ObservationPoint[/code] camera as the pointer.
 func _screen_click(event: InputEventMouseButton) -> void:
 	if event.button_index != MOUSE_BUTTON_LEFT:
 		return
@@ -86,18 +80,18 @@ func _screen_click(event: InputEventMouseButton) -> void:
 	if not event.pressed:
 		_screen_pressed_pos = Vector2.INF
 
-## Delivers a mouse event to the [CollisionObject3D] input system of the game
-## running inside the [SubViewport], so [code]_input_event[/code] fires for
-## bodies with [member CollisionObject3D.input_ray_pickable] set.
-##
-## The engine's own viewport picking can't reach the game: the [SubViewport] is
-## drawn onto a curved mesh rather than hosted in a [SubViewportContainer], its
-## mouse never enters the viewport, and the operating camera keeps the mouse
-## captured. So the ray is cast here and the event dispatched by hand, mirroring
-## [code]Viewport::_collision_object_3d_input_event[/code].
-##
-## [param position] is in game-viewport pixels, matching
-## [member InputTracker.cursor_pos].
+# Delivers a mouse event to the [CollisionObject3D] input system of the game
+# running inside the [SubViewport], so [code]_input_event[/code] fires for
+# bodies with [member CollisionObject3D.input_ray_pickable] set.
+#
+# The engine's own viewport picking can't reach the game: the [SubViewport] is
+# drawn onto a curved mesh rather than hosted in a [SubViewportContainer], its
+# mouse never enters the viewport, and the operating camera keeps the mouse
+# captured. So the ray is cast here and the event dispatched by hand, mirroring
+# [code]Viewport::_collision_object_3d_input_event[/code].
+#
+# [param position] is in game-viewport pixels, matching
+# [member InputTracker.cursor_pos].
 func _forward_3d_input(event: InputEventMouse, position: Vector2) -> void:
 	var cam: Camera3D = $SubViewport.get_camera_3d()
 	if cam == null:
@@ -119,8 +113,8 @@ func _forward_3d_input(event: InputEventMouse, position: Vector2) -> void:
 		collider._input_event(cam, event, point, normal, shape)
 	collider.emit_signal(&"input_event", cam, event, point, normal, shape)
 
-## Raycasts a main-window pixel against the screen and returns the intersection,
-## or an empty dictionary when the pixel doesn't land on the screen.
+# Raycasts a main-window pixel against the screen and returns the intersection,
+# or an empty dictionary when the pixel doesn't land on the screen.
 func _screen_hit(screen_position: Vector2) -> Dictionary:
 	var cam := get_viewport().get_camera_3d()
 	if cam == null:
@@ -132,9 +126,9 @@ func _screen_hit(screen_position: Vector2) -> Dictionary:
 	var params := PhysicsRayQueryParameters3D.create(from, to, Layers.physics3D["Lightgun"])
 	return get_world_3d().direct_space_state.intersect_ray(params)
 
-## Updates [member cursor_pos] and [member InputTracker.cursor_pos] from a
-## main-window pixel, returning whether the pixel landed on the screen. The cursors
-## keep their last on-screen position when the pixel misses.
+# Updates [member cursor_pos] and [member InputTracker.cursor_pos] from a
+# main-window pixel, returning whether the pixel landed on the screen. The cursors
+# keep their last on-screen position when the pixel misses.
 func _update_cursor(screen_position: Vector2) -> bool:
 	var hit := _screen_hit(screen_position)
 	var uv := RaySensor.uv_from_hit(hit) if not hit.is_empty() else Vector2.INF
@@ -201,6 +195,8 @@ func _route_game_audio(node: Node) -> void:
 
 # --- Screen Illumination ---
 
+## A low-res copy of the screen texture used for lighting calculation and similar
+## The specific resolution will vary depending on the needs of the game
 var downscale_texture:ViewportTexture
 
 var light_from := Color(0, 0, 0, 0)

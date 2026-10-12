@@ -1,6 +1,7 @@
 extends Node3D
 class_name ControlPlane
-## THis node has a description
+## The cabinet's physical controls (joystick, fire/bomb buttons, lightgun).
+## Drives their visuals from the state tracked by [InputTracker].
 
 var cab:ArcadeCabinet
 var input_tracker:InputTracker

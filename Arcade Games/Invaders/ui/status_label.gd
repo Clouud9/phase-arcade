@@ -8,5 +8,5 @@ func _on_lose():
 
 func _ready():
 	text = ""
-	Game.get_game(self).win.connect(_on_win)
-	Game.get_game(self).lose.connect(_on_lose)
+	Game.get_game(self).game_won.connect(_on_win)
+	Game.get_game(self).game_lost.connect(_on_lose)

@@ -1,5 +1,6 @@
 extends AudioStreamPlayer3D
 class_name ArcadeCabinetAudio
+## This is all clanker code. I'm actually amazed how well it works. It beat the expectations of the Godot docs by quite a margin. Still, it might have to be thrown out if it turns out to choke the real setting when there are multiple cabinets going
 
 const GAME_BUS := &"Game"
 const CAPTURE_EFFECT := 0

@@ -137,4 +137,10 @@
 `[x]`: done, `[-]`: WIP, better than nothing
 
 # See Also:
-[` assert (height >= width) #TODO  assert does nothing in tool mode, need a better we to handle this`](./player/first_person_player.gd)
+[` assert (height >= width) #TODO  assert does nothing in tool mode, need a better way to handle this`](./player/first_person_player.gd)
+
+[` return initial.move_toward(direction * sharpness / delta, snappiness) - initial #TODO refactor`](./addons/jodot/yute.gd)
+
+[` Game.play_sfx(self, sustain_sfx) #TODO  need to support actual looping of sfx`](./Arcade Games/Invaders/units/weapons/sustainer.gd)
+
+[` assert(false) #TODO  more helpful error message, maybe config warning`](./Arcade Games/game.gd)

@@ -12,12 +12,12 @@ class_name InvadersGame
 
 func _on_player_died():
 	if not lives:
-		return _lose()
+		return lose()
 
 	await Utils.delay(1)
 	var next_life = lives.get_life()
 	if not next_life:
-		return _lose()
+		return lose()
 	spawn_player(next_life)
 	set_active_player(next_life)
 
@@ -36,7 +36,7 @@ func set_active_player(p: Player):
 	player_changed.emit(p)
 
 func on_beat_wave():
-	_win()
+	win()
 
 func spawn_wave(w: PackedScene):
 	var n = w.instantiate()

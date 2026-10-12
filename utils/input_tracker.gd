@@ -1,11 +1,19 @@
 extends Object
 class_name InputTracker
-## Reconstructs input state from events
-## Used as an alternative to [Input] if global input querying is undesirable
+## Reconstructs input state from events.
+##
+## Used as an alternative to [Input] if global input querying is undesirable.
+## You can build and use this yourself, but [member ArcadeCabinet.input_tracker] is generally more reliable
+## as [method reset] and [method sanity_check] get called at the appropriate times and also because
+## [member ArcadeCabinet.input_tracker] is what the visual controls are synced to.
+##
+## New inputs get added here as-needed
 
 var movement: Vector2
 var firing: bool
 var bombing: bool
+## Position of the cursor in game screen-space coordinates.
+## Note that this is not computed from [InputEvent]s, it's calculated by [ArcadeCabinet] using some pretty complicated code
 var cursor_pos: Vector2
 
 var _input_left: float
@@ -35,7 +43,7 @@ func _input(ev: InputEvent) -> bool:
 	if ev.is_echo():
 		return false
 	# NOTE: the lack of `elif` here is actually important for controllers
-	# It seems JoyPadMotions is all four always
+	# It seems JoyPadMotion is all four always
 	if ev.is_action("left"):
 		tracked=true
 		_input_left = ev.get_action_strength("left")

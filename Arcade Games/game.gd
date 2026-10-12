@@ -1,6 +1,6 @@
 extends Node
 class_name Game
-## A Game with arcade mechanics which can run inside an [ArcadeMachine]
+## A Game with arcade mechanics which can run inside an [ArcadeCabinet]
 ##
 ## It's compatible with [Control], [Node2D], and [Node3D],
 ## which is achieved by tricking the GDScript parser into letting us do multiple inheritence.
@@ -9,29 +9,33 @@ class_name Game
 ## While none of these methods, or even the class itself, are required,
 ## it may help us to fix compatibility issues and such if you rely on them where you can.
 
-## [SFX] node in the game, if any, to route [method play_sfx] calls to
-@export var sfx_player: SFX
+## [SFXPlayer] node in the game, if any, to route [method play_sfx] calls to
+@export var sfx_player: SFXPlayer
 
 # --- Management ---
 
-signal lose
-func _lose():
-	lose.emit()
+## For use inside your game, it doesn't control anything currently
+signal game_lost
+## Emits [signal game_lost], and can be inhereted to do more than that
+func lose():
+	game_lost.emit()
 
-signal win
-func _win():
-	win.emit()
+## For use inside your game, it doesn't control anything currently
+signal game_won
+## Emits [signal game_won], and can be inhereted to do more than that
+func win():
+	game_won.emit()
 
 var score = 0
-signal score_changed(score: int)
-
+signal score_changed(score: int) ## Only triggered by [method add_score]. Modifying [member score] has no effect
 func add_score(points: int):
 	score += points
 	score_changed.emit(score)
 
-var coins = 0
+## TODO: stub
+## Usually adding coins will grant an extra play, some more lives, or a revive. It's up to you
 func add_coin():
-	coins+=1
+	pass
 
 # --- Accessors ---
 
@@ -41,10 +45,10 @@ static func get_game(from: Node) -> Game:
 		from = from.get_parent()
 	return from
 
-## Plays SFX via the the [Game]'s [member Game.sfx_player].
+## Plays SFX via the [Game]'s [member Game.sfx_player].
 ##
-## See [method SFX.play_sfx] for more info
-static func play_sfx(from:Node, effect_name:StringName) -> SFX.SFXControl:
+## See [method SFXPlayer.play_sfx] for more info
+static func play_sfx(from:Node, effect_name:StringName) -> SFXPlayer.SFXControl:
 	var game = get_game(from)
 	if not game or not game.sfx_player:
 		return null

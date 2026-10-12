@@ -62,7 +62,7 @@ func resolve_direction(towards:Variant) -> Vector2:
 	assert(false)
 	return default_direction
 
-var windup_sfx_control: SFX.SFXControl
+var windup_sfx_control: SFXPlayer.SFXControl
 var winding_up = false
 func windup():
 	windup_countdown = windup_time
