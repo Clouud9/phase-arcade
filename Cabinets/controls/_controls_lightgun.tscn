@@ -36,6 +36,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qhj8k")
 
-[node name="Lightgun" type="MeshInstance3D" unique_id=1616396539]
+[node name="Lightgun" type="MeshInstance3D" unique_id=776187215]
 transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
 mesh = SubResource("ArrayMesh_ohomt")
