@@ -44,6 +44,8 @@ The first step is downloading [Godot 4.7](https://godotengine.org/download/archi
 
 The next step is cloning the repo, which is not as easy as it sounds. We're using [LFS](https://git-lfs.com/) and a [submodule](https://github.com/JCoMcL/jodot). LFS shouldn't give you much trouble, but make sure you run `git clone --recurse-submodules https://github.com/JCoMcL/phase-arcade` when cloning. Or, if you've already cloned the repo, you can run `git submodule update --init --recursive`. If you downloaded the zip, it will not have the submodule, but you can add it in manually by downloading [the zip of the submodule](https://github.com/JCoMcL/jodot/archive/refs/heads/master.zip) and extracting it into the `addons/jodot` folder.
 
+Once you launch Godot, it will reimport everything, and may modify some uids. If this happens, `git reset --hard` to set it back to normal. This is bug with our import script that may be fixed eventually.
+
 ## Setting up your game
 Create a folder for your game in `Arcade Games`, then pick whichever template project suits you most, (either `_Game2D.tscn`, or `_Game3D.tscn`, `_GameUI.tscn`), and create a new inherited scene from it, which will go in your new game folder.
 
