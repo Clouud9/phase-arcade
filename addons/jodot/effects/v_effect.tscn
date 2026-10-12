@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bp0vk2xhef62q"]
+
+[ext_resource type="Script" uid="uid://b8di5yk26ucpu" path="res://addons/jodot/effects/v_effect.gd" id="2_kb015"]
+
+[node name="VEffect" type="Sprite2D" unique_id=536100792]
+script = ExtResource("2_kb015")

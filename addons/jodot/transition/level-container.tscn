@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bp7w0rbvscf1"]
+
+[ext_resource type="Material" uid="uid://bmfwdpbtlok7y" path="res://addons/jodot/transition/curtain_thats_all_folks.tres" id="1_8vaes"]
+[ext_resource type="Script" uid="uid://cxvgq4dxm0ghd" path="res://addons/jodot/transition/level-container.gd" id="2_container"]
+[ext_resource type="Script" uid="uid://crs1s25mbl4em" path="res://addons/jodot/transition/curtain.gd" id="3_curtain"]
+
+[node name="LevelContainer" type="Node2D" unique_id=677424085]
+script = ExtResource("2_container")
+
+[node name="Overlay" type="CanvasLayer" parent="." unique_id=642229952]
+
+[node name="Curtain" type="ColorRect" parent="Overlay" unique_id=990418107]
+visible = false
+material = ExtResource("1_8vaes")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.133333, 0.12549, 0.203922, 1)
+script = ExtResource("3_curtain")

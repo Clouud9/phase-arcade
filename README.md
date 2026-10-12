@@ -42,7 +42,8 @@ This documentation focuses on video game cabinets but if you'd like to make some
 
 The first step is downloading [Godot 4.7](https://godotengine.org/download/archive/4.7.2-stable) if you don't have it already. Games made with other versions of Godot will probably work, and if not, they can probably be ported. But 4.7 is what we're using.
 
-The next step is cloning the repo, which is not as easy as it sounds. We're using [LFS](https://git-lfs.com/) and a [submodule](https://github.com/JCoMcL/jodot). LFS shouldn't give you much trouble, but make sure you run `git clone --recurse-submodules https://github.com/JCoMcL/phase-arcade` when cloning. Or, if you've already cloned the repo, you can run `git submodule update --init --recursive`. If you downloaded the zip, it will not have the submodule, but you can add it in manually by downloading [the zip of the submodule](https://github.com/JCoMcL/jodot/archive/refs/heads/master.zip) and extracting it into the `addons/jodot` folder.
+
+The next step is cloning the repo. We're using [LFS](https://git-lfs.com/) to manage large files such as audio and lightmaps, but it's not required to clone the repo. Run `git clone https://github.com/jcomcl/phase-arcade.git --depth=1`. The `--depth=1` option will reduce the download size quite substantially.
 
 Once you launch Godot, it will reimport everything, and may modify some uids. If this happens, `git reset --hard` to set it back to normal. This is bug with our import script that may be fixed eventually.
 
