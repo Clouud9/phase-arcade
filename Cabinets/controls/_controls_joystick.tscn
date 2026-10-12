@@ -102,13 +102,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_nrnhj")
 
-[node name="Joystick" type="MeshInstance3D" unique_id=1512864830]
+[node name="Joystick" type="MeshInstance3D" unique_id=1239328113]
 transform = Transform3D(1.8075835, 0, 0, 0, 1.8075835, 0, 0, 0, 1.8075835, 0, 0, 0)
 mesh = SubResource("ArrayMesh_ymtte")
 
-[node name="Stick" type="MeshInstance3D" parent="." unique_id=1786364550]
+[node name="Stick" type="MeshInstance3D" parent="." unique_id=1663775785]
 mesh = SubResource("ArrayMesh_8u1ea")
 
-[node name="UV Sphere_002" type="MeshInstance3D" parent="Stick" unique_id=2143596266]
+[node name="UV Sphere_002" type="MeshInstance3D" parent="Stick" unique_id=84099819]
 transform = Transform3D(0.95105654, 0, -0.30901694, 0, 1, 0, 0.30901694, 0, 0.95105654, 0, 0.05699999, 0)
 mesh = SubResource("ArrayMesh_v42jf")
