@@ -19,6 +19,23 @@ While the jam is a great opportunity to make a fresh game for the arcade, it's n
 This documentation focuses on video game cabinets but if you'd like to make some other kind of arcade attraction; pinball, or a claw-machine, or something of that sort, we'd be delighted to accommodate! We will have to ask you to work a little more closely with us to ensure that your submission will work in the arcade, mechanically and thematically.
 
 # Step-by-step Guide
+- [Setting up your game](#setting-up-your-game)
+- [Testing your game](#testing-your-game)
+- [Limitations and Guidelines](#limitations-and-guidelines)
+	- [Input](#input)
+	- [Video](#video)
+	- [Audio](#audio)
+	- [Getting along with your neighbors](#getting-along-with-your-neighbors)
+- [Setting up your cabinet](#setting-up-your-cabinet)
+	- [Anatomy of the cabinet](#anatomy-of-the-cabinet)
+		- [Screen Size](#screen-size)
+		- [CRT Filter](#crt-filter)
+		- [Screen Illumination](#screen-illumination)
+		- [Controls](#controls)
+	- [Customizing your cabinet](#customizing-your-cabinet)
+- [Future Work](#future-work)
+	- [Score and Highscore](#score-and-highscore)
+
 The first step is downloading [Godot 4.7](https://godotengine.org/download/archive/4.7.2-stable) if you don't have it already. Games made with other versions of Godot will probably work, and if not, they can probably be ported. But 4.7 is what we're using.
 
 The next step is cloning the repo, which is not as easy as it sounds. We're using [LFS](https://git-lfs.com/) and a [submodule](https://github.com/JCoMcL/jodot). LFS shouldn't give you much trouble, but make sure you run `git clone --recurse-submodules https://github.com/JCoMcL/phase-arcade` when cloning. Or, if you've already cloned the repo, you can run `git submodule update --init --recursive`. If you downloaded the zip, it will not have the submodule, but you can add it in manually by downloading [the zip of the submodule](https://github.com/JCoMcL/jodot/archive/refs/heads/master.zip) and extracting it into the `addons/jodot` folder.
