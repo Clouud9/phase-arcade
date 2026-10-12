@@ -33,7 +33,7 @@ This documentation focuses on video game cabinets but if you'd like to make some
 		- [Screen Illumination](#screen-illumination)
 		- [Controls](#controls)
 	- [Customizing your cabinet](#customizing-your-cabinet)
-- [Future Work](#future-work)
+- [Other things](#other-things)
 	- [Score and Highscore](#score-and-highscore)
 
 The first step is downloading [Godot 4.7](https://godotengine.org/download/archive/4.7.2-stable) if you don't have it already. Games made with other versions of Godot will probably work, and if not, they can probably be ported. But 4.7 is what we're using.
@@ -100,6 +100,18 @@ If you want more controls, or different type of controls, let us know.
 ### Customizing your cabinet
 We're still working on this, but if you're comfortable with 3D modelling or texturing you can have a stab at it yourself. The blender file is in the repo.
 
-## Future Work
+## Other things
 ### Score and Highscore
 Use the game's `score` methods to track the score. We haven't figured out highscore yet. We're hoping to do that within the first few days of the jam, and with any luck the online component will be handled for you without you needing to lift a finger.
+### Project Settings
+#### Low tick rate
+The project is using a much lower-than-default physics tick rate of `15`. I like to do this to catch bugs that come from relying on the tick rate being the same as the refresh rate of most people's monitors. It may result in poor physics accuracy. If so, let us know and we will raise it back up again.
+#### Interpolation
+We also have physics interpolation enabled. If you find that things are smoothly moving across when they were supposed to teleport, remember to call `reset_physics_interpolation`.
+See here for more info: [using_physics_interpolation](https://docs.godotengine.org/en/stable/tutorials/physics/interpolation/using_physics_interpolation.html)
+### Other ways to help
+The Arcade is a big project and we have lot's of ideas, but only enough time to implement a few of them. If you want to help out, we can almost certainly find a job for you. Here are some other easy things that you could contribute:
+- Posters (png)
+- Graffiti (png)
+- Other props
+If you want to do **character modelling** for us, we have a special task that's particularly dear to me, which may otherwise not make it in.
