@@ -1,7 +1,28 @@
 [gd_resource type="ArrayMesh" format=4 uid="uid://caa04vfvcptmy"]
 
-[ext_resource type="Material" uid="uid://f7pb3wu04tx7" path="res://materials/PlasterWall.tres" id="1_4exfc"]
-[ext_resource type="Material" uid="uid://cqmf76ra2vssu" path="res://materials/Bricks_triplanar.tres" id="2_do1ig"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6cpso"]
+resource_name = "MatA"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.73664695, 0.8884274, 0.82942146, 0.654902)
+roughness = 0.0
+emission_enabled = true
+emission = Color(0, 0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vauc"]
+resource_name = "MatB"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.8203733, 0.6982981, 0.6357201, 0.36184207)
+roughness = 0.0
+emission_enabled = true
+emission = Color(0, 0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4exfc"]
+resource_name = "MatC"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.735357, 0.735357, 0.735357, 0.5)
+roughness = 0.0
+emission_enabled = true
+emission = Color(0, 0, 0, 0)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_do1ig"]
 _surfaces = [{
@@ -47,7 +68,7 @@ _surfaces = [{
 "index_count": 162,
 "index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgAGABEAEUARQAbABgAGgBFAEQARAAZABoAHgBGAEcARwBIAB4AHQBIAEcARwAcAB0ASQBKAB8AHwBLAEkASgBJACAAIAAhAEoALgBMAE0ATQAxAC4AMABNAEwATAAvADAATgBPAFAAUAA0AE4AMwBQAE8ATwAyADMAUQBSADUANQBTAFEAUgBRADYANgA3AFIADAANAA4AVAANAAwADAAPAFQADgAQAAwAEAAOAFUAVQARABAAEgATABQAVgATABIAEgAVAFYAFAAWABIAFgAUAFcAVwAXABYAIgAjACQAJAAlACIAJgAnACgAKAApACYAKgArACwALAAtACoAOAA5ADoAOgA7ADgAPAA9AD4APgA/ADwAQABBAEIAQgBDAEAA"),
 "lods": [0.13590191, PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADwANAAwADgAQAAwAEAAOABEAEgATABQAFQATABIAFAAWABIAFgAUABcAGAAZABoAGgAbABgAGwAcAB0AHQAeABsAHwAeACAAIAAhAB8AIgAjACQAJAAlACIAJgAnACgAKAApACYAKgArACwALAAtACoALgAvADAAMAAxAC4AMQAyADMAMwA0ADEANQA0ADYANgA3ADUAOAA5ADoAOgA7ADgAPAA9AD4APgA/ADwAQABBAEIAQgBDAEAA")],
-"material": ExtResource("1_4exfc"),
+"material": SubResource("StandardMaterial3D_6cpso"),
 "name": "MatA",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -59,7 +80,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 48,
 "index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADgAPAAwAEAAPAA4ADgARABAAEgAQABEAEQATABIAFAAVABYAFgAXABQAGAAZABoAGgAbABgA"),
-"material": ExtResource("2_do1ig"),
+"material": SubResource("StandardMaterial3D_4vauc"),
 "name": "MatB",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -71,7 +92,7 @@ _surfaces = [{
 "format": 34359742487,
 "index_count": 18,
 "index_data": PackedByteArray("AAABAAIAAgADAAAAAwACAAQABAAFAAMABgAFAAQABAAHAAYA"),
-"material": ExtResource("2_do1ig"),
+"material": SubResource("StandardMaterial3D_4exfc"),
 "name": "MatC",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),

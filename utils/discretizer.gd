@@ -1,5 +1,9 @@
 extends Object
 class_name Discretizer
+## Designed to solve the age-old problem of controlling ui with a joystick in Godot.
+## I'm sure there's a simpler way to do it, but I didn't find it.
+## Update it every from with the joystick position, and it will spit out discrete directions units,
+## Which can be translated to [InputEvent]s if you're extra lazy
 
 var repeat_delay:float
 var repeat_interval:float

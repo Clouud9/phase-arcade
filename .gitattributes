@@ -4,3 +4,4 @@
 reference/** filter=lfs diff=lfs merge=lfs -text
 audio/** filter=lfs diff=lfs merge=lfs -text
 Images/** filter=lfs diff=lfs merge=lfs -text
+audio/** filter=lfs diff=lfs merge=lfs -text

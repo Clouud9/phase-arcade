@@ -11,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7k7iu")
-sfx_player = NodePath("SFXPlayer2D")
+sfx_player = NodePath("SFXPlayer")
 
-[node name="SFXPlayer2D" type="AudioStreamPlayer" parent="." unique_id=1013741284]
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="." unique_id=1013741284]
 script = ExtResource("2_r2s5i")

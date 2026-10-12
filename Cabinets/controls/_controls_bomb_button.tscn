@@ -70,10 +70,10 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_fy4tf")
 
-[node name="BombButton" type="MeshInstance3D" unique_id=1920776179]
-transform = Transform3D(0.68371606, 0, 0, 0, 0.74625814, 0, 0, 0, 0.68371606, 0, 0, 0)
+[node name="BombButton" type="MeshInstance3D" unique_id=758854440]
+transform = Transform3D(1.2358738, 0, 0, 0, 1.3489239, 0, 0, 0, 1.2358738, 0, 0, 0)
 mesh = SubResource("ArrayMesh_55pqx")
 
-[node name="Push_003" type="MeshInstance3D" parent="." unique_id=1752259334]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0011427234, 0)
+[node name="Push_003" type="MeshInstance3D" parent="." unique_id=1378484392]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0011426769, 0)
 mesh = SubResource("ArrayMesh_rc1is")

@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://t8qw54ck70xe"]
+
+[ext_resource type="PackedScene" uid="uid://bfq5t634bvk1c" path="res://Arcade Games/_Game3D.tscn" id="1_u4ksl"]
+[ext_resource type="Script" uid="uid://bjdjg6mf24pyk" path="res://Arcade Games/Clickable Object Game/clickable_object.gd" id="2_new7w"]
+[ext_resource type="Material" uid="uid://b0tktcrtsrg60" path="res://materials/NeonTube.tres" id="3_gmm2x"]
+[ext_resource type="Script" uid="uid://cnaebjqiyqlv1" path="res://addons/jodot/effects/sfx.gd" id="4_new7w"]
+[ext_resource type="Material" uid="uid://bx2mma2aiaf8o" path="res://materials/Wood.tres" id="4_tnkou"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hetsb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hetsb"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_deboi"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_hetsb"]
+
+[node name="Game" unique_id=913553725 instance=ExtResource("1_u4ksl")]
+
+[node name="ClickableCube" type="CharacterBody3D" parent="." index="1" unique_id=968986014]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.70650244, 0)
+script = ExtResource("2_new7w")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ClickableCube" index="0" unique_id=309341470]
+material_override = ExtResource("3_gmm2x")
+mesh = SubResource("BoxMesh_hetsb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClickableCube" index="1" unique_id=529386343]
+shape = SubResource("BoxShape3D_hetsb")
+
+[node name="SFXPlayer" type="AudioStreamPlayer3D" parent="ClickableCube" index="2" unique_id=460195518]
+script = ExtResource("4_new7w")
+
+[node name="Floor" type="StaticBody3D" parent="." index="2" unique_id=472271073]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" index="0" unique_id=2044960960]
+transform = Transform3D(9.900001, 0, 0, 0, 9.900001, 0, 0, 0, 9.900001, 0, 0, 0)
+material_override = ExtResource("4_tnkou")
+mesh = SubResource("PlaneMesh_deboi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" index="1" unique_id=1525381128]
+shape = SubResource("WorldBoundaryShape3D_hetsb")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." index="3" unique_id=1585907781]
+transform = Transform3D(0.933185, -0.20117284, 0.2978175, 0, 0.8286602, 0.559752, -0.3593964, -0.52235216, 0.77329326, 0.8520721, 2.7766168, 2.4384928)
+shadow_enabled = true
+spot_range = 9.513405
+
+[node name="Camera3D" type="Camera3D" parent="." index="4" unique_id=1718679598]
+transform = Transform3D(-0.71099997, -0.19328837, 0.67610556, 0, 0.9614806, 0.2748728, -0.70319206, 0.19543456, -0.6836127, 1.8669548, 1.5423818, -1.7693233)

@@ -7,17 +7,18 @@
 [ext_resource type="PackedScene" uid="uid://ciofuhj1xxdb7" path="res://stuff/interact_zone.tscn" id="6_mg4d7"]
 [ext_resource type="Script" uid="uid://cjchu44q7807" path="res://Cabinets/cabinet_audio.gd" id="7_sound"]
 [ext_resource type="Script" uid="uid://5hwfjkgng2dw" path="res://Cabinets/control_plane.gd" id="8_i5ll8"]
-[ext_resource type="PackedScene" uid="uid://c7yxr2v1shlxa" path="res://Cabinets/controls/_controls_joystick.tscn" id="8_iyoos"]
-[ext_resource type="PackedScene" uid="uid://cqbrssuy25t8w" path="res://Cabinets/controls/_controls_fire_button.tscn" id="9_0dpka"]
-[ext_resource type="PackedScene" uid="uid://flvwf42ou114" path="res://Cabinets/controls/_controls_bomb_button.tscn" id="11_xlqc2"]
+[ext_resource type="PackedScene" uid="uid://drhvj658qc7gd" path="res://Cabinets/controls/joystick.tscn" id="8_iyoos"]
+[ext_resource type="PackedScene" uid="uid://dn8jrivrr16kr" path="res://Cabinets/controls/fire_button.tscn" id="8_jhqda"]
+[ext_resource type="PackedScene" uid="uid://cxh2i3oim0pkh" path="res://Cabinets/controls/bomb_button.tscn" id="9_jhqda"]
+[ext_resource type="PackedScene" uid="uid://y4ekvgp6ueol" path="res://Cabinets/controls/lightgun.tscn" id="11_onb47"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mg4d7"]
 size = Vector3(0.55, 0.4, 0.01)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_jhqda"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_onb47"]
 viewport_path = NodePath("Tooltip/SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_onb47"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_8lges"]
 viewport_path = NodePath("Tooltip/SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_hetsb"]
@@ -74,13 +75,13 @@ shape = SubResource("BoxShape3D_mg4d7")
 
 [node name="Tooltip" parent="ScreenContainer/ScreenInteractZone" index="1" unique_id=1310991000]
 transform = Transform3D(1, 0, 0, 0, 0.99138325, 0.13099346, 0, -0.13099346, 0.99138325, 0, -0.21796304, -0.04354644)
-texture = SubResource("ViewportTexture_jhqda")
+texture = SubResource("ViewportTexture_onb47")
 
 [node name="Label" parent="ScreenContainer/ScreenInteractZone/Tooltip/SubViewport" parent_id_path=PackedInt32Array(1828705782, 1414188419) index="0" unique_id=238621318]
 text = "[LMB] play"
 
 [node name="Shadow" parent="ScreenContainer/ScreenInteractZone/Tooltip" index="1" unique_id=1306854022]
-texture = SubResource("ViewportTexture_onb47")
+texture = SubResource("ViewportTexture_8lges")
 
 [node name="ObservationPoint" type="Camera3D" parent="ScreenContainer" unique_id=1442811002]
 unique_name_in_owner = true
@@ -90,14 +91,18 @@ transform = Transform3D(1, 0, 0, 0, 0.9952377, -0.09747872, 0, 0.09747869, 0.995
 transform = Transform3D(1, 0, 0, 0, 0.93821406, -0.34605542, 0, 0.34605542, 0.93821406, 0, 0.804, 0.243)
 script = ExtResource("8_i5ll8")
 
-[node name="FireButton" parent="ControlPlane" unique_id=1755314034 instance=ExtResource("9_0dpka")]
-transform = Transform3D(1.475, 0, 0, 0, 1.475, 0, 0, 0, 1.475, 0.144, 0, 0.003)
+[node name="FireButton" parent="ControlPlane" unique_id=1609050805 instance=ExtResource("8_jhqda")]
+transform = Transform3D(1.475, 0, 0, 0, 1.4749999, -2.9802322e-08, 0, 2.9802322e-08, 1.4749999, 0.144, -5.9604645e-08, 0.0029999912)
 
-[node name="BombButton" parent="ControlPlane" unique_id=1099850201 instance=ExtResource("11_xlqc2")]
-transform = Transform3D(1.087, 0, 0, 0, 1.176, 0, 0, 0, 1.087, 0.194, 0, -0.02)
+[node name="BombButton" parent="ControlPlane" unique_id=1920776179 instance=ExtResource("9_jhqda")]
+transform = Transform3D(0.74319935, 0, 0, 0, 0.8775996, 0, 0, 0, 0.74319935, 0.194, -5.9604645e-08, -0.02000001)
 
-[node name="Joystick" parent="ControlPlane" unique_id=704790631 instance=ExtResource("8_iyoos")]
+[node name="Joystick" parent="ControlPlane" unique_id=1619350208 instance=ExtResource("8_iyoos")]
 transform = Transform3D(1.348, 0, 0, 0, 1.348, 0, 0, 0, 1.348, -0.135, 0, 0)
+
+[node name="Lightgun" parent="ControlPlane" unique_id=152386206 instance=ExtResource("11_onb47")]
+transform = Transform3D(0.697, 0, 0, 0, 0.65393525, 0.24120064, 0, -0.24120064, 0.65393525, 0.11278014, 0.43988812, 0.23775633)
+visible = false
 
 [node name="Downsample" type="SubViewport" parent="." unique_id=2094865604]
 scaling_3d_mode = 5

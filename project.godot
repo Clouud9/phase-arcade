@@ -163,6 +163,7 @@ bomb={
 2d_physics/layer_2="Friendly"
 3d_physics/layer_2="Interactive"
 2d_physics/layer_3="Enemy"
+3d_physics/layer_3="Lightgun"
 2d_physics/layer_4="Walls"
 2d_physics/layer_5="PlayArea"
 3d_physics/layer_5="Player"

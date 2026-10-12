@@ -54,16 +54,16 @@ blend_shape_mode = 0
 resource_name = "controlsAssets_Cylinder_001"
 _surfaces = [{
 "aabb": AABB(-0.0032397397, 0, -0.0031412444, 0.0061249738, 0.057, 0.006282489),
-"attribute_data": PackedByteArray("AAD//5IkAAAAAAAAkiT//yRJAAAkSf//tm0AALZt//9IkgAASJL//9q2AADatv//bNsAAGzb/////wAA/////w=="),
+"attribute_data": PackedByteArray("poD5+1x/kwNdf/YFnoCK/UKAHvukfwAAin8nBwOA///Efyf773+TA8R/Jwdlf4z9WH/3+/B/9QU="),
 "format": 34896613399,
 "index_count": 42,
-"index_data": PackedByteArray("AAABAAIAAAADAAEAAwAEAAEAAwAFAAQABQAGAAQABQAHAAYABwAIAAYABwAJAAgACQAKAAgACQALAAoACwAMAAoACwANAAwADQAOAAwADQAPAA4A"),
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAAAAIAAwAFAAEABAACAAYAAwAHAAUACAAEAAYABwAJAAUACAAGAAoABwALAAkADAAIAAoACwANAAkADAAKAA0ACwAMAA0A"),
 "material": ExtResource("1_bd2u3"),
 "name": "Metal",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 16,
-"vertex_data": PackedByteArray("//////9//z9KzQAAWhltG///AAD/f/8/Ss3//1oZbRtdWwAAAAAkCV1b//8AACQJAAAAAAhHti0AAP//CEe2LQAAAAD2uEhSAAD///a4SFJdWwAA///bdl1b/////9t2Ss0AAKTmkWRKzf//pOaRZP//AAD/f/8///////9//z//fwAA/38AAP9/AAD/fwAA/3////9/////f////3////9/////f////3////9/////fwAA/38AAP9/AAD/fwAA")
+"vertex_count": 14,
+"vertex_data": PackedByteArray("//////9/8j9KzQAAWhkUG///AAD/f48/Ss3//1oZH/1Kzf//pOZjZF1bAAAAAAgJSs0AAKTmwftdW///AAAB/11b/////9p2AAAAAAhHbC1dWwAA///7/wAA//8IR9z8AAD///a4MVIAAAAA9rh1/DmEcwiFaaYQ4mkOC2wJ1ldehN0QJm8/7bWgMX5BF3OLNoLF/1t0Cu34/wnzvjR0hVaLnvuD/ZDP")
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_nrnhj")
@@ -102,12 +102,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_tcimv")
 
-[node name="Joystick" type="MeshInstance3D" unique_id=1619350208]
+[node name="Joystick" type="MeshInstance3D" unique_id=1351337397]
+transform = Transform3D(1.8075835, 0, 0, 0, 1.8075835, 0, 0, 0, 1.8075835, 0, 0, 0)
 mesh = SubResource("ArrayMesh_8u1ea")
 
-[node name="Stick" type="MeshInstance3D" parent="." unique_id=953066092]
+[node name="Stick" type="MeshInstance3D" parent="." unique_id=467750266]
 mesh = SubResource("ArrayMesh_v42jf")
 
-[node name="UV Sphere_002" type="MeshInstance3D" parent="Stick" unique_id=928737758]
-transform = Transform3D(0.95105654, 0, -0.30901694, 0, 1, 0, 0.30901694, 0, 0.95105654, 0, 0.057, 0)
+[node name="UV Sphere_002" type="MeshInstance3D" parent="Stick" unique_id=1342971810]
+transform = Transform3D(0.95105654, 0, -0.30901694, 0, 1, 0, 0.30901694, 0, 0.95105654, 0, 0.05699999, 0)
 mesh = SubResource("ArrayMesh_3tex6")
