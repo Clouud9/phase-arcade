@@ -23,6 +23,7 @@ class_name ArcadeCabinet
 @export_range(1, 60, 1, "suffix:frames") var light_update_interval:int = 8
 
 @onready var game_parent = $SubViewport
+@onready var speaker: ArcadeCabinetAudio = $Speaker
 
 var curr_game:Node
 
@@ -186,12 +187,14 @@ static func get_input_state(from:Node) -> InputTracker:
 	return null
 
 func _route_game_audio(node: Node) -> void:
-	if not $SubViewport.is_ancestor_of(node):
+	if speaker.bus_name == &"" or not $SubViewport.is_ancestor_of(node):
 		return
 	if node is AudioStreamPlayer:
-		(node as AudioStreamPlayer).bus = ArcadeCabinetAudio.GAME_BUS
+		(node as AudioStreamPlayer).bus = speaker.bus_name
 	elif node is AudioStreamPlayer2D:
-		(node as AudioStreamPlayer2D).bus = ArcadeCabinetAudio.GAME_BUS
+		(node as AudioStreamPlayer2D).bus = speaker.bus_name
+	elif node is AudioStreamPlayer3D:
+		(node as AudioStreamPlayer3D).bus = speaker.bus_name
 
 # --- Screen Illumination ---
 
@@ -235,6 +238,7 @@ func _update_screen_light() -> void:
 # --- Main ---
 
 func _ready() -> void:
+	get_tree().node_added.connect(_route_game_audio)
 	if test_mode:
 		set_power_state(true)
 	elif circuit != &"":
@@ -245,7 +249,6 @@ func _ready() -> void:
 	for type in [&"AudioStreamPlayer", &"AudioStreamPlayer2D", &"AudioStreamPlayer3D"]:
 		for player in $SubViewport.find_children("*", type, true, false):
 			_route_game_audio(player)
-	get_tree().node_added.connect(_route_game_audio)
 	downscale_texture = $Downsample.get_texture()
 	_center_cursor()
 

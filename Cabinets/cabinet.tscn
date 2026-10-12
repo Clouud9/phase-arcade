@@ -37,6 +37,7 @@ max_distance = 30.0
 script = ExtResource("7_sound")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=599290243 node_paths=PackedStringArray("screen")]
+own_world_3d = true
 canvas_item_default_texture_filter = 0
 audio_listener_enable_2d = true
 size = Vector2i(320, 240)
