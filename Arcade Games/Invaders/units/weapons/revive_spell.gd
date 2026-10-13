@@ -17,7 +17,6 @@ func revive(player: Player):
 	var offset = Vector2.DOWN * 8
 	var fx: VFXSprite = VFX.play("rise", player, offset)
 	InvadersGame.add_to_playfield(fx, player)
-	fx.global_position += offset
 	if game:
 		game.lives.reclaim_life(player)
 	else:
