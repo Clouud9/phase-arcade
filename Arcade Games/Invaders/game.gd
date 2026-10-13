@@ -62,26 +62,43 @@ static func add_to_playfield(o: Node2D, from: Node):
 	o.reset_physics_interpolation()
 
 func on_dialogue_finished():
+	_ready()
+
+func open_dialogue(screen:CanvasItem):
+	screen.visible = true
+	new_entity_region.process_mode = Node.PROCESS_MODE_DISABLED
+	if screen is DialogueScreen:
+		screen.activate()
+		await screen.dialogue_finished
+
 	await %Curtain.close()
-	await  Utils.delay(0.3)
-	dialgoue_screens[0].visible = false
+	screen.visible = false
 
 	if new_entity_region:
 		new_entity_region.process_mode = Node.PROCESS_MODE_INHERIT
 	%Curtain.open()
-	_ready()
-
-func open_dialogue():
-	new_entity_region.process_mode = Node.PROCESS_MODE_DISABLED
-	dialgoue_screens[0].activate()
-	dialgoue_screens[0].dialogue_finished.connect(on_dialogue_finished, CONNECT_ONE_SHOT)
 
 func _ready():
 	super()
 	for d in dialgoue_screens:
 		d.visible = false
+
+	#Insert Coin
+	var cab = ArcadeCabinet.get_cabinet(self)
+	if cab:
+		%TitleScreen.visible = true
+		await cab.coin_inserted
+		await %Curtain.close()
+		%TitleScreen.visible = false
+		%Curtain.open()
+	else:
+		%TitleScreen.visible = false
+
+	if not lives.has_life():
+		await open_dialogue(dialgoue_screens[0])
 	if not current_player and lives and lives.has_life():
 		await spawn_wave(waves[wave])
 		spawn_player(lives.get_life())
 	else:
-		open_dialogue()
+		print("uhh. Something broke, guys")
+

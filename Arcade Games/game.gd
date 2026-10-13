@@ -100,3 +100,7 @@ func _ready() -> void:
 		_self_3D = _self
 	else:
 		assert(false) #TODO: more helpful error message, maybe config warning
+
+	var cab = ArcadeCabinet.get_cabinet(self)
+	if cab:
+		cab.coin_inserted.connect(_on_add_coin)

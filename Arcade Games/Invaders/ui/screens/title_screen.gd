@@ -1,7 +1,7 @@
 extends ColorRect
 
 func _on_coin_inserted():
-	$InsertCoin.pulse_rate = 2
+	$InsertCoin.pulse_rate = 5
 
 func _ready() -> void:
 	var cab = ArcadeCabinet.get_cabinet(self)
