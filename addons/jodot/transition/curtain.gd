@@ -2,22 +2,23 @@
 class_name Curtain
 extends ColorRect
 
-enum {DOWN, UP, LEFT, RIGHT}
+enum WIPE_DIR {DOWN, UP, LEFT, RIGHT}
 @export var duration := 0.5
-@export var direction := UP
+@export var direction:WIPE_DIR = WIPE_DIR.UP
 @export var open_on_ready := true
 
-@export_tool_button("close", "ControlAlignCenter") var close_button = close
 @export_tool_button("open", "ControlAlignFullRect") var open_button = open
+@export_tool_button("close", "ControlAlignCenter") var close_button = close
+
 
 var current_tween: Tween
 
-## How closed the curtain is, 0 (open) to 1 (closed).
+## How closed the curtain is, from 0 to 1
 func get_openness() -> float:
 	var f = material.get_shader_parameter("factor")
 	return 1.0 - (f if f is float else 1.0)
 
-## Sets how closed the curtain is, 0 (open) to 1 (closed).
+## Sets how closed the curtain is from 0 to 1
 func set_openness(f: float) -> void:
 	material.set_shader_parameter("factor", 1.0 - f)
 
@@ -53,8 +54,7 @@ func open(to_direction := direction, specific_duration := duration) -> Signal:
 	t.finished.connect(func (): visible = false)
 	return t.finished
 
-## Only set if the shader actually has the uniform, so swapping in the dither
-## shader (which has no direction) stays quiet.
+## Has no effect if the shader does not have a `direction` parameter
 func _set_direction(dir: int) -> void:
 	if has_param(&"direction"):
 		material.set_shader_parameter("direction", dir)
