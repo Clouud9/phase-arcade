@@ -196,6 +196,8 @@ func _route_game_audio(node: Node) -> void:
 	elif node is AudioStreamPlayer3D:
 		(node as AudioStreamPlayer3D).bus = speaker.bus_name
 
+signal coin_inserted
+
 # --- Screen Illumination ---
 
 ## A low-res copy of the screen texture used for lighting calculation and similar
@@ -254,7 +256,9 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if test_mode:
-		if event is InputEventMouseButton:
+		if event.is_action_pressed("insert_coin"):
+			coin_inserted.emit()
+		elif event is InputEventMouseButton:
 			_screen_click(event)
 		elif event is InputEventMouseMotion:
 			_update_cursor(event.position)

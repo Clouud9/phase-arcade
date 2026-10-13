@@ -32,10 +32,10 @@ func add_score(points: int):
 	score += points
 	score_changed.emit(score)
 
-## TODO: stub
 ## Usually adding coins will grant an extra play, some more lives, or a revive. It's up to you
-func add_coin():
-	pass
+func _on_add_coin():
+	if sfx_player:
+		sfx_player.play_sfx("coin") #TODO: remove this test code for
 
 # --- Accessors ---
 

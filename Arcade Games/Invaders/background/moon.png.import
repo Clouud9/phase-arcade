@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di2ijs4liu8jk"
-path="res://.godot/imported/ground.png-83eb3d24b0bdefea3c85f8d5948b4e35.ctex"
+uid="uid://8sxrl1ai1ah5"
+path="res://.godot/imported/moon.png-d1ba123c496a63d67d420454528fc78c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Arcade Games/Invaders/ground.png"
-dest_files=["res://.godot/imported/ground.png-83eb3d24b0bdefea3c85f8d5948b4e35.ctex"]
+source_file="res://Arcade Games/Invaders/background/moon.png"
+dest_files=["res://.godot/imported/moon.png-d1ba123c496a63d67d420454528fc78c.ctex"]
 
 [params]
 
