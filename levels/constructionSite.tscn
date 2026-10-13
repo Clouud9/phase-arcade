@@ -15,7 +15,7 @@
 [ext_resource type="Material" uid="uid://mmf34lqyxd32" path="res://materials/Carpet_arcade.tres" id="10_ylfxq"]
 [ext_resource type="Material" uid="uid://ctmgj6eqnpye5" path="res://materials/Concrete.tres" id="12_gygl6"]
 [ext_resource type="PackedScene" uid="uid://bbnn0ppc6doud" path="res://meshes/LevelGeo/geo_foyer.tscn" id="13_nbbox"]
-[ext_resource type="ArrayMesh" uid="uid://bx6x7fhvnhs8v" path="res://meshes/sm_lamp_planet.tres" id="13_v1fwx"]
+[ext_resource type="ArrayMesh" uid="uid://st7cmkawks3j" path="res://meshes/sm_lamp_planet.tres" id="13_v1fwx"]
 [ext_resource type="PackedScene" uid="uid://disowst3xs3tf" path="res://meshes/LevelGeo/geo_roller_shutter.tscn" id="13_xacbb"]
 [ext_resource type="Material" uid="uid://bx2mma2aiaf8o" path="res://materials/Wood.tres" id="14_l0s7m"]
 [ext_resource type="PackedScene" uid="uid://dkcad5o58joxu" path="res://meshes/LevelGeo/geo_foyer_entry.tscn" id="17_lcydp"]
@@ -41,7 +41,7 @@
 [ext_resource type="Material" uid="uid://datnwu6nb24ck" path="res://materials/Blacklight/BlacklightDefault.tres" id="34_rkil3"]
 [ext_resource type="Material" uid="uid://bdwcl28853tmp" path="res://materials/Cabling_tray.tres" id="38_r5lcs"]
 [ext_resource type="PackedScene" uid="uid://c7me5j6srknla" path="res://meshes/PropScenes/scene_neonSign_foyer.tscn" id="38_xsasp"]
-[ext_resource type="ArrayMesh" uid="uid://bwu5ijrgiqeii" path="res://meshes/sm_Sofa.tres" id="39_auksg"]
+[ext_resource type="ArrayMesh" uid="uid://m2g6p8mlofmn" path="res://meshes/sm_Sofa.tres" id="39_auksg"]
 [ext_resource type="PackedScene" uid="uid://8xx3dcuhmnv2" path="res://meshes/Poseables/sk_jelly_button_monkey.tscn" id="40_r5lcs"]
 [ext_resource type="PackedScene" uid="uid://ctgsld2gkkji1" path="res://meshes/PropScenes/scene_duct_round.tscn" id="43_40a1i"]
 [ext_resource type="PackedScene" uid="uid://dv3451sltg66c" path="res://meshes/LevelGeo/geo_change_room_and_vent.tscn" id="46_ggqdw"]
@@ -379,11 +379,12 @@ transform = Transform3D(0.9644837, 0, 0.2641424, 0, 1, 0, -0.2641424, 0, 0.96448
 
 [node name="LightmapGI" type="LightmapGI" parent="." unique_id=1329519440]
 quality = 3
+supersampling = true
 bounces = 5
 directional = true
+use_texture_for_bounces = false
 interior = true
 denoiser_strength = 0.4
-texel_scale = 3.0
 generate_probes_subdiv = 4
 light_data = ExtResource("10_5ctpl")
 
