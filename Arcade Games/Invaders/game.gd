@@ -62,9 +62,13 @@ static func add_to_playfield(o: Node2D, from: Node):
 	o.reset_physics_interpolation()
 
 func on_dialogue_finished():
+	await %Curtain.close()
+	await  Utils.delay(0.3)
 	dialgoue_screens[0].visible = false
+
 	if new_entity_region:
 		new_entity_region.process_mode = Node.PROCESS_MODE_INHERIT
+	%Curtain.open()
 	_ready()
 
 func open_dialogue():
