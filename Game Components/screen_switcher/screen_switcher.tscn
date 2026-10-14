@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://ck2nwlox1f5lg"]
+
+[ext_resource type="Script" uid="uid://4mw2yaerp4w0" path="res://Game Components/screen_switcher/screen_switcher.gd" id="1_aqwkr"]
+[ext_resource type="Script" uid="uid://du42d46hn3w68" path="res://Game Components/screen_switcher/screen.gd" id="2_ijno7"]
+[ext_resource type="Script" uid="uid://dumdjlccc2bx7" path="res://Game Components/screen_switcher/transition.gd" id="3_ijno7"]
+[ext_resource type="Shader" uid="uid://comte6u7scsf7" path="res://Arcade Games/Invaders/curtain_dither.gdshader" id="3_j42qd"]
+[ext_resource type="Script" uid="uid://crs1s25mbl4em" path="res://addons/jodot/transition/curtain.gd" id="4_ak26y"]
+
+[sub_resource type="Resource" id="Resource_ak26y"]
+script = ExtResource("3_ijno7")
+transition = 3
+direction = 3
+duration = 5.0
+metadata/_custom_type_script = "uid://dumdjlccc2bx7"
+
+[sub_resource type="Resource" id="Resource_j42qd"]
+script = ExtResource("3_ijno7")
+transition = 2
+direction = 0
+duration = 5.0
+metadata/_custom_type_script = "uid://dumdjlccc2bx7"
+
+[sub_resource type="Resource" id="Resource_aqwkr"]
+script = ExtResource("3_ijno7")
+transition = 1
+direction = 2
+metadata/_custom_type_script = "uid://dumdjlccc2bx7"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o7ax1"]
+shader = ExtResource("3_j42qd")
+shader_parameter/factor = 0.0
+shader_parameter/rect_size = Vector2(256, 240)
+shader_parameter/edge_size = 100.0
+shader_parameter/direction = 0
+shader_parameter/patterns = 7
+shader_parameter/dither_scale = 1.0
+
+[node name="ScreenSwitcher" type="Control" unique_id=1463175606]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_aqwkr")
+
+[node name="Screen1" type="ColorRect" parent="." unique_id=2145941004]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.16962174, 0.021222368, 0.11332748, 1)
+script = ExtResource("2_ijno7")
+transition = SubResource("Resource_ak26y")
+
+[node name="Label" type="Label" parent="Screen1" unique_id=1056563215]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Screen2" type="ColorRect" parent="." unique_id=810511307]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.29044637, 0.20541635, 0.47016245, 1)
+script = ExtResource("2_ijno7")
+transition = SubResource("Resource_j42qd")
+
+[node name="Label" type="Label" parent="Screen2" unique_id=2007184526]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Screen3" type="ColorRect" parent="." unique_id=1086127215]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03464419, 0.027512988, 0.06896686, 1)
+script = ExtResource("2_ijno7")
+transition = SubResource("Resource_aqwkr")
+
+[node name="Label" type="Label" parent="Screen3" unique_id=292946205]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Curtain" type="ColorRect" parent="." unique_id=1166733881]
+unique_name_in_owner = true
+z_index = 99
+material = SubResource("ShaderMaterial_o7ax1")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.011764706, 0.015686275, 0.03529412, 1)
+script = ExtResource("4_ak26y")
+duration = 1.0
+direction = 0
+open_on_ready = false
