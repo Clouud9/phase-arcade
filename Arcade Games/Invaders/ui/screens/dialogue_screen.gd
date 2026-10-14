@@ -30,7 +30,7 @@ func activate():
 		initial_focus.grab_focus.call_deferred()
 
 func open():
-	activate
+	activate()
 	await dialogue_finished
 
 func _ready():

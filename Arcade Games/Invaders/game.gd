@@ -6,7 +6,6 @@ class_name InvadersGame
 @export var lives: Lives
 @export var current_player: Player
 @export var player_spawn_point: Marker2D
-@export var dialgoue_screens: Array[DialogueScreen]
 @export var waves: Array[PackedScene]
 @export var wave: int = 0
 
@@ -64,12 +63,11 @@ static func add_to_playfield(o: Node2D, from: Node):
 func on_dialogue_finished():
 	_ready()
 
-func open_dialogue(screen:CanvasItem):
+func open_dialogue(screen:DialogueScreen):
 	screen.visible = true
 	new_entity_region.process_mode = Node.PROCESS_MODE_DISABLED
 	if screen is DialogueScreen:
-		screen.activate()
-		await screen.dialogue_finished
+		await screen.open()
 
 	await %Curtain.close()
 	screen.visible = false
@@ -80,22 +78,18 @@ func open_dialogue(screen:CanvasItem):
 
 func _ready():
 	super()
-	for d in dialgoue_screens:
-		d.visible = false
 
 	#Insert Coin
 	var cab = ArcadeCabinet.get_cabinet(self)
 	if cab:
-		%TitleScreen.visible = true
-		await cab.coin_inserted
+		await open_dialogue(%TitleScreen)
 		await %Curtain.close()
-		%TitleScreen.visible = false
 		%Curtain.open()
 	else:
 		%TitleScreen.visible = false
 
 	if not lives.has_life():
-		await open_dialogue(dialgoue_screens[0])
+		await open_dialogue(%CharacterSelectScreen)
 	if not current_player and lives and lives.has_life():
 		await spawn_wave(waves[wave])
 		spawn_player(lives.get_life())

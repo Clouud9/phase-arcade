@@ -18,4 +18,13 @@ func _process(delta: float) -> void:
 		visible = true
 	text = "Insert Coin"
 
-	pass
+func _on_insert_coin():
+	pulse_rate += 5
+	await Utils.delay(1)
+	pulse_rate -= 5
+
+func _ready() -> void:
+	var cab = ArcadeCabinet.get_cabinet(self)
+	if cab:
+		cab.coin_inserted.connect(_on_insert_coin)
+

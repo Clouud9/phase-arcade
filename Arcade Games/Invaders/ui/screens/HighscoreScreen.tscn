@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bf4nuxb5t41e7"]
+
+[ext_resource type="Theme" uid="uid://bnc4gesw2cmsb" path="res://Arcade Games/Invaders/ui/theme.tres" id="1_klbco"]
+[ext_resource type="Script" uid="uid://bbmwy7avdmqf6" path="res://Arcade Games/Invaders/ui/screens/dialogue_screen.gd" id="1_uowyw"]
+[ext_resource type="Script" uid="uid://cl7v0mcqrvpf5" path="res://Game Components/Highscore/highscore_container.gd" id="3_l86km"]
+[ext_resource type="Resource" uid="uid://pao85ncfkq2y" path="res://Game Components/Highscore/example_highscore_collection.tres" id="4_l86km"]
+
+[node name="HighscoreScreen" type="ColorRect" unique_id=1666660022]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_klbco")
+color = Color(0.09556737, 0.08269522, 0.1637021, 1)
+script = ExtResource("1_uowyw")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=538714453]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HighscoreContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1111643132]
+layout_mode = 2
+script = ExtResource("3_l86km")
+highscore_collection = ExtResource("4_l86km")

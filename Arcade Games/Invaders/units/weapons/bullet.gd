@@ -9,6 +9,8 @@ func _expire():
 	if payload_instance:
 		if payload_instance is Unit:
 			payload_instance.collision_mask = collision_mask
+		if payload_instance is Node2D:
+			(payload_instance as Node2D).global_position = global_position
 		InvadersGame.add_to_playfield(payload_instance, self)
 		if payload_instance is Shoota:
 			payload_instance.shoot(direction, null, collision_mask)
