@@ -21,4 +21,9 @@ TODO.md:
 
 build: export/web/index.html
 
+.PHONY: .docs
+.docs:
+	mkdir -p .docs
+	godot --headless --doctool .docs
+
 .PHONY: TODO.md clean build

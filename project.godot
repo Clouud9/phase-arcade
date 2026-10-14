@@ -39,6 +39,7 @@ movie_writer/disable_vsync=true
 folder_colors={
 "res://Arcade Games/": "teal",
 "res://Cabinets/": "orange",
+"res://Game Components/": "teal",
 "res://audio/": "yellow",
 "res://levels/": "pink",
 "res://levels/gridmap-level/": "pink",
