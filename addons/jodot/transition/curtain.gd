@@ -2,9 +2,10 @@
 class_name Curtain
 extends ColorRect
 
-enum WIPE_DIR {DOWN, UP, LEFT, RIGHT}
 @export var duration := 0.5
-@export var direction:WIPE_DIR = WIPE_DIR.UP
+## Direction of the wipe. Uses [enum Transition.DIR] so wipes and screen
+## transitions share one enum type.
+@export var direction:Transition.DIR = Transition.DIR.UP
 @export var open_on_ready := true
 
 @export_tool_button("open", "ControlAlignFullRect") var open_button = open
