@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://t6vey86s1202"]
 
 [ext_resource type="Theme" uid="uid://bnc4gesw2cmsb" path="res://Arcade Games/Invaders/ui/theme.tres" id="1_gmpo2"]
-[ext_resource type="Script" uid="uid://bbmwy7avdmqf6" path="res://Arcade Games/Invaders/ui/dialogue_screen.gd" id="2_rq7k7"]
+[ext_resource type="Script" uid="uid://dlgaea1r2l7xo" path="res://Arcade Games/Invaders/ui/screens/character_select_dialogue.gd" id="2_gmpo2"]
 [ext_resource type="Script" uid="uid://dyuxpo5xxanxv" path="res://Arcade Games/Invaders/ui/lives.gd" id="3_t81ea"]
 [ext_resource type="PackedScene" uid="uid://c787qqqdmbiju" path="res://Arcade Games/Invaders/ui/life_container_large.tscn" id="4_8ske4"]
 [ext_resource type="Script" uid="uid://rgdj1bvmqvin" path="res://Arcade Games/Invaders/ui/screens/character_select.gd" id="5_x1sv3"]
@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://drxjk8huytppt" path="res://Arcade Games/Invaders/ui/character_portrait.tscn" id="7_1yb6v"]
 [ext_resource type="Script" uid="uid://ce5yktvlfqfes" path="res://Arcade Games/Invaders/ui/selectable_control.gd" id="8_bmr28"]
 
-[node name="CharacterSelectScreen" type="ColorRect" unique_id=1719475482 node_paths=PackedStringArray("confirm_button", "initial_focus", "lives")]
+[node name="CharacterSelectScreen" type="ColorRect" unique_id=1719475482 node_paths=PackedStringArray("lives", "confirm_button", "initial_focus")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -19,10 +19,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_gmpo2")
 color = Color(0.0129109, 0.0194323, 0.0565071, 1)
-script = ExtResource("2_rq7k7")
+script = ExtResource("2_gmpo2")
+lives = NodePath("CenterContainer/HSplitContainer/Lives")
 confirm_button = NodePath("CenterContainer/HSplitContainer/Button")
 initial_focus = NodePath("CenterContainer/HSplitContainer/Characters/TopRow/Character0")
-lives = NodePath("CenterContainer/HSplitContainer/Lives")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=823594683]
 layout_mode = 1
