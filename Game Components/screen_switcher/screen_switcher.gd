@@ -3,14 +3,17 @@ extends Control
 
 var curtain:Curtain
 
+# --- Operations ---
+
 class Operation:
 	var screen:Screen
 	var transition_in:bool
+	var other_screens:Array[Screen] # Some transitions affect other screens e.g. MOVE_ACROSS
 	signal finished
 
-var _pending_operations = Array[Operation]
+var _pending_operations:Array[Operation]
 
-func _add_operation(s:Screen, transition_in:bool) -> Operation:
+func _add_operation(s:Screen, transition_in:bool, other_screens:Array[Screen]) -> Operation:
 	var op:Operation
 	for o in _pending_operations:
 		if o.screen == s:
@@ -23,6 +26,13 @@ func _add_operation(s:Screen, transition_in:bool) -> Operation:
 	op.transition_in = transition_in
 	return op
 
+## Advances [param op] by [param delta] seconds. And returns [code]true[\code]
+## if the update concluded the operation
+func update_operation(op:Operation, delta:float) -> bool:
+	return true #TODO
+
+# --- Screens ---
+
 func get_visible_screens() -> Array[Screen]:
 	var out:Array[Screen]
 	for c in get_children():
@@ -30,25 +40,25 @@ func get_visible_screens() -> Array[Screen]:
 			out.append(c)
 	return out
 
+## Shows or hides the given screen, playing its transition
+func toggle(screen: Screen) -> void:
+	show_screen(null if screen.visible else screen)
+
 ## Show [param screen] using its defined transition.
 ## If [param screen] is [code]null[/code], it will play the current screen's
 ## transition in reverse and show nothing.
 ## If [param exclusive], hides other screens
-func show_screen(screen: Screen, exclusive=true) -> signal:
-	if _busy:
-		_pending = screen
-		_has_pending = true
-		return
-	if screen == current_screen:
-		return
+## Await this method to wait for the transition(s) to finish.
+func show_screen(screen: Screen, exclusive=true) -> void:
+	if screen:
+		await (_add_operation(screen, true, get_visible_screens() if exclusive else []).finished)
+	else:
+		var dw := DextrousWaiter.new()
+		for s in get_visible_screens():
+			dw.add_signal(_add_operation(s, false, []).finished)
+		await dw.wait_until_finished()
 
-	_busy = true
-	await _play(current_screen, screen)
-	_busy = false
-
-	if _has_pending:
-		_has_pending = false
-		show_screen(_pending)
+# --- TODO refactor all this ---
 
 # Runs the transition that takes `from` to `to`.
 func _play(from: Screen, to: Screen) -> void:
@@ -165,10 +175,6 @@ func _tween_ratio(s: Screen, from_ratio: Vector2, to_ratio: Vector2, duration: f
 	tw.tween_property(s, "offset_transform_position_ratio", to_ratio, duration)
 	await tw.finished
 
-## Shows or hides the given screen, playing its transition
-func toggle(screen: Screen) -> void:
-	show_screen(null if screen.visible else screen)
-
 # --- Main ---
 
 func _ready() -> void:
@@ -193,6 +199,20 @@ func _ready() -> void:
 			if c != current_screen:
 				_reset(c)
 
+func _process(delta:float):
+	var completed: Array[Operation] = []
+	var remaining: Array[Operation] = []
+	for op in _pending_operations:
+		if update_operation(op, delta):
+			completed.append(op)
+		else:
+			remaining.append(op)
+	# Swap in the survivors before handling completions: a finished handler may
+	# add new operations, which must not be clobbered by the swap.
+	_pending_operations = remaining
+	for op in completed:
+		op.finished.emit()
+
 # TODO: move this out
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
@@ -202,4 +222,3 @@ func _input(event: InputEvent) -> void:
 		var target := get_node_or_null("Screen%d" % (index + 1)) as Screen
 		if target:
 			toggle(target)
-
