@@ -27,4 +27,3 @@ func _ready() -> void:
 	var cab = ArcadeCabinet.get_cabinet(self)
 	if cab:
 		cab.coin_inserted.connect(_on_insert_coin)
-

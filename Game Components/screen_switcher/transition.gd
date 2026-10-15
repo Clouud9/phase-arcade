@@ -7,23 +7,21 @@ enum Mode {
 	MOVE_ONTOP, ## The new screen moves into the space of the old screen, like a card.
 	MOVE_ACROSS ## The old screen moves aside for the new screen, like a camera pan
 }
+## The effect used to show and hide the owning [Screen].
 @export var transition:Mode = Mode.NONE
 
 enum DIR {DOWN, UP, LEFT, RIGHT}
 
-## The direction of the transition.
-## Not all transitions neccesarily have a direction,
-#and the precise meaning may vary between implementations
+## The direction of the transition. Not all transitions necessarily have a
+## direction, and the precise meaning may vary between implementations.
 @export var direction:DIR = DIR.UP
 
 ## Duration of the transition effect.
 ## Note that the [enum Transition.CURTAIN] effect plays twice so the overall time will be double
 @export_range(0, 5, 0.1) var duration = 0.5
 
-## The direction a screen travels in for [member direction], as a unit vector
-## pointing toward the side of the screen it exits by.
-## The incoming screen starts at the opposite offset, so it enters from the
-## side the outgoing one leaves toward.
+## The unit vector for [member direction], pointing toward the edge a screen
+## exits by. An entering screen starts at the negation of it.
 func travel() -> Vector2:
 	match direction:
 		DIR.DOWN:
@@ -35,3 +33,6 @@ func travel() -> Vector2:
 		DIR.RIGHT:
 			return Vector2(1, 0)
 	return Vector2.ZERO
+
+enum BLEND_FUNC {LINEAR, SMOOTH}
+@export var blending_function:BLEND_FUNC = BLEND_FUNC.SMOOTH

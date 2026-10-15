@@ -1,50 +1,40 @@
 extends Control
+## Transitions between [Screen]s
 
-## Shows one [Screen] at a time, playing that screen's own [Transition].
-##
-## This is distinct from a scene switcher: scenes replace whole subtrees, while
-## this swaps between persistent [Screen] children of a single node. The two can
-## be layered together.
-##
-## Position-based transitions slide screens around with
-## [member Control.offset_transform_position_ratio], so the layout is untouched
-## and only the rendering moves.
+var curtain:Curtain
 
-## Optional wipe played for [enum Transition.Mode.CURTAIN]. Resolved from a
-## unique child named [code]%Curtain[/code] if one is present.
-@onready var curtain: Curtain = get_node_or_null("%Curtain") as Curtain
+class Operation:
+	var screen:Screen
+	var transition_in:bool
+	signal finished
 
-## The screen currently on display, or [code]null[/code] when all are hidden.
-var current_screen: Screen = null
+var _pending_operations = Array[Operation]
 
-var _tween: Tween
-var _busy := false
-var _pending: Screen = null
-var _has_pending := false
+func _add_operation(s:Screen, transition_in:bool) -> Operation:
+	var op:Operation
+	for o in _pending_operations:
+		if o.screen == s:
+			op = o
+	if not op:
+		op = Operation.new()
+		_pending_operations.append(op)
 
-func _ready() -> void:
-	# keep sliding screens from spilling outside this control
-	clip_contents = true
+	op.screen = s
+	op.transition_in = transition_in
+	return op
 
-	# The scene may author several screens visible at once. Treat the topmost
-	# (last in tree order) as the current one, then hide the rest so exactly one
-	# screen is on display to start with.
+func get_visible_screens() -> Array[Screen]:
+	var out:Array[Screen]
 	for c in get_children():
 		if c is Screen and c.visible:
-			current_screen = c
-	for c in get_children():
-		if c is Screen:
-			c.set_shown(c == current_screen)
-			if c != current_screen:
-				_reset(c)
+			out.append(c)
+	return out
 
 ## Show [param screen] using its defined transition.
 ## If [param screen] is [code]null[/code], it will play the current screen's
 ## transition in reverse and show nothing.
-##
-## Safe to call while a transition is already running: intermediate requests are
-## dropped and the most recent one plays once the current transition finishes.
-func show_screen(screen: Screen) -> void:
+## If [param exclusive], hides other screens
+func show_screen(screen: Screen, exclusive=true) -> signal:
 	if _busy:
 		_pending = screen
 		_has_pending = true
@@ -60,7 +50,7 @@ func show_screen(screen: Screen) -> void:
 		_has_pending = false
 		show_screen(_pending)
 
-## Runs the transition that takes [param from] to [param to].
+# Runs the transition that takes `from` to `to`.
 func _play(from: Screen, to: Screen) -> void:
 	# The incoming screen dictates the transition; hiding it all is the reverse
 	# of the outgoing screen's transition.
@@ -83,22 +73,22 @@ func _play(from: Screen, to: Screen) -> void:
 		_:
 			_swap(from, to)
 
-## Instant visibility swap with no animation.
+# Instant visibility swap with no animation.
 func _swap(from: Screen, to: Screen) -> void:
 	if from:
 		from.set_shown(false)
 	if to:
 		to.set_shown(true)
 
-## Hide every screen except the transition's participants, so stray visible
-## screens (e.g. ones left visible in the authored scene) don't linger on top.
+# Hide every screen except the transition's participants, so stray visible
+# screens (e.g. ones left visible in the authored scene) don't linger on top.
 func _hide_others(from: Screen, to: Screen) -> void:
 	for c in get_children():
 		if c is Screen and c != from and c != to:
 			c.set_shown(false)
 			_reset(c)
 
-## Cover everything with the curtain, swap, then retract it.
+# Cover everything with the curtain, swap, then retract it.
 func _play_curtain(from: Screen, to: Screen, t: Transition) -> void:
 	if not curtain:
 		push_warning("ScreenSwitcher: CURTAIN transition needs a %Curtain node; swapping instantly instead.")
@@ -108,7 +98,7 @@ func _play_curtain(from: Screen, to: Screen, t: Transition) -> void:
 	_swap(from, to)
 	await curtain.open(t.direction, t.duration)
 
-## The new screen slides in over the old one, like a card being placed on top.
+# The new screen slides in over the old one, like a card being placed on top.
 func _play_move_on_top(from: Screen, to: Screen, t: Transition) -> void:
 	if not to:
 		# reverse: the outgoing screen slides back out the way it came in
@@ -125,7 +115,7 @@ func _play_move_on_top(from: Screen, to: Screen, t: Transition) -> void:
 	if from:
 		from.set_shown(false)
 
-## The old screen pans away while the new one follows it in.
+# The old screen pans away while the new one follows it in.
 func _play_move_across(from: Screen, to: Screen, t: Transition) -> void:
 	if not to:
 		# reverse: the outgoing screen slides back out the way it came in
@@ -150,7 +140,7 @@ func _play_move_across(from: Screen, to: Screen, t: Transition) -> void:
 		from.set_shown(false)
 		_reset(from)
 
-## Slides [param screen] off the edge it entered from, then hides it.
+# Slides the screen off the edge it entered from, then hides it.
 func _slide_out(screen: Screen, t: Transition) -> void:
 	if not screen:
 		return
@@ -159,12 +149,12 @@ func _slide_out(screen: Screen, t: Transition) -> void:
 	screen.set_shown(false)
 	_reset(screen)
 
-## Enables the visual offset transform and parks [param s] at [param ratio].
+# Enables the visual offset transform and parks the screen at `ratio`.
 func _place(s: Screen, ratio: Vector2) -> void:
 	s.offset_transform_enabled = true
 	s.offset_transform_position_ratio = ratio
 
-## Returns [param s] to an unshifted resting state.
+# Returns the screen to an unshifted resting state.
 func _reset(s: Screen) -> void:
 	s.offset_transform_position_ratio = Vector2.ZERO
 	s.offset_transform_enabled = false
@@ -175,13 +165,35 @@ func _tween_ratio(s: Screen, from_ratio: Vector2, to_ratio: Vector2, duration: f
 	tw.tween_property(s, "offset_transform_position_ratio", to_ratio, duration)
 	await tw.finished
 
-## Kills any previous move tween and starts a fresh one.
-func _new_tween() -> Tween:
-	if _tween and _tween.is_valid():
-		_tween.kill()
-	_tween = create_tween()
-	return _tween
+## Shows or hides the given screen, playing its transition
+func toggle(screen: Screen) -> void:
+	show_screen(null if screen.visible else screen)
 
+# --- Main ---
+
+func _ready() -> void:
+	curtain = get_node_or_null("%Curtain")
+	if not curtain:
+		curtain = Curtain.new()
+		add_child(curtain)
+	curtain.set_openness(1.0)
+
+	# keep sliding screens from spilling outside this control
+	clip_contents = true
+
+	# The scene may author several screens visible at once. Treat the topmost
+	# (last in tree order) as the current one, then hide the rest so exactly one
+	# screen is on display to start with.
+	for c in get_children():
+		if c is Screen and c.visible:
+			current_screen = c
+	for c in get_children():
+		if c is Screen:
+			c.set_shown(c == current_screen)
+			if c != current_screen:
+				_reset(c)
+
+# TODO: move this out
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		# Keys 1-9 map to the Screen1-Screen9 children (KEY_1..KEY_9 are
@@ -189,8 +201,5 @@ func _input(event: InputEvent) -> void:
 		var index: int = event.keycode - KEY_1
 		var target := get_node_or_null("Screen%d" % (index + 1)) as Screen
 		if target:
-			_toggle(target)
+			toggle(target)
 
-## Show [param screen], or hide it if it is already the current one.
-func _toggle(screen: Screen) -> void:
-	show_screen(null if screen == current_screen else screen)
