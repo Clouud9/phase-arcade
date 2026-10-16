@@ -1,0 +1,324 @@
+[gd_scene format=3 uid="uid://ck2nwlox1f5lg"]
+
+[ext_resource type="Theme" uid="uid://cvv68xafp3hyw" path="res://Game Components/screen_switcher/theme.tres" id="1_ak26y"]
+[ext_resource type="Script" uid="uid://bq6h4ok72o11l" path="res://Game Components/screen_switcher/demo_screen_switcher.gd" id="2_ak26y"]
+[ext_resource type="Script" uid="uid://du42d46hn3w68" path="res://Game Components/screen_switcher/screen.gd" id="2_ijno7"]
+[ext_resource type="Script" uid="uid://dumdjlccc2bx7" path="res://Game Components/screen_switcher/transition.gd" id="3_ijno7"]
+[ext_resource type="Script" uid="uid://crs1s25mbl4em" path="res://addons/jodot/transition/curtain.gd" id="4_ak26y"]
+[ext_resource type="Material" uid="uid://cm3n8k1wq4y7p" path="res://addons/jodot/transition/curtain.tres" id="5_ak26y"]
+[ext_resource type="Texture2D" uid="uid://co8toflwj3e0g" path="res://Game Components/screen_switcher/shit.jpg" id="6_j42qd"]
+
+[sub_resource type="Resource" id="Resource_s1"]
+script = ExtResource("3_ijno7")
+mode = 0
+duration = 0.4
+metadata/_custom_type_script = "uid://dumdjlccc2bx7"
+
+[sub_resource type="Resource" id="Resource_s2"]
+script = ExtResource("3_ijno7")
+mode = 2
+direction = 1
+duration = 0.5
+metadata/_custom_type_script = "uid://dumdjlccc2bx7"
+
+[sub_resource type="Resource" id="Resource_s3"]
+script = ExtResource("3_ijno7")
+mode = 2
+direction = 0
+duration = 0.5
+blending_function = 0
+metadata/_custom_type_script = "uid://dumdjlccc2bx7"
+
+[sub_resource type="Resource" id="Resource_s4"]
+script = ExtResource("3_ijno7")
+mode = 2
+direction = 2
+duration = 1.0
+metadata/_custom_type_script = "uid://dumdjlccc2bx7"
+
+[sub_resource type="Resource" id="Resource_s5"]
+script = ExtResource("3_ijno7")
+mode = 3
+direction = 3
+duration = 0.6
+metadata/_custom_type_script = "uid://dumdjlccc2bx7"
+
+[sub_resource type="Resource" id="Resource_s6"]
+script = ExtResource("3_ijno7")
+mode = 3
+direction = 1
+duration = 0.6
+blending_function = 0
+metadata/_custom_type_script = "uid://dumdjlccc2bx7"
+
+[sub_resource type="Resource" id="Resource_s7"]
+script = ExtResource("3_ijno7")
+mode = 3
+direction = 0
+duration = 1.0
+metadata/_custom_type_script = "uid://dumdjlccc2bx7"
+
+[sub_resource type="Resource" id="Resource_s8"]
+script = ExtResource("3_ijno7")
+mode = 1
+direction = 0
+duration = 0.5
+blending_function = 0
+metadata/_custom_type_script = "uid://dumdjlccc2bx7"
+
+[sub_resource type="Resource" id="Resource_s9"]
+script = ExtResource("3_ijno7")
+mode = 1
+direction = 3
+duration = 0.5
+metadata/_custom_type_script = "uid://dumdjlccc2bx7"
+
+[sub_resource type="Resource" id="Resource_fb7xe"]
+script = ExtResource("3_ijno7")
+mode = 1
+direction = 0
+duration = 0.5
+
+[node name="ScreenSwitcher" type="Control" unique_id=1463175606]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ak26y")
+script = ExtResource("2_ak26y")
+
+[node name="Screen1" type="ColorRect" parent="." unique_id=2145941004]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.16962174, 0.021222368, 0.11332748, 1)
+script = ExtResource("2_ijno7")
+transition = SubResource("Resource_s1")
+
+[node name="Label" type="Label" parent="Screen1" unique_id=1056563215]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Screen2" type="ColorRect" parent="." unique_id=810511307]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.29044637, 0.20541635, 0.47016245, 1)
+script = ExtResource("2_ijno7")
+transition = SubResource("Resource_s2")
+
+[node name="Label" type="Label" parent="Screen2" unique_id=2007184526]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Screen3" type="ColorRect" parent="." unique_id=1086127215]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03464419, 0.027512988, 0.06896686, 1)
+script = ExtResource("2_ijno7")
+transition = SubResource("Resource_s3")
+
+[node name="Label" type="Label" parent="Screen3" unique_id=292946205]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Screen4" type="ColorRect" parent="." unique_id=345520691]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.043137256, 0.1764706, 0.08627451, 1)
+script = ExtResource("2_ijno7")
+transition = SubResource("Resource_s4")
+require_reversal = true
+
+[node name="Label" type="Label" parent="Screen4" unique_id=1716519368]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Screen5" type="ColorRect" parent="." unique_id=1525224785]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.023529412, 0.15686275, 0.1764706, 1)
+script = ExtResource("2_ijno7")
+transition = SubResource("Resource_s5")
+
+[node name="Label" type="Label" parent="Screen5" unique_id=1371103536]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Screen6" type="ColorRect" parent="." unique_id=1761828442]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.21960784, 0.10980392, 0.039215688, 1)
+script = ExtResource("2_ijno7")
+transition = SubResource("Resource_s6")
+
+[node name="Label" type="Label" parent="Screen6" unique_id=332545706]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "6"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Screen7" type="ColorRect" parent="." unique_id=1426734361]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.23921569, 0.03137255, 0.1882353, 1)
+script = ExtResource("2_ijno7")
+transition = SubResource("Resource_s7")
+
+[node name="Label" type="Label" parent="Screen7" unique_id=948336852]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "7"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Screen8" type="ColorRect" parent="." unique_id=1965539280]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.14901961, 0.14901961, 0.03529412, 1)
+script = ExtResource("2_ijno7")
+transition = SubResource("Resource_s8")
+
+[node name="Label" type="Label" parent="Screen8" unique_id=1554712741]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "8"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Screen9" type="ColorRect" parent="." unique_id=1381510670]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.09019608, 0.101960786, 0.16078432, 1)
+script = ExtResource("2_ijno7")
+transition = SubResource("Resource_s9")
+active_while_not_shown = true
+
+[node name="Label" type="Label" parent="Screen9" unique_id=163054453]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "9"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Curtain" type="ColorRect" parent="." unique_id=1166733881]
+unique_name_in_owner = true
+z_index = 99
+material = ExtResource("5_ak26y")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.024570823, 0.03978891, 0.06247917, 1)
+script = ExtResource("4_ak26y")
+transition = SubResource("Resource_fb7xe")
+open_on_ready = false
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=775824191]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_j42qd")
+stretch_mode = 3

@@ -1,3 +1,4 @@
+@tool
 extends Control
 class_name Screen
 
@@ -27,4 +28,4 @@ func present(progress: float, exit: Vector2) -> void:
 func _ready():
 	if not transition:
 		transition = Transition.new()
-	set_anchors_preset(PRESET_FULL_RECT)
+	set_anchors_and_offsets_preset(PRESET_FULL_RECT)

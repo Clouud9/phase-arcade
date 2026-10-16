@@ -8,6 +8,7 @@ var curtain: Curtain
 
 class Operation:
 	var screen: Screen
+	var transition: Transition # the screen's own, unless the show passed an override
 	var transition_in: bool
 	var others: Array[Screen] # screens displaced by this one, e.g. MOVE_ACROSS
 	var time: float # seconds into the transition
@@ -15,16 +16,19 @@ class Operation:
 
 var _pending_operations: Array[Operation]
 
-func _add_operation(s: Screen, transition_in: bool, other_screens: Array[Screen]) -> Operation:
+# Resolves [param transition] against the screen's own, so a caller can override
+# it for this operation only.
+func _add_operation(s: Screen, transition_in: bool, other_screens: Array[Screen], transition: Transition = null) -> Operation:
+	var t := transition if transition else s.transition
 	var others: Array[Screen] = []
 	for o in other_screens:
 		if o != s:
 			others.append(o)
 
-	if s.transition.is_instant():
+	if t.is_instant():
 		# Nothing to animate, so apply it immediately and report that there is
 		# no operation to wait on.
-		_settle(s, transition_in, others)
+		_settle(s, transition_in, others, t)
 		return null
 
 	var op: Operation
@@ -35,12 +39,15 @@ func _add_operation(s: Screen, transition_in: bool, other_screens: Array[Screen]
 		op = Operation.new()
 		# A fresh operation starts from whichever resting state the screen is
 		# leaving: hidden for a show, shown for a hide.
-		op.time = 0.0 if transition_in else s.transition.duration
+		op.time = 0.0 if transition_in else t.duration
 		_pending_operations.append(op)
 
 	# On reuse the direction may have flipped mid-flight; time is continuous, so
-	# we just retarget and let it run back the other way.
+	# we just retarget and let it run back the other way. op.time is left alone
+	# even if the new transition has a different duration, which makes progress
+	# jump.
 	op.screen = s
+	op.transition = t
 	op.transition_in = transition_in
 	op.others = others
 
@@ -53,7 +60,7 @@ func _add_operation(s: Screen, transition_in: bool, other_screens: Array[Screen]
 ## Advances [param op] by [param delta] seconds. Returns [code]true[/code] if the
 ## update concluded the operation.
 func update_operation(op: Operation, delta: float) -> bool:
-	var t := op.screen.transition
+	var t := op.transition
 	op.time += (1.0 if op.transition_in else -1.0) * delta
 	var p := t.calculate_progress(op.time)
 
@@ -94,28 +101,28 @@ func _reached(op: Operation, progress: float) -> bool:
 # Brings everything the operation touched to its resting state.
 func _retire(op: Operation) -> void:
 	if op.transition_in:
-		_snap(op.screen, true)
+		_snap(op.screen, true, op.transition)
 		for s in op.others:
 			if not _is_owned_elsewhere(s, op):
 				_snap(s, false)
 	else:
-		_snap(op.screen, false)
+		_snap(op.screen, false, op.transition)
 
 # Applies final resting states at once: the shown screen is raised and the
 # screens it displaced are hidden. Used for instant transitions and for the
-# swap hidden behind the curtain.
-func _settle(s: Screen, transition_in: bool, other_screens: Array[Screen]) -> void:
+# swap hidden behind the curtain. [param t] overrides [param s]'s transition.
+func _settle(s: Screen, transition_in: bool, other_screens: Array[Screen], t: Transition = null) -> void:
 	if transition_in:
-		_snap(s, true)
+		_snap(s, true, t)
 		for o in other_screens:
 			if o != s and not _has_own_op(o):
 				_snap(o, false)
 	else:
-		_snap(s, false)
+		_snap(s, false, t)
 
 # Presents a screen at rest: fully shown or fully hidden.
-func _snap(s: Screen, shown: bool) -> void:
-	s.present(1.0 if shown else 0.0, s.transition.travel())
+func _snap(s: Screen, shown: bool, t: Transition = null) -> void:
+	s.present(1.0 if shown else 0.0, (t if t else s.transition).travel())
 	if shown:
 		s.move_to_front()
 
@@ -127,6 +134,15 @@ func get_visible_screens() -> Array[Screen]:
 		if c is Screen and c.visible:
 			out.append(c)
 	return out
+
+## The visible [Screen] drawn above every other, or [code]null[/code] if nothing
+## is visible. Showing a screen raises it with [method CanvasItem.move_to_front],
+## so the topmost one is the last visible child.
+func current_screen() -> Screen:
+	var shown := get_visible_screens()
+	if shown.is_empty():
+		return null
+	return shown[shown.size() - 1]
 
 func get_screens_requiring_reversal() -> Array[Screen]:
 	var out: Array[Screen] = []
@@ -147,9 +163,12 @@ func hide_screen(screen: Screen) -> void:
 ## If [param screen] is [code]null[/code], it will play the current screen's
 ## transition in reverse and show nothing.
 ## If [param exclusive], hides other screens
+## If [param transition] is given, it replaces [member Screen.transition] for
+## this show only; it is ignored when [param screen] is [code]null[/code].
 ## Await this method to wait for the transition(s) to finish.
-func show_screen(screen: Screen, exclusive=true) -> void:
+func show_screen(screen: Screen, exclusive=true, transition: Transition = null) -> void:
 	if screen:
+		var t := transition if transition else screen.transition
 		for s in get_screens_requiring_reversal():
 			await hide_screen(s) # TODO: handle concurrent hiding? It's a weird usecase
 
@@ -159,15 +178,15 @@ func show_screen(screen: Screen, exclusive=true) -> void:
 				if s != screen:
 					others.append(s)
 
-		if screen.transition.mode == Transition.Mode.CURTAIN:
+		if t.mode == Transition.Mode.CURTAIN:
 			# Reverse anything else in flight so it settles unseen behind the
 			# closed curtain.
 			for o in _pending_operations:
 				o.transition_in = false
-			await _curtain_swap(screen.transition, func(): _settle(screen, true, others))
+			await _curtain_swap(t, func(): _settle(screen, true, others, t))
 			return
 
-		var op := _add_operation(screen, true, others)
+		var op := _add_operation(screen, true, others, transition)
 		if op:
 			if exclusive:
 				# An exclusive show supersedes anything else in flight: flip the
@@ -197,8 +216,8 @@ func toggle(screen: Screen) -> void:
 # Closes the curtain, applies [param swap] while it hides everything, then opens
 # it again. Concurrent calls serialise through the curtain's own signals.
 func _curtain_swap(t: Transition, swap: Callable) -> void:
-	if not (curtain and curtain.material is ShaderMaterial):
-		push_warning("ScreenSwitcher: CURTAIN transition needs a Curtain with a shader; swapping instantly.")
+	if not curtain:
+		push_warning("Cannot find curtain")
 		swap.call()
 		return
 	await curtain.close(t)
@@ -208,7 +227,9 @@ func _curtain_swap(t: Transition, swap: Callable) -> void:
 # --- Main ---
 
 func _ready() -> void:
-	curtain = get_node_or_null("%Curtain")
+	for c in get_children():
+		if c is Curtain:
+			curtain = c
 
 	# keep sliding screens from spilling outside this control
 	clip_contents = true

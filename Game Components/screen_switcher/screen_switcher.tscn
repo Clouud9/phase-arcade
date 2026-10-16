@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://ck2nwlox1f5lg"]
+[gd_scene format=3 uid="uid://gmc3e84hnri7"]
 
 [ext_resource type="Theme" uid="uid://cvv68xafp3hyw" path="res://Game Components/screen_switcher/theme.tres" id="1_ak26y"]
 [ext_resource type="Script" uid="uid://bq6h4ok72o11l" path="res://Game Components/screen_switcher/demo_screen_switcher.gd" id="2_ak26y"]
