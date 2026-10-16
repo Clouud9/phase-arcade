@@ -24,6 +24,8 @@ func _add_operation(s:Screen, transition_in:bool, other_screens:Array[Screen]) -
 
 	op.screen = s
 	op.transition_in = transition_in
+	# TODO: handle instant transitions instantly, rather than waiting for the next frame
+	# and return null
 	return op
 
 ## Advances [param op] by [param delta] seconds. And returns [code]true[\code]
@@ -40,9 +42,17 @@ func get_visible_screens() -> Array[Screen]:
 			out.append(c)
 	return out
 
-## Shows or hides the given screen, playing its transition
-func toggle(screen: Screen) -> void:
-	show_screen(null if screen.visible else screen)
+func get_screens_requiring_reversal() -> Array[Screen]:
+	var out:Array[Screen]
+	for c in get_visible_screens():
+		if c.requires_reversal:
+			out.append(c)
+	return out
+
+func hide_screen(screen:Screen):
+	var op = _add_operation(screen, false, [])
+	if op: # if the transition was instant, op will be null
+		await op.finished
 
 ## Show [param screen] using its defined transition.
 ## If [param screen] is [code]null[/code], it will play the current screen's
@@ -51,12 +61,18 @@ func toggle(screen: Screen) -> void:
 ## Await this method to wait for the transition(s) to finish.
 func show_screen(screen: Screen, exclusive=true) -> void:
 	if screen:
+		for s in get_screens_requiring_reversal():
+			await hide_screen(s) # TODO: handle concurrent hiding? It's a weird usecase
 		await (_add_operation(screen, true, get_visible_screens() if exclusive else []).finished)
 	else:
 		var dw := DextrousWaiter.new()
 		for s in get_visible_screens():
 			dw.add_signal(_add_operation(s, false, []).finished)
 		await dw.wait_until_finished()
+
+## Shows or hides the given screen, playing its transition
+func toggle(screen: Screen) -> void:
+	show_screen(null if screen.visible else screen)
 
 # --- TODO refactor all this ---
 
@@ -166,7 +182,6 @@ func _place(s: Screen, ratio: Vector2) -> void:
 
 # Returns the screen to an unshifted resting state.
 func _reset(s: Screen) -> void:
-	s.offset_transform_position_ratio = Vector2.ZERO
 	s.offset_transform_enabled = false
 
 func _tween_ratio(s: Screen, from_ratio: Vector2, to_ratio: Vector2, duration: float) -> void:

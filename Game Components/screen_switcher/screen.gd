@@ -23,11 +23,10 @@ var _time:float
 ## Advances the transition by [param delta] seconds and returns the new
 ## [member progress]. Progress reaches 1.0 once the transition's duration has
 ## elapsed, then holds there.
+## [param delta] can be negative to reverse the transition
 func update_progress(delta:float) -> float:
-	if transition.duration <= 0.0:
-		_time = 1.0
-	else:
-		_time = clampf(_time + delta / transition.duration, 0.0, 1.0)
+	assert(transition.duration > 0) #TODO handle this case elsewhere
+	_time = clampf(_time + delta / transition.duration, 0.0, 1.0)
 	match transition.blending_function:
 		Transition.BLEND_FUNC.SMOOTH:
 			progress = smoothstep(0.0, 1.0, _time)
