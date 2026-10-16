@@ -1,5 +1,6 @@
 @tool
 extends VBoxContainer
+class_name HighscoreContainer
 
 @export var fixed_length:int = 0:
 	set(i):

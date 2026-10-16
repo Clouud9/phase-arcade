@@ -93,7 +93,7 @@ func _ready() -> void:
 	var _self = self as Node
 	if _self is Control:
 		_self_ui = _self
-		_self_ui.set_anchors_preset(Control.PRESET_FULL_RECT)
+		_self_ui.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	elif _self is Node2D:
 		_self_2D = _self
 	elif _self is Node3D:

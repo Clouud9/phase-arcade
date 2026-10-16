@@ -1,3 +1,4 @@
+@tool
 extends Label
 class_name InsertCoinLabel
 
@@ -6,6 +7,8 @@ class_name InsertCoinLabel
 
 var pulse_accum:float = 0
 func _process(delta: float) -> void:
+	if get_parent() and not get_parent().is_visible_in_tree():
+		return
 	if pulse_rate > 0:
 		var pulse_duration = 1.0/pulse_rate
 		pulse_accum += delta

@@ -1,10 +1,32 @@
 [gd_scene format=3 uid="uid://uw0nw0gw7d6s"]
 
-[ext_resource type="Script" uid="uid://c77ae1m8sue4x" path="res://Arcade Games/game.gd" id="1_oymay"]
+[ext_resource type="Script" uid="uid://bm5hmhl3mbymb" path="res://Arcade Games/Test Game/test_game.gd" id="1_c23ql"]
 [ext_resource type="Script" uid="uid://c1eebo47v00cq" path="res://Arcade Games/Test Game/label.gd" id="1_yggbx"]
+[ext_resource type="Script" uid="uid://4mw2yaerp4w0" path="res://Game Components/screen_switcher/screen_switcher.gd" id="2_ftub1"]
 [ext_resource type="Texture2D" uid="uid://b7eu7jeygvi6s" path="res://icon.svg" id="2_oxv5y"]
 [ext_resource type="Script" uid="uid://bhvu86r23wjxr" path="res://Arcade Games/Test Game/lil_guy.gd" id="3_oymay"]
+[ext_resource type="Script" uid="uid://du42d46hn3w68" path="res://Game Components/screen_switcher/screen.gd" id="3_qrweu"]
 [ext_resource type="AudioStream" uid="uid://bmuoemtunh2qk" path="res://Arcade Games/Test Game/boop.wav" id="4_3vkpy"]
+[ext_resource type="Script" uid="uid://dumdjlccc2bx7" path="res://Game Components/screen_switcher/transition.gd" id="4_c23ql"]
+[ext_resource type="Script" uid="uid://cl7v0mcqrvpf5" path="res://Game Components/Highscore/highscore_container.gd" id="5_qj1dv"]
+[ext_resource type="Resource" uid="uid://pao85ncfkq2y" path="res://Game Components/Highscore/example_highscore_collection.tres" id="6_uektd"]
+[ext_resource type="Script" uid="uid://lpbqkuxqeam0" path="res://Arcade Games/Invaders/ui/screens/insert_coin.gd" id="8_qrweu"]
+[ext_resource type="Material" uid="uid://bmfwdpbtlok7y" path="res://addons/jodot/transition/curtain_thats_all_folks.tres" id="12_vn3sm"]
+[ext_resource type="Script" uid="uid://crs1s25mbl4em" path="res://addons/jodot/transition/curtain.gd" id="13_cr0tv"]
+
+[sub_resource type="Gradient" id="Gradient_e6nak"]
+colors = PackedColorArray(0.3097897, 0.000797334, 0.47884244, 1, 0.3946713, 0.14648384, 0.9724429, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_deboi"]
+gradient = SubResource("Gradient_e6nak")
+fill_to = Vector2(0.125, 0.98)
+
+[sub_resource type="Resource" id="Resource_714r6"]
+script = ExtResource("4_c23ql")
+mode = 3
+direction = 2
+duration = 1.0
+metadata/_custom_type_script = "uid://dumdjlccc2bx7"
 
 [sub_resource type="Gradient" id="Gradient_mlv2d"]
 colors = PackedColorArray(0.7589871, 0.45982754, 0.8360422, 1, 0.5736639, 0.46674037, 0.8929547, 1)
@@ -14,6 +36,30 @@ gradient = SubResource("Gradient_mlv2d")
 fill_from = Vector2(0.4957265, 0)
 fill_to = Vector2(0.96581197, 0.8034188)
 
+[sub_resource type="Resource" id="Resource_c23ql"]
+script = ExtResource("4_c23ql")
+mode = 1
+duration = 2.0
+
+[sub_resource type="Gradient" id="Gradient_tegyt"]
+colors = PackedColorArray(0.39006808, 0.21338403, 0.72034717, 1, 0.56399864, 0.3349656, 0.58739763, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hetsb"]
+gradient = SubResource("Gradient_tegyt")
+fill_to = Vector2(0.22, 1.09)
+
+[sub_resource type="Resource" id="Resource_l5jyg"]
+script = ExtResource("4_c23ql")
+mode = 3
+direction = 3
+duration = 1.0
+metadata/_custom_type_script = "uid://dumdjlccc2bx7"
+
+[sub_resource type="Resource" id="Resource_hetsb"]
+script = ExtResource("4_c23ql")
+duration = 1.0
+metadata/_custom_type_script = "uid://dumdjlccc2bx7"
+
 [node name="TestGame" type="Control" unique_id=2010249600]
 layout_mode = 3
 anchors_preset = 15
@@ -21,22 +67,86 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_oymay")
+script = ExtResource("1_c23ql")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=2034090012]
+[node name="ScreenSwitcher" type="Control" parent="." unique_id=1390362141]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_yggbx")
+script = ExtResource("2_ftub1")
+metadata/_custom_type_script = "uid://4mw2yaerp4w0"
 
-[node name="Label" type="Label" parent="TextureRect" unique_id=1691081450]
+[node name="HighscoreScreen" type="TextureRect" parent="ScreenSwitcher" unique_id=1753704056]
+unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_deboi")
+script = ExtResource("3_qrweu")
+transition = SubResource("Resource_714r6")
+
+[node name="HighscoreContainer" type="VBoxContainer" parent="ScreenSwitcher/HighscoreScreen" unique_id=51902408]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.5
+offset_top = -38.5
+offset_right = 46.5
+offset_bottom = 38.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_qj1dv")
+highscore_collection = ExtResource("6_uektd")
+metadata/_custom_type_script = "uid://cl7v0mcqrvpf5"
+
+[node name="GameScreen" type="TextureRect" parent="ScreenSwitcher" unique_id=2034090012]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource("GradientTexture2D_yggbx")
+script = ExtResource("3_qrweu")
+transition = SubResource("Resource_c23ql")
+
+[node name="LilGuy" type="TextureRect" parent="ScreenSwitcher/GameScreen" unique_id=1477443908]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+scale = Vector2(0.355, 0.355)
+texture = ExtResource("2_oxv5y")
+script = ExtResource("3_oymay")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="ScreenSwitcher/GameScreen/LilGuy" unique_id=1880082536]
+stream = ExtResource("4_3vkpy")
+
+[node name="TitleScreen" type="TextureRect" parent="ScreenSwitcher" unique_id=1503983717]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource("GradientTexture2D_hetsb")
+script = ExtResource("3_qrweu")
+transition = SubResource("Resource_l5jyg")
+
+[node name="Label" type="Label" parent="ScreenSwitcher/TitleScreen" unique_id=1691081450]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -9.0
+offset_right = 9.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
@@ -45,13 +155,30 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("1_yggbx")
 
-[node name="LilGuy" type="TextureRect" parent="TextureRect" unique_id=1477443908]
-layout_mode = 0
-offset_right = 128.0
-offset_bottom = 128.0
-scale = Vector2(0.355, 0.355)
-texture = ExtResource("2_oxv5y")
-script = ExtResource("3_oymay")
+[node name="InsertCoinLabel" type="Label" parent="ScreenSwitcher/TitleScreen" unique_id=1251249186]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -42.5
+offset_top = -23.0
+offset_right = 42.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Insert Coin"
+script = ExtResource("8_qrweu")
+metadata/_custom_type_script = "uid://lpbqkuxqeam0"
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="TextureRect/LilGuy" unique_id=1880082536]
-stream = ExtResource("4_3vkpy")
+[node name="Curtain" type="ColorRect" parent="ScreenSwitcher" unique_id=1955369422]
+visible = false
+material = ExtResource("12_vn3sm")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("13_cr0tv")
+transition = SubResource("Resource_hetsb")
