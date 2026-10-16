@@ -23,12 +23,10 @@ game_scene = ExtResource("3_d0ker")
 test_mode = true
 
 [node name="SubViewport" parent="Cabinet" index="2" unique_id=599290243]
-size = Vector2i(512, 480)
 crt_downscale = 2
 
 [node name="Screen" parent="Cabinet/ScreenContainer" parent_id_path=PackedInt32Array(1752319625, 2132404432) index="0" unique_id=769819713]
-transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-resolution = Vector2(256, 240)
+resolution = Vector2(160, 120)
 
 [node name="Tooltip" parent="Cabinet/ScreenContainer/ScreenInteractZone" parent_id_path=PackedInt32Array(1752319625, 1828705782) index="1" unique_id=1310991000]
 texture = SubResource("ViewportTexture_wvv42")
