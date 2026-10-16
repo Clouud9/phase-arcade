@@ -207,6 +207,25 @@ func show_screen(screen: Screen, exclusive=true, transition: Transition = null) 
 					dw.add_signal(op.finished)
 		await dw.wait_until_finished()
 
+## Shows the given screen with no transition. Wraps [method show_screen]
+func show_instant(screen: Screen, exclusive=true) -> void:
+	var instant_transition = Transition.new()
+	instant_transition.mode = Transition.Mode.NONE
+	show_screen(screen, exclusive, instant_transition)
+
+func cycle(num:int = 1):
+	var curr = current_screen()
+	var children = get_children()
+	var curr_idx:int
+	for i in range(children.size()):
+		if children[i] == curr:
+			curr_idx = i
+			break
+	var i = curr_idx + num
+	while i >= children.size():
+		i -= children.size()
+	show_screen(children[i])
+
 ## Shows or hides the given screen, playing its transition
 func toggle(screen: Screen) -> void:
 	show_screen(null if screen.visible else screen)
@@ -260,3 +279,7 @@ func _process(delta:float):
 	_pending_operations = remaining
 	for op in completed:
 		op.finished.emit()
+
+
+func _on_timer_timeout() -> void:
+	pass # Replace with function body.

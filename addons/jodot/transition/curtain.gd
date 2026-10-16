@@ -10,7 +10,7 @@ var time:float = 0
 func _update_transition():
 	_set_direction(transition.direction)
 	time = Transition._calculate_time(transition, get_openness())
-	
+
 @export var transition:Transition:
 	set(t):
 		transition = t
@@ -62,7 +62,7 @@ func open(override_transition:Transition=null) -> void:
 	if not is_transition_done():
 		await opened
 	visible = false
-	
+
 # Has no effect if the shader does not have a `direction` parameter
 func _set_direction(dir: int) -> void:
 	if has_param(&"direction"):
