@@ -36,3 +36,15 @@ func travel() -> Vector2:
 
 enum BLEND_FUNC {LINEAR, SMOOTH}
 @export var blending_function:BLEND_FUNC = BLEND_FUNC.SMOOTH
+
+## Shapes a raw 0..1 [param t] through [member blending_function].
+func blend(t:float) -> float:
+	match blending_function:
+		BLEND_FUNC.SMOOTH:
+			return smoothstep(0.0, 1.0, t)
+		_:
+			return t
+
+## True if this transition should be applied with no animation at all.
+func is_instant() -> bool:
+	return transition == Mode.NONE or duration <= 0.0

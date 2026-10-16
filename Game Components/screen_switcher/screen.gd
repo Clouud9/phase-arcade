@@ -25,14 +25,19 @@ var _time:float
 ## elapsed, then holds there.
 ## [param delta] can be negative to reverse the transition
 func update_progress(delta:float) -> float:
-	assert(transition.duration > 0) #TODO handle this case elsewhere
-	_time = clampf(_time + delta / transition.duration, 0.0, 1.0)
-	match transition.blending_function:
-		Transition.BLEND_FUNC.SMOOTH:
-			progress = smoothstep(0.0, 1.0, _time)
-		_:
-			progress = _time
+	if transition.duration <= 0.0:
+		_time = 1.0 if delta >= 0.0 else 0.0
+	else:
+		_time = clampf(_time + delta / transition.duration, 0.0, 1.0)
+	progress = transition.blend(_time)
 	return progress
+
+## Jumps straight to the resting state, fully shown or fully hidden, without
+## animating. Used to establish initial state and to snap non-animated changes.
+func snap(shown:bool) -> void:
+	_time = 1.0 if shown else 0.0
+	progress = transition.blend(_time) if transition else _time
+	set_shown(shown)
 
 ## A hidden screen is disabled unless [member active_while_not_shown] is set.
 func set_shown(shown: bool) -> void:

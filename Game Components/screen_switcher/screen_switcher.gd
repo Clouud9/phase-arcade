@@ -5,15 +5,35 @@ var curtain:Curtain
 
 # --- Operations ---
 
+enum CurtainPhase {CLOSING, OPENING}
+
 class Operation:
 	var screen:Screen
 	var transition_in:bool
 	var other_screens:Array[Screen] # Some transitions affect other screens e.g. MOVE_ACROSS
 	signal finished
 
+	# Runtime state, unused until the operation's first update.
+	var started:bool = false
+	var phase:int = CurtainPhase.CLOSING # only meaningful for CURTAIN
+	var time:float = 0.0 # seconds elapsed within the current curtain phase
+
 var _pending_operations:Array[Operation]
 
 func _add_operation(s:Screen, transition_in:bool, other_screens:Array[Screen]) -> Operation:
+	# A screen is never one of its own displaced screens; callers derive the set
+	# from the visible screens, which may include [param s] itself.
+	var others:Array[Screen]
+	for o in other_screens:
+		if o != s:
+			others.append(o)
+
+	if s.transition.is_instant():
+		# Nothing to animate, so apply it immediately and report that there is
+		# no operation to wait on.
+		_apply_instant(s, transition_in, others)
+		return null
+
 	var op:Operation
 	for o in _pending_operations:
 		if o.screen == s:
@@ -22,16 +42,161 @@ func _add_operation(s:Screen, transition_in:bool, other_screens:Array[Screen]) -
 		op = Operation.new()
 		_pending_operations.append(op)
 
+	# On reuse the direction may have flipped mid-flight; progress is continuous,
+	# so we just retarget and let it run back the other way (see the plan's
+	# "reverse from current progress" rule).
 	op.screen = s
 	op.transition_in = transition_in
-	# TODO: handle instant transitions instantly, rather than waiting for the next frame
-	# and return null
+	op.other_screens = others
 	return op
 
-## Advances [param op] by [param delta] seconds. And returns [code]true[\code]
+## Advances [param op] by [param delta] seconds. And returns [code]true[/code]
 ## if the update concluded the operation
 func update_operation(op:Operation, delta:float) -> bool:
-	return true #TODO
+	var t:Transition = op.screen.transition
+	match t.transition:
+		Transition.Mode.MOVE_ACROSS:
+			return _update_across(op, t, delta)
+		Transition.Mode.CURTAIN:
+			return _update_curtain(op, t, delta)
+		_:
+			return _update_on_top(op, t, delta)
+
+# The new screen slides in over the old one, like a card being placed on top.
+# Progress 0 is fully off-screen, 1 is at rest.
+func _update_on_top(op:Operation, t:Transition, delta:float) -> bool:
+	if not op.started:
+		op.started = true
+		if op.transition_in:
+			op.screen.set_shown(true)
+			op.screen.move_to_front()
+
+	var p := op.screen.update_progress(_dir(op) * delta)
+	_place(op.screen, -t.travel() * (1.0 - p))
+
+	if _reached(op, p):
+		_retire(op)
+		return true
+	return false
+
+# The old screen pans away while the new one follows it in. Both screens come to
+# rest together as progress reaches 1.
+func _update_across(op:Operation, t:Transition, delta:float) -> bool:
+	if not op.started:
+		op.started = true
+		if op.transition_in:
+			op.screen.set_shown(true)
+			op.screen.move_to_front()
+
+	var p := op.screen.update_progress(_dir(op) * delta)
+	_place(op.screen, -t.travel() * (1.0 - p))
+	if op.transition_in:
+		for s in op.other_screens:
+			if not _is_owned_elsewhere(s, op):
+				_place(s, t.travel() * p)
+
+	if _reached(op, p):
+		_retire(op)
+		return true
+	return false
+
+# Covers everything with the curtain, swaps, then retracts it. Drives the
+# curtain's openness over two phases, each [member Transition.duration] long.
+func _update_curtain(op:Operation, t:Transition, delta:float) -> bool:
+	if not curtain or not (curtain.material is ShaderMaterial):
+		push_warning("ScreenSwitcher: CURTAIN transition needs a Curtain with a shader; swapping instantly.")
+		_retire(op)
+		return true
+
+	if not op.started:
+		op.started = true
+		op.phase = CurtainPhase.CLOSING
+		op.time = 0.0
+		curtain.visible = true
+		curtain.set_openness(1.0)
+
+	if t.duration <= 0.0:
+		curtain.set_openness(1.0)
+		curtain.visible = false
+		_retire(op)
+		return true
+
+	op.time += delta
+	var k := clampf(op.time / t.duration, 0.0, 1.0)
+	match op.phase:
+		CurtainPhase.CLOSING:
+			curtain.set_openness(1.0 - t.blend(k))
+			if k >= 1.0:
+				# Fully hidden from view: swap while nothing can be seen.
+				_retire(op)
+				op.phase = CurtainPhase.OPENING
+				op.time = 0.0
+		CurtainPhase.OPENING:
+			curtain.set_openness(t.blend(k))
+			if k >= 1.0:
+				curtain.visible = false
+				return true
+	return false
+
+# A screen with a pending operation of its own drives its own progress;
+# operations that merely list it as an other-screen must leave it alone.
+func _is_owned_elsewhere(s:Screen, owner:Operation) -> bool:
+	for o in _pending_operations:
+		if o != owner and o.screen == s:
+			return true
+	return false
+
+func _has_own_op(s:Screen) -> bool:
+	for o in _pending_operations:
+		if o.screen == s:
+			return true
+	return false
+
+# +1 while entering, -1 while leaving. Progress is clamped, so once it reaches
+# the target the operation is concluded.
+func _dir(op:Operation) -> float:
+	return 1.0 if op.transition_in else -1.0
+
+func _reached(op:Operation, progress:float) -> bool:
+	return progress >= 1.0 if op.transition_in else progress <= 0.0
+
+# Applies the final resting state: the shown screen is reset and raised, and the
+# screens it displaced are hidden.
+func _retire(op:Operation) -> void:
+	if op.transition_in:
+		_reset(op.screen)
+		_show_now(op.screen)
+		for s in op.other_screens:
+			if not _is_owned_elsewhere(s, op):
+				_hide_now(s)
+	else:
+		_hide_now(op.screen)
+
+func _apply_instant(s:Screen, transition_in:bool, other_screens:Array[Screen]) -> void:
+	if transition_in:
+		_show_now(s)
+		for o in other_screens:
+			if not _has_own_op(o):
+				_hide_now(o)
+	else:
+		_hide_now(s)
+
+func _show_now(s:Screen) -> void:
+	s.snap(true)
+	s.move_to_front()
+
+func _hide_now(s:Screen) -> void:
+	s.snap(false)
+	_reset(s)
+
+# Enables the visual offset transform and parks the screen at `ratio`.
+func _place(s:Screen, ratio:Vector2) -> void:
+	s.offset_transform_enabled = true
+	s.offset_transform_position_ratio = ratio
+
+# Returns the screen to an unshifted resting state.
+func _reset(s:Screen) -> void:
+	s.offset_transform_enabled = false
 
 # --- Screens ---
 
@@ -45,12 +210,12 @@ func get_visible_screens() -> Array[Screen]:
 func get_screens_requiring_reversal() -> Array[Screen]:
 	var out:Array[Screen]
 	for c in get_visible_screens():
-		if c.requires_reversal:
+		if c.require_reversal:
 			out.append(c)
 	return out
 
-func hide_screen(screen:Screen):
-	var op = _add_operation(screen, false, [])
+func hide_screen(screen:Screen) -> void:
+	var op := _add_operation(screen, false, [])
 	if op: # if the transition was instant, op will be null
 		await op.finished
 
@@ -63,132 +228,27 @@ func show_screen(screen: Screen, exclusive=true) -> void:
 	if screen:
 		for s in get_screens_requiring_reversal():
 			await hide_screen(s) # TODO: handle concurrent hiding? It's a weird usecase
-		await (_add_operation(screen, true, get_visible_screens() if exclusive else []).finished)
+		var op := _add_operation(screen, true, get_visible_screens() if exclusive else [])
+		if exclusive:
+			# An exclusive show supersedes anything else in flight: flip the
+			# other pending transitions to leave, so a slower screen that is
+			# still arriving doesn't end up on top of the new one.
+			for o in _pending_operations:
+				if o != op:
+					o.transition_in = false
+		if op: # if the transition was instant, op will be null
+			await op.finished
 	else:
 		var dw := DextrousWaiter.new()
 		for s in get_visible_screens():
-			dw.add_signal(_add_operation(s, false, []).finished)
+			var op := _add_operation(s, false, [])
+			if op: # if the transition was instant, op will be null
+				dw.add_signal(op.finished)
 		await dw.wait_until_finished()
 
 ## Shows or hides the given screen, playing its transition
 func toggle(screen: Screen) -> void:
 	show_screen(null if screen.visible else screen)
-
-# --- TODO refactor all this ---
-
-# Runs the transition that takes `from` to `to`.
-func _play(from: Screen, to: Screen) -> void:
-	# The incoming screen dictates the transition; hiding it all is the reverse
-	# of the outgoing screen's transition.
-	var t: Transition = to.transition if to else from.transition
-	if not t:
-		t = Transition.new()
-
-	current_screen = to
-
-	# Only the screens taking part in this transition should be visible.
-	_hide_others(from, to)
-
-	match t.transition:
-		Transition.Mode.CURTAIN:
-			await _play_curtain(from, to, t)
-		Transition.Mode.MOVE_ONTOP:
-			await _play_move_on_top(from, to, t)
-		Transition.Mode.MOVE_ACROSS:
-			await _play_move_across(from, to, t)
-		_:
-			_swap(from, to)
-
-# Instant visibility swap with no animation.
-func _swap(from: Screen, to: Screen) -> void:
-	if from:
-		from.set_shown(false)
-	if to:
-		to.set_shown(true)
-
-# Hide every screen except the transition's participants, so stray visible
-# screens (e.g. ones left visible in the authored scene) don't linger on top.
-func _hide_others(from: Screen, to: Screen) -> void:
-	for c in get_children():
-		if c is Screen and c != from and c != to:
-			c.set_shown(false)
-			_reset(c)
-
-# Cover everything with the curtain, swap, then retract it.
-func _play_curtain(from: Screen, to: Screen, t: Transition) -> void:
-	if not curtain:
-		push_warning("ScreenSwitcher: CURTAIN transition needs a %Curtain node; swapping instantly instead.")
-		_swap(from, to)
-		return
-	await curtain.close(t.direction, t.duration)
-	_swap(from, to)
-	await curtain.open(t.direction, t.duration)
-
-# The new screen slides in over the old one, like a card being placed on top.
-func _play_move_on_top(from: Screen, to: Screen, t: Transition) -> void:
-	if not to:
-		# reverse: the outgoing screen slides back out the way it came in
-		await _slide_out(from, t)
-		return
-
-	var start := -t.travel()
-	to.set_shown(true)
-	to.move_to_front()
-	_place(to, start)
-	await _tween_ratio(to, start, Vector2.ZERO, t.duration)
-	_reset(to)
-
-	if from:
-		from.set_shown(false)
-
-# The old screen pans away while the new one follows it in.
-func _play_move_across(from: Screen, to: Screen, t: Transition) -> void:
-	if not to:
-		# reverse: the outgoing screen slides back out the way it came in
-		await _slide_out(from, t)
-		return
-
-	var start := -t.travel()
-	var end := t.travel()
-	to.set_shown(true)
-	_place(to, start)
-
-	var tw := _new_tween()
-	tw.set_parallel(true)
-	tw.tween_property(to, "offset_transform_position_ratio", Vector2.ZERO, t.duration)
-	if from:
-		_place(from, Vector2.ZERO)
-		tw.tween_property(from, "offset_transform_position_ratio", end, t.duration)
-	await tw.finished
-
-	_reset(to)
-	if from:
-		from.set_shown(false)
-		_reset(from)
-
-# Slides the screen off the edge it entered from, then hides it.
-func _slide_out(screen: Screen, t: Transition) -> void:
-	if not screen:
-		return
-	_place(screen, Vector2.ZERO)
-	await _tween_ratio(screen, Vector2.ZERO, -t.travel(), t.duration)
-	screen.set_shown(false)
-	_reset(screen)
-
-# Enables the visual offset transform and parks the screen at `ratio`.
-func _place(s: Screen, ratio: Vector2) -> void:
-	s.offset_transform_enabled = true
-	s.offset_transform_position_ratio = ratio
-
-# Returns the screen to an unshifted resting state.
-func _reset(s: Screen) -> void:
-	s.offset_transform_enabled = false
-
-func _tween_ratio(s: Screen, from_ratio: Vector2, to_ratio: Vector2, duration: float) -> void:
-	s.offset_transform_position_ratio = from_ratio
-	var tw := _new_tween()
-	tw.tween_property(s, "offset_transform_position_ratio", to_ratio, duration)
-	await tw.finished
 
 # --- Main ---
 
@@ -197,22 +257,23 @@ func _ready() -> void:
 	if not curtain:
 		curtain = Curtain.new()
 		add_child(curtain)
-	curtain.set_openness(1.0)
+	if curtain.material is ShaderMaterial:
+		curtain.set_openness(1.0)
+	curtain.visible = false
 
 	# keep sliding screens from spilling outside this control
 	clip_contents = true
 
 	# The scene may author several screens visible at once. Treat the topmost
-	# (last in tree order) as the current one, then hide the rest so exactly one
-	# screen is on display to start with.
+	# (last in tree order) as the current one, then snap every screen to that
+	# state so exactly one screen is on display to start with.
+	var top:Screen
 	for c in get_children():
 		if c is Screen and c.visible:
-			current_screen = c
+			top = c
 	for c in get_children():
 		if c is Screen:
-			c.set_shown(c == current_screen)
-			if c != current_screen:
-				_reset(c)
+			c.snap(c == top)
 
 func _process(delta:float):
 	var completed: Array[Operation] = []
