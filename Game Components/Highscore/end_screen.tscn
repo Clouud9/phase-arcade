@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cv3hhc7fapka3"]
+
+[ext_resource type="Script" uid="uid://cl7v0mcqrvpf5" path="res://Game Components/Highscore/highscore_container.gd" id="1_gctuc"]
+[ext_resource type="Resource" uid="uid://pao85ncfkq2y" path="res://Game Components/Highscore/example_highscore_collection.tres" id="2_2bmex"]
+[ext_resource type="Script" uid="uid://bq3nvadkgcun0" path="res://Game Components/Highscore/initials.gd" id="3_2bmex"]
+
+[node name="EndScreen" type="ColorRect" unique_id=1719091742]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="HighscoreContainer" type="VBoxContainer" parent="." unique_id=339649052]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_gctuc")
+highscore_collection = ExtResource("2_2bmex")
+metadata/_custom_type_script = "uid://cl7v0mcqrvpf5"
+
+[node name="Initials" type="HBoxContainer" parent="." unique_id=871390723]
+layout_mode = 0
+offset_left = 141.0
+offset_top = 151.0
+offset_right = 175.0
+offset_bottom = 174.0
+script = ExtResource("3_2bmex")
+character_set = "aw"
+length = 8
