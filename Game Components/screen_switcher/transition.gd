@@ -8,7 +8,7 @@ enum Mode {
 	MOVE_ACROSS ## The old screen moves aside for the new screen, like a camera pan
 }
 ## The effect used to show and hide the owning [Screen].
-@export var transition:Mode = Mode.NONE
+@export var mode:Mode = Mode.NONE
 
 enum DIR {DOWN, UP, LEFT, RIGHT}
 
@@ -37,14 +37,34 @@ func travel() -> Vector2:
 enum BLEND_FUNC {LINEAR, SMOOTH}
 @export var blending_function:BLEND_FUNC = BLEND_FUNC.SMOOTH
 
-## Shapes a raw 0..1 [param t] through [member blending_function].
-func blend(t:float) -> float:
-	match blending_function:
+## static version of [method blend]
+static func _blend(transition:Transition, t:float) -> float:
+	match transition.blending_function:
 		BLEND_FUNC.SMOOTH:
 			return smoothstep(0.0, 1.0, t)
 		_:
 			return t
 
+## Shapes a raw 0..1 [param t] through [member blending_function].
+func blend(t:float) -> float:
+	return _blend(self, t)
+
+## static version of [method unblend]
+static func _unblend(transition:Transition, progress:float) -> float:
+	progress = clampf(progress, 0.0, 1.0)
+	match transition.blending_function:
+		BLEND_FUNC.SMOOTH:
+			# Inverse of smoothstep's 3t^2 - 2t^3 polynomial.
+			return 0.5 - sin(asin(1.0 - 2.0 * progress) / 3.0)
+		_:
+			return progress
+
+## The inverse of [method blend]: recovers the raw 0..1 time that would shape
+## to [param progress]. Clamps [param progress] to the valid range.
+func unblend(progress:float) -> float:
+	return _unblend(self, progress)
+
+
 ## True if this transition should be applied with no animation at all.
 func is_instant() -> bool:
-	return transition == Mode.NONE or duration <= 0.0
+	return mode == Mode.NONE or duration <= 0.0
