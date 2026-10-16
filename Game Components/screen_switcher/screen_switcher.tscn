@@ -4,26 +4,23 @@
 [ext_resource type="Script" uid="uid://4mw2yaerp4w0" path="res://Game Components/screen_switcher/screen_switcher.gd" id="1_aqwkr"]
 [ext_resource type="Script" uid="uid://du42d46hn3w68" path="res://Game Components/screen_switcher/screen.gd" id="2_ijno7"]
 [ext_resource type="Script" uid="uid://dumdjlccc2bx7" path="res://Game Components/screen_switcher/transition.gd" id="3_ijno7"]
-[ext_resource type="Shader" uid="uid://comte6u7scsf7" path="res://Arcade Games/Invaders/curtain_dither.gdshader" id="3_j42qd"]
 [ext_resource type="Script" uid="uid://crs1s25mbl4em" path="res://addons/jodot/transition/curtain.gd" id="4_ak26y"]
+[ext_resource type="Material" uid="uid://cm3n8k1wq4y7p" path="res://addons/jodot/transition/curtain.tres" id="5_ak26y"]
 [ext_resource type="Texture2D" uid="uid://co8toflwj3e0g" path="res://Game Components/screen_switcher/shit.jpg" id="6_j42qd"]
 
 [sub_resource type="Resource" id="Resource_s1"]
 script = ExtResource("3_ijno7")
-transition = 3
 duration = 1.0
 metadata/_custom_type_script = "uid://dumdjlccc2bx7"
 
 [sub_resource type="Resource" id="Resource_s2"]
 script = ExtResource("3_ijno7")
-transition = 3
 direction = 0
 duration = 1.0
 metadata/_custom_type_script = "uid://dumdjlccc2bx7"
 
 [sub_resource type="Resource" id="Resource_s3"]
 script = ExtResource("3_ijno7")
-transition = 3
 direction = 2
 duration = 1.0
 blending_function = 0
@@ -31,20 +28,19 @@ metadata/_custom_type_script = "uid://dumdjlccc2bx7"
 
 [sub_resource type="Resource" id="Resource_s4"]
 script = ExtResource("3_ijno7")
-transition = 3
 direction = 3
 duration = 0.25
 metadata/_custom_type_script = "uid://dumdjlccc2bx7"
 
 [sub_resource type="Resource" id="Resource_s5"]
 script = ExtResource("3_ijno7")
-transition = 2
+mode = 2
 duration = 1.0
+blending_function = 0
 metadata/_custom_type_script = "uid://dumdjlccc2bx7"
 
 [sub_resource type="Resource" id="Resource_s6"]
 script = ExtResource("3_ijno7")
-transition = 2
 direction = 0
 duration = 0.75
 blending_function = 0
@@ -52,13 +48,11 @@ metadata/_custom_type_script = "uid://dumdjlccc2bx7"
 
 [sub_resource type="Resource" id="Resource_s7"]
 script = ExtResource("3_ijno7")
-transition = 1
 duration = 1.0
 metadata/_custom_type_script = "uid://dumdjlccc2bx7"
 
 [sub_resource type="Resource" id="Resource_s8"]
 script = ExtResource("3_ijno7")
-transition = 1
 direction = 0
 duration = 0.6
 blending_function = 0
@@ -66,20 +60,15 @@ metadata/_custom_type_script = "uid://dumdjlccc2bx7"
 
 [sub_resource type="Resource" id="Resource_s9"]
 script = ExtResource("3_ijno7")
-transition = 2
 direction = 3
 duration = 0.35
 metadata/_custom_type_script = "uid://dumdjlccc2bx7"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_j42qd"]
-shader = ExtResource("3_j42qd")
-shader_parameter/factor = 1.0
-shader_parameter/rect_size = Vector2(256, 240)
-shader_parameter/use_frag_coords = true
-shader_parameter/edge_size = 128.0
-shader_parameter/direction = 0
-shader_parameter/patterns = 7
-shader_parameter/dither_scale = 8.0
+[sub_resource type="Resource" id="Resource_fb7xe"]
+script = ExtResource("3_ijno7")
+mode = 1
+direction = 0
+duration = 5.0
 
 [node name="ScreenSwitcher" type="Control" unique_id=1463175606]
 layout_mode = 3
@@ -302,17 +291,16 @@ vertical_alignment = 1
 [node name="Curtain" type="ColorRect" parent="." unique_id=1166733881]
 unique_name_in_owner = true
 z_index = 99
-material = SubResource("ShaderMaterial_j42qd")
+material = ExtResource("5_ak26y")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.4570551, 0.5454143, 0.65845793, 1)
+color = Color(0.024570823, 0.03978891, 0.06247917, 1)
 script = ExtResource("4_ak26y")
-duration = 1.0
-direction = 0
+transition = SubResource("Resource_fb7xe")
 open_on_ready = false
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=775824191]

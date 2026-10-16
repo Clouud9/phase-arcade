@@ -1,10 +1,14 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cm3n8k1wq4y7p"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cm3n8k1wq4y7p"]
 
-[ext_resource type="Shader" uid="uid://boodi2bwyg1k7" path="res://addons/jodot/transition/curtain.gdshader" id="1_wipe"]
+[ext_resource type="Shader" uid="uid://comte6u7scsf7" path="res://Arcade Games/Invaders/curtain_dither.gdshader" id="1_s01ed"]
 
 [resource]
 resource_local_to_scene = true
-shader = ExtResource("1_wipe")
-shader_parameter/factor = 0.0
-shader_parameter/wave_size = 30.0
+shader = ExtResource("1_s01ed")
+shader_parameter/factor = 1.0
+shader_parameter/rect_size = Vector2(256, 240)
+shader_parameter/use_frag_coords = false
+shader_parameter/edge_size = 30.0
 shader_parameter/direction = 0
+shader_parameter/patterns = 7
+shader_parameter/dither_scale = 1.0

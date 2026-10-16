@@ -1,4 +1,5 @@
 extends Control
+class_name ScreenSwitcher
 ## Transitions between [Screen]s
 
 var curtain:Curtain
@@ -13,16 +14,9 @@ class Operation:
 	var other_screens:Array[Screen] # Some transitions affect other screens e.g. MOVE_ACROSS
 	signal finished
 
-	# Runtime state, unused until the operation's first update.
-	var started:bool = false
-	var phase:int = CurtainPhase.CLOSING # only meaningful for CURTAIN
-	var time:float = 0.0 # seconds elapsed within the current curtain phase
-
 var _pending_operations:Array[Operation]
 
 func _add_operation(s:Screen, transition_in:bool, other_screens:Array[Screen]) -> Operation:
-	# A screen is never one of its own displaced screens; callers derive the set
-	# from the visible screens, which may include [param s] itself.
 	var others:Array[Screen]
 	for o in other_screens:
 		if o != s:
@@ -43,8 +37,7 @@ func _add_operation(s:Screen, transition_in:bool, other_screens:Array[Screen]) -
 		_pending_operations.append(op)
 
 	# On reuse the direction may have flipped mid-flight; progress is continuous,
-	# so we just retarget and let it run back the other way (see the plan's
-	# "reverse from current progress" rule).
+	# so we just retarget and let it run back the other way
 	op.screen = s
 	op.transition_in = transition_in
 	op.other_screens = others
@@ -62,15 +55,12 @@ func update_operation(op:Operation, delta:float) -> bool:
 		_:
 			return _update_on_top(op, t, delta)
 
+# --- Animations ---
+
 # The new screen slides in over the old one, like a card being placed on top.
 # Progress 0 is fully off-screen, 1 is at rest.
 func _update_on_top(op:Operation, t:Transition, delta:float) -> bool:
-	if not op.started:
-		op.started = true
-		if op.transition_in:
-			op.screen.set_shown(true)
-			op.screen.move_to_front()
-
+	op.screen.set_shown(true)
 	var p := op.screen.update_progress(_dir(op) * delta)
 	_place(op.screen, -t.travel() * (1.0 - p))
 
@@ -82,11 +72,7 @@ func _update_on_top(op:Operation, t:Transition, delta:float) -> bool:
 # The old screen pans away while the new one follows it in. Both screens come to
 # rest together as progress reaches 1.
 func _update_across(op:Operation, t:Transition, delta:float) -> bool:
-	if not op.started:
-		op.started = true
-		if op.transition_in:
-			op.screen.set_shown(true)
-			op.screen.move_to_front()
+	op.screen.set_shown(true)
 
 	var p := op.screen.update_progress(_dir(op) * delta)
 	_place(op.screen, -t.travel() * (1.0 - p))
@@ -103,40 +89,7 @@ func _update_across(op:Operation, t:Transition, delta:float) -> bool:
 # Covers everything with the curtain, swaps, then retracts it. Drives the
 # curtain's openness over two phases, each [member Transition.duration] long.
 func _update_curtain(op:Operation, t:Transition, delta:float) -> bool:
-	if not curtain or not (curtain.material is ShaderMaterial):
-		push_warning("ScreenSwitcher: CURTAIN transition needs a Curtain with a shader; swapping instantly.")
-		_retire(op)
-		return true
-
-	if not op.started:
-		op.started = true
-		op.phase = CurtainPhase.CLOSING
-		op.time = 0.0
-		curtain.visible = true
-		curtain.set_openness(1.0)
-
-	if t.duration <= 0.0:
-		curtain.set_openness(1.0)
-		curtain.visible = false
-		_retire(op)
-		return true
-
-	op.time += delta
-	var k := clampf(op.time / t.duration, 0.0, 1.0)
-	match op.phase:
-		CurtainPhase.CLOSING:
-			curtain.set_openness(1.0 - t.blend(k))
-			if k >= 1.0:
-				# Fully hidden from view: swap while nothing can be seen.
-				_retire(op)
-				op.phase = CurtainPhase.OPENING
-				op.time = 0.0
-		CurtainPhase.OPENING:
-			curtain.set_openness(t.blend(k))
-			if k >= 1.0:
-				curtain.visible = false
-				return true
-	return false
+	return false #FIXME, _update_* is not a good fit for curtain. Better to let it manage itself
 
 # A screen with a pending operation of its own drives its own progress;
 # operations that merely list it as an other-screen must leave it alone.
@@ -288,13 +241,3 @@ func _process(delta:float):
 	_pending_operations = remaining
 	for op in completed:
 		op.finished.emit()
-
-# TODO: move this out
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and not event.echo:
-		# Keys 1-9 map to the Screen1-Screen9 children (KEY_1..KEY_9 are
-		# consecutive), so the demo works however many screens the scene has.
-		var index: int = event.keycode - KEY_1
-		var target := get_node_or_null("Screen%d" % (index + 1)) as Screen
-		if target:
-			toggle(target)

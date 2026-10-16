@@ -17,7 +17,8 @@ class_name Screen
 ## used.
 var progress:float
 
-# Raw time through the transition; progress is this shaped by the blending function.
+# Elapsed time through the transition, in seconds; progress is this shaped by
+# the transition's duration and blending function.
 var _time:float
 
 ## Advances the transition by [param delta] seconds and returns the new
@@ -25,18 +26,22 @@ var _time:float
 ## elapsed, then holds there.
 ## [param delta] can be negative to reverse the transition
 func update_progress(delta:float) -> float:
-	if transition.duration <= 0.0:
+	if transition.is_instant():
 		_time = 1.0 if delta >= 0.0 else 0.0
 	else:
-		_time = clampf(_time + delta / transition.duration, 0.0, 1.0)
-	progress = transition.blend(_time)
+		_time = clampf(_time + delta, 0.0, transition.duration)
+	progress = transition.calculate_progress(_time)
 	return progress
 
 ## Jumps straight to the resting state, fully shown or fully hidden, without
 ## animating. Used to establish initial state and to snap non-animated changes.
 func snap(shown:bool) -> void:
-	_time = 1.0 if shown else 0.0
-	progress = transition.blend(_time) if transition else _time
+	if transition and not transition.is_instant():
+		_time = transition.duration if shown else 0.0
+		progress = transition.calculate_progress(_time)
+	else:
+		_time = 0.0
+		progress = 1.0 if shown else 0.0
 	set_shown(shown)
 
 ## A hidden screen is disabled unless [member active_while_not_shown] is set.

@@ -2,13 +2,14 @@
 class_name Curtain
 extends ColorRect
 
-## The time factor in the current animation.
-## Will be equal to [method get_openness()] if blend mode is linear
+## The elapsed time of the current animation, in seconds.
+## Will be equal to [code]get_openness() * duration[/code] when the blending
+## function is linear
 var time:float = 0
 
 func _update_transition():
 	_set_direction(transition.direction)
-	time = Transition._unblend(transition, get_openness())
+	time = Transition._calculate_time(transition, get_openness())
 	
 @export var transition:Transition:
 	set(t):
@@ -77,6 +78,6 @@ func _process(delta:float):
 	if is_transition_done():
 		return
 	time += delta if opening else -delta
-	set_openness(Transition._blend(transition, time))
+	set_openness(Transition._calculate_progress(transition, time))
 	if is_transition_done():
 		(opened if opening else closed).emit()

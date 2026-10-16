@@ -37,33 +37,40 @@ func travel() -> Vector2:
 enum BLEND_FUNC {LINEAR, SMOOTH}
 @export var blending_function:BLEND_FUNC = BLEND_FUNC.SMOOTH
 
-## static version of [method blend]
-static func _blend(transition:Transition, t:float) -> float:
+## static version of [method calculate_progress]
+static func _calculate_progress(transition:Transition, time:float) -> float:
+	var t:float
+	if transition.duration > 0.0:
+		t = clampf(time / transition.duration, 0.0, 1.0)
+	else:
+		# Instant transition: any elapsed time at all is fully in.
+		t = 1.0 if time > 0.0 else 0.0
 	match transition.blending_function:
 		BLEND_FUNC.SMOOTH:
 			return smoothstep(0.0, 1.0, t)
 		_:
 			return t
 
-## Shapes a raw 0..1 [param t] through [member blending_function].
-func blend(t:float) -> float:
-	return _blend(self, t)
+## Progress of the transition from 0.0 to 1.0 [param time] seconds into it.
+## Factors in [member duration] and [member blending_function].
+func calculate_progress(time:float) -> float:
+	return _calculate_progress(self, time)
 
-## static version of [method unblend]
-static func _unblend(transition:Transition, progress:float) -> float:
+## static version of [method calculate_time]
+static func _calculate_time(transition:Transition, progress:float) -> float:
 	progress = clampf(progress, 0.0, 1.0)
 	match transition.blending_function:
 		BLEND_FUNC.SMOOTH:
 			# Inverse of smoothstep's 3t^2 - 2t^3 polynomial.
-			return 0.5 - sin(asin(1.0 - 2.0 * progress) / 3.0)
+			return transition.duration * (0.5 - sin(asin(1.0 - 2.0 * progress) / 3.0))
 		_:
-			return progress
+			return transition.duration * progress
 
-## The inverse of [method blend]: recovers the raw 0..1 time that would shape
-## to [param progress]. Clamps [param progress] to the valid range.
-func unblend(progress:float) -> float:
-	return _unblend(self, progress)
-
+## The inverse of [method calculate_progress]: the elapsed time in seconds at
+## which the transition reaches [param progress]. Clamps [param progress] to the
+## valid range.
+func calculate_time(progress:float) -> float:
+	return _calculate_time(self, progress)
 
 ## True if this transition should be applied with no animation at all.
 func is_instant() -> bool:
