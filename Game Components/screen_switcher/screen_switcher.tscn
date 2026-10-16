@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ck2nwlox1f5lg"]
 
 [ext_resource type="Theme" uid="uid://cvv68xafp3hyw" path="res://Game Components/screen_switcher/theme.tres" id="1_ak26y"]
-[ext_resource type="Script" uid="uid://4mw2yaerp4w0" path="res://Game Components/screen_switcher/screen_switcher.gd" id="1_aqwkr"]
+[ext_resource type="Script" uid="uid://bq6h4ok72o11l" path="res://Game Components/screen_switcher/demo_screen_switcher.gd" id="2_ak26y"]
 [ext_resource type="Script" uid="uid://du42d46hn3w68" path="res://Game Components/screen_switcher/screen.gd" id="2_ijno7"]
 [ext_resource type="Script" uid="uid://dumdjlccc2bx7" path="res://Game Components/screen_switcher/transition.gd" id="3_ijno7"]
 [ext_resource type="Script" uid="uid://crs1s25mbl4em" path="res://addons/jodot/transition/curtain.gd" id="4_ak26y"]
@@ -34,7 +34,7 @@ metadata/_custom_type_script = "uid://dumdjlccc2bx7"
 
 [sub_resource type="Resource" id="Resource_s5"]
 script = ExtResource("3_ijno7")
-mode = 2
+mode = 3
 duration = 1.0
 blending_function = 0
 metadata/_custom_type_script = "uid://dumdjlccc2bx7"
@@ -78,7 +78,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_ak26y")
-script = ExtResource("1_aqwkr")
+script = ExtResource("2_ak26y")
 
 [node name="Screen1" type="ColorRect" parent="." unique_id=2145941004]
 layout_mode = 1
@@ -205,7 +205,6 @@ grow_vertical = 2
 color = Color(0.21960784, 0.10980392, 0.039215688, 1)
 script = ExtResource("2_ijno7")
 transition = SubResource("Resource_s6")
-require_reversal = true
 
 [node name="Label" type="Label" parent="Screen6" unique_id=332545706]
 layout_mode = 1

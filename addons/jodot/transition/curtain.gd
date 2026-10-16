@@ -50,13 +50,17 @@ func close(override_transition:Transition=null) -> void:
 	if override_transition:
 		transition = override_transition
 	opening = false
-	await closed
+	# Already closed: nothing to wait for. (Skipping this would await `closed`
+	# forever, since _process bails out once the transition is done.)
+	if not is_transition_done():
+		await closed
 
 func open(override_transition:Transition=null) -> void:
 	if override_transition:
 		transition = override_transition
 	opening = true
-	await opened
+	if not is_transition_done():
+		await opened
 	visible = false
 	
 # Has no effect if the shader does not have a `direction` parameter
