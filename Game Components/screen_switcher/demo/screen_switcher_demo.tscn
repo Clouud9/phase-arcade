@@ -1,31 +1,27 @@
 [gd_scene format=3 uid="uid://ck2nwlox1f5lg"]
 
-[ext_resource type="Theme" uid="uid://cvv68xafp3hyw" path="res://Game Components/screen_switcher/theme.tres" id="1_ak26y"]
-[ext_resource type="Script" uid="uid://bq6h4ok72o11l" path="res://Game Components/screen_switcher/demo_screen_switcher.gd" id="2_ak26y"]
+[ext_resource type="Theme" uid="uid://cvv68xafp3hyw" path="res://Game Components/screen_switcher/demo/theme.tres" id="1_ak26y"]
+[ext_resource type="Script" uid="uid://bq6h4ok72o11l" path="res://Game Components/screen_switcher/demo/demo_screen_switcher.gd" id="2_ak26y"]
 [ext_resource type="Script" uid="uid://du42d46hn3w68" path="res://Game Components/screen_switcher/screen.gd" id="2_ijno7"]
 [ext_resource type="Script" uid="uid://dumdjlccc2bx7" path="res://Game Components/screen_switcher/transition.gd" id="3_ijno7"]
 [ext_resource type="Script" uid="uid://crs1s25mbl4em" path="res://addons/jodot/transition/curtain.gd" id="4_ak26y"]
 [ext_resource type="Material" uid="uid://cm3n8k1wq4y7p" path="res://addons/jodot/transition/curtain.tres" id="5_ak26y"]
-[ext_resource type="Texture2D" uid="uid://co8toflwj3e0g" path="res://Game Components/screen_switcher/shit.jpg" id="6_j42qd"]
+[ext_resource type="Texture2D" uid="uid://co8toflwj3e0g" path="res://Game Components/screen_switcher/demo/shit.jpg" id="6_j42qd"]
 
 [sub_resource type="Resource" id="Resource_s1"]
 script = ExtResource("3_ijno7")
-mode = 0
 duration = 0.4
 metadata/_custom_type_script = "uid://dumdjlccc2bx7"
 
 [sub_resource type="Resource" id="Resource_s2"]
 script = ExtResource("3_ijno7")
 mode = 2
-direction = 1
-duration = 0.5
 metadata/_custom_type_script = "uid://dumdjlccc2bx7"
 
 [sub_resource type="Resource" id="Resource_s3"]
 script = ExtResource("3_ijno7")
 mode = 2
 direction = 0
-duration = 0.5
 blending_function = 0
 metadata/_custom_type_script = "uid://dumdjlccc2bx7"
 
@@ -46,7 +42,6 @@ metadata/_custom_type_script = "uid://dumdjlccc2bx7"
 [sub_resource type="Resource" id="Resource_s6"]
 script = ExtResource("3_ijno7")
 mode = 3
-direction = 1
 duration = 0.6
 blending_function = 0
 metadata/_custom_type_script = "uid://dumdjlccc2bx7"
@@ -62,7 +57,6 @@ metadata/_custom_type_script = "uid://dumdjlccc2bx7"
 script = ExtResource("3_ijno7")
 mode = 1
 direction = 0
-duration = 0.5
 blending_function = 0
 metadata/_custom_type_script = "uid://dumdjlccc2bx7"
 
@@ -70,14 +64,12 @@ metadata/_custom_type_script = "uid://dumdjlccc2bx7"
 script = ExtResource("3_ijno7")
 mode = 1
 direction = 3
-duration = 0.5
 metadata/_custom_type_script = "uid://dumdjlccc2bx7"
 
 [sub_resource type="Resource" id="Resource_fb7xe"]
 script = ExtResource("3_ijno7")
 mode = 1
 direction = 0
-duration = 0.5
 
 [node name="ScreenSwitcher" type="Control" unique_id=1463175606]
 layout_mode = 3

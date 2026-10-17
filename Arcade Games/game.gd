@@ -11,10 +11,14 @@ class_name Game
 
 ## [SFXPlayer] node in the game, if any, to route [method play_sfx] calls to
 @export var sfx_player: SFXPlayer
-@export var highscores:HighscoreCollection
 @export var game_name:StringName
 
+# --- Highscore ---
+@export var highscores:HighscoreCollection
 signal highscores_updated
+
+func save_highscores():
+	Scores.save_highscores(game_name, highscores)
 
 # --- Management ---
 

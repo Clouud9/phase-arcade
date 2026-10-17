@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://cpmfoaduog10w"]
 
 [ext_resource type="Script" uid="uid://xxjl771dxmwm" path="res://Game Components/Highscore/initials_letter.gd" id="1_a6np5"]
-[ext_resource type="Texture2D" uid="uid://bs7krebo1nkp0" path="res://Game Components/chevron_texture.tres" id="2_3yb3y"]
+[ext_resource type="Texture2D" uid="uid://bs7krebo1nkp0" path="res://Game Components/Highscore/chevron_texture.tres" id="2_3yb3y"]
 
 [node name="Initial" type="Label" unique_id=2021649375]
 offset_right = 1.0
 offset_bottom = 23.0
-text = "A"
+text = "a"
 uppercase = true
 script = ExtResource("1_a6np5")
 selected = true

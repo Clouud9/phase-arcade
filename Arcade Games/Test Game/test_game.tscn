@@ -4,12 +4,12 @@
 [ext_resource type="Script" uid="uid://c1eebo47v00cq" path="res://Arcade Games/Test Game/label.gd" id="1_yggbx"]
 [ext_resource type="Script" uid="uid://4mw2yaerp4w0" path="res://Game Components/screen_switcher/screen_switcher.gd" id="2_ftub1"]
 [ext_resource type="Script" uid="uid://du42d46hn3w68" path="res://Game Components/screen_switcher/screen.gd" id="3_qrweu"]
-[ext_resource type="Script" uid="uid://ig45gemr8lkw" path="res://Arcade Games/Test Game/scene_screen.gd" id="3_uektd"]
+[ext_resource type="Script" uid="uid://ig45gemr8lkw" path="res://Game Components/screen_switcher/scene_screen.gd" id="3_uektd"]
 [ext_resource type="Script" uid="uid://dumdjlccc2bx7" path="res://Game Components/screen_switcher/transition.gd" id="4_c23ql"]
 [ext_resource type="PackedScene" uid="uid://dxiodnrp7mdtt" path="res://Arcade Games/Test Game/game_scene.tscn" id="4_qj1dv"]
 [ext_resource type="Script" uid="uid://cl7v0mcqrvpf5" path="res://Game Components/Highscore/highscore_container.gd" id="5_qj1dv"]
 [ext_resource type="PackedScene" uid="uid://cv3hhc7fapka3" path="res://Game Components/Highscore/end_screen.tscn" id="5_uektd"]
-[ext_resource type="Script" uid="uid://busptt3jad2ex" path="res://Arcade Games/Test Game/highscore_screen.gd" id="8_qj1dv"]
+[ext_resource type="Script" uid="uid://dj50glc6f7dmk" path="res://Game Components/screen_switcher/start_screen.gd" id="7_uektd"]
 [ext_resource type="Script" uid="uid://lpbqkuxqeam0" path="res://Arcade Games/Invaders/ui/screens/insert_coin.gd" id="8_qrweu"]
 [ext_resource type="Material" uid="uid://bmfwdpbtlok7y" path="res://addons/jodot/transition/curtain_thats_all_folks.tres" id="12_vn3sm"]
 [ext_resource type="Script" uid="uid://crs1s25mbl4em" path="res://addons/jodot/transition/curtain.gd" id="13_cr0tv"]
@@ -34,7 +34,6 @@ fill_to = Vector2(0.22, 1.09)
 
 [sub_resource type="Resource" id="Resource_l5jyg"]
 script = ExtResource("4_c23ql")
-mode = 3
 direction = 3
 duration = 1.0
 metadata/_custom_type_script = "uid://dumdjlccc2bx7"
@@ -73,6 +72,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_c23ql")
 sfx_player = NodePath("AudioStreamPlayer")
+game_name = &"test_game"
 
 [node name="ScreenSwitcher" type="Control" parent="." unique_id=1390362141]
 layout_mode = 1
@@ -86,7 +86,16 @@ metadata/_custom_type_script = "uid://4mw2yaerp4w0"
 
 [node name="EndScreen" type="Control" parent="ScreenSwitcher" unique_id=1628199120]
 unique_name_in_owner = true
-visible = false
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("3_uektd")
+scene = ExtResource("5_uektd")
+transition = SubResource("Resource_vn3sm")
+metadata/_custom_type_script = "uid://du42d46hn3w68"
+
+[node name="EndScreen2" type="Control" parent="ScreenSwitcher" unique_id=724065760]
+unique_name_in_owner = true
 anchors_preset = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -114,7 +123,7 @@ layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = SubResource("GradientTexture2D_hetsb")
-script = ExtResource("3_qrweu")
+script = ExtResource("7_uektd")
 transition = SubResource("Resource_l5jyg")
 
 [node name="ScreenSwitcher" type="Control" parent="ScreenSwitcher/StartScreen" unique_id=1735293673]
@@ -137,7 +146,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_deboi")
-script = ExtResource("8_qj1dv")
+script = ExtResource("3_qrweu")
 transition = SubResource("Resource_714r6")
 
 [node name="HighscoreContainer" type="VBoxContainer" parent="ScreenSwitcher/StartScreen/ScreenSwitcher/HighscoreScreen" unique_id=51902408]

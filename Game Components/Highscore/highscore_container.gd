@@ -14,6 +14,9 @@ class_name HighscoreContainer
 @export_tool_button("populate") var populate_button = populate
 
 func _ready() -> void:
+	if Engine.is_editor_hint():
+		populate()
+		return
 	if not highscore_collection:
 		var game = await Game.get_ready_game(self)
 		if game:

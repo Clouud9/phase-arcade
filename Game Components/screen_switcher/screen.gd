@@ -1,4 +1,3 @@
-@tool
 extends Control
 class_name Screen
 
@@ -22,6 +21,13 @@ func _set_shown(shown:bool):
 	process_mode = Node.PROCESS_MODE_INHERIT if pause else Node.PROCESS_MODE_DISABLED
 
 signal done
+## Shows self the parent [ScreenSwitcher] and waits for [signal done]
+## which can be triggerd externally by, for example, [SubmitButton]
+func open_dialogue():
+	var switcher:ScreenSwitcher = get_parent()
+	assert(switcher and switcher is ScreenSwitcher)
+	await switcher.show_screen(self)
+	await done
 
 ## Renders the screen at [param progress]: [code]1.0[/code] at rest, [code]0.0[/code]
 ## fully off-screen, leaving toward [param exit]. Intended for use by [ScreenSwicther]

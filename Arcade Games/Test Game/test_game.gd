@@ -2,14 +2,11 @@ extends Game
 
 func _ready() -> void:
 	super()
-	var cab = ArcadeCabinet.get_cabinet(self)
-	if cab:
-		$ScreenSwitcher.show_instant(%StartScreen)
-		await cab.pop_coin()
-	$ScreenSwitcher.show_screen(%GameScreen)
-	await game_lost
-	$ScreenSwitcher.show_screen(%EndScreen)
-	await %EndScreen.done
-	await %Curtain.close()
-	%Curtain.open()
-	_ready()
+	while true:
+		await %StartScreen.open_dialogue()
+		$ScreenSwitcher.show_screen(%GameScreen)
+		await game_lost
+		await %EndScreen.open_dialogue()
+		await %Curtain.close()
+		save_highscores()
+		%Curtain.open()
