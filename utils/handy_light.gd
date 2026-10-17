@@ -82,7 +82,6 @@ func _on_circuit_switched(state:bool):
 	visible = state
 
 func _ready():
-	print(self)
 	if circuit != &"":
 		var switched = register_circuit(circuit)
 		switched.to.connect(_on_circuit_switched)

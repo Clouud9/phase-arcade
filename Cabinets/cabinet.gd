@@ -246,8 +246,6 @@ func set_power_state(on:bool):
 		if game_scene:
 			curr_game = game_scene.instantiate()
 			game_parent.add_child(curr_game)
-			print(game_parent)
-			print(game_parent.get_children())
 		%Screen.texture = $SubViewport.get_texture()
 	else:
 		%Screen.texture = null
