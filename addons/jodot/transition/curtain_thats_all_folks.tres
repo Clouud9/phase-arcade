@@ -1,7 +1,7 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bmfwdpbtlok7y"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bmfwdpbtlok7y"]
 
 [ext_resource type="Shader" uid="uid://crgvaili574gy" path="res://addons/jodot/transition/curtain_thats_all_folks.gdshader" id="1_taf"]
-[ext_resource type="NoiseTexture2D" uid="uid://bn4x2q0vd8sc1" path="res://addons/jodot/transition/curtain_noise.tres" id="2_noise"]
+[ext_resource type="Texture2D" uid="uid://bn4x2q0vd8sc1" path="res://addons/jodot/transition/curtain_noise.tres" id="2_noise"]
 
 [resource]
 resource_local_to_scene = true

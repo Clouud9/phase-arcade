@@ -56,6 +56,7 @@ static func acquire(at:Node, offset: Vector2=Vector2.ZERO) -> VFXSprite:
 	assert(at and is_instance_valid(at))
 	vs.position = offset
 	at.add_child(vs)
+	vs.reset_defaults()
 	#vs.reset_physics_interpolation()
 	return vs
 

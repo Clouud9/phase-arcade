@@ -1,9 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cepq07bhxard5"]
+[gd_scene format=3 uid="uid://cepq07bhxard5"]
 
-[ext_resource type="Theme" uid="uid://bnc4gesw2cmsb" path="res://ui/theme.tres" id="1_u4kgu"]
-[ext_resource type="PackedScene" uid="uid://beu6m7t7diqpy" path="res://ui/lives.tscn" id="2_85dvu"]
-[ext_resource type="Texture2D" uid="uid://ds0gta24h6pt2" path="res://ui/ghost.png" id="9_7nbam"]
-[ext_resource type="Script" uid="uid://dqawa48auhxc5" path="res://ui/points_label.gd" id="10_ngtl8"]
+[ext_resource type="Theme" uid="uid://bnc4gesw2cmsb" path="res://Arcade Games/Invaders/ui/theme.tres" id="1_u4kgu"]
+[ext_resource type="PackedScene" uid="uid://beu6m7t7diqpy" path="res://Arcade Games/Invaders/ui/lives.tscn" id="2_85dvu"]
+[ext_resource type="Texture2D" uid="uid://ds0gta24h6pt2" path="res://Arcade Games/Invaders/ui/ghost.png" id="9_7nbam"]
+[ext_resource type="Script" uid="uid://dqawa48auhxc5" path="res://Arcade Games/Invaders/ui/score_label.gd" id="10_ngtl8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bty8r"]
 atlas = ExtResource("9_7nbam")

@@ -11,6 +11,14 @@ class_name Game
 
 ## [SFXPlayer] node in the game, if any, to route [method play_sfx] calls to
 @export var sfx_player: SFXPlayer
+@export var game_name:StringName
+
+# --- Highscore ---
+@export var highscores:HighscoreCollection
+signal highscores_updated
+
+func save_highscores():
+	Scores.save_highscores(game_name, highscores)
 
 # --- Management ---
 
@@ -32,10 +40,10 @@ func add_score(points: int):
 	score += points
 	score_changed.emit(score)
 
-## TODO: stub
 ## Usually adding coins will grant an extra play, some more lives, or a revive. It's up to you
-func add_coin():
-	pass
+func _on_add_coin():
+	if sfx_player:
+		sfx_player.play_sfx("coin") #TODO: remove this test code for
 
 # --- Accessors ---
 
@@ -44,6 +52,13 @@ static func get_game(from: Node) -> Game:
 	while from and from is not Game:
 		from = from.get_parent()
 	return from
+
+## returns [method get_game], waiting for it to be ready, if neccesary
+static func get_ready_game(from:Node) -> Game:
+	var game = Game.get_game(from)
+	if game and not game.is_node_ready():
+		await game.ready
+	return game
 
 ## Plays SFX via the [Game]'s [member Game.sfx_player].
 ##
@@ -90,13 +105,22 @@ static func get_3D(from:Node) -> Node3D:
 # --- Main ---
 
 func _ready() -> void:
+	score = 0
+	if not highscores:
+		assert(game_name != &"")
+		highscores = Scores.get_highscores(game_name)
+
 	var _self = self as Node
 	if _self is Control:
 		_self_ui = _self
-		_self_ui.set_anchors_preset(Control.PRESET_FULL_RECT)
+		_self_ui.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	elif _self is Node2D:
 		_self_2D = _self
 	elif _self is Node3D:
 		_self_3D = _self
 	else:
 		assert(false) #TODO: more helpful error message, maybe config warning
+
+	var cab = ArcadeCabinet.get_cabinet(self)
+	if cab:
+		cab.coin_inserted.connect(_on_add_coin)

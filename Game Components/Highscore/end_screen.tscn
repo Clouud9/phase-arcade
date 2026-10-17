@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://cv3hhc7fapka3"]
+
+[ext_resource type="Script" uid="uid://cl7v0mcqrvpf5" path="res://Game Components/Highscore/highscore_container.gd" id="1_gctuc"]
+[ext_resource type="Script" uid="uid://dh5wpt8swxdth" path="res://Game Components/Highscore/highscore_input.gd" id="1_ihcip"]
+[ext_resource type="Script" uid="uid://bq3nvadkgcun0" path="res://Game Components/Highscore/initials.gd" id="3_2bmex"]
+[ext_resource type="Script" uid="uid://idn0lw1q28ay" path="res://Game Components/screen_switcher/submit_button.gd" id="5_fdemb"]
+
+[node name="EndScreen" type="ColorRect" unique_id=1719091742]
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="CenterContainer" parent="." unique_id=975885350]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HighscoreInput" type="VBoxContainer" parent="MarginContainer" unique_id=1948968215]
+layout_mode = 2
+script = ExtResource("1_ihcip")
+
+[node name="HighscoreContainer" type="VBoxContainer" parent="MarginContainer/HighscoreInput" unique_id=339649052]
+layout_mode = 2
+script = ExtResource("1_gctuc")
+metadata/_custom_type_script = "uid://cl7v0mcqrvpf5"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/HighscoreInput" unique_id=1581616951]
+layout_mode = 2
+
+[node name="YourScore" type="HSplitContainer" parent="MarginContainer/HighscoreInput" unique_id=2036989404]
+layout_mode = 2
+split_offsets = PackedInt32Array(37)
+split_offset = 37
+
+[node name="NewScoreLabel" type="Label" parent="MarginContainer/HighscoreInput/YourScore" unique_id=1258454875]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1000"
+
+[node name="Initials" type="HBoxContainer" parent="MarginContainer/HighscoreInput/YourScore" unique_id=871390723]
+unique_name_in_owner = true
+layout_mode = 2
+focus_next = NodePath("../../Button")
+focus_previous = NodePath("../../Button")
+script = ExtResource("3_2bmex")
+
+[node name="Button" type="Button" parent="MarginContainer/HighscoreInput" unique_id=570907652]
+layout_mode = 2
+focus_neighbor_left = NodePath("../YourScore/Initials")
+focus_neighbor_top = NodePath("../YourScore/Initials")
+focus_neighbor_right = NodePath("../YourScore/Initials")
+focus_next = NodePath("../YourScore/Initials")
+focus_previous = NodePath("../YourScore/Initials")
+text = "done"
+script = ExtResource("5_fdemb")

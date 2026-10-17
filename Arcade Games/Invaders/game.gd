@@ -6,7 +6,6 @@ class_name InvadersGame
 @export var lives: Lives
 @export var current_player: Player
 @export var player_spawn_point: Marker2D
-@export var dialgoue_screens: Array[DialogueScreen]
 @export var waves: Array[PackedScene]
 @export var wave: int = 0
 
@@ -46,38 +45,53 @@ func spawn_wave(w: PackedScene):
 
 static func add_to_playfield(o: Node2D, from: Node):
 	assert(o and from)
-	var parent: Node2D
 	var game = get_game(from)
-	if game:
-		if not game.is_node_ready():
-			await game.ready
-		if game.new_entity_region:
-			parent = game.new_entity_region
-	if not parent:
+	if game and not game.is_node_ready():
+		await game.ready
+	var parent: Node2D
+	if game and game.new_entity_region:
+		parent = game.new_entity_region
+	else:
 		parent = from.get_parent()
-	if not o.get_parent():
-		from.add_child(o)
-	o.reparent(parent)
-	o.global_position = from.global_position
+	if o.get_parent():
+		o.reparent(parent)
+	else:
+		o.position = parent.to_local(from.global_position)
+		parent.add_child(o)
 	o.reset_physics_interpolation()
 
 func on_dialogue_finished():
-	dialgoue_screens[0].visible = false
-	if new_entity_region:
-		new_entity_region.process_mode = Node.PROCESS_MODE_INHERIT
 	_ready()
 
-func open_dialogue():
+func open_dialogue(screen:DialogueScreen):
+	screen.visible = true
 	new_entity_region.process_mode = Node.PROCESS_MODE_DISABLED
-	dialgoue_screens[0].activate()
-	dialgoue_screens[0].dialogue_finished.connect(on_dialogue_finished, CONNECT_ONE_SHOT)
+	if screen is DialogueScreen:
+		await screen.open()
+
+	await %Curtain.close()
+	screen.visible = false
+
+	if new_entity_region:
+		new_entity_region.process_mode = Node.PROCESS_MODE_INHERIT
+	%Curtain.open()
 
 func _ready():
 	super()
-	for d in dialgoue_screens:
-		d.visible = false
+
+	#Insert Coin
+	var cab = ArcadeCabinet.get_cabinet(self)
+	if cab:
+		await open_dialogue(%TitleScreen)
+		await %Curtain.close()
+		%Curtain.open()
+	else:
+		%TitleScreen.visible = false
+
+	if not lives.has_life():
+		await open_dialogue(%CharacterSelectScreen)
 	if not current_player and lives and lives.has_life():
 		await spawn_wave(waves[wave])
 		spawn_player(lives.get_life())
 	else:
-		open_dialogue()
+		print("uhh. Something broke, guys")

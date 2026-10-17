@@ -7,9 +7,7 @@ class_name VFXID
 func play(n: Node) -> Variant:
 	var fx = VFX.play(id, n)
 	if random_flip:
-		fx.random_hflip = true
-		fx.random_vflip = true
-		fx.randomize_sprite()
+		fx.randomize_orientation()
 	if invert:
 		fx.flip_v = true
 	return fx

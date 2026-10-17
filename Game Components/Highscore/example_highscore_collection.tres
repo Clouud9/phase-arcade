@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="HighscoreCollection" format=3 uid="uid://pao85ncfkq2y"]
+
+[ext_resource type="Script" uid="uid://b2dxhn8deji7s" path="res://Game Components/Highscore/highscore.gd" id="1_38xqw"]
+[ext_resource type="Script" uid="uid://dcrodarequssd" path="res://Game Components/Highscore/highscore_collection.gd" id="2_xkxnu"]
+
+[sub_resource type="Resource" id="Resource_76xss"]
+script = ExtResource("1_38xqw")
+player = "ass"
+score = 15000
+metadata/_custom_type_script = "uid://b2dxhn8deji7s"
+
+[sub_resource type="Resource" id="Resource_b22ck"]
+script = ExtResource("1_38xqw")
+player = "brn"
+score = 7800
+metadata/_custom_type_script = "uid://b2dxhn8deji7s"
+
+[sub_resource type="Resource" id="Resource_vefkb"]
+script = ExtResource("1_38xqw")
+player = "imp"
+score = 6767
+metadata/_custom_type_script = "uid://b2dxhn8deji7s"
+
+[resource]
+script = ExtResource("2_xkxnu")
+highscores = Array[ExtResource("1_38xqw")]([SubResource("Resource_76xss"), SubResource("Resource_b22ck"), SubResource("Resource_vefkb")])
+metadata/_custom_type_script = "uid://dcrodarequssd"

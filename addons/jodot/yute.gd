@@ -21,7 +21,6 @@ static func replace_node(current_node, new_node, parent):
 	current_node.queue_free()
 	if new_node:
 		var n = new_node.instantiate()
-		print("instantiated: ", n.name, " at ", n.global_position)
 		parent.add_child(n)
 		parent.move_child(n, index)
 		n.global_position = parent.global_position

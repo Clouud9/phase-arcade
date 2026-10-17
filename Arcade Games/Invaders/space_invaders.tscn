@@ -6,34 +6,45 @@
 [ext_resource type="PackedScene" uid="uid://cepq07bhxard5" path="res://Arcade Games/Invaders/ui/header.tscn" id="3_hm1og"]
 [ext_resource type="Theme" uid="uid://bnc4gesw2cmsb" path="res://Arcade Games/Invaders/ui/theme.tres" id="3_hu1xn"]
 [ext_resource type="Script" uid="uid://c1xo8svguvebh" path="res://Arcade Games/Invaders/ui/status_label.gd" id="4_ep106"]
-[ext_resource type="Texture2D" uid="uid://dlcuolwxlbrkn" path="res://Arcade Games/Invaders/gravestones.png" id="6_f1sqh"]
-[ext_resource type="PackedScene" uid="uid://t6vey86s1202" path="res://Arcade Games/Invaders/ui/character_select.tscn" id="6_jn53l"]
-[ext_resource type="Texture2D" uid="uid://di2ijs4liu8jk" path="res://Arcade Games/Invaders/ground.png" id="6_rq143"]
+[ext_resource type="PackedScene" uid="uid://t6vey86s1202" path="res://Arcade Games/Invaders/ui/screens/character_select.tscn" id="6_jn53l"]
+[ext_resource type="Texture2D" uid="uid://di2ijs4liu8jk" path="res://Arcade Games/Invaders/background/ground.png" id="6_kv4wm"]
+[ext_resource type="Texture2D" uid="uid://dlcuolwxlbrkn" path="res://Arcade Games/Invaders/background/gravestones.png" id="6_rq143"]
 [ext_resource type="Script" uid="uid://1dgxw6sw6l6f" path="res://Arcade Games/Invaders/ui/bomb_indicator.gd" id="8_f1sqh"]
 [ext_resource type="Script" uid="uid://d1jykceug6mql" path="res://addons/jodot/effects/effect_sprite.gd" id="11_3pn3u"]
 [ext_resource type="Script" uid="uid://b2wj6hdp3fpmf" path="res://Arcade Games/Invaders/player_spawn.gd" id="11_150to"]
+[ext_resource type="PackedScene" uid="uid://cpuipqg66xoqk" path="res://Arcade Games/Invaders/ui/screens/title_screen.tscn" id="11_kv4wm"]
 [ext_resource type="AudioStream" uid="uid://2eu65vihpb4i" path="res://Arcade Games/Invaders/audio/soundtrack.ogg" id="11_uxjvs"]
 [ext_resource type="Script" uid="uid://bn8bpshcm5u4k" path="res://Arcade Games/Invaders/spawn_point.gd" id="12_r0y7k"]
+[ext_resource type="Shader" uid="uid://comte6u7scsf7" path="res://Arcade Games/Invaders/curtain_dither.gdshader" id="12_vf4al"]
+[ext_resource type="Script" uid="uid://crs1s25mbl4em" path="res://addons/jodot/transition/curtain.gd" id="13_kv4wm"]
 [ext_resource type="Script" uid="uid://cnaebjqiyqlv1" path="res://addons/jodot/effects/sfx.gd" id="14_v0e1x"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v0e1x"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kv4wm"]
 size = Vector2(512, 445)
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cxrdh"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vf4al"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kv4wm"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hetsb"]
+shader = ExtResource("12_vf4al")
+shader_parameter/factor = 0.0
+shader_parameter/rect_size = Vector2(256, 240)
+shader_parameter/edge_size = 100.0
+shader_parameter/direction = 0
+shader_parameter/patterns = 7
+shader_parameter/dither_scale = 1.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5mc0s"]
 
-[node name="Game" type="Node2D" unique_id=618685806 node_paths=PackedStringArray("play_area", "new_entity_region", "lives", "player_spawn_point", "dialgoue_screens", "sfx_player")]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_aapi3"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kovxm"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8hi7g"]
+
+[node name="Game" type="Node2D" unique_id=618685806 node_paths=PackedStringArray("play_area", "new_entity_region", "lives", "player_spawn_point", "sfx_player")]
 script = ExtResource("1_2u8fv")
 play_area = NodePath("PlayArea")
 new_entity_region = NodePath("Scaling")
 lives = NodePath("PlayArea/Header/Lives")
 player_spawn_point = NodePath("Scaling/PlayerSpawn")
-dialgoue_screens = [NodePath("PlayArea/Foreground/CharacterSelectScreen")]
 waves = Array[PackedScene]([ExtResource("2_hgni5")])
 sfx_player = NodePath("SoundEffects")
 
@@ -62,7 +73,7 @@ script = ExtResource("8_f1sqh")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea" unique_id=686129356]
 visible = false
 position = Vector2(256, 257.5)
-shape = SubResource("RectangleShape2D_v0e1x")
+shape = SubResource("RectangleShape2D_kv4wm")
 
 [node name="Background" type="ColorRect" parent="PlayArea" unique_id=1057276390]
 z_index = -10
@@ -82,7 +93,7 @@ anchor_bottom = 1.0
 offset_top = -32.0
 grow_horizontal = 2
 grow_vertical = 0
-texture = ExtResource("6_rq143")
+texture = ExtResource("6_kv4wm")
 expand_mode = 1
 stretch_mode = 1
 
@@ -90,7 +101,7 @@ stretch_mode = 1
 show_behind_parent = true
 z_index = -2
 position = Vector2(28, 11.5)
-texture = ExtResource("6_f1sqh")
+texture = ExtResource("6_rq143")
 vframes = 4
 script = ExtResource("11_3pn3u")
 randomize_frames = 4
@@ -100,7 +111,7 @@ random_hflip = true
 show_behind_parent = true
 z_index = -2
 position = Vector2(60.5, 11.5)
-texture = ExtResource("6_f1sqh")
+texture = ExtResource("6_rq143")
 vframes = 4
 script = ExtResource("11_3pn3u")
 randomize_frames = 4
@@ -110,7 +121,7 @@ random_hflip = true
 show_behind_parent = true
 z_index = -2
 position = Vector2(80.5, 14.5)
-texture = ExtResource("6_f1sqh")
+texture = ExtResource("6_rq143")
 vframes = 4
 script = ExtResource("11_3pn3u")
 randomize_frames = 4
@@ -120,7 +131,7 @@ random_hflip = true
 show_behind_parent = true
 z_index = -2
 position = Vector2(117, 16)
-texture = ExtResource("6_f1sqh")
+texture = ExtResource("6_rq143")
 vframes = 4
 script = ExtResource("11_3pn3u")
 randomize_frames = 4
@@ -130,7 +141,7 @@ random_hflip = true
 show_behind_parent = true
 z_index = -2
 position = Vector2(184.5, 11.5)
-texture = ExtResource("6_f1sqh")
+texture = ExtResource("6_rq143")
 vframes = 4
 script = ExtResource("11_3pn3u")
 randomize_frames = 4
@@ -140,7 +151,7 @@ random_hflip = true
 show_behind_parent = true
 z_index = -2
 position = Vector2(229, 12.5)
-texture = ExtResource("6_f1sqh")
+texture = ExtResource("6_rq143")
 vframes = 4
 script = ExtResource("11_3pn3u")
 randomize_frames = 4
@@ -150,7 +161,7 @@ random_hflip = true
 show_behind_parent = true
 z_index = -2
 position = Vector2(249, 13)
-texture = ExtResource("6_f1sqh")
+texture = ExtResource("6_rq143")
 vframes = 4
 script = ExtResource("11_3pn3u")
 randomize_frames = 4
@@ -184,17 +195,38 @@ vertical_alignment = 1
 script = ExtResource("4_ep106")
 
 [node name="CharacterSelectScreen" parent="PlayArea/Foreground" unique_id=1998133961 instance=ExtResource("6_jn53l")]
-visible = false
+unique_name_in_owner = true
 layout_mode = 1
 offset_right = 0.0
 offset_bottom = 0.0
+
+[node name="Curtain" type="ColorRect" parent="PlayArea/Foreground" unique_id=1531279868]
+unique_name_in_owner = true
+z_index = 99
+material = SubResource("ShaderMaterial_hetsb")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.011764706, 0.015686275, 0.03529412, 1)
+script = ExtResource("13_kv4wm")
+duration = 1.0
+direction = 0
+open_on_ready = false
+
+[node name="TitleScreen" parent="PlayArea/Foreground" unique_id=2102578090 instance=ExtResource("11_kv4wm")]
+unique_name_in_owner = true
+layout_mode = 1
+offset_transform_position = Vector2(-257.035, 0)
 
 [node name="DownWall" type="StaticBody2D" parent="PlayArea" unique_id=201815]
 position = Vector2(256, 468)
 collision_layer = 129
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/DownWall" unique_id=674260653]
-shape = SubResource("WorldBoundaryShape2D_cxrdh")
+shape = SubResource("WorldBoundaryShape2D_5mc0s")
 one_way_collision = true
 one_way_collision_margin = 50.0
 
@@ -205,7 +237,7 @@ collision_layer = 9
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/LeftWall" unique_id=102136596]
 position = Vector2(-2, -1.5)
 rotation = 1.5707964
-shape = SubResource("WorldBoundaryShape2D_vf4al")
+shape = SubResource("WorldBoundaryShape2D_aapi3")
 one_way_collision = true
 one_way_collision_margin = 50.0
 
@@ -215,7 +247,7 @@ collision_layer = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/RightWall" unique_id=509408183]
 rotation = -1.5707964
-shape = SubResource("WorldBoundaryShape2D_kv4wm")
+shape = SubResource("WorldBoundaryShape2D_kovxm")
 one_way_collision = true
 one_way_collision_margin = 50.0
 
@@ -225,7 +257,7 @@ collision_layer = 257
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayArea/UpWall" unique_id=1542820434]
 rotation = -3.1415927
-shape = SubResource("WorldBoundaryShape2D_5mc0s")
+shape = SubResource("WorldBoundaryShape2D_8hi7g")
 one_way_collision = true
 one_way_collision_margin = 50.0
 

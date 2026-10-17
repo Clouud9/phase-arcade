@@ -2,14 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://samwjuw67shl" path="res://levels/gridmap-level/level.tscn" id="1_bewde"]
 [ext_resource type="PackedScene" uid="uid://bnrat3k8mdug0" path="res://Cabinets/cabinet.tscn" id="2_d0ker"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_bewde"]
-viewport_path = NodePath("Tooltip/SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_d0ker"]
-viewport_path = NodePath("Tooltip/SubViewport")
+[ext_resource type="PackedScene" uid="uid://uw0nw0gw7d6s" path="res://Arcade Games/Test Game/test_game.tscn" id="3_d0ker"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_wvv42"]
+viewport_path = NodePath("Tooltip/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_b253r"]
+viewport_path = NodePath("Tooltip/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_j06l2"]
 viewport_path = NodePath("SubViewport")
 
 [node name="Closet" type="Node3D" unique_id=323356797]
@@ -18,25 +19,26 @@ viewport_path = NodePath("SubViewport")
 
 [node name="Cabinet" parent="." unique_id=1752319625 instance=ExtResource("2_d0ker")]
 transform = Transform3D(0.9876726, 0, 0.15653388, 0, 1, 0, -0.15653388, 0, 0.9876726, 0.15270016, 1.1901821e-07, -4.289743)
+game_scene = ExtResource("3_d0ker")
 test_mode = true
 
 [node name="SubViewport" parent="Cabinet" index="2" unique_id=599290243]
-own_world_3d = true
+crt_downscale = 2
 
 [node name="Screen" parent="Cabinet/ScreenContainer" parent_id_path=PackedInt32Array(1752319625, 2132404432) index="0" unique_id=769819713]
-resolution = Vector2(320, 240)
+resolution = Vector2(160, 120)
 
 [node name="Tooltip" parent="Cabinet/ScreenContainer/ScreenInteractZone" parent_id_path=PackedInt32Array(1752319625, 1828705782) index="1" unique_id=1310991000]
-texture = SubResource("ViewportTexture_bewde")
+texture = SubResource("ViewportTexture_wvv42")
 
 [node name="Shadow" parent="Cabinet/ScreenContainer/ScreenInteractZone/Tooltip" index="1" unique_id=1306854022]
-texture = SubResource("ViewportTexture_d0ker")
+texture = SubResource("ViewportTexture_b253r")
 
 [node name="Downsample" parent="Cabinet" index="5" unique_id=2094865604]
 size = Vector2i(32, 32)
 
 [node name="TextureRect" parent="Cabinet/Downsample" index="0" unique_id=1900591909]
-texture = SubResource("ViewportTexture_wvv42")
+texture = SubResource("ViewportTexture_j06l2")
 
 [editable path="Cabinet"]
 [editable path="Cabinet/ScreenContainer/ScreenInteractZone"]

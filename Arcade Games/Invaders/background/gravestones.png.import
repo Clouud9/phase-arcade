@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dlcuolwxlbrkn"
-path="res://.godot/imported/gravestones.png-bd1b3a0306bf324c498bb8bffdeb7e99.ctex"
+path="res://.godot/imported/gravestones.png-f48b051e5dd6d90311a1a409d55787dd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Arcade Games/Invaders/gravestones.png"
-dest_files=["res://.godot/imported/gravestones.png-bd1b3a0306bf324c498bb8bffdeb7e99.ctex"]
+source_file="res://Arcade Games/Invaders/background/gravestones.png"
+dest_files=["res://.godot/imported/gravestones.png-f48b051e5dd6d90311a1a409d55787dd.ctex"]
 
 [params]
 
