@@ -7,7 +7,7 @@ class_name InitialsLetter
 ## each slot as a black box. Decorate this scene freely; the row only cares
 ## about [member character] and [member selected].
 
-## The character currently shown while the slot is on.
+## The character shown while the slot is on.
 @export var character:String = "a":
 	set(value):
 		character = value
@@ -38,6 +38,21 @@ class_name InitialsLetter
 		show_arrows = value
 		_update_arrows()
 
+## Multiplies the arrows' font-relative size. 1.0 makes the arrow's texture as
+## tall as the font size.
+@export_range(0.0, 4.0, 0.05) var arrow_scale:float = 1.0:
+	set(value):
+		arrow_scale = value
+		_position_arrows()
+
+# The arrow art is a triangle occupying the bottom half of a 64px tall image.
+# [constant ARROW_OFFSET] recentres it on the sprite origin so that placing the
+# sprite's [member Node2D.global_position] at a point centres the visible arrow
+# there, at any scale.
+const ARROW_TEXTURE_HEIGHT := 64.0
+const ARROW_VISUAL_HEIGHT := 32.0
+const ARROW_OFFSET := Vector2(0, -16)
+
 # --- Character ---
 
 ## Shift this slot's character through [param character_set] by [param by] steps,
@@ -55,6 +70,35 @@ func shift(by:int, character_set:String) -> void:
 	pulse_accum = 0
 	_apply_off(false)
 
+# --- Arrows ---
+
+var _arrows:Sprite2D
+var _down_arrow:Sprite2D
+
+## Centres the arrows above and below this slot's text, scaled to the font size.
+## Runs every frame because the slot's rect moves as the text and layout change.
+func _position_arrows() -> void:
+	if not _arrows or not is_inside_tree():
+		return
+	var s := get_theme_font_size("font_size") / ARROW_TEXTURE_HEIGHT * arrow_scale
+	var rect := get_global_rect()
+	var x := rect.get_center().x
+	var half := ARROW_VISUAL_HEIGHT * s * 0.5
+	_arrows.scale = Vector2(s, s)
+	_arrows.offset = ARROW_OFFSET
+	_arrows.global_position = Vector2(x, rect.position.y - half)
+	if _down_arrow:
+		_down_arrow.offset = ARROW_OFFSET
+		_down_arrow.global_position = Vector2(x, rect.end.y + half)
+
+## Shows the arrows only while selected and [member show_arrows] is on.
+func _update_arrows() -> void:
+	var show := selected and show_arrows
+	if _arrows:
+		_arrows.visible = show
+	if _down_arrow:
+		_down_arrow.visible = show
+
 # --- Animation ---
 
 var pulse_accum:float = 0
@@ -62,6 +106,7 @@ var _off:bool = false
 var _on_layer:int = 1
 
 func _process(delta: float) -> void:
+	_position_arrows()
 	if not selected or pulse_rate <= 0:
 		_apply_off(false)
 		return
@@ -86,19 +131,10 @@ func _update_visual() -> void:
 	text = off_char if _off and not blank else character
 	visibility_layer = 0 if blank else _on_layer
 
-## Shows the arrows only while selected and [member show_arrows] is on. Uses an
-## [code]Arrows[/code] child when present, otherwise any arrow siblings.
-func _update_arrows() -> void:
-	var show := selected and show_arrows
-	var arrows := get_node_or_null("Arrows")
-	if arrows:
-		arrows.visible = show
-		return
-	for c in get_children():
-		if c is CanvasItem and "Arrow" in String(c.name):
-			c.visible = show
-
 func _ready() -> void:
+	_arrows = get_node_or_null("Arrows")
+	_down_arrow = get_node_or_null("Arrows/DownArrow")
 	_on_layer = visibility_layer
 	_update_visual()
 	_update_arrows()
+	_position_arrows()

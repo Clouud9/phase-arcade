@@ -7,10 +7,14 @@
 offset_right = 1.0
 offset_bottom = 23.0
 text = "A"
+uppercase = true
 script = ExtResource("1_a6np5")
 selected = true
+off_char = ""
+arrow_scale = 0.5
 
 [node name="Arrows" type="Sprite2D" parent="." unique_id=1042583992]
+top_level = true
 position = Vector2(5, -6.000002)
 scale = Vector2(0.257, 0.257)
 texture = ExtResource("2_3yb3y")

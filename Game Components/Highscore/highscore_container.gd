@@ -14,6 +14,11 @@ class_name HighscoreContainer
 @export_tool_button("populate") var populate_button = populate
 
 func _ready() -> void:
+	if not highscore_collection:
+		var game = await Game.get_ready_game(self)
+		if game:
+			highscore_collection = game.highscores
+			game.highscores_updated.connect(populate)
 	populate()
 
 func populate() -> void:

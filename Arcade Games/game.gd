@@ -11,6 +11,10 @@ class_name Game
 
 ## [SFXPlayer] node in the game, if any, to route [method play_sfx] calls to
 @export var sfx_player: SFXPlayer
+@export var highscores:HighscoreCollection
+@export var game_name:StringName
+
+signal highscores_updated
 
 # --- Management ---
 
@@ -44,6 +48,13 @@ static func get_game(from: Node) -> Game:
 	while from and from is not Game:
 		from = from.get_parent()
 	return from
+
+## returns [method get_game], waiting for it to be ready, if neccesary
+static func get_ready_game(from:Node) -> Game:
+	var game = Game.get_game(from)
+	if game and not game.is_node_ready():
+		await game.ready
+	return game
 
 ## Plays SFX via the [Game]'s [member Game.sfx_player].
 ##
@@ -90,6 +101,11 @@ static func get_3D(from:Node) -> Node3D:
 # --- Main ---
 
 func _ready() -> void:
+	score = 0
+	if not highscores:
+		assert(game_name != &"")
+		highscores = Scores.get_highscores(game_name)
+
 	var _self = self as Node
 	if _self is Control:
 		_self_ui = _self

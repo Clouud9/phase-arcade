@@ -24,4 +24,3 @@ func die():
 	VFX.play("pop", get_parent(), position).apply_scale(Vector2.ONE * 5)
 	Game.play_sfx(self, "explosion")
 	Game.get_game(self).lose()
-

@@ -62,8 +62,6 @@ theme_override_constants/margin_bottom = 20
 [node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer" unique_id=114535388]
 layout_mode = 2
 size_flags_vertical = 0
-split_offsets = PackedInt32Array(48)
-split_offset = 48
 
 [node name="ScoreLabel" type="Label" parent="MarginContainer/HSplitContainer" unique_id=1471367948]
 layout_mode = 2

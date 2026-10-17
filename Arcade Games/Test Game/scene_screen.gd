@@ -5,7 +5,7 @@ extends Screen
 @export var scene:PackedScene
 var current_scene
 
-func set_shown(shown:bool):
+func _set_shown(shown:bool):
 	super(shown)
 	if current_scene:
 		current_scene.free()

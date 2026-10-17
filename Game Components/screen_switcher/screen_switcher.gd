@@ -67,14 +67,14 @@ func update_operation(op: Operation, delta: float) -> bool:
 	# The owning screen always travels along its entry side: when it arrives it
 	# slides in from there, and on reversal it heads straight back the way it
 	# came (only the time direction changes, never the side).
-	op.screen.present(p, -t.travel())
+	op.screen._set_state(p, -t.travel())
 
 	# A pan carries the displaced screens along; a card drop leaves them at rest
 	# until the operation concludes.
 	if t.mode == Transition.Mode.MOVE_ACROSS:
 		for s in op.others:
 			if not _is_owned_elsewhere(s, op):
-				s.present(1.0 - p, t.travel())
+				s._set_state(1.0 - p, t.travel())
 
 	if _reached(op, p):
 		_retire(op)
@@ -122,7 +122,7 @@ func _settle(s: Screen, transition_in: bool, other_screens: Array[Screen], t: Tr
 
 # Presents a screen at rest: fully shown or fully hidden.
 func _snap(s: Screen, shown: bool, t: Transition = null) -> void:
-	s.present(1.0 if shown else 0.0, (t if t else s.transition).travel())
+	s._set_state(1.0 if shown else 0.0, (t if t else s.transition).travel())
 	if shown:
 		s.move_to_front()
 

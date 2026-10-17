@@ -1,5 +1,6 @@
 @tool
-extends HBoxContainer
+extends Control
+class_name Initials
 ## A row of selectable character slots for entering a name in initials.
 ##
 ## The slots are instantiated from [member letter] rather than authored into the
@@ -75,7 +76,11 @@ func move_selection(by:int):
 	var count = get_child_count()
 	if count == 0:
 		return
-	selected = wrapi(selected + by, 0, count)
+	selected = selected + by
+	while selected < 0:
+		selected += count
+	if selected >= count:
+		find_next_valid_focus().grab_focus()
 	update_selection()
 
 ## Marks only the [member selected] slot as selected; all others are cleared.
@@ -96,6 +101,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		move_selection(1)
 	else:
 		return
+	var game = Game.get_game(self)
+	if game:
+		game.highscores_updated.emit()
 	get_viewport().set_input_as_handled()
 
 func _ready() -> void:
