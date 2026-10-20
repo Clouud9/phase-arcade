@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://bx2mma2aiaf8o" path="res://materials/Wood.tres" id="1_seabh"]
 [ext_resource type="Sky" uid="uid://mn5skbywvx8c" path="res://levels/gridmap-level/night_sky.tres" id="2_mmvl2"]
-[ext_resource type="PackedScene" uid="uid://bnrat3k8mdug0" path="res://Cabinets/cabinet.tscn" id="3_s5sl6"]
+[ext_resource type="PackedScene" uid="uid://bnrat3k8mdug0" path="res://Cabinets/presets/_cabinet.tscn" id="3_s5sl6"]
 [ext_resource type="PackedScene" uid="uid://civ3r62diebkh" path="res://Arcade Games/Invaders/space_invaders.tscn" id="4_7gimt"]
 [ext_resource type="PackedScene" uid="uid://uw0nw0gw7d6s" path="res://Arcade Games/Test Game/test_game.tscn" id="4_wtrpb"]
 [ext_resource type="PackedScene" uid="uid://c5qhyuctvc26m" path="res://player/player_character.tscn" id="5_7gimt"]

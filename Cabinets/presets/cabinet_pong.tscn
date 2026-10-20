@@ -86,7 +86,7 @@ texture = SubResource("ViewportTexture_1ao4o")
 
 [node name="ObservationPoint" type="Camera3D" parent="ScreenContainer" unique_id=1442811002]
 unique_name_in_owner = true
-transform = Transform3D(2.0202022, 0, 0, 0, 1.8782021, -0.74402636, 0, 0.74402636, 1.8782021, 0, -0.41594255, 0.78665966)
+transform = Transform3D(2.0202022, 0, 0, 0, 1.7807317, -0.95404977, 0, 0.9540497, 1.7807317, 0, -0.45377874, 0.7863962)
 
 [node name="ControlPlane" type="Node3D" parent="." unique_id=872288392]
 transform = Transform3D(0.9999999, 0, 0, 0, 0.6427876, -0.7660444, 0, 0.7660444, 0.6427876, -0.013282571, 0.78674793, 0.15523334)
@@ -103,7 +103,6 @@ transform = Transform3D(1.348, 0, 0, 0, 1.348, 0, 0, 0, 1.348, -0.125, 0, 0)
 visible = false
 
 [node name="Lightgun" parent="ControlPlane" unique_id=152386206 instance=ExtResource("11_218w7")]
-transform = Transform3D(0.697, 0, 0, 0, 0.65393525, 0.24120064, 0, -0.24120064, 0.65393525, 0.11278014, 0.43988812, 0.23775633)
 visible = false
 
 [node name="Downsample" type="SubViewport" parent="." unique_id=2094865604]
