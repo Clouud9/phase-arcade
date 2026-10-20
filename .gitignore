@@ -5,6 +5,7 @@
 temp/
 *.png~
 *.kra~
+*.kra-autosave.kra
 *.blend1
 export
 audio/sfx/crushed-*
