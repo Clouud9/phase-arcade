@@ -45,11 +45,6 @@ _subresources={
 "use_external/enabled": true,
 "use_external/fallback_path": "res://Cabinets/Arcade_machine.tres",
 "use_external/path": "uid://0cn7mw5ok22s"
-},
-"Metal": {
-"use_external/enabled": true,
-"use_external/fallback_path": "res://materials/Metal.tres",
-"use_external/path": "uid://dnvgetg74i2co"
 }
 }
 }

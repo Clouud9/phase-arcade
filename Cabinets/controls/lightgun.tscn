@@ -1,8 +1,49 @@
 [gd_scene format=3 uid="uid://y4ekvgp6ueol"]
 
-[ext_resource type="PackedScene" uid="uid://bg2pf70g26g1q" path="res://Cabinets/controls/_controls_lightgun.tscn" id="1_gpm1i"]
+[ext_resource type="PackedScene" uid="uid://d3qivnd8w3ut0" path="res://Cabinets/controls/_controls_lightgun_holster.tscn" id="1_gpm1i"]
+[ext_resource type="Script" uid="uid://dpkabu5o81pba" path="res://Cabinets/controls/lightgun.gd" id="1_nqmtv"]
 
-[node name="Lightgun" type="Node3D" unique_id=152386206]
+[node name="Lightgun" type="Node3D" unique_id=152386206 node_paths=PackedStringArray("gun")]
+script = ExtResource("1_nqmtv")
+gun = NodePath("LightgunHolster/Lightgun")
 
-[node name="Lightgun" parent="." unique_id=1797582438 instance=ExtResource("1_gpm1i")]
-transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, -0.0038011707, 0, -0.1990037)
+[node name="LightgunHolster" parent="." unique_id=787943672 instance=ExtResource("1_gpm1i")]
+
+[node name="Skeleton3D" parent="LightgunHolster/Cable-Armature" parent_id_path=PackedInt32Array(787943672, 986532903) index="0" unique_id=149226292]
+modifier_callback_mode_process = 0
+
+[node name="JacobianIK3D" type="JacobianIK3D" parent="LightgunHolster/Cable-Armature/Skeleton3D" index="1" unique_id=533549775]
+setting_count = 1
+settings/0/target_node = NodePath("../../../Lightgun/Lightgun-Plug")
+settings/0/root_bone_name = "Bone"
+settings/0/root_bone = 0
+settings/0/end_bone_name = "end"
+settings/0/end_bone = 6
+settings/0/extend_end_bone = false
+settings/0/joint_count = 7
+settings/0/joints/0/rotation_axis = 3
+settings/0/joints/0/limitation = null
+settings/0/joints/1/rotation_axis = 3
+settings/0/joints/1/limitation = null
+settings/0/joints/2/rotation_axis = 3
+settings/0/joints/2/limitation = null
+settings/0/joints/3/rotation_axis = 3
+settings/0/joints/3/limitation = null
+settings/0/joints/4/rotation_axis = 3
+settings/0/joints/4/limitation = null
+settings/0/joints/5/rotation_axis = 3
+settings/0/joints/5/limitation = null
+settings/0/joints/6/rotation_axis = 3
+settings/0/joints/6/limitation = null
+
+[node name="Lightgun" parent="LightgunHolster" index="1" unique_id=1190359383]
+transform = Transform3D(0.01, 0, 0, 0, 0.007853472, 0.0061905603, 0, -0.0061905603, 0.007853472, -0.00087798666, 0.11711991, 0.08528024)
+
+[node name="ShootingPivot" type="Marker3D" parent="." unique_id=144185200]
+transform = Transform3D(1, 0, 0, 0, 0.7853469, 0.61905587, 0, -0.61905587, 0.7853469, 0.208902, 0.4859529, 0.2594137)
+
+[node name="GunPos" type="Marker3D" parent="ShootingPivot" unique_id=345928256]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12207565, -0.14702713)
+
+[editable path="LightgunHolster"]
