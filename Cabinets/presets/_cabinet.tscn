@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bnrat3k8mdug0"]
 
 [ext_resource type="Script" uid="uid://dw56sgfx8hq8l" path="res://Cabinets/cabinet.gd" id="1_gqhhl"]
-[ext_resource type="PackedScene" uid="uid://b65jbvordjewb" path="res://Cabinets/cabinet.glb" id="1_hcb6m"]
 [ext_resource type="PackedScene" uid="uid://cruql6bs6awns" path="res://Cabinets/screen.tscn" id="2_bisg2"]
 [ext_resource type="Script" uid="uid://bksgymi3ru850" path="res://Cabinets/sub_viewport.gd" id="5_xlqc2"]
 [ext_resource type="PackedScene" uid="uid://ciofuhj1xxdb7" path="res://stuff/interact_zone.tscn" id="6_mg4d7"]
@@ -15,10 +14,10 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_mg4d7"]
 size = Vector3(0.55, 0.4, 0.01)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_onb47"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_aedlq"]
 viewport_path = NodePath("Tooltip/SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_8lges"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_avg2o"]
 viewport_path = NodePath("Tooltip/SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_hetsb"]
@@ -26,8 +25,6 @@ viewport_path = NodePath("SubViewport")
 
 [node name="Cabinet" type="Node3D" unique_id=1752319625]
 script = ExtResource("1_gqhhl")
-
-[node name="cabinet_model" parent="." unique_id=1223763958 instance=ExtResource("1_hcb6m")]
 
 [node name="Speaker" type="AudioStreamPlayer3D" parent="." unique_id=1188406260]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0.28)
@@ -76,13 +73,13 @@ shape = SubResource("BoxShape3D_mg4d7")
 
 [node name="Tooltip" parent="ScreenContainer/ScreenInteractZone" index="1" unique_id=1310991000]
 transform = Transform3D(1, 0, 0, 0, 0.99138325, 0.13099346, 0, -0.13099346, 0.99138325, 0, -0.21796304, -0.04354644)
-texture = SubResource("ViewportTexture_onb47")
+texture = SubResource("ViewportTexture_aedlq")
 
 [node name="Label" parent="ScreenContainer/ScreenInteractZone/Tooltip/SubViewport" parent_id_path=PackedInt32Array(1828705782, 1414188419) index="0" unique_id=238621318]
 text = "[LMB] play"
 
 [node name="Shadow" parent="ScreenContainer/ScreenInteractZone/Tooltip" index="1" unique_id=1306854022]
-texture = SubResource("ViewportTexture_8lges")
+texture = SubResource("ViewportTexture_avg2o")
 
 [node name="ObservationPoint" type="Camera3D" parent="ScreenContainer" unique_id=1442811002]
 unique_name_in_owner = true
