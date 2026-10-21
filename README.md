@@ -3,7 +3,7 @@
 We want *your* games to populate *Phase Arcade*; a mysterious abandoned entertainment venue set as a showcase of jammers' talents, and perhaps something more sinister...?
 
 # When?
-Now. [Unofficial Phase Jam 13](https://itch.io/jam/unofficial-phasejam-13) begins on October 9th and ends on October 19th. And We're hoping to finish up the Arcade for its grand opening by Halloween.
+We're hoping to finish up the Arcade for its grand opening by Halloween. We don't yet know what happens after that
 
 # What Type of Game?
 The ideal game for the Arcade has these qualities:
@@ -19,7 +19,6 @@ While the jam is a great opportunity to make a fresh game for the arcade, it's n
 This documentation focuses on video game cabinets but if you'd like to make some other kind of arcade attraction; pinball, or a claw-machine, or something of that sort, we'd be delighted to accommodate! We will have to ask you to work a little more closely with us to ensure that your submission will work in the arcade, mechanically and thematically.
 
 # Step-by-step Guide
- - [Step-by-step Guide](#step-by-step-guide)
     - [Setting up your game](#setting-up-your-game)
     - [Testing your game](#testing-your-game)
     - [Limitations and Guidelines](#limitations-and-guidelines)
@@ -36,7 +35,7 @@ This documentation focuses on video game cabinets but if you'd like to make some
       - [Customizing your cabinet](#customizing-your-cabinet)
         - [Cabinet Model](#cabinet-model)
         - [Material](#material)
-      - [Texture](#texture)
+        - [Texture](#texture)
     - [Other things](#other-things)
       - [Score and Highscore](#score-and-highscore)
       - [Project Settings](#project-settings)
@@ -124,7 +123,7 @@ Duplicate `Arcade_machine.tres` into you cabinet folder. Call it whatever you li
 
 ![](Images/apply-custom-material.jpg)
 
-### Texture
+#### Texture
 
 [Cabinets/textures/](Cabinets/textures/) has some good resources to get you started, in particular [flat-colors](Cabinets/textures/flat-colors.png) and [annotations](Cabinets/textures/annotations.png). There are some minor differences in how the textures a mapped for different cabinets, be sure to check in-engine that your work looks the way you expect.
 Drag your texture into the "Albedo" slot in your custom material.
