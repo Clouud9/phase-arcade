@@ -125,7 +125,7 @@ Duplicate `Arcade_machine.tres` into you cabinet folder. Call it whatever you li
 
 #### Texture
 
-[Cabinets/textures/](Cabinets/textures/) has some good resources to get you started, in particular [flat-colors](Cabinets/textures/flat-colors.png) and [annotations](Cabinets/textures/annotations.png). There are some minor differences in how the textures a mapped for different cabinets, be sure to check in-engine that your work looks the way you expect.
+[Cabinets/textures/](Cabinets/textures/) has some good resources to get you started, in particular [flat-colors](Cabinets/textures/flat-colors.png) and [annotations](Cabinets/textures/annotations.png). There are some minor differences in how the textures are mapped for different cabinets, be sure to check in-engine that your work looks the way you expect.
 Drag your texture into the "Albedo" slot in your custom material.
 
 ![](Images/drag-albedo-texture.jpg)
