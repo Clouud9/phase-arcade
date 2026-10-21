@@ -1,7 +1,7 @@
 extends Node3D
 
-@export var stick:NodePath
-@onready var _stick:Node3D = get_node(stick)
+@onready var _stick:Node3D = $Stick
+@onready var _hole_cover:Node3D = $"hole-cover"
 
 ## Fraction of [code]travel[/code] to ignore when testing for the edge. Analogue
 ## sticks rarely reach their full range, so count a deflection as hitting the
@@ -21,6 +21,7 @@ var _speed_from_centre := 0.0
 func deflect(v:Vector2, delta:float, travel:float=0.3, speed:float=10):
 	var before := _stick.rotation
 	_stick.rotation = _stick.rotation.move_toward(Vector3(v.y, 0, -v.x) * travel, speed * delta)
+	_hole_cover.position = Vector3(v.x, 0, v.y) * 0.001
 
 	# Signed speed from the centre: + when striking outward toward the edge,
 	# - when springing back toward the neutral position. Only the radial
