@@ -34,7 +34,9 @@ push_button = NodePath("Push_003")
 [node name="PressSFX" type="AudioStreamPlayer3D" parent="." index="1" unique_id=468321572]
 stream = SubResource("AudioStreamRandomizer_pn55c")
 volume_db = -25.0
+bus = &"Cabinet Controls"
 
 [node name="ReleaseSFX" type="AudioStreamPlayer3D" parent="." index="2" unique_id=1490640284]
 stream = SubResource("AudioStreamRandomizer_hetsb")
 volume_db = -15.0
+bus = &"Cabinet Controls"

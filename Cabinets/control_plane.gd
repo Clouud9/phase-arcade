@@ -16,7 +16,15 @@ func fbool(b:bool) -> float:
 	return 1.0 if b else 0.0
 
 func _process(delta: float) -> void:
-	$Joystick.deflect(input_tracker.movement, delta)
-	$FireButton.press(fbool(input_tracker.firing), delta, 0.004, 4)
-	$BombButton.press(fbool(input_tracker.bombing), delta, 0.003, 4)
-	$Lightgun.aim_at(cab.cursor_pos)
+	if $Joystick.visible:
+		$Joystick.deflect(input_tracker.movement, delta)
+	if $FireButton.visible:
+		$FireButton.press(fbool(input_tracker.firing), delta, 0.004, 4)
+	if $BombButton.visible:
+		$BombButton.press(fbool(input_tracker.bombing), delta, 0.003, 4)
+	if $Lightgun.visible:
+		$Lightgun.aim_at(cab.cursor_pos)
+
+func handle_event(ev:InputEvent):
+	if ev is InputEventMouseButton and $Lightgun.visible: #FIXME: this should use event tag
+		$Lightgun.fire()

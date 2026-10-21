@@ -153,6 +153,7 @@ func _screen_click(event: InputEventMouseButton) -> void:
 	get_viewport().set_input_as_handled()
 	var local: InputEventMouseButton = event.duplicate() as InputEventMouseButton
 	local.position = _screen_pressed_pos
+	$ControlPlane.handle_event(event)
 	$SubViewport.push_input(local, true)
 	if not $SubViewport.is_input_handled():
 		_forward_3d_input(local, _screen_pressed_pos)

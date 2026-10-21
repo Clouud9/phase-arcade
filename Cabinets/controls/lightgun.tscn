@@ -2,10 +2,103 @@
 
 [ext_resource type="PackedScene" uid="uid://d3qivnd8w3ut0" path="res://Cabinets/controls/_controls_lightgun_holster.tscn" id="1_gpm1i"]
 [ext_resource type="Script" uid="uid://dpkabu5o81pba" path="res://Cabinets/controls/lightgun.gd" id="1_nqmtv"]
+[ext_resource type="AudioStream" uid="uid://c65d0ijqn81iq" path="res://audio/foley/rack1.wav" id="3_5xwbf"]
+[ext_resource type="AudioStream" uid="uid://ds715ny5xho6j" path="res://audio/foley/rack2.wav" id="4_5ixfi"]
+[ext_resource type="AudioStream" uid="uid://bfsll6qdtl5bh" path="res://audio/foley/rack3.wav" id="5_31oah"]
+[ext_resource type="AudioStream" uid="uid://ojm15nnfl8m7" path="res://audio/foley/rack4.wav" id="6_g2jle"]
+[ext_resource type="AudioStream" uid="uid://clqp1qd5c43wh" path="res://audio/foley/rack5.wav" id="7_xjhxo"]
+[ext_resource type="AudioStream" uid="uid://du3svg22x4mbi" path="res://audio/foley/rack6.wav" id="8_oyr0t"]
+
+[sub_resource type="Animation" id="Animation_5xwbf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LightgunHolster/Lightgun/Lightgun-slide:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.335144e-05, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShootingPivot/GunPos:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.12207565, -0.14702713)]
+}
+
+[sub_resource type="Animation" id="Animation_5ixfi"]
+resource_name = "fire"
+length = 0.184
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LightgunHolster/Lightgun/Lightgun-slide:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.8626451e-09, 0.033333335, 0.075, 0.125),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.335144e-05, 0), Vector3(0, 0, 0.08), Vector3(0, -8.990992e-07, 0.01477664), Vector3(0, 0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LightgunHolster/Lightgun/FireSFX")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShootingPivot/GunPos:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.09166667, 0.18333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.12207565, -0.14702713), Vector3(0, 0.122, -0.122), Vector3(0, 0.122, -0.147)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_31oah"]
+_data = {
+&"RESET": SubResource("Animation_5xwbf"),
+&"fire": SubResource("Animation_5ixfi")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hetsb"]
+streams_count = 6
+stream_0/stream = ExtResource("3_5xwbf")
+stream_1/stream = ExtResource("4_5ixfi")
+stream_2/stream = ExtResource("5_31oah")
+stream_3/stream = ExtResource("6_g2jle")
+stream_4/stream = ExtResource("7_xjhxo")
+stream_5/stream = ExtResource("8_oyr0t")
 
 [node name="Lightgun" type="Node3D" unique_id=152386206 node_paths=PackedStringArray("gun")]
 script = ExtResource("1_nqmtv")
 gun = NodePath("LightgunHolster/Lightgun")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1718052806]
+libraries/ = SubResource("AnimationLibrary_31oah")
 
 [node name="LightgunHolster" parent="." unique_id=787943672 instance=ExtResource("1_gpm1i")]
 
@@ -37,10 +130,22 @@ settings/0/joints/6/rotation_axis = 3
 settings/0/joints/6/limitation = null
 
 [node name="Lightgun" parent="LightgunHolster" index="1" unique_id=1190359383]
-transform = Transform3D(0.01, 0, 0, 0, 0.007853472, 0.0061905603, 0, -0.0061905603, 0.007853472, -0.00087798666, 0.11711991, 0.08528024)
+transform = Transform3D(1, 0, 0, 0, 0.7853468, 0.6190559, 0, -0.6190559, 0.7853468, -0.00087798666, 0.11711991, 0.08528024)
+
+[node name="Lightgun-Plug" parent="LightgunHolster/Lightgun" index="0" unique_id=225974011]
+transform = Transform3D(0.10336845, -0.9946415, 0.00180842, 0.0949457, 0.0080573745, -0.99544984, 0.99010116, 0.10306981, 0.09526981, 0, -0.08697942, 0.016059786)
+
+[node name="Lightgun-slide" parent="LightgunHolster/Lightgun" index="1" unique_id=463614500]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.335144e-05, 0)
+
+[node name="FireSFX" type="AudioStreamPlayer3D" parent="LightgunHolster/Lightgun" index="4" unique_id=518809161]
+unique_name_in_owner = true
+stream = SubResource("AudioStreamRandomizer_hetsb")
+panning_strength = 0.59
+bus = &"Cabinet Controls"
 
 [node name="ShootingPivot" type="Marker3D" parent="." unique_id=144185200]
-transform = Transform3D(1, 0, 0, 0, 0.7853469, 0.61905587, 0, -0.61905587, 0.7853469, 0.208902, 0.4859529, 0.2594137)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.208902, 0.4859529, 0.2594137)
 
 [node name="GunPos" type="Marker3D" parent="ShootingPivot" unique_id=345928256]
 unique_name_in_owner = true
