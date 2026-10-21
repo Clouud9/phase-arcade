@@ -1,9 +1,15 @@
+@tool
 extends Node3D
 class_name ArcadeCabinet
 ## A marvelous device which contains a whole other game
 
-## doesn't currently do anything
-@export var game_name:StringName
+## Applies a material to the cabinet body and controls and anything else with the default material
+@export var custom_material:BaseMaterial3D:
+	set(value):
+		custom_material = value
+		if is_node_ready():
+			set_cabinet_material(self, value)
+
 ## Put your game here
 @export var game_scene:PackedScene
 ## Start powered on, and automatically receive inputs. Useful for standalone testing.
@@ -62,6 +68,7 @@ static func get_input_state(from:Node) -> InputTracker:
 	if cab:
 		return cab.input_tracker
 	return null
+
 
 signal coin_inserted
 
@@ -210,6 +217,68 @@ func _update_cursor(screen_position: Vector2) -> bool:
 	input_tracker.cursor_pos = uv * Vector2($SubViewport.size)
 	return true
 
+# --- Material ---
+
+
+const BODY_META:StringName = &"_arcade_cabinet_body"
+const DEFAULT_BODY_MATERIAL:Material = preload("res://Cabinets/Arcade_machine.tres")
+const OVERRIDE_META:StringName = &"_arcade_body_surfaces"
+
+## Returns whether [param mat] is used by the cabinet's body.
+static func is_body_material(mat:Material) -> bool:
+	if mat == null:
+		return false
+	return mat == DEFAULT_BODY_MATERIAL or mat.has_meta(BODY_META)
+
+## Applies [param mat] to every body surface under [param root].
+##
+## Surfaces are found by material, so parts of the cabinet with their own
+## material, like the screen or the coin panel, are left alone. The material is
+## set as a per-surface override on the [MeshInstance3D], which leaves the
+## model's own material in place, so this can be repeated any number of times.
+##
+## Pass [code]null[/code] to restore the model's material.
+##
+## Returns the number of surfaces which were changed.
+static func set_cabinet_material(root:Node, mat:BaseMaterial3D) -> int:
+	if root == null:
+		return 0
+	return _apply_body_material(root, mat)
+
+static func _apply_body_material(node:Node, mat:BaseMaterial3D) -> int:
+	var count := 0
+	if node is MeshInstance3D:
+		count += _apply_to_body_mesh(node as MeshInstance3D, mat)
+	if node is Viewport:
+		return count # a separate 3D world; the game lives in there
+	for child in node.get_children():
+		count += _apply_body_material(child, mat)
+	return count
+
+static func _apply_to_body_mesh(mi:MeshInstance3D, mat:BaseMaterial3D) -> int:
+	var mesh := mi.mesh
+	if mesh == null or mi.material_override != null:
+		return 0 # a material set in the editor wins over ours
+	var owned:Array = mi.get_meta(OVERRIDE_META, [])
+	var still_owned:Array = []
+	var count := 0
+	for i in mesh.get_surface_count():
+		if not is_body_material(mesh.surface_get_material(i)):
+			if owned.has(i):
+				mi.set_surface_override_material(i, null) # no longer body: undo
+				count += 1
+			continue
+		if mi.get_surface_override_material(i) != null and not owned.has(i):
+			continue # an override made by hand, leave it alone
+		mi.set_surface_override_material(i, mat)
+		still_owned.append(i)
+		count += 1
+	if still_owned.is_empty():
+		mi.remove_meta(OVERRIDE_META)
+	else:
+		mi.set_meta(OVERRIDE_META, still_owned)
+	return count
+
 # --- Audio ---
 
 func _route_game_audio(node: Node) -> void:
@@ -256,6 +325,9 @@ func set_power_state(on:bool):
 # --- Main ---
 
 func _ready() -> void:
+	set_cabinet_material(self, custom_material)
+	if Engine.is_editor_hint():
+		return
 	get_tree().node_added.connect(_route_game_audio)
 	if test_mode:
 		set_power_state(true)
@@ -282,6 +354,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			push_input(event)
 
 func _process(delta:float):
+	if Engine.is_editor_hint():
+		return
 	for ev in discretizer.to_input_events(discretizer.update(input_tracker.movement, delta)):
 		$SubViewport.push_input(ev)
 	_update_screen_light()
