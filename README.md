@@ -45,8 +45,6 @@ The first step is downloading [Godot 4.7](https://godotengine.org/download/archi
 
 The next step is cloning the repo. We're using [LFS](https://git-lfs.com/) to manage large files such as audio and lightmaps. If you have LFS isntalled, good, but it's not required to clone the repo. Run `git clone https://github.com/jcomcl/phase-arcade.git --depth=1`. The `--depth=1` option will reduce the download size quite substantially.
 
-Once you launch Godot, it will reimport everything, and may modify some uids. If this happens, `git reset --hard` to set it back to normal. This is bug with our import script that may be fixed eventually.
-
 ## Setting up your game
 Create a folder for your game in `Arcade Games`, then pick whichever template project suits you most, (either `_Game2D.tscn`, or `_Game3D.tscn`, `_GameUI.tscn`), and create a new inherited scene from it, which will go in your new game folder.
 

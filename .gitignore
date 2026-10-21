@@ -13,3 +13,5 @@ AGENTS.md
 .docs
 AGENDA.md
 reference
+Cabinets/controls/_*.tscn
+meshes/Construction Bits/_*.tscn
