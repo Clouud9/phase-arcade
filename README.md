@@ -74,13 +74,14 @@ Audio is redirected using [`AudioEffectCapture`](https://docs.godotengine.org/en
 This is a shared Godot project, it's been set up in a somewhat opinionated way. Many of the layers already have names, and many of the good class names have already been taken. If you're used to a very specific kind of workflow that relies on your `project.godot` being set up in a very specific way, you may struggle here. For best results, prefix your class names with the name of your game, and use your game root script for any utility functions. You may be surprised to learn how much of the usecase for `Autoload` can be replaced with `static` functions. Alternatively, if you're used to cowboy-coding, and your gdscript has a lot of `get_parent().get_parent().get_parent().get_child(4)`, you should have absolutely no trouble with this new workflow.
 
 ## Setting up your cabinet
-Your game is gonna need its own, dedicated cabinet with its own model, and texture, and branding. We're still figuring that part out, but in the meantime this section still applies to the placeholder cabinet in the test closet. You'll want to experiment with the settings; how your cabinet is set up *will impact* the game.
+So you want your own, dedicated cabinet with its own model, and texture, and branding. This section shows you how to set that up, but it also applies to the placeholder cabinet in the test closet. You'll want to experiment with the settings; how your cabinet is set up *will impact* the game.
 Many aspects of the cabinet will already be documented, you can hover over something to see what it does.
 
 ![](Images/tooltip.jpg)
 
 If you find something which isn't documented and should be, let us know.
-### Anatomy of the cabinet
+
+### Configuring the cabinet
 
 ![](Images/cabinet.png)
 
@@ -105,7 +106,30 @@ Also note, **many of the performance-related options will be automatically modul
 If you want more controls, or different type of controls, let us know.
 
 ### Customizing your cabinet
-We're still working on this, but if you're comfortable with 3D modelling or texturing you can have a stab at it yourself. The blender file is in the repo.
+To create a custom cabinet, you'll want a model, a material, and a texture in the `cabinet` folder in your game.
+
+![](Images/custom-cabinet-folder.png)
+
+#### Cabinet Model
+There are currently three pre-made models in `Cabinets/presets/`, each inspired by a different real arcade cabinet. Choose whichever one you prefer and create a *New Inherited Scene* in your game's cabinet folder. You can use the `_cabinet.tscn` preset if you want more control, to bring your own model. Feel free to request a specfic cabinet model, I can make them pretty quickly now, and I will be adding more anyway.
+#### Material
+
+![](Images/new-material.jpg)
+
+Duplicate `Arcade_machine.tres` into you cabinet folder. Call it whatever you like. You need a new material to change the textures, but you'll probably want to keep almost everythng the same. To apply your material, add it to the cabinet's "Custom Material" slot.
+
+![](Images/apply-custom-material.jpg)
+
+### Texture
+
+[Cabinets/textures/](Cabinets/textures/) has some good resources to get you started, in particular [flat-colors](Cabinets/textures/flat-colors.png) and [annotations](Cabinets/textures/annotations.png). There are some minor differences in how the textures a mapped for different cabinets, be sure to check in-engine that your work looks the way you expect.
+Drag your texture into the "Albedo" slot in your custom material.
+
+![](Images/drag-albedo-texture.jpg)
+
+And there you go! A work of art.
+
+![](Images/kool-kustom-kabinet.png)
 
 ## Other things
 ### Score and Highscore
