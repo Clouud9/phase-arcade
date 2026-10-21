@@ -21,12 +21,13 @@ texture = SubResource("ViewportTexture_3btk6")
 texture = SubResource("ViewportTexture_xbe3c")
 
 [node name="Lightgun" parent="ControlPlane" parent_id_path=PackedInt32Array(872288392) index="3" unique_id=152386206]
-transform = Transform3D(0.697, 0, 0, 0, 0.697, 0, 0, 0, 0.697, 0, -0.018, 0.045)
+transform = Transform3D(0.697, 0, 0, 0, 0.697, 0, 0, 0, 0.697, 0, -0.011349857, 0.041861966)
 visible = true
 
 [node name="TextureRect" parent="Downsample" parent_id_path=PackedInt32Array(2094865604) index="0" unique_id=1900591909]
 texture = SubResource("ViewportTexture_w4huy")
 
 [node name="RushnAttack" parent="." index="5" unique_id=1735056569 instance=ExtResource("2_xbe3c")]
+metadata/_arcade_body_surfaces = [0]
 
 [editable path="ScreenContainer/ScreenInteractZone"]

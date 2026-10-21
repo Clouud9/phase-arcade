@@ -91,12 +91,15 @@ script = ExtResource("8_i5ll8")
 
 [node name="FireButton" parent="ControlPlane" unique_id=1609050805 instance=ExtResource("8_jhqda")]
 transform = Transform3D(1.475, 0, 0, 0, 1.4749999, -2.9802322e-08, 0, 2.9802322e-08, 1.4749999, 0.144, -5.9604645e-08, 0.0029999912)
+metadata/_arcade_body_surfaces = [0]
 
 [node name="BombButton" parent="ControlPlane" unique_id=1920776179 instance=ExtResource("9_jhqda")]
 transform = Transform3D(0.74319935, 0, 0, 0, 0.8775996, 0, 0, 0, 0.74319935, 0.194, -5.9604645e-08, -0.02000001)
+metadata/_arcade_body_surfaces = [0]
 
 [node name="Joystick" parent="ControlPlane" unique_id=1619350208 instance=ExtResource("8_iyoos")]
 transform = Transform3D(1.348, 0, 0, 0, 1.348, 0, 0, 0, 1.348, -0.135, 0, 0)
+metadata/_arcade_body_surfaces = [0]
 
 [node name="Lightgun" parent="ControlPlane" unique_id=152386206 instance=ExtResource("11_onb47")]
 transform = Transform3D(0.697, 0, 0, 0, 0.697, 0, 0, 0, 0.697, 0, 0, 0)

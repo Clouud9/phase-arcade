@@ -220,7 +220,6 @@ func _update_cursor(screen_position: Vector2) -> bool:
 
 # --- Material ---
 
-
 const BODY_META:StringName = &"_arcade_cabinet_body"
 const DEFAULT_BODY_MATERIAL:Material = preload("res://Cabinets/Arcade_machine.tres")
 const OVERRIDE_META:StringName = &"_arcade_body_surfaces"
