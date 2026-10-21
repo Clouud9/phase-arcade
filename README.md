@@ -19,6 +19,7 @@ While the jam is a great opportunity to make a fresh game for the arcade, it's n
 This documentation focuses on video game cabinets but if you'd like to make some other kind of arcade attraction; pinball, or a claw-machine, or something of that sort, we'd be delighted to accommodate! We will have to ask you to work a little more closely with us to ensure that your submission will work in the arcade, mechanically and thematically.
 
 # Step-by-step Guide
+
     - [Setting up your game](#setting-up-your-game)
     - [Testing your game](#testing-your-game)
     - [Limitations and Guidelines](#limitations-and-guidelines)
@@ -77,7 +78,7 @@ Audio is redirected using [`AudioEffectCapture`](https://docs.godotengine.org/en
 This is a shared Godot project, it's been set up in a somewhat opinionated way. Many of the layers already have names, and many of the good class names have already been taken. If you're used to a very specific kind of workflow that relies on your `project.godot` being set up in a very specific way, you may struggle here. For best results, prefix your class names with the name of your game, and use your game root script for any utility functions. You may be surprised to learn how much of the usecase for `Autoload` can be replaced with `static` functions. Alternatively, if you're used to cowboy-coding, and your gdscript has a lot of `get_parent().get_parent().get_parent().get_child(4)`, you should have absolutely no trouble with this new workflow.
 
 ## Setting up your cabinet
-So you want your own, dedicated cabinet with its own model, and texture, and branding. This section shows you how to set that up, but it also applies to the placeholder cabinet in the test closet. You'll want to experiment with the settings; how your cabinet is set up *will impact* the game.
+So you want your own, dedicated cabinet with its own model, texture, and branding? This section shows you how to set that up, but it also applies to the placeholder cabinet in the test closet. You'll want to experiment with the settings; how your cabinet is set up *will impact* the game.
 Many aspects of the cabinet will already be documented, you can hover over something to see what it does.
 
 ![](Images/tooltip.jpg)
@@ -114,12 +115,12 @@ To create a custom cabinet, you'll want a model, a material, and a texture in th
 ![](Images/custom-cabinet-folder.png)
 
 #### Cabinet Model
-There are currently three pre-made models in `Cabinets/presets/`, each inspired by a different real arcade cabinet. Choose whichever one you prefer and create a *New Inherited Scene* in your game's cabinet folder. You can use the `_cabinet.tscn` preset if you want more control, to bring your own model. Feel free to request a specfic cabinet model, I can make them pretty quickly now, and I will be adding more anyway.
+There are currently three pre-made models in `Cabinets/presets/`, each inspired by a different real arcade cabinet. Choose whichever one you prefer and create a *New Inherited Scene* in your game's cabinet folder. You can use the `_cabinet.tscn` preset if you want more control, to bring your own model. Feel free to request a specific cabinet model, I can make them pretty quickly now, and I will be adding more anyway.
 #### Material
 
 ![](Images/new-material.jpg)
 
-Duplicate `Arcade_machine.tres` into you cabinet folder. Call it whatever you like. You need a new material to change the textures, but you'll probably want to keep almost everythng the same. To apply your material, add it to the cabinet's "Custom Material" slot.
+Duplicate `Arcade_machine.tres` into you cabinet folder. Call it whatever you like. You need a new material to change the textures, but you'll probably want to keep almost everything the same. To apply your material, add it to the cabinet's "Custom Material" slot.
 
 ![](Images/apply-custom-material.jpg)
 
