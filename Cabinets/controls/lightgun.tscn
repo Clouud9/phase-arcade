@@ -93,16 +93,17 @@ stream_3/stream = ExtResource("6_g2jle")
 stream_4/stream = ExtResource("7_xjhxo")
 stream_5/stream = ExtResource("8_oyr0t")
 
-[node name="Lightgun" type="Node3D" unique_id=152386206 node_paths=PackedStringArray("gun")]
+[node name="Lightgun" type="Node3D" unique_id=152386206 node_paths=PackedStringArray("gun", "gun_slide")]
 script = ExtResource("1_nqmtv")
 gun = NodePath("LightgunHolster/Lightgun")
+gun_slide = NodePath("LightgunHolster/Lightgun/Lightgun-slide")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1718052806]
 libraries/ = SubResource("AnimationLibrary_31oah")
 
 [node name="LightgunHolster" parent="." unique_id=787943672 instance=ExtResource("1_gpm1i")]
 
-[node name="Skeleton3D" parent="LightgunHolster/Cable-Armature" parent_id_path=PackedInt32Array(787943672, 986532903) index="0" unique_id=149226292]
+[node name="Skeleton3D" parent="LightgunHolster/Cable-Armature" parent_id_path=PackedInt32Array(787943672, 381414960) index="0" unique_id=554177502]
 modifier_callback_mode_process = 0
 
 [node name="JacobianIK3D" type="JacobianIK3D" parent="LightgunHolster/Cable-Armature/Skeleton3D" index="1" unique_id=533549775]
@@ -129,16 +130,13 @@ settings/0/joints/5/limitation = null
 settings/0/joints/6/rotation_axis = 3
 settings/0/joints/6/limitation = null
 
-[node name="Lightgun" parent="LightgunHolster" index="1" unique_id=1190359383]
-transform = Transform3D(1, 0, 0, 0, 0.7853468, 0.6190559, 0, -0.6190559, 0.7853468, -0.00087798666, 0.11711991, 0.08528024)
-
-[node name="Lightgun-Plug" parent="LightgunHolster/Lightgun" index="0" unique_id=225974011]
+[node name="Lightgun-Plug" parent="LightgunHolster/Lightgun" parent_id_path=PackedInt32Array(787943672, 770929292) index="0" unique_id=694137936]
 transform = Transform3D(0.10336845, -0.9946415, 0.00180842, 0.0949457, 0.0080573745, -0.99544984, 0.99010116, 0.10306981, 0.09526981, 0, -0.08697942, 0.016059786)
 
-[node name="Lightgun-slide" parent="LightgunHolster/Lightgun" index="1" unique_id=463614500]
+[node name="Lightgun-slide" parent="LightgunHolster/Lightgun" parent_id_path=PackedInt32Array(787943672, 770929292) index="1" unique_id=883553811]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.335144e-05, 0)
 
-[node name="FireSFX" type="AudioStreamPlayer3D" parent="LightgunHolster/Lightgun" index="4" unique_id=518809161]
+[node name="FireSFX" type="AudioStreamPlayer3D" parent="LightgunHolster/Lightgun" parent_id_path=PackedInt32Array(787943672, 770929292) index="4" unique_id=518809161]
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_hetsb")
 panning_strength = 0.59

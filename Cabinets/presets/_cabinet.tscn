@@ -102,8 +102,6 @@ transform = Transform3D(1.348, 0, 0, 0, 1.348, 0, 0, 0, 1.348, -0.135, 0, 0)
 metadata/_arcade_body_surfaces = [0]
 
 [node name="Lightgun" parent="ControlPlane" unique_id=152386206 instance=ExtResource("11_onb47")]
-transform = Transform3D(0.697, 0, 0, 0, 0.697, 0, 0, 0, 0.697, 0, 0, 0)
-visible = false
 
 [node name="Downsample" type="SubViewport" parent="." unique_id=2094865604]
 scaling_3d_mode = 5

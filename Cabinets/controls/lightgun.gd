@@ -2,7 +2,6 @@ extends Node3D
 
 @export var gun:Node3D
 @export var gun_slide:Node3D
-@onready var start_pos = gun.position
 
 var active:bool
 
