@@ -30,6 +30,7 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="Game" unique_id=636436065 instance=ExtResource("1_dctm3")]
 script = ExtResource("2_aus7w")
+game_name = &"lightgun_game"
 
 [node name="TextureRect" type="TextureRect" parent="." index="1" unique_id=831620951]
 layout_mode = 1

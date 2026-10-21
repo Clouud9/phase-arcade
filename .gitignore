@@ -5,6 +5,7 @@
 temp/
 *.png~
 *.kra~
+*.kra-autosave.kra
 *.blend1
 export
 audio/sfx/crushed-*
@@ -14,4 +15,5 @@ AGENTS.md
 AGENDA.md
 reference
 Cabinets/controls/_*.tscn
+Cabinets/models/_*.tscn
 meshes/Construction Bits/_*.tscn

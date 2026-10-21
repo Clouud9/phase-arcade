@@ -3,7 +3,7 @@
 We want *your* games to populate *Phase Arcade*; a mysterious abandoned entertainment venue set as a showcase of jammers' talents, and perhaps something more sinister...?
 
 # When?
-Now. [Unofficial Phase Jam 13](https://itch.io/jam/unofficial-phasejam-13) begins on October 9th and ends on October 19th. And We're hoping to finish up the Arcade for its grand opening by Halloween.
+We're hoping to finish up the Arcade for its grand opening by Halloween. We don't yet know what happens after that
 
 # What Type of Game?
 The ideal game for the Arcade has these qualities:
@@ -22,23 +22,26 @@ This documentation focuses on video game cabinets but if you'd like to make some
 - [Setting up your game](#setting-up-your-game)
 - [Testing your game](#testing-your-game)
 - [Limitations and Guidelines](#limitations-and-guidelines)
-	- [Input](#input)
-	- [Video](#video)
-	- [Audio](#audio)
-	- [Getting along with your neighbors](#getting-along-with-your-neighbors)
+  - [Input](#input)
+  - [Video](#video)
+  - [Audio](#audio)
+  - [Getting along with your neighbors](#getting-along-with-your-neighbors)
 - [Setting up your cabinet](#setting-up-your-cabinet)
-	- [Anatomy of the cabinet](#anatomy-of-the-cabinet)
-		- [Screen Size](#screen-size)
-		- [CRT Filter](#crt-filter)
-		- [Screen Illumination](#screen-illumination)
-		- [Controls](#controls)
-	- [Customizing your cabinet](#customizing-your-cabinet)
+  - [Configuring the cabinet](#configuring-the-cabinet)
+    - [Screen Size](#screen-size)
+    - [CRT Filter](#crt-filter)
+    - [Screen Illumination](#screen-illumination)
+    - [Controls](#controls)
+  - [Customizing your cabinet](#customizing-your-cabinet)
+    - [Cabinet Model](#cabinet-model)
+    - [Material](#material)
+    - [Texture](#texture)
 - [Other things](#other-things)
-	- [Score and Highscore](#score-and-highscore)
-	- [Project Settings](#project-settings)
-		- [Low tick rate](#low-tick-rate)
-		- [Interpolation](#interpolation)
-	- [Other ways to help](#other-ways-to-help)
+  - [Score and Highscore](#score-and-highscore)
+  - [Project Settings](#project-settings)
+    - [Low tick rate](#low-tick-rate)
+    - [Interpolation](#interpolation)
+  - [Other ways to help](#other-ways-to-help)
 
 The first step is downloading [Godot 4.7](https://godotengine.org/download/archive/4.7.2-stable) if you don't have it already. Games made with other versions of Godot will probably work, and if not, they can probably be ported. But 4.7 is what we're using.
 
@@ -74,13 +77,14 @@ Audio is redirected using [`AudioEffectCapture`](https://docs.godotengine.org/en
 This is a shared Godot project, it's been set up in a somewhat opinionated way. Many of the layers already have names, and many of the good class names have already been taken. If you're used to a very specific kind of workflow that relies on your `project.godot` being set up in a very specific way, you may struggle here. For best results, prefix your class names with the name of your game, and use your game root script for any utility functions. You may be surprised to learn how much of the usecase for `Autoload` can be replaced with `static` functions. Alternatively, if you're used to cowboy-coding, and your gdscript has a lot of `get_parent().get_parent().get_parent().get_child(4)`, you should have absolutely no trouble with this new workflow.
 
 ## Setting up your cabinet
-Your game is gonna need its own, dedicated cabinet with its own model, and texture, and branding. We're still figuring that part out, but in the meantime this section still applies to the placeholder cabinet in the test closet. You'll want to experiment with the settings; how your cabinet is set up *will impact* the game.
+So you want your own, dedicated cabinet with its own model, texture, and branding? This section shows you how to set that up, but it also applies to the placeholder cabinet in the test closet. You'll want to experiment with the settings; how your cabinet is set up *will impact* the game.
 Many aspects of the cabinet will already be documented, you can hover over something to see what it does.
 
 ![](Images/tooltip.jpg)
 
 If you find something which isn't documented and should be, let us know.
-### Anatomy of the cabinet
+
+### Configuring the cabinet
 
 ![](Images/cabinet.png)
 
@@ -105,7 +109,30 @@ Also note, **many of the performance-related options will be automatically modul
 If you want more controls, or different type of controls, let us know.
 
 ### Customizing your cabinet
-We're still working on this, but if you're comfortable with 3D modelling or texturing you can have a stab at it yourself. The blender file is in the repo.
+To create a custom cabinet, you'll want a model, a material, and a texture in the `cabinet` folder in your game.
+
+![](Images/custom-cabinet-folder.png)
+
+#### Cabinet Model
+There are currently three pre-made models in `Cabinets/presets/`, each inspired by a different real arcade cabinet. Choose whichever one you prefer and create a *New Inherited Scene* in your game's cabinet folder. You can use the `_cabinet.tscn` preset if you want more control, to bring your own model. Feel free to request a specific cabinet model, I can make them pretty quickly now, and I will be adding more anyway.
+#### Material
+
+![](Images/new-material.jpg)
+
+Duplicate `Arcade_machine.tres` into you cabinet folder. Call it whatever you like. You need a new material to change the textures, but you'll probably want to keep almost everything the same. To apply your material, add it to the cabinet's "Custom Material" slot.
+
+![](Images/apply-custom-material.jpg)
+
+#### Texture
+
+[Cabinets/textures/](Cabinets/textures/) has some good resources to get you started, in particular [flat-colors](Cabinets/textures/flat-colors.png) and [annotations](Cabinets/textures/annotations.png). There are some minor differences in how the textures are mapped for different cabinets, be sure to check in-engine that your work looks the way you expect.
+Drag your texture into the "Albedo" slot in your custom material.
+
+![](Images/drag-albedo-texture.jpg)
+
+And there you go! A work of art.
+
+![](Images/kool-kustom-kabinet.png)
 
 ## Other things
 ### Score and Highscore

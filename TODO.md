@@ -41,7 +41,7 @@
 - [-] add documentation comments to everything
 - [ ] abstract out useful building blocks such as *lives*
 ## Highscore
-- [ ] preset highscore screen
+- [x] preset highscore screen
 - [x] scorekeeping library
 - [ ] online highscores
 ## Arcade Games
@@ -53,7 +53,7 @@
 - [x] Pool my sfxr effects
 - [x] Warioware sfx
 - [ ] footsteps
-- [ ] cabinet controls
+- [-] cabinet controls
 - [ ] cabinet power on
 - [ ] cabinet insert coins
 - [ ] just some, y'know, things buzzing
