@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bi5umobh24vl8"]
+
+[ext_resource type="PackedScene" uid="uid://cx5ehxnt4pjxn" path="res://Arcade Games/AirHockey/MichiFace/Sk_MichiMouth.fbx" id="1_uy61b"]
+[ext_resource type="Script" uid="uid://drk1uxwfyqox3" path="res://Arcade Games/AirHockey/MichiFace/michi_mouth.gd" id="2_3ekfa"]
+[ext_resource type="Material" uid="uid://bhglgogtf8kto" path="res://Arcade Games/AirHockey/MichiFace/mat_vertex_unlit.tres" id="2_dcs2l"]
+[ext_resource type="Shader" uid="uid://bqf6givns5ufi" path="res://Arcade Games/AirHockey/MichiFace/shd_vertex_unlit.tres" id="2_wqimq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_un4r4"]
+render_priority = 0
+shader = ExtResource("2_wqimq")
+
+[node name="MichiMouth" unique_id=290722010 instance=ExtResource("1_uy61b")]
+script = ExtResource("2_3ekfa")
+
+[node name="teef" parent="Skeleton3D" parent_id_path=PackedInt32Array(217335239) index="0" unique_id=1491971952]
+material_override = ExtResource("2_dcs2l")
+surface_material_override/0 = SubResource("ShaderMaterial_un4r4")

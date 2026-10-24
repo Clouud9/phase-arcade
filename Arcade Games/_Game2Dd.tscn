@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d03ecgtimxy8"]
+
+[ext_resource type="Script" uid="uid://c77ae1m8sue4x" path="res://Arcade Games/game.gd" id="1_7k7iu"]
+[ext_resource type="Script" uid="uid://cnaebjqiyqlv1" path="res://addons/jodot/effects/sfx.gd" id="2_r2s5i"]
+
+[node name="Game" type="Control" unique_id=636436065 node_paths=PackedStringArray("sfx_player")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7k7iu")
+sfx_player = NodePath("SFXPlayer2D")
+
+[node name="SFXPlayer2D" type="AudioStreamPlayer" parent="." unique_id=1013741284]
+script = ExtResource("2_r2s5i")

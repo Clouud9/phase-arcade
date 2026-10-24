@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dbjf2fi4umluf"]
+
+[ext_resource type="PackedScene" uid="uid://d4fqssf578ibw" path="res://Arcade Games/AirHockey/SM_AirHockey_lowRes.fbx" id="1_t1r57"]
+[ext_resource type="Material" uid="uid://dl3x00evfj041" path="res://Arcade Games/AirHockey/AirHockeyTable.tres" id="2_sseru"]
+
+[node name="AirHockeyTable_lowRes" unique_id=1994648669 instance=ExtResource("1_t1r57")]
+
+[node name="AirHockeyLR001" parent="." index="0" unique_id=1078696306]
+material_override = ExtResource("2_sseru")
