@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://cvv68xafp3hyw"]
+
+[ext_resource type="FontFile" uid="uid://bwh0u7qf15a5x" path="res://Arcade Games/Invaders/ui/PressStart2P-Regular.ttf" id="1_dtl1w"]
+
+[resource]
+default_font = ExtResource("1_dtl1w")
+default_font_size = 77

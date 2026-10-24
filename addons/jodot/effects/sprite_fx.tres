@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bf4en5m778svj"]
+
+[ext_resource type="Shader" uid="uid://dypbkrt1g7tws" path="res://addons/jodot/effects/sprite_fx.gdshader" id="1_1i0nt"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_1i0nt")
+shader_parameter/light = Color(1, 1, 1, 1)
+shader_parameter/midtone = Color(0.5, 0.5, 0.5, 1)
+shader_parameter/dark = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/apply_palette = false
+shader_parameter/scale = Vector2(1, 1)
+shader_parameter/mosaic = 1.0
+shader_parameter/rotation = 0.0

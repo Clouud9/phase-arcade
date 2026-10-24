@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cpmfoaduog10w"]
+
+[ext_resource type="Script" uid="uid://xxjl771dxmwm" path="res://Game Components/Highscore/initials_letter.gd" id="1_a6np5"]
+[ext_resource type="Texture2D" uid="uid://bs7krebo1nkp0" path="res://Game Components/Highscore/chevron_texture.tres" id="2_3yb3y"]
+
+[node name="Initial" type="Label" unique_id=2021649375]
+offset_right = 1.0
+offset_bottom = 23.0
+text = "a"
+uppercase = true
+script = ExtResource("1_a6np5")
+selected = true
+off_char = ""
+arrow_scale = 0.5
+
+[node name="Arrows" type="Sprite2D" parent="." unique_id=1042583992]
+top_level = true
+position = Vector2(5, -6.000002)
+scale = Vector2(0.257, 0.257)
+texture = ExtResource("2_3yb3y")
+
+[node name="DownArrow" type="Sprite2D" parent="Arrows" unique_id=1425201714]
+position = Vector2(0, 145.64)
+rotation = 3.1415927
+texture = ExtResource("2_3yb3y")

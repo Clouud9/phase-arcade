@@ -1,0 +1,63 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+<<<<<<<< HEAD:Cabinets/cabinet.glb.import
+uid="uid://b65jbvordjewb"
+path="res://.godot/imported/cabinet.glb-2d059bd95a0d58192b9ff8dc2964d10b.scn"
+
+[deps]
+
+source_file="res://Cabinets/cabinet.glb"
+dest_files=["res://.godot/imported/cabinet.glb-2d059bd95a0d58192b9ff8dc2964d10b.scn"]
+========
+uid="uid://br1wyg8u21y1l"
+path="res://.godot/imported/cabinet-Assets.glb-00a348c70dcaeba5ae882f84001ca569.scn"
+
+[deps]
+
+source_file="res://Cabinets/models/cabinet-Assets.glb"
+dest_files=["res://.godot/imported/cabinet-Assets.glb-00a348c70dcaeba5ae882f84001ca569.scn"]
+>>>>>>>> 056060298f40cb1dcc31bbcefd3419114d5706bc:Cabinets/models/cabinet-Assets.glb.import
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+mesh_library/use_node_names_as_mesh_names=false
+array_mesh/deduplicate_surfaces=true
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path="uid://de4lx54fyloec"
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"materials": {
+"Arcade_machine": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://Cabinets/Arcade_machine.tres",
+"use_external/path": "uid://0cn7mw5ok22s"
+}
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=0
+gltf/texture_map_mode=1

@@ -1,12 +1,19 @@
 [gd_resource type="StandardMaterial3D" format=3 uid="uid://0cn7mw5ok22s"]
 
-[ext_resource type="Texture2D" uid="uid://dquashfa5722f" path="res://Cabinets/textures/arcade_texture.png" id="1_h02nv"]
+[ext_resource type="Texture2D" uid="uid://sthh2gyfa4ef" path="res://Cabinets/textures/color-example.png" id="1_1o1ok"]
+[ext_resource type="Texture2D" uid="uid://b44xcvbq63ybl" path="res://Cabinets/textures/occlusion.png" id="2_t0ow3"]
+[ext_resource type="Texture2D" uid="uid://c31b68pg71sn0" path="res://Cabinets/textures/metalness.png" id="3_1vwkt"]
+[ext_resource type="Texture2D" uid="uid://cslqlgobltssn" path="res://Cabinets/textures/roughness.png" id="4_7k46n"]
 
 [resource]
 resource_name = "Arcade_machine"
-cull_mode = 2
-albedo_texture = ExtResource("1_h02nv")
-roughness = 0.5
+albedo_texture = ExtResource("1_1o1ok")
+metallic = 1.0
+metallic_texture = ExtResource("3_1vwkt")
+roughness_texture = ExtResource("4_7k46n")
 normal_enabled = true
+ao_enabled = true
+ao_texture = ExtResource("2_t0ow3")
 texture_filter = 2
 metadata/_gltf_primary_texture_coord = 0
+metadata/_arcade_cabinet_body = true

@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://l1lqhwdi3iv0"]
+
+[ext_resource type="Script" uid="uid://dw56sgfx8hq8l" path="res://Cabinets/cabinet.gd" id="1_3ta5t"]
+[ext_resource type="PackedScene" uid="uid://cfqc5v3lvwati" path="res://Cabinets/models/_cabinet__pong.tscn" id="2_1ao4o"]
+[ext_resource type="Script" uid="uid://cjchu44q7807" path="res://Cabinets/cabinet_audio.gd" id="3_80r60"]
+[ext_resource type="Script" uid="uid://bksgymi3ru850" path="res://Cabinets/sub_viewport.gd" id="4_1d6y1"]
+[ext_resource type="PackedScene" uid="uid://cruql6bs6awns" path="res://Cabinets/screen.tscn" id="5_wrofu"]
+[ext_resource type="PackedScene" uid="uid://ciofuhj1xxdb7" path="res://stuff/interact_zone.tscn" id="6_jcl8m"]
+[ext_resource type="Script" uid="uid://5hwfjkgng2dw" path="res://Cabinets/control_plane.gd" id="7_li74c"]
+[ext_resource type="PackedScene" uid="uid://dn8jrivrr16kr" path="res://Cabinets/controls/fire_button.tscn" id="8_agyed"]
+[ext_resource type="PackedScene" uid="uid://cxh2i3oim0pkh" path="res://Cabinets/controls/bomb_button.tscn" id="9_apbgq"]
+[ext_resource type="PackedScene" uid="uid://drhvj658qc7gd" path="res://Cabinets/controls/joystick.tscn" id="10_bhim4"]
+[ext_resource type="PackedScene" uid="uid://y4ekvgp6ueol" path="res://Cabinets/controls/lightgun.tscn" id="11_218w7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mg4d7"]
+size = Vector3(0.55, 0.4, 0.01)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_3ta5t"]
+viewport_path = NodePath("Tooltip/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1ao4o"]
+viewport_path = NodePath("Tooltip/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hetsb"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Cabinet" type="Node3D" unique_id=1752319625]
+script = ExtResource("1_3ta5t")
+
+[node name="Pong" parent="." unique_id=1221295183 instance=ExtResource("2_1ao4o")]
+
+[node name="Speaker" type="AudioStreamPlayer3D" parent="." unique_id=1188406260]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0.28)
+attenuation_model = 1
+unit_size = 3.0
+max_distance = 30.0
+script = ExtResource("3_80r60")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=599290243 node_paths=PackedStringArray("screen")]
+own_world_3d = true
+canvas_item_default_texture_filter = 0
+audio_listener_enable_2d = true
+size = Vector2i(320, 240)
+script = ExtResource("4_1d6y1")
+screen = NodePath("../ScreenContainer/Screen")
+
+[node name="ScreenContainer" type="Node3D" parent="." unique_id=2132404432]
+transform = Transform3D(0.49499997, 0, 0, 0, 0.46821174, 0.16063234, 0, -0.16063234, 0.46821174, 0, 1.023, 0.005)
+
+[node name="Screen" parent="ScreenContainer" unique_id=769819713 instance=ExtResource("5_wrofu")]
+unique_name_in_owner = true
+scan_line_amount = 0.5
+noise_amount = 0.01
+vignette_amount = 0.2
+roll_line_amount = 0.0
+
+[node name="ScreenLight" type="AreaLight3D" parent="ScreenContainer/Screen" unique_id=1896445182]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -0.9957975, 0.09158245, 0, -0.09158245, -0.9957975, 0, 0.017353952, -0.021703959)
+light_color = Color(0, 0, 0, 1)
+light_energy = 3.0
+shadow_reverse_cull_face = true
+area_range = 0.459
+area_attenuation = 2.0
+area_normalize_energy = false
+area_size = Vector2(0.52835864, 0.39966643)
+
+[node name="ScreenInteractZone" parent="ScreenContainer" unique_id=1828705782 instance=ExtResource("6_jcl8m")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.075999975)
+tooltip = "[LMB] play"
+oneshot = true
+
+[node name="CollisionShape3D" parent="ScreenContainer/ScreenInteractZone" index="0" unique_id=1398816554]
+shape = SubResource("BoxShape3D_mg4d7")
+
+[node name="Tooltip" parent="ScreenContainer/ScreenInteractZone" index="1" unique_id=1310991000]
+transform = Transform3D(1, 0, 0, 0, 0.9659533, -0.258717, 0, 0.258717, 0.9659533, -0.011518086, -0.2665006, 0.04983574)
+texture = SubResource("ViewportTexture_3ta5t")
+
+[node name="Label" parent="ScreenContainer/ScreenInteractZone/Tooltip/SubViewport" parent_id_path=PackedInt32Array(1828705782, 1414188419) index="0" unique_id=238621318]
+text = "[LMB] play"
+
+[node name="Shadow" parent="ScreenContainer/ScreenInteractZone/Tooltip" index="1" unique_id=1306854022]
+texture = SubResource("ViewportTexture_1ao4o")
+
+[node name="ObservationPoint" type="Camera3D" parent="ScreenContainer" unique_id=1442811002]
+unique_name_in_owner = true
+transform = Transform3D(2.0202022, 0, 0, 0, 1.7807317, -0.95404977, 0, 0.9540497, 1.7807317, 0, -0.45377874, 0.7863962)
+
+[node name="ControlPlane" type="Node3D" parent="." unique_id=872288392]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.6427876, -0.7660444, 0, 0.7660444, 0.6427876, -0.013282571, 0.78674793, 0.15523334)
+script = ExtResource("7_li74c")
+
+[node name="FireButton" parent="ControlPlane" unique_id=1609050805 instance=ExtResource("8_agyed")]
+transform = Transform3D(1.89, 0, 0, 0, 1.89, -1.5274954e-07, 0, 1.5274954e-07, 1.89, -0.15098691, -5.9604645e-08, 0.003000021)
+
+[node name="BombButton" parent="ControlPlane" unique_id=1920776179 instance=ExtResource("9_apbgq")]
+transform = Transform3D(1.427, 0, 0, 0, 1.693, 0, 0, 0, 1.427, 0.214, 0, 0.01)
+
+[node name="Joystick" parent="ControlPlane" unique_id=1619350208 instance=ExtResource("10_bhim4")]
+transform = Transform3D(1.348, 0, 0, 0, 1.348, 0, 0, 0, 1.348, -0.125, 0, 0)
+visible = false
+
+[node name="Lightgun" parent="ControlPlane" unique_id=152386206 instance=ExtResource("11_218w7")]
+visible = false
+
+[node name="Downsample" type="SubViewport" parent="." unique_id=2094865604]
+scaling_3d_mode = 5
+anisotropic_filtering_level = 0
+gui_disable_input = true
+size = Vector2i(12, 12)
+render_target_update_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="Downsample" unique_id=1900591909]
+texture_filter = 2
+texture_repeat = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_hetsb")
+expand_mode = 1
+
+[editable path="ScreenContainer/ScreenInteractZone"]

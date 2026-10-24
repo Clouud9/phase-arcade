@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://b4n6bgrypboh2"]
+
+[ext_resource type="PackedScene" uid="uid://d03ecgtimxy8" path="res://Arcade Games/_GameUI.tscn" id="1_dctm3"]
+[ext_resource type="Script" uid="uid://cj5oykuc4mldn" path="res://Arcade Games/Lightgun Game/lightgun_game.gd" id="2_aus7w"]
+[ext_resource type="Texture2D" uid="uid://d0ntugqcaj028" path="res://Arcade Games/Lightgun Game/bullseye.tres" id="3_p77cn"]
+[ext_resource type="Script" uid="uid://pn3ube70tt2j" path="res://Arcade Games/Lightgun Game/target.gd" id="4_6pq3c"]
+[ext_resource type="Script" uid="uid://dqawa48auhxc5" path="res://Arcade Games/Invaders/ui/score_label.gd" id="5_dcau8"]
+[ext_resource type="Script" uid="uid://dwwc5jtphb5j3" path="res://Arcade Games/Lightgun Game/cursor.gd" id="6_p77cn"]
+
+[sub_resource type="Gradient" id="Gradient_5blbr"]
+offsets = PackedFloat32Array(0, 0.33333334, 0.62441313, 1)
+colors = PackedColorArray(0.7473328, 0.42326972, 0.4901412, 1, 0.3293496, 0.14820549, 0.52833533, 1, 0.09005857, 0.027203236, 0.18756539, 1, 0.022988332, 1.1464143e-05, 0.1336985, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hetsb"]
+gradient = SubResource("Gradient_5blbr")
+fill_from = Vector2(0.045, 1.265)
+fill_to = Vector2(0, -0.18)
+
+[sub_resource type="Gradient" id="Gradient_6pq3c"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.77024484)
+colors = PackedColorArray(0.6255971, 0.6255971, 0.6255971, 0.7058824, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_aus7w"]
+gradient = SubResource("Gradient_6pq3c")
+width = 8
+height = 8
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Game" unique_id=636436065 instance=ExtResource("1_dctm3")]
+script = ExtResource("2_aus7w")
+game_name = &"lightgun_game"
+
+[node name="TextureRect" type="TextureRect" parent="." index="1" unique_id=831620951]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_hetsb")
+
+[node name="TextureButton" type="TextureButton" parent="." index="2" unique_id=1263313479]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+action_mode = 0
+texture_normal = ExtResource("3_p77cn")
+script = ExtResource("4_6pq3c")
+
+[node name="PointsLabel" type="Label" parent="." index="3" unique_id=279929335]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("5_dcau8")
+
+[node name="Cursor" type="TextureRect" parent="." index="4" unique_id=190445572]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+offset_transform_enabled = true
+offset_transform_position_ratio = Vector2(-0.5, -0.5)
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_aus7w")
+script = ExtResource("6_p77cn")

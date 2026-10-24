@@ -371,8 +371,10 @@ transform = Transform3D(0.9644837, 0, 0.2641424, 0, 1, 0, -0.2641424, 0, 0.96448
 
 [node name="LightmapGI" type="LightmapGI" parent="." unique_id=1329519440]
 quality = 3
+supersampling = true
 bounces = 5
 directional = true
+use_texture_for_bounces = false
 interior = true
 denoiser_strength = 0.4
 generate_probes_subdiv = 4

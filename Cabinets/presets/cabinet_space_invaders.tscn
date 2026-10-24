@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://ccr6sbkt8ser4"]
+
+[ext_resource type="PackedScene" uid="uid://bnrat3k8mdug0" path="res://Cabinets/presets/_cabinet.tscn" id="1_pgfup"]
+[ext_resource type="PackedScene" uid="uid://uw0nw0gw7d6s" path="res://Arcade Games/Test Game/test_game.tscn" id="2_1ffr0"]
+[ext_resource type="PackedScene" uid="uid://d062ebye6ubh3" path="res://Cabinets/models/_cabinet__space_invaders.tscn" id="2_24yn8"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1ffr0"]
+viewport_path = NodePath("Tooltip/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_o2sha"]
+viewport_path = NodePath("Tooltip/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_b4818"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Cabinet2" unique_id=1752319625 instance=ExtResource("1_pgfup")]
+game_scene = ExtResource("2_1ffr0")
+test_mode = true
+
+[node name="ScreenContainer" parent="." index="2" unique_id=2132404432]
+transform = Transform3D(0.7649999, 0, 0, 0, 0.74745923, 0.1628786, 0, -0.1628786, 0.74745923, -5.9604645e-08, 1.0004774, 0.02754825)
+
+[node name="Tooltip" parent="ScreenContainer/ScreenInteractZone" parent_id_path=PackedInt32Array(1828705782) index="1" unique_id=1310991000]
+transform = Transform3D(1, 0, 0, 0, 0.9983536, -0.057358444, 0, 0.057358444, 0.9983536, 0, -0.20269918, -0.0072406232)
+texture = SubResource("ViewportTexture_1ffr0")
+
+[node name="Shadow" parent="ScreenContainer/ScreenInteractZone/Tooltip" index="1" unique_id=1306854022]
+texture = SubResource("ViewportTexture_o2sha")
+
+[node name="ObservationPoint" parent="ScreenContainer" index="2" unique_id=1442811002]
+transform = Transform3D(1.3071896, 0, 0, 0, 1.2852592, -0.23843868, 0, 0.23843868, 1.2852592, 0, -0.218961, 0.70229053)
+
+[node name="ControlPlane" parent="." index="3" unique_id=872288392]
+transform = Transform3D(1, 0, 0, 0, 0.97703487, -0.21307954, 0, 0.21307954, 0.97703487, 0, 0.794538, 0.23917171)
+
+[node name="TextureRect" parent="Downsample" parent_id_path=PackedInt32Array(2094865604) index="0" unique_id=1900591909]
+texture = SubResource("ViewportTexture_b4818")
+
+[node name="SpaceInvaders" parent="." index="5" unique_id=1362142934 instance=ExtResource("2_24yn8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3187528e-05, 4.1007996e-05, -4.053116e-05)
+metadata/_arcade_body_surfaces = [0]
+
+[editable path="ScreenContainer/ScreenInteractZone"]

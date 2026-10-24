@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dn8jrivrr16kr"]
+
+[ext_resource type="PackedScene" uid="uid://cqbrssuy25t8w" path="res://Cabinets/controls/_controls_fire_button.tscn" id="1_u4vot"]
+[ext_resource type="Script" uid="uid://0513mcteng8x" path="res://Cabinets/controls/button.gd" id="2_u2psr"]
+[ext_resource type="AudioStream" uid="uid://csp2ayfl0qmsf" path="res://audio/foley/press1.wav" id="3_bsiqe"]
+[ext_resource type="AudioStream" uid="uid://bl0k6ckatgj5d" path="res://audio/foley/press2.wav" id="4_m0ugi"]
+[ext_resource type="AudioStream" uid="uid://ctekef5papi8s" path="res://audio/foley/press3.wav" id="5_7eiaa"]
+[ext_resource type="AudioStream" uid="uid://dhlwt56u2f74x" path="res://audio/foley/press4.wav" id="6_vp5f0"]
+[ext_resource type="AudioStream" uid="uid://bps26yygmor3f" path="res://audio/foley/release1.wav" id="7_7nu6e"]
+[ext_resource type="AudioStream" uid="uid://bst88drvamm6t" path="res://audio/foley/release2.wav" id="8_s0u6n"]
+[ext_resource type="AudioStream" uid="uid://npxfkol3c7d1" path="res://audio/foley/release3.wav" id="9_uyuu8"]
+[ext_resource type="AudioStream" uid="uid://cnk4c6l2hb676" path="res://audio/foley/release4.wav" id="10_u318d"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fnqky"]
+streams_count = 4
+stream_0/stream = ExtResource("3_bsiqe")
+stream_1/stream = ExtResource("4_m0ugi")
+stream_2/stream = ExtResource("5_7eiaa")
+stream_3/stream = ExtResource("6_vp5f0")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jdb8j"]
+streams_count = 4
+stream_0/stream = ExtResource("7_7nu6e")
+stream_1/stream = ExtResource("8_s0u6n")
+stream_2/stream = ExtResource("9_uyuu8")
+stream_3/stream = ExtResource("10_u318d")
+
+[node name="FireButton" unique_id=1609050805 instance=ExtResource("1_u4vot")]
+script = ExtResource("2_u2psr")
+push_button = NodePath("Push_004")
+
+[node name="PressSFX" type="AudioStreamPlayer3D" parent="." index="1" unique_id=529857409]
+stream = SubResource("AudioStreamRandomizer_fnqky")
+pitch_scale = 0.7
+bus = &"Cabinet Controls"
+
+[node name="ReleaseSFX" type="AudioStreamPlayer3D" parent="." index="2" unique_id=1226392587]
+stream = SubResource("AudioStreamRandomizer_jdb8j")
+pitch_scale = 0.7
+bus = &"Cabinet Controls"

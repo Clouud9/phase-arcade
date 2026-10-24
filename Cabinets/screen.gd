@@ -1,5 +1,6 @@
 @tool
 extends Node3D
+class_name CRTScreen
 
 ## Texture shown on the screen, fed to the CRT overlay shader as its source
 ## image. The base material's emission is left untouched.

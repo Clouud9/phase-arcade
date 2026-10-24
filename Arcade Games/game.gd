@@ -1,46 +1,69 @@
 extends Node
 class_name Game
-## A Game with arcade mechanics which can run inside an [ArcadeMachine]
+## A Game with arcade mechanics which can run inside an [ArcadeCabinet]
 ##
 ## It's compatible with [Control], [Node2D], and [Node3D],
 ## which is achieved by tricking the GDScript parser into letting us do multiple inheritence.
 ## If you need access to a specific node interface, use one of [method get_ui], [method get_2D], or [method get_3D] as appropriate.
 ##
-## While none of these methods, or even the class itself,  are required,
+## While none of these methods, or even the class itself, are required,
 ## it may help us to fix compatibility issues and such if you rely on them where you can.
 
-## [SFX] node in the game, if any, to route [method play_sfx] calls to
-@export var sfx_player: SFX
+## [SFXPlayer] node in the game, if any, to route [method play_sfx] calls to
+@export var sfx_player: SFXPlayer
+@export var game_name:StringName
+
+# --- Highscore ---
+@export var highscores:HighscoreCollection
+signal highscores_updated
+
+func save_highscores():
+	Scores.save_highscores(game_name, highscores)
 
 # --- Management ---
 
-signal lose
-func _lose():
-	lose.emit()
+## For use inside your game, it doesn't control anything currently
+signal game_lost
+## Emits [signal game_lost], and can be inhereted to do more than that
+func lose():
+	game_lost.emit()
 
-signal win
-func _win():
-	win.emit()
+## For use inside your game, it doesn't control anything currently
+signal game_won
+## Emits [signal game_won], and can be inhereted to do more than that
+func win():
+	game_won.emit()
 
 var score = 0
-signal score_changed(score: int)
-
+signal score_changed(score: int) ## Only triggered by [method add_score]. Modifying [member score] has no effect
 func add_score(points: int):
 	score += points
 	score_changed.emit(score)
 
-var coins = 0
-func add_coin():
-	coins+=1
+## Usually adding coins will grant an extra play, some more lives, or a revive. It's up to you
+func _on_add_coin():
+	if sfx_player:
+		sfx_player.play_sfx("coin") #TODO: remove this test code for
 
 # --- Accessors ---
 
+## Returns the [Game], if any, that [param from] is inside of
 static func get_game(from: Node) -> Game:
 	while from and from is not Game:
 		from = from.get_parent()
 	return from
 
-static func play_sfx(from:Node, effect_name:StringName) -> SFX.SFXControl:
+## returns [method get_game], waiting for it to be ready, if neccesary
+static func get_ready_game(from:Node) -> Game:
+	var game = Game.get_game(from)
+	if game and not game.is_node_ready():
+		await game.ready
+	return game
+
+## Plays SFX via the [Game]'s [member Game.sfx_player].
+##
+## See [method SFXPlayer.play_sfx] for more info
+static func play_sfx(from:Node, effect_name:StringName) -> SFXPlayer.SFXControl:
 	var game = get_game(from)
 	if not game or not game.sfx_player:
 		return null
@@ -82,13 +105,22 @@ static func get_3D(from:Node) -> Node3D:
 # --- Main ---
 
 func _ready() -> void:
+	score = 0
+	if not highscores:
+		assert(game_name != &"")
+		highscores = Scores.get_highscores(game_name)
+
 	var _self = self as Node
 	if _self is Control:
 		_self_ui = _self
-		_self_ui.set_anchors_preset(Control.PRESET_FULL_RECT)
+		_self_ui.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	elif _self is Node2D:
 		_self_2D = _self
 	elif _self is Node3D:
 		_self_3D = _self
 	else:
 		assert(false) #TODO: more helpful error message, maybe config warning
+
+	var cab = ArcadeCabinet.get_cabinet(self)
+	if cab:
+		cab.coin_inserted.connect(_on_add_coin)

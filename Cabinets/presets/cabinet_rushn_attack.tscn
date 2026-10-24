@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://85wyfucors5h"]
+
+[ext_resource type="PackedScene" uid="uid://bnrat3k8mdug0" path="res://Cabinets/presets/_cabinet.tscn" id="1_3btk6"]
+[ext_resource type="PackedScene" uid="uid://dfklqirgcwi4h" path="res://Cabinets/models/_cabinet__rushn_attack.tscn" id="2_xbe3c"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_3btk6"]
+viewport_path = NodePath("Tooltip/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xbe3c"]
+viewport_path = NodePath("Tooltip/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_w4huy"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Cabinet" unique_id=1752319625 instance=ExtResource("1_3btk6")]
+
+[node name="Tooltip" parent="ScreenContainer/ScreenInteractZone" parent_id_path=PackedInt32Array(1828705782) index="1" unique_id=1310991000]
+texture = SubResource("ViewportTexture_3btk6")
+
+[node name="Shadow" parent="ScreenContainer/ScreenInteractZone/Tooltip" index="1" unique_id=1306854022]
+texture = SubResource("ViewportTexture_xbe3c")
+
+[node name="Lightgun" parent="ControlPlane" parent_id_path=PackedInt32Array(872288392) index="3" unique_id=152386206]
+transform = Transform3D(0.697, 0, 0, 0, 0.697, 0, 0, 0, 0.697, 0, -0.011349857, 0.041861966)
+visible = true
+
+[node name="TextureRect" parent="Downsample" parent_id_path=PackedInt32Array(2094865604) index="0" unique_id=1900591909]
+texture = SubResource("ViewportTexture_w4huy")
+
+[node name="RushnAttack" parent="." index="5" unique_id=1735056569 instance=ExtResource("2_xbe3c")]
+metadata/_arcade_body_surfaces = [0]
+
+[editable path="ScreenContainer/ScreenInteractZone"]

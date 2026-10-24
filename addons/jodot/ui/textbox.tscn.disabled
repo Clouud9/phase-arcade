@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://y3ri0ivk8tb2"]
+
+[ext_resource type="Script" uid="uid://d0awys1mfkvhr" path="res://addons/jodot/ui/textbox.gd" id="1_gs7l0"]
+
+[node name="Panel" type="PanelContainer" unique_id=95958961]
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.75
+script = ExtResource("1_gs7l0")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=146551870]
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="MarginContainer" unique_id=504184787]
+layout_mode = 2
+size_flags_vertical = 0
+bbcode_enabled = true
+fit_content = true
+visible_characters = 0
