@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dx5l07u7tj5n4"]
+
+[ext_resource type="Shader" uid="uid://f75kpnhpd2v1" path="res://materials/shd_Blacklight.tres" id="1_i0bsa"]
+[ext_resource type="Texture2D" uid="uid://bv0g1nivvcy" path="res://textures/effects/T_LUT_UVGlowing.png" id="2_qbqc0"]
+[ext_resource type="Texture2D" uid="uid://b3wl6wrdopvot" path="res://Arcade Games/AirHockey/T_AirHockeyProps.png" id="3_i0bsa"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_i0bsa")
+shader_parameter/Tiling = Vector2(1, 1)
+shader_parameter/Texture2DParameter2 = ExtResource("3_i0bsa")
+shader_parameter/LUT = ExtResource("2_qbqc0")
+shader_parameter/triplanar_scale = Vector3(1, 1, 1)
+shader_parameter/triplanar_offset = Vector3(0, 0, 0)
+shader_parameter/triplanar_sharpness = 0.5
