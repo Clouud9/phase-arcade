@@ -7,7 +7,6 @@
 [ext_resource type="Material" uid="uid://cn5nd0wh7xw5k" path="res://materials/Metal_rough.tres" id="4_gvceo"]
 [ext_resource type="Material" uid="uid://bx2mma2aiaf8o" path="res://materials/Wood.tres" id="6_h0moe"]
 [ext_resource type="PackedScene" uid="uid://dequomo4icek7" path="res://meshes/PropScenes/carpet_roll.tscn" id="7_pswqp"]
-[ext_resource type="PackedScene" uid="uid://bxwta3ublvba8" path="res://meshes/Construction Bits/_sm_construction_saw_horse_box.tscn" id="8_h0moe"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_58b20"]
 resource_name = "MatA"
@@ -268,21 +267,21 @@ shadow_mesh = SubResource("ArrayMesh_fx4fh")
 
 [node name="geo_ArcadeRoom" unique_id=343757919 instance=ExtResource("1_bbp5q")]
 
-[node name="ArcadeRoom" parent="." index="0" unique_id=1153371168]
+[node name="ArcadeRoom" parent="." index="0" unique_id=695204420]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("ArrayMesh_gvceo")
 surface_material_override/0 = ExtResource("2_y46fe")
 surface_material_override/1 = ExtResource("3_y46fe")
 
-[node name="StairsCentred" parent="ArcadeRoom" index="0" unique_id=1079387018]
+[node name="StairsCentred" parent="ArcadeRoom" index="0" unique_id=314113778]
 material_override = ExtResource("4_c8ooc")
 mesh = SubResource("ArrayMesh_v6pp4")
 
-[node name="Railings_aio" parent="ArcadeRoom" index="1" unique_id=1529916854]
+[node name="Railings_aio" parent="ArcadeRoom" index="1" unique_id=851691268]
 mesh = SubResource("ArrayMesh_hnbh2")
 surface_material_override/0 = ExtResource("4_gvceo")
 
-[node name="LowerFloor" parent="ArcadeRoom" index="3" unique_id=1192353606]
+[node name="LowerFloor" parent="ArcadeRoom" index="3" unique_id=1812794026]
 material_override = ExtResource("6_h0moe")
 mesh = SubResource("ArrayMesh_c8ooc")
 
@@ -299,7 +298,7 @@ transform = Transform3D(-0.66182756, 0.74299043, -0.099746704, -0.47502735, -0.5
 transform = Transform3D(0.05781987, 0.99832565, -0.0016656099, -0.9954529, 0.05752682, -0.075922556, -0.07569962, 0.0060478686, 0.99711233, -12.729107, -6.664802, -0.4259355)
 
 [node name="CarpetRoll5" parent="ArcadeRoom" index="9" unique_id=1078168983 instance=ExtResource("7_pswqp")]
-transform = Transform3D(0.06810679, -0.30429882, -0.95013887, -0.021756679, -0.95257676, 0.30352008, -0.997441, 8.933137e-08, -0.07149746, -11.062792, -5.5327206, -0.8513809)
+transform = Transform3D(-0.0056596547, -0.40145928, -0.9158596, -0.021281544, -0.9156184, 0.401485, -0.99975765, 0.02176318, -0.0033615856, -11.062792, -5.4762826, -0.82513785)
 
 [node name="CarpetRoll6" parent="ArcadeRoom" index="10" unique_id=1573153807 instance=ExtResource("7_pswqp")]
 transform = Transform3D(-0.23174754, -0.0017453962, -0.9727744, -0.9727759, -4.2521386e-08, 0.2317479, -0.00040453326, 0.99999845, -0.0016978694, -11.241243, -6.118575, -1.0001917)
@@ -402,13 +401,13 @@ shape = SubResource("BoxShape3D_jp8u0")
 transform = Transform3D(0.99488074, 0, -0.10105629, 0, 1, 0, 0.10105629, 0, 0.99488074, -1.38, 0.5, 1.706)
 shape = SubResource("BoxShape3D_jp8u0")
 
-[node name="CeilingConcrete_Arcade005" parent="." index="4" unique_id=152164261]
+[node name="CeilingConcrete_Arcade005" parent="." index="4" unique_id=806436487]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1.5, 0, -1, -6.556708e-08, 7.9, 4.5, 4.9)
 material_override = ExtResource("4_c8ooc")
 mesh = SubResource("ArrayMesh_h0moe")
 
-[node name="SawHorseBox" parent="." index="5" unique_id=636861029 instance=ExtResource("8_h0moe")]
+[node name="SawHorseBox" parent="." index="5" unique_id=636861029]
 transform = Transform3D(0.007856061, 0, 0.0061872695, 0, 0.01, 0, -0.0061872695, 0, 0.007856061, -10.133929, -1.0000001, 5.807778)
 
-[node name="SawHorseBox2" parent="." index="6" unique_id=559470031 instance=ExtResource("8_h0moe")]
+[node name="SawHorseBox2" parent="." index="6" unique_id=559470031]
 transform = Transform3D(-0.0023312157, 0, 0.009724475, 0, 0.01, 0, -0.009724475, 0, -0.0023312157, -9.491428, -1.0000001, 6.4104476)
