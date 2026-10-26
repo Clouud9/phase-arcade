@@ -189,7 +189,8 @@ func _unhandled_input(ev: InputEvent) -> void:
 		if DisplayServer.get_name() == &"web":
 			_look *=  0.6 # Look is faster on the web for some reason
 		look(_look)
-
+	if ev.is_action_pressed("lights"):
+		HandyLight.circuits["lobby"].toggle()
 	if ev.is_action_pressed("interact"):
 		if _interact():
 			get_viewport().set_input_as_handled()

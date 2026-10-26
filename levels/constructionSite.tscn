@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://qb272b4f1205" path="res://meshes/SM_ScaffTower.fbx" id="10_so5aq"]
 [ext_resource type="Material" uid="uid://mmf34lqyxd32" path="res://materials/Carpet_arcade.tres" id="10_ylfxq"]
 [ext_resource type="Material" uid="uid://ctmgj6eqnpye5" path="res://materials/Concrete.tres" id="12_gygl6"]
+[ext_resource type="Script" uid="uid://dab16pc0apfdo" path="res://utils/switchable_lightmap.gd" id="12_rkil3"]
 [ext_resource type="PackedScene" uid="uid://bbnn0ppc6doud" path="res://meshes/LevelGeo/geo_foyer.tscn" id="13_nbbox"]
 [ext_resource type="ArrayMesh" uid="uid://st7cmkawks3j" path="res://meshes/sm_lamp_planet.tres" id="13_v1fwx"]
 [ext_resource type="PackedScene" uid="uid://disowst3xs3tf" path="res://meshes/LevelGeo/geo_roller_shutter.tscn" id="13_xacbb"]
@@ -379,6 +380,8 @@ interior = true
 denoiser_strength = 0.4
 generate_probes_subdiv = 4
 light_data = ExtResource("10_5ctpl")
+script = ExtResource("12_rkil3")
+circuit = &"lobby"
 
 [node name="SpotLight3D7" type="SpotLight3D" parent="LightmapGI" unique_id=1302659064]
 transform = Transform3D(0.7334768, -0.13069424, -0.66703135, 0.46163848, -0.62450576, 0.6299861, -0.49890047, -0.77000755, -0.397727, -7.8105135, 4.6972685, -4.994213)
