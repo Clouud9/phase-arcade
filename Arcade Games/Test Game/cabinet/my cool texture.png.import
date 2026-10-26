@@ -2,30 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dquashfa5722f"
-<<<<<<<< HEAD:Arcade Games/Test Game/cabinet/my cool texture.png.import
-path.s3tc="res://.godot/imported/my cool texture.png-7765fb0d149ef0918d930ac62e25a45e.s3tc.ctex"
-========
-path.s3tc="res://.godot/imported/arcade_texture.png-6589d298c238b5f98510338c6f6673c3.s3tc.ctex"
->>>>>>>> HalloweenRelease:Cabinets/textures/arcade_texture.png.import
+uid="uid://c3bdu2xgu4jqp"
+path="res://.godot/imported/my cool texture.png-7765fb0d149ef0918d930ac62e25a45e.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-<<<<<<<< HEAD:Arcade Games/Test Game/cabinet/my cool texture.png.import
 source_file="res://Arcade Games/Test Game/cabinet/my cool texture.png"
-dest_files=["res://.godot/imported/my cool texture.png-7765fb0d149ef0918d930ac62e25a45e.s3tc.ctex"]
-========
-source_file="res://Cabinets/textures/arcade_texture.png"
-dest_files=["res://.godot/imported/arcade_texture.png-6589d298c238b5f98510338c6f6673c3.s3tc.ctex"]
->>>>>>>> HalloweenRelease:Cabinets/textures/arcade_texture.png.import
+dest_files=["res://.godot/imported/my cool texture.png-7765fb0d149ef0918d930ac62e25a45e.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -33,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -47,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
