@@ -6,6 +6,15 @@ constant = 0.3
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_fnrno"]
 constant = 0.6
 
+[sub_resource type="VisualShaderNodeBooleanParameter" id="VisualShaderNodeBooleanParameter_w3cmd"]
+parameter_name = "On"
+default_value_enabled = true
+default_value = true
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_mvvo3"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0, 0.6, 2)]
+operator = 2
+
 [sub_resource type="VisualShaderNodeFresnel" id="VisualShaderNodeFresnel_q5rlg"]
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_fnrno"]
@@ -28,6 +37,7 @@ default_value = Vector3(0, 0.6, 2)
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_vrse5"]
 
 [resource]
+nodes/fragment/0/position = Vector2(760, 80)
 nodes/fragment/2/node = SubResource("VisualShaderNodeFresnel_q5rlg")
 nodes/fragment/2/position = Vector2(-420, 280)
 nodes/fragment/3/node = SubResource("VisualShaderNodeVectorOp_fnrno")
@@ -37,11 +47,15 @@ nodes/fragment/4/position = Vector2(120, 240)
 nodes/fragment/7/node = SubResource("VisualShaderNodeVec3Parameter_q5rlg")
 nodes/fragment/7/position = Vector2(-660, 440)
 nodes/fragment/8/node = SubResource("VisualShaderNodeVec3Parameter_fnrno")
-nodes/fragment/8/position = Vector2(-180, 520)
+nodes/fragment/8/position = Vector2(-600, 740)
 nodes/fragment/9/node = SubResource("VisualShaderNodeFloatConstant_vrse5")
 nodes/fragment/9/position = Vector2(-100, 120)
 nodes/fragment/10/node = SubResource("VisualShaderNodeFloatConstant_q5rlg")
 nodes/fragment/10/position = Vector2(-40, -60)
 nodes/fragment/11/node = SubResource("VisualShaderNodeFloatConstant_fnrno")
 nodes/fragment/11/position = Vector2(-160, 20)
-nodes/fragment/connections = PackedInt32Array(2, 0, 3, 0, 3, 0, 4, 0, 4, 0, 0, 5, 8, 0, 4, 1, 7, 0, 3, 1, 9, 0, 0, 3, 10, 0, 0, 0, 11, 0, 0, 2)
+nodes/fragment/12/node = SubResource("VisualShaderNodeBooleanParameter_w3cmd")
+nodes/fragment/12/position = Vector2(0, 640)
+nodes/fragment/13/node = SubResource("VisualShaderNodeVectorOp_mvvo3")
+nodes/fragment/13/position = Vector2(360, 400)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 0, 3, 0, 4, 0, 8, 0, 4, 1, 7, 0, 3, 1, 9, 0, 0, 3, 10, 0, 0, 0, 11, 0, 0, 2, 4, 0, 13, 0, 12, 0, 13, 1, 13, 0, 0, 5)

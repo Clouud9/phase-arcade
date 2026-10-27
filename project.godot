@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Phase Arcade"
-run/main_scene="uid://32rt4ev4fjfi"
+run/main_scene="uid://br0xm1n26qa2v"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
