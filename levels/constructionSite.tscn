@@ -16,9 +16,10 @@
 [ext_resource type="Material" uid="uid://ctmgj6eqnpye5" path="res://materials/Concrete.tres" id="12_gygl6"]
 [ext_resource type="Script" uid="uid://dab16pc0apfdo" path="res://utils/switchable_lightmap.gd" id="12_rkil3"]
 [ext_resource type="PackedScene" uid="uid://bbnn0ppc6doud" path="res://meshes/LevelGeo/geo_foyer.tscn" id="13_nbbox"]
-[ext_resource type="ArrayMesh" uid="uid://st7cmkawks3j" path="res://meshes/sm_lamp_planet.tres" id="13_v1fwx"]
+[ext_resource type="Script" uid="uid://byveuay1ec0cg" path="res://utils/handy_light.gd" id="13_v0dwg"]
 [ext_resource type="PackedScene" uid="uid://disowst3xs3tf" path="res://meshes/LevelGeo/geo_roller_shutter.tscn" id="13_xacbb"]
 [ext_resource type="Material" uid="uid://bx2mma2aiaf8o" path="res://materials/Wood.tres" id="14_l0s7m"]
+[ext_resource type="PackedScene" uid="uid://djvd30vd4sjoa" path="res://meshes/PropScenes/lamp_planet.tscn" id="16_v0dwg"]
 [ext_resource type="PackedScene" uid="uid://dkcad5o58joxu" path="res://meshes/LevelGeo/geo_foyer_entry.tscn" id="17_lcydp"]
 [ext_resource type="PackedScene" uid="uid://drfsvokvc34b0" path="res://meshes/LevelGeo/geo_entry_arch.tscn" id="17_n8v8u"]
 [ext_resource type="Material" uid="uid://f7pb3wu04tx7" path="res://materials/PlasterWall.tres" id="17_r5lcs"]
@@ -141,6 +142,7 @@ render_priority = 0
 shader = ExtResource("34_r5lcs")
 shader_parameter/EdgeColour = Vector3(0.2, 0.3, 0.9)
 shader_parameter/FillColour = Vector3(0.15, 0, 0.2)
+shader_parameter/On = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_c3ewd"]
 lightmap_size_hint = Vector2i(114, 117)
@@ -306,18 +308,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, 0)
 shape = SubResource("BoxShape3D_jay6p")
 
 [node name="FirstPersonCharacter" parent="." unique_id=743034332 instance=ExtResource("33_1841t")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 20.614065, 0.069281936, -3.6743503)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8.100312, 0.069281936, 0.7112436)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1952660331]
 environment = SubResource("Environment_oq02x")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=674092471]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.46467257, 4.195501, 3.6471524)
-light_color = Color(0.52356327, 0.47309184, 0.91990376, 1)
-light_energy = 0.2
-light_bake_mode = 1
-shadow_enabled = true
-omni_range = 21.699
 
 [node name="OmniLight3D4" type="OmniLight3D" parent="." unique_id=1901811500]
 transform = Transform3D(-0.6864115, 0.71064615, -0.15434185, -0.6121357, -0.45004895, 0.65018916, 0.39259303, 0.5407754, 0.7439306, -17.907515, 6.6996255, 2.3362947)
@@ -402,24 +396,32 @@ spot_angle = 50.209652
 
 [node name="SpotLight3D3" type="SpotLight3D" parent="LightmapGI" unique_id=460004642]
 transform = Transform3D(1.3113417e-07, -1, -4.371138e-08, 6.7762637e-22, -4.371138e-08, 1, -1, -1.3113417e-07, -5.732055e-15, 1.8, 2.95, 4.5)
-light_color = Color(0.9933513, 0.7616974, 0.6138959, 1)
+light_color = Color(1, 0.7688637, 0.6060114, 1)
 light_bake_mode = 1
 shadow_enabled = true
 spot_angle = 73.18898
+script = ExtResource("13_v0dwg")
+temperature = 4954.0
+circuit = &"lobby"
 
-[node name="SpotLight3D5" type="SpotLight3D" parent="LightmapGI" unique_id=1800721358]
-transform = Transform3D(-1.3113417e-07, 1, 1.3113416e-07, -1.1464114e-14, 1.3113416e-07, -1, -1, -1.3113417e-07, -5.7320558e-15, 0.42662358, 5.8674164, 4.5)
+[node name="NeonBounce" type="AreaLight3D" parent="LightmapGI" unique_id=870037798]
+transform = Transform3D(-1.3113417e-07, 1, 1.3113416e-07, -1.1464114e-14, 1.3113416e-07, -1, -1, -1.3113417e-07, -5.7320558e-15, 0.42662358, 6.1978264, 4.1568713)
+visible = false
 light_color = Color(0.49659988, 0.052000012, 0.52, 1)
-light_energy = 0.8
-spot_range = 6.5727763
-spot_angle = 89.99
+light_energy = 0.9
+light_bake_mode = 1
+area_range = 3.621
+area_size = Vector2(1.84132, 4.830592)
 
 [node name="SpotLight3D4" type="SpotLight3D" parent="LightmapGI" unique_id=634882432]
-transform = Transform3D(1.3113417e-07, -1, -4.3711378e-08, 6.7762637e-22, -4.3711378e-08, 1, -1, -1.3113417e-07, -5.7320545e-15, -1.8, 2.95, 4.5)
-light_color = Color(0.9933513, 0.7616974, 0.6138959, 1)
+transform = Transform3D(1.3113417e-07, -1, -4.3711378e-08, 6.7762637e-22, -4.3711378e-08, 1, -1, -1.3113417e-07, -5.7320545e-15, -1.8, 2.850078, 4.5)
+light_color = Color(1, 0.7688637, 0.6060114, 1)
 light_bake_mode = 1
 shadow_enabled = true
 spot_angle = 73.18898
+script = ExtResource("13_v0dwg")
+temperature = 4954.0
+circuit = &"lobby"
 
 [node name="levelGeo" type="Node3D" parent="LightmapGI" unique_id=1597040145]
 
@@ -448,37 +450,13 @@ box_projection = true
 interior = true
 enable_shadows = true
 
-[node name="SmLampPlanet" type="MeshInstance3D" parent="LightmapGI/levelGeo/foyer" unique_id=329981921]
-transform = Transform3D(1, 0, 0, 0, -4.3711392e-08, 1.0000001, 0, -1, -4.371139e-08, 6, 4, -2)
-cast_shadow = 0
-mesh = ExtResource("13_v1fwx")
+[node name="SmLampPlanet" parent="LightmapGI/levelGeo/foyer" unique_id=1467176436 instance=ExtResource("16_v0dwg")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1.0000001, 0, -1, -4.3711392e-08, 6, 4, -2)
+circuit = &"lobby"
 
-[node name="SpotLight3D" type="SpotLight3D" parent="LightmapGI/levelGeo/foyer/SmLampPlanet" unique_id=275790911]
-light_color = Color(1, 0.60784316, 0.30980393, 1)
-light_energy = 4.0
-light_size = 0.2
-light_bake_mode = 1
-shadow_enabled = true
-shadow_reverse_cull_face = true
-spot_range = 9.0
-spot_attenuation = 2.5
-spot_angle = 89.99
-
-[node name="SmLampPlanet2" type="MeshInstance3D" parent="LightmapGI/levelGeo/foyer" unique_id=1603697888]
-transform = Transform3D(1, 0, 0, 0, -4.3711392e-08, 1.0000001, 0, -1, -4.371139e-08, -6, 4, -2)
-cast_shadow = 0
-mesh = ExtResource("13_v1fwx")
-
-[node name="SpotLight3D" type="SpotLight3D" parent="LightmapGI/levelGeo/foyer/SmLampPlanet2" unique_id=356731584]
-light_color = Color(1, 0.60784316, 0.30980393, 1)
-light_energy = 4.0
-light_size = 0.2
-light_bake_mode = 1
-shadow_enabled = true
-shadow_reverse_cull_face = true
-spot_range = 9.0
-spot_attenuation = 2.5
-spot_angle = 89.99
+[node name="SmLampPlanet2" parent="LightmapGI/levelGeo/foyer" unique_id=1375621167 instance=ExtResource("16_v0dwg")]
+transform = Transform3D(1, 0, 0, 0, -4.3711392e-08, 1.0000001, 0, -1.0000001, -4.3711392e-08, -6, 4, -2)
+circuit = &"lobby"
 
 [node name="SceneConcreteCeiling" parent="LightmapGI/levelGeo/foyer" unique_id=703963425 instance=ExtResource("7_173re")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 8, 5)
@@ -527,7 +505,8 @@ mesh = SubResource("BoxMesh_jay6p")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
 
 [node name="geo_EntryArch" parent="LightmapGI/levelGeo/foyer/geo_foyerEntry2" unique_id=913865599 instance=ExtResource("17_n8v8u")]
-transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0.0007982254, 0.007508279, 0.0010733604)
+circuit = &"lobby"
 
 [node name="DoorBoards" type="MeshInstance3D" parent="LightmapGI/levelGeo/foyer" unique_id=1977975594]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -12.4)
@@ -840,56 +819,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6714153, 0.85755086, 1.4106
 visible = false
 light_negative = true
 
-[node name="SmLampPlanet3" type="MeshInstance3D" parent="LightmapGI/levelGeo/SM_geo_ArcadeRoom" unique_id=267453728]
-transform = Transform3D(-4.371139e-08, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1, 4.371139e-08, 1.9106855e-15, 5, 3, -1)
-cast_shadow = 0
-mesh = ExtResource("13_v1fwx")
+[node name="SmLampPlanet3" parent="LightmapGI/levelGeo/SM_geo_ArcadeRoom" unique_id=1880764799 instance=ExtResource("16_v0dwg")]
+transform = Transform3D(1, 0, 0, 0, -4.3711392e-08, 1.0000001, 0, -1, -4.371139e-08, 5, 3, -1)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="LightmapGI/levelGeo/SM_geo_ArcadeRoom/SmLampPlanet3" unique_id=2078940787]
-light_color = Color(1, 0.60784316, 0.30980393, 1)
-light_energy = 2.0
-light_size = 0.2
-light_bake_mode = 1
-light_cull_mask = 4294967291
-shadow_enabled = true
-shadow_reverse_cull_face = true
-spot_range = 9.0
-spot_attenuation = 2.5
-spot_angle = 89.99
+[node name="SmLampPlanet4" parent="LightmapGI/levelGeo/SM_geo_ArcadeRoom" unique_id=216991118 instance=ExtResource("16_v0dwg")]
+transform = Transform3D(1, 0, 0, 0, -4.3711392e-08, 1.0000001, 0, -1, -4.371139e-08, -9.403702, 3, 2.5684967)
 
-[node name="SmLampPlanet4" type="MeshInstance3D" parent="LightmapGI/levelGeo/SM_geo_ArcadeRoom" unique_id=765655980]
-transform = Transform3D(-4.371139e-08, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1, 4.371139e-08, 1.9106855e-15, -9.403702, 3, 2.5684958)
-cast_shadow = 0
-mesh = ExtResource("13_v1fwx")
-
-[node name="SpotLight3D" type="SpotLight3D" parent="LightmapGI/levelGeo/SM_geo_ArcadeRoom/SmLampPlanet4" unique_id=715778049]
-light_color = Color(1, 0.60784316, 0.30980393, 1)
-light_energy = 2.0
-light_size = 0.2
-light_bake_mode = 1
-light_cull_mask = 4294967291
-shadow_enabled = true
-shadow_reverse_cull_face = true
-spot_range = 20.0
-spot_attenuation = 2.5
-spot_angle = 89.99
-
-[node name="SmLampPlanet5" type="MeshInstance3D" parent="LightmapGI/levelGeo/SM_geo_ArcadeRoom" unique_id=30380231]
-transform = Transform3D(-4.371139e-08, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1, 4.371139e-08, 1.9106855e-15, -9.403702, 3, -5.4315033)
-cast_shadow = 0
-mesh = ExtResource("13_v1fwx")
-
-[node name="SpotLight3D" type="SpotLight3D" parent="LightmapGI/levelGeo/SM_geo_ArcadeRoom/SmLampPlanet5" unique_id=1956378028]
-light_color = Color(1, 0.60784316, 0.30980393, 1)
-light_energy = 2.0
-light_size = 0.2
-light_bake_mode = 1
-light_cull_mask = 4294967291
-shadow_enabled = true
-shadow_reverse_cull_face = true
-spot_range = 20.0
-spot_attenuation = 2.5
-spot_angle = 89.99
+[node name="SmLampPlanet5" parent="LightmapGI/levelGeo/SM_geo_ArcadeRoom" unique_id=1580521248 instance=ExtResource("16_v0dwg")]
+transform = Transform3D(1, 0, 0, 0, -4.3711392e-08, 1.0000001, 0, -1, -4.371139e-08, -9.403702, 3, -5.431503)
 
 [node name="ReflectionProbe" type="ReflectionProbe" parent="LightmapGI/levelGeo/SM_geo_ArcadeRoom" unique_id=1590636323]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 2.55, -1)
@@ -940,9 +877,11 @@ mesh = ExtResource("39_auksg")
 
 [node name="SmNeonPhaseArcade" parent="." unique_id=1085586091 instance=ExtResource("38_xsasp")]
 transform = Transform3D(-4.3711392e-08, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1.0000001, 4.371139e-08, 1.9106855e-15, 0.30617213, 4.73661, 3.720872)
+circuit = &"lobby"
 
 [node name="SM_PrizeCounter" parent="." unique_id=2140673125 instance=ExtResource("25_rn6t8")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 3.442)
+circuit = &"lobby"
 
 [node name="SM_AirVent" parent="." unique_id=1471973585 instance=ExtResource("31_0xm26")]
 transform = Transform3D(-1, -2.1175824e-21, -8.742278e-08, 4.2351647e-22, 1, 1.4210855e-14, 8.742278e-08, 1.4210855e-14, -1, 5.043, 6, 5.092)
@@ -1237,3 +1176,5 @@ mesh = ExtResource("49_7byvj")
 [node name="SmFireExtinguisherWater" type="MeshInstance3D" parent="." unique_id=429551851]
 transform = Transform3D(-0.07755434, 0.9969881, 4.3579735e-08, 0, -4.371139e-08, 1, 0.9969881, 0.07755434, 3.3900078e-09, 14.997796, 0, -2.2957962)
 mesh = ExtResource("50_e1iq1")
+
+[editable path="LightmapGI/levelGeo/foyer/geo_foyerEntry2/geo_EntryArch"]

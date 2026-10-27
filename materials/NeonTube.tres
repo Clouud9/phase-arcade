@@ -7,3 +7,4 @@ render_priority = 0
 shader = ExtResource("1_dn84g")
 shader_parameter/EdgeColour = Vector3(1, 0.3, 0.9)
 shader_parameter/FillColour = Vector3(0, 0.6, 2)
+shader_parameter/On = true

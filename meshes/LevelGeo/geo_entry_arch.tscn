@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://i684808se16k" path="res://meshes/LevelGeo/SM_geo_EntryArch.fbx" id="1_aaik6"]
 [ext_resource type="Material" uid="uid://b0tktcrtsrg60" path="res://materials/NeonTube.tres" id="2_1rsy2"]
+[ext_resource type="Script" uid="uid://qokotqq5bau6" path="res://meshes/LevelGeo/geo_entry_arch.gd" id="2_wec3v"]
 [ext_resource type="Material" uid="uid://dnvgetg74i2co" path="res://materials/Metal.tres" id="3_1rsy2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6l2e"]
@@ -78,8 +79,9 @@ shadow_mesh = SubResource("ArrayMesh_mcg7y")
 size = Vector3(1.2, 2, 0.7)
 
 [node name="geo_EntryArch" unique_id=913865599 instance=ExtResource("1_aaik6")]
+script = ExtResource("2_wec3v")
 
-[node name="EntryArch" parent="." index="0" unique_id=1882937154]
+[node name="EntryArch" parent="." index="0" unique_id=601467725]
 mesh = SubResource("ArrayMesh_1rsy2")
 surface_material_override/0 = ExtResource("2_1rsy2")
 surface_material_override/1 = ExtResource("3_1rsy2")

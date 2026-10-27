@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bix4x34tlwaup" path="res://meshes/SM_PrizeCounter.fbx" id="1_f4i0x"]
 [ext_resource type="Shader" uid="uid://lsdmrkd22lgf" path="res://materials/shd_neonOuterGlow.tres" id="2_f4i0x"]
+[ext_resource type="Script" uid="uid://cglura0mdohx4" path="res://meshes/PropScenes/prize_counter.gd" id="2_pxdwt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_alndc"]
 
@@ -43,10 +44,11 @@ shader = ExtResource("2_f4i0x")
 shader_parameter/GlowColour = Vector3(0.3, 0, 1)
 
 [node name="SM_PrizeCounter" unique_id=2140673125 instance=ExtResource("1_f4i0x")]
+script = ExtResource("2_pxdwt")
 
-[node name="PrizeCounter" parent="." index="0" unique_id=1090460400]
+[node name="PrizeCounter" parent="." index="0" unique_id=1351945089]
 mesh = SubResource("ArrayMesh_f4i0x")
 
-[node name="PrizeCounter_Glow" parent="." index="1" unique_id=1160733901]
+[node name="PrizeCounter_Glow" parent="." index="1" unique_id=493242853]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_pxdwt")

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://djvd30vd4sjoa"]
+
+[ext_resource type="ArrayMesh" uid="uid://st7cmkawks3j" path="res://meshes/sm_lamp_planet.tres" id="1_ghovn"]
+[ext_resource type="Script" uid="uid://byveuay1ec0cg" path="res://utils/handy_light.gd" id="2_n5wmw"]
+
+[node name="SpotLight3D" type="SpotLight3D" unique_id=1227107652]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+light_color = Color(1, 0.5067822, 0.23530038, 1)
+light_energy = 4.0
+light_size = 0.2
+light_bake_mode = 1
+shadow_enabled = true
+shadow_reverse_cull_face = true
+spot_range = 9.0
+spot_attenuation = 2.5
+spot_angle = 89.99
+script = ExtResource("2_n5wmw")
+temperature = 3366.0
+
+[node name="SmLampPlanet" type="MeshInstance3D" parent="." unique_id=1467176436]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
+cast_shadow = 0
+mesh = ExtResource("1_ghovn")

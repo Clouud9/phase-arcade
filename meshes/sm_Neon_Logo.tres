@@ -7,6 +7,7 @@ render_priority = 0
 shader = ExtResource("1_8k1xi")
 shader_parameter/EdgeColour = Vector3(4, 0.3, 1)
 shader_parameter/FillColour = Vector3(1, 0.6, 0.7)
+shader_parameter/On = true
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_8k1xi"]
 _surfaces = [{
