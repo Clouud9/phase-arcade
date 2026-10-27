@@ -3,6 +3,9 @@ default: clean export/web_release.zip
 trim-whitespace:
 	find -name '*.gd' | xargs -d'\n' sed -Ei 's/[ 	]+$$//'
 
+clear-null-params:
+	find -name '*.tscn' | xargs -d'\n' sed -i '/= null/d'
+
 export/web_release.zip: export/web/index.html
 	zip --junk-paths -r $@ export/web/*
 
