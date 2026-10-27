@@ -319,7 +319,7 @@ light_color = Color(0.96, 0.115200005, 0.115200005, 1)
 light_energy = 0.1
 light_bake_mode = 1
 shadow_enabled = true
-omni_range = 24.0
+omni_range = 16.330978
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1833227545]
 transform = Transform3D(-0.63052684, 0, -0.77616745, 0, 1, 0, 0.77616745, 0, -0.63052684, -5.425137, 1.05463, -3.355228)
@@ -1176,5 +1176,3 @@ mesh = ExtResource("49_7byvj")
 [node name="SmFireExtinguisherWater" type="MeshInstance3D" parent="." unique_id=429551851]
 transform = Transform3D(-0.07755434, 0.9969881, 4.3579735e-08, 0, -4.371139e-08, 1, 0.9969881, 0.07755434, 3.3900078e-09, 14.997796, 0, -2.2957962)
 mesh = ExtResource("50_e1iq1")
-
-[editable path="LightmapGI/levelGeo/foyer/geo_foyerEntry2/geo_EntryArch"]

@@ -3,9 +3,8 @@ extends MeshInstance3D
 @export var circuit:StringName
 
 func set_power_state(state:bool):
-	visible = state #HACK: the below shader param code doesn't work as intented. This is good enough for now
-
-	$SmNeonLogo.mesh.surface_get_material(0).set_shader_parameter("on", state)
+	mesh.surface_get_material(0).set_shader_parameter("On", state)
+	$SmNeonLogo.mesh.surface_get_material(0).set_shader_parameter("On", state)
 	$SmNeonGlowPhaseArcade.visible = state
 	%SmNeonGlowLogo.visible = state
 

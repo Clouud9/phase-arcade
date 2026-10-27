@@ -77,6 +77,8 @@ static func register_circuit(s:StringName) -> Switched:
 
 ## The circuit this [HandyLight] is a part of. Leave empty for no circuit
 @export var circuit:StringName = &""
+## Set the light's circuit to be on initially. Note that this will effect all lights in the circuit
+@export var circuit_default_on:bool = false
 
 func _on_circuit_switched(state:bool):
 	visible = state
@@ -85,4 +87,5 @@ func _ready():
 	if circuit != &"":
 		var switched = register_circuit(circuit)
 		switched.to.connect(_on_circuit_switched)
+		_on_circuit_switched(switched.state)
 	apply_temperature()
