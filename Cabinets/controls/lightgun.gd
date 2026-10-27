@@ -18,5 +18,5 @@ func fire():
 func _process(delta: float) -> void:
 	#gun.global_transform = gun.global_transform.interpolate_with(%GunPos.global_transform, 1.0)
 	gun.global_position = gun.global_position.move_toward(%GunPos.global_position, 1* delta)
-	
-	
+
+

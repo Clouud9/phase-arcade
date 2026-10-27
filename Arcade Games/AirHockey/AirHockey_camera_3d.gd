@@ -67,7 +67,7 @@ func _process(delta: float) -> void:
 		var impact_speed = player_next_position - player_mallet.position
 		player_next_position = player_next_position.clamp(player_bounds_min, player_bounds_max)
 		var player_next_offset = player_next_position - player_mallet.position#this doesn't work, it's the offset. clamping the movement *delta*.
-		
+
 		#player_mallet.velocity = player_next_offset/delta
 		max_collisions = 3
 		player_move(player_next_offset, impact_speed, delta)
@@ -77,7 +77,7 @@ func _process(delta: float) -> void:
 			score(goal_player)
 		elif puck in goal_opp.get_overlapping_bodies():
 			score(goal_opp)
-		
+
 	opponent_ai(delta)
 	if !round_over:
 		if puck.position.y < -4 || puck.position.y > 10:
@@ -104,7 +104,7 @@ func _input(event):
 		Engine.time_scale = .3
 	if event.is_action_released("fire"):
 		Engine.time_scale = 1.0
-		
+
 	pass
 
 func reset_puck():
@@ -125,11 +125,11 @@ func raycast_mouse() -> Vector3:
 	ray_query.to = to
 	#ray_query.collide_with_bodies.
 	var raycast_result = space.intersect_ray(ray_query)
-	
+
 	if !raycast_result.is_empty():
 		return raycast_result["position"]
 	return player_mallet.position
-	
+
 func player_move(target_offset:Vector3, from:Vector3, delta:float):
 	if max_collisions > 0:
 		max_collisions -= 1
@@ -141,13 +141,13 @@ func player_move(target_offset:Vector3, from:Vector3, delta:float):
 				var lookat:Vector3 = (puck.position - player_mallet.position) * Vector3(1,0,1)
 				#var lookat:Vector3 = (player_mallet.position - puck.position ) * Vector3(1,0,1)
 				var debug_point = puck.position + Vector3(0, 0.1, 0)
-				
+
 				#debug_draw.draw_line(debug_point, debug_point - puck.linear_velocity, Color(1,0,0,1), 2)
-				
+
 				if lookat.normalized().dot(puck.linear_velocity.normalized()) < 0:
 					puck.linear_velocity = puck.linear_velocity.bounce(lookat.normalized())
 					puck.linear_velocity += target_offset
-					
+
 				#puck.linear_velocity = puck.linear_velocity.bounce(lookat.normalized())
 				debug_draw.draw_line(debug_point, debug_point + lookat.normalized(), Color(0,0,1,1), 2)
 				debug_draw.draw_line(debug_point, debug_point + puck.linear_velocity, Color(1,1,0,1), 2)
@@ -158,7 +158,7 @@ func player_move(target_offset:Vector3, from:Vector3, delta:float):
 				var reflected_target = hit.get_remainder().bounce(hit.get_normal())
 				var real_position = clamp(player_mallet.position + hit.get_remainder(), player_bounds_min, player_bounds_max)
 				player_mallet.position = player_mallet.position + hit.get_remainder().bounce(hit.get_normal())
-				
+
 				player_move(hit.get_normal() * hit.get_remainder().length() * -1, player_mallet.position, delta)
 
 func player_move_slide(target_offset:Vector3, from:Vector3, delta:float):
@@ -177,32 +177,32 @@ func player_move_slide(target_offset:Vector3, from:Vector3, delta:float):
 			else:
 				var reflected_target = target_offset.bounce(hit.get_normal()).normalized() * (target_offset.length() / (from - player_mallet.position).length())
 				player_move(reflected_target, player_mallet.position, delta)
-	
+
 func opponent_ai(delta: float):
-	#var target_pos:Vector3 = 
+	#var target_pos:Vector3 =
 	if !round_over:
 		if puck.position.z < opp_mallet.position.z:
 			#opp_error = puck.position.x - opp_mallet.position.x #very dumb "get laterally in front"
 			#var puck_intersect:float = lerpf(0, puck.position.x, puck.position.z/1.1)#this might even be worse, it's basically a scaled down version of the above.
 			var puck_intersect:float = lerpf(0, puck.position.x, clampf(puck.position.z/.68, 0.3, 1))#dividing by 1.1 wasn't necessary, the mallet's at .68
-			
+
 			opp_error = puck_intersect - opp_mallet.position.x
 		else:
-			opp_error = (-0.2 * puck.position.x) - opp_mallet.position.x 
+			opp_error = (-0.2 * puck.position.x) - opp_mallet.position.x
 	else:
 		opp_error = -opp_mallet.position.x
-		
-	
-	
+
+
+
 	var P = opp_error * opp_PID_p
-	
+
 	opp_PID_integration = clamp(opp_PID_integration + (opp_error * delta), -opp_PID_i, opp_PID_i)
 	var I = opp_PID_i * opp_PID_integration
 	opp_movement = clampf(P + I, -0.1,0.1)
 	opp_target = clampf(opp_target + opp_movement, -.5,.5)
 	opp_mallet.position.x = opp_target
 	opp_mallet.position.z = lerpf(opp_mallet.position.z, clampf(puck.position.z+0.08, 0.5, .8), clampf(delta * 10, 0, 1))
-	
+
 	if opp_mallet.position.distance_to(puck.position) < 0.1: # abs(opp_mallet.position.x - puck.position.x) < 0.15 && opp_mallet.position.z > puck.position.z && puck.position.z > 0.6:
 		puck.apply_impulse((puck.position - opp_mallet.position).normalized() * 1.0)
 	pass

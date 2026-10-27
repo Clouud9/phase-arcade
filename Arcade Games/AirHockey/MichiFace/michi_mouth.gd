@@ -33,7 +33,7 @@ func show_mouth():
 		await get_tree().create_timer(0, false).timeout
 		if visibility_lerp > 1:
 			mouth_visible = true
-			
+
 func taunt(won:bool):
 	if !mouth_visible:
 		show_mouth()

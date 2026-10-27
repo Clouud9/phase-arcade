@@ -23,12 +23,12 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 
-			
+
 	velocity_last_frame = linear_velocity.length()
 	pass
-	
+
 func _integrate_forces(state:PhysicsDirectBodyState3D):
-	
+
 	linear_velocity = linear_velocity.limit_length(5)
 	#print(linear_velocity.length())
 	var attack:float = 0
@@ -52,7 +52,7 @@ func _integrate_forces(state:PhysicsDirectBodyState3D):
 		else:
 			sound_ricochet2.volume_linear = attack * clampf( linear_velocity.length() / 16.0, 0.1,1.0)
 			sound_ricochet2.play()
-	
+
 
 func hit_something():
 	sound_ricochet.play()

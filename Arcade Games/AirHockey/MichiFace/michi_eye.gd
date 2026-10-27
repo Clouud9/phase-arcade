@@ -42,7 +42,7 @@ func _process(delta: float) -> void:
 	#self.transform = self.transform.interpolate_with(look_at_transform, clampf(delta * 10, 0, 1))
 	#self.scale = scale_memory
 	var look_at_rotation:Vector3 = look_at_transform.basis.get_euler()
-	
+
 	self.rotation = look_at_rotation.lerp(Vector3.ZERO, 0.5).clamp(Vector3(-.7, -.7, -.7), Vector3(.7, .7, .7))
 	look_at_rotation.x+=PI
 	#print(look_at_rotation)
@@ -54,7 +54,7 @@ func _process(delta: float) -> void:
 func round_changed(round_over:bool, player_score:int = -1, opponent_score:int = -1):
 
 	if round_over:
-		
+
 		#emit_signal("mouth_act", true)
 		var round_number:int = player_score + opponent_score
 		var player_won:bool
@@ -64,7 +64,7 @@ func round_changed(round_over:bool, player_score:int = -1, opponent_score:int = 
 			player_won = false
 		player_score_memory = player_score
 		round_active = false
-		
+
 		if round_number >= 1 && eyes_closed:
 			animator.play("MichiEyeAnims/EyesOpen")
 			eyes_closed = false
@@ -78,8 +78,8 @@ func round_changed(round_over:bool, player_score:int = -1, opponent_score:int = 
 			eye_sparkle_left.scale_amount_max = clampf(1.0 + opponent_score / 3, 1, 3)
 			eye_sparkle_right.color = Color(1,0,0)
 			eye_sparkle_right.scale_amount_max = clampf(1.0 + opponent_score / 3, 1, 3)
-			
+
 	else:
 		round_active = true
-	
+
 	pass
