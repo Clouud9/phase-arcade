@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://djvd30vd4sjoa"]
 
-[ext_resource type="ArrayMesh" uid="uid://st7cmkawks3j" path="res://meshes/sm_lamp_planet.tres" id="1_ghovn"]
-[ext_resource type="Script" uid="uid://byveuay1ec0cg" path="res://utils/handy_light.gd" id="2_n5wmw"]
+[ext_resource type="Script" uid="uid://dor10mi5wp6q2" path="res://meshes/PropScenes/lamp_planet.gd" id="1_ghovn"]
+[ext_resource type="PackedScene" uid="uid://bnu2u6rn2618p" path="res://meshes/SM_PlanetLamp.fbx" id="2_ghovn"]
 
 [node name="SpotLight3D" type="SpotLight3D" unique_id=1227107652]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
@@ -10,14 +10,24 @@ light_energy = 4.0
 light_size = 0.2
 light_bake_mode = 1
 shadow_enabled = true
-shadow_reverse_cull_face = true
 spot_range = 9.0
 spot_attenuation = 2.5
 spot_angle = 89.99
-script = ExtResource("2_n5wmw")
+script = ExtResource("1_ghovn")
 temperature = 3366.0
 
-[node name="SmLampPlanet" type="MeshInstance3D" parent="." unique_id=1467176436]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 0, 0)
-cast_shadow = 0
-mesh = ExtResource("1_ghovn")
+[node name="SM_PlanetLamp" parent="." unique_id=1870181790 instance=ExtResource("2_ghovn")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+
+[node name="PlanetLamp" parent="SM_PlanetLamp" index="0" unique_id=2102993929]
+layers = 8
+
+[node name="AreaLight3D" type="AreaLight3D" parent="." unique_id=1308305067]
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 1.05260245e-08, -0.24080737)
+layers = 8
+light_color = Color(1, 0.5058824, 0.23529412, 1)
+light_cull_mask = 4293918728
+area_range = 0.3
+area_size = Vector2(0.6436891, 0.6585506)
+
+[editable path="SM_PlanetLamp"]

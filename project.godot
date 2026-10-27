@@ -170,6 +170,7 @@ lights={
 [layer_names]
 
 3d_render/layer_2="Coins"
+3d_render/layer_4="Secondary Illumination"
 2d_physics/layer_1="World"
 3d_physics/layer_1="Solid"
 2d_physics/layer_2="Friendly"
