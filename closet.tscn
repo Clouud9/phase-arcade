@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://32rt4ev4fjfi"]
 
 [ext_resource type="PackedScene" uid="uid://samwjuw67shl" path="res://levels/gridmap-level/level.tscn" id="1_bewde"]
-[ext_resource type="PackedScene" uid="uid://85wyfucors5h" path="res://Cabinets/presets/rushn_attack.tscn" id="2_d0ker"]
-[ext_resource type="PackedScene" uid="uid://b4n6bgrypboh2" path="res://Arcade Games/Lightgun Game/lightgun_game.tscn" id="3_wvv42"]
+[ext_resource type="PackedScene" uid="uid://85wyfucors5h" path="res://Cabinets/presets/cabinet_rushn_attack.tscn" id="2_d0ker"]
+[ext_resource type="PackedScene" uid="uid://b2k2bryekk71r" path="res://Arcade Games/Jracing/game.tscn" id="3_d0ker"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_wvv42"]
+viewport_path = NodePath("Tooltip/SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_b253r"]
 viewport_path = NodePath("Tooltip/SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_j06l2"]
-viewport_path = NodePath("Tooltip/SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_cg8se"]
 viewport_path = NodePath("SubViewport")
 
 [node name="Closet" type="Node3D" unique_id=323356797]
@@ -19,15 +19,17 @@ viewport_path = NodePath("SubViewport")
 
 [node name="Cabinet" parent="." unique_id=1752319625 instance=ExtResource("2_d0ker")]
 transform = Transform3D(0.9876726, 0, 0.15653388, 0, 1, 0, -0.15653388, 0, 0.9876726, 0.15270016, 1.1901821e-07, -4.289743)
-game_name = &"closet"
-game_scene = ExtResource("3_wvv42")
+game_scene = ExtResource("3_d0ker")
 test_mode = true
 
+[node name="SubViewport" parent="Cabinet" index="1" unique_id=599290243]
+size = Vector2i(1024, 768)
+
 [node name="Tooltip" parent="Cabinet/ScreenContainer/ScreenInteractZone" parent_id_path=PackedInt32Array(1752319625, 1828705782) index="1" unique_id=1310991000]
-texture = SubResource("ViewportTexture_b253r")
+texture = SubResource("ViewportTexture_wvv42")
 
 [node name="Shadow" parent="Cabinet/ScreenContainer/ScreenInteractZone/Tooltip" index="1" unique_id=1306854022]
-texture = SubResource("ViewportTexture_j06l2")
+texture = SubResource("ViewportTexture_b253r")
 
 [node name="FireButton" parent="Cabinet/ControlPlane" parent_id_path=PackedInt32Array(1752319625, 872288392) index="0" unique_id=1609050805]
 visible = false
@@ -39,7 +41,7 @@ visible = false
 visible = false
 
 [node name="TextureRect" parent="Cabinet/Downsample" parent_id_path=PackedInt32Array(1752319625, 2094865604) index="0" unique_id=1900591909]
-texture = SubResource("ViewportTexture_cg8se")
+texture = SubResource("ViewportTexture_j06l2")
 
 [editable path="Cabinet"]
 [editable path="Cabinet/ScreenContainer/ScreenInteractZone"]

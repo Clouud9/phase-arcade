@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bp63xypw8ltn3"]
+
+[ext_resource type="Texture2D" uid="uid://btjxdlte6uyv8" path="res://player/jelly/vehicle.png" id="1_cq51s"]
+[ext_resource type="Script" uid="uid://cui06ovw6m8uo" path="res://player/follower_3d.gd" id="1_gy7p2"]
+
+[node name="Follower3D" type="Sprite3D" unique_id=1519435238]
+offset = Vector2(0, 30)
+texture = ExtResource("1_cq51s")
+hframes = 4
+vframes = 3
+region_rect = Rect2(0, 0, 1024, 256)
+script = ExtResource("1_gy7p2")
+
+[node name="Shadow" type="Sprite3D" parent="." unique_id=897298995]
+unique_name_in_owner = true
+visible = false
+offset = Vector2(0, 30)
+billboard = 2
+texture = ExtResource("1_cq51s")
+region_enabled = true
+region_rect = Rect2(256, 512, 256, 256)

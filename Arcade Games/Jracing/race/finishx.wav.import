@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://besjtfwsv7svj"
+path="res://.godot/imported/finishx.wav-2aee218de7acdb06f8ede58a01be346a.sample"
+
+[deps]
+
+source_file="res://Arcade Games/Jracing/race/finishx.wav"
+dest_files=["res://.godot/imported/finishx.wav-2aee218de7acdb06f8ede58a01be346a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

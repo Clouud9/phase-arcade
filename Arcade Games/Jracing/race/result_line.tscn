@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dpded01k2rcxx"]
+
+[node name="ResultLine" type="HBoxContainer" unique_id=1125547324]
+modulate = Color(1, 1, 1, 0)
+
+[node name="Rank" type="RichTextLabel" parent="." unique_id=1406338720]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "1[font_size=8][table=1,t][cell]st[/cell][/table][/font_size]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Name" type="Label" parent="." unique_id=123392829]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Time" type="Label" parent="." unique_id=186703354]
+layout_mode = 2

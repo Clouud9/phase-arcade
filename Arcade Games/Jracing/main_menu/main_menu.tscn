@@ -1,0 +1,458 @@
+[gd_scene format=3 uid="uid://c8jmgmtknvr1k"]
+
+[ext_resource type="Script" uid="uid://rlnvsjpyke4l" path="res://Arcade Games/Jracing/main_menu/tab_buttons.gd" id="2_3shxk"]
+[ext_resource type="Script" uid="uid://k83ruwfvndrr" path="res://Arcade Games/Jracing/main_menu/quit_button.gd" id="2_d3a7t"]
+[ext_resource type="Script" uid="uid://bkj3hkglcc2h0" path="res://Arcade Games/Jracing/main_menu/volume_control.gd" id="4_bws42"]
+[ext_resource type="Texture2D" uid="uid://d0xoqsqrpsvt5" path="res://Arcade Games/Jracing/main_menu/Jracisng.png" id="4_qvn4f"]
+[ext_resource type="Script" uid="uid://cd1u06g3aenim" path="res://Arcade Games/Jracing/main_menu/rich_text_hyperlink.gd" id="7_mvfl2"]
+[ext_resource type="Script" uid="uid://chljtufddh124" path="res://Arcade Games/Jracing/main_menu/play_online.gd" id="7_t6bnd"]
+[ext_resource type="Script" uid="uid://c6fyd5muuw7ge" path="res://Arcade Games/Jracing/main_menu/race_select.gd" id="8_ia84y"]
+[ext_resource type="Resource" uid="uid://cxsyxfpod784v" path="res://Arcade Games/Jracing/tracks/lumi/track.tres" id="9_6at21"]
+[ext_resource type="Resource" uid="uid://dsh7lk2ykm1bm" path="res://Arcade Games/Jracing/tracks/test/track.tres" id="9_og6xe"]
+[ext_resource type="Texture2D" uid="uid://dvjpsh27bjojk" path="res://Arcade Games/Jracing/main_menu/Alice-sprite.png" id="10_mvfl2"]
+[ext_resource type="AudioStream" uid="uid://1onukefksm8v" path="res://Arcade Games/Jracing/music/lumizero.wav" id="10_og6xe"]
+[ext_resource type="Resource" uid="uid://doyumbygjhus4" path="res://Arcade Games/Jracing/tracks/dizzy/track.tres" id="11_mvfl2"]
+
+[sub_resource type="Animation" id="Animation_6tl50"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../PanelContainer/MarginContainer/VBoxContainer/Name:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_t6bnd"]
+resource_name = "flash"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../PanelContainer/MarginContainer/VBoxContainer/Name:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ia84y"]
+_data = {
+&"RESET": SubResource("Animation_6tl50"),
+&"flash": SubResource("Animation_t6bnd")
+}
+
+[sub_resource type="Animation" id="Animation_g1omr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_kwfav"]
+resource_name = "loop"
+length = 0.8750125
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 2, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n70vs"]
+_data = {
+&"RESET": SubResource("Animation_g1omr"),
+&"loop": SubResource("Animation_kwfav")
+}
+
+[sub_resource type="Animation" id="Animation_mvfl2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/bg:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.96862745, 0.972549, 0.8, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qvn4f"]
+resource_name = "flare"
+length = 20.53
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/bg:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.2666667, 2.6, 4.8333335, 5.1666665, 7.4, 7.7, 10, 10.3, 12.533334, 12.866667, 15.1, 15.433333, 17.666666, 18, 20.166666),
+"transitions": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+"update": 0,
+"values": [Color(0.96862745, 0.972549, 0.8, 1), Color(0.84705883, 0.92941177, 0.9098039, 1), Color(0.6509804, 0.72156864, 0.88235295, 1), Color(0.8, 0.9098039, 0.9647059, 1), Color(0.9764706, 0.91764706, 0.8901961, 1), Color(0.6509804, 0.72156864, 0.88235295, 1), Color(0.96862745, 0.96862745, 0.8235294, 1), Color(0.9764706, 0.91764706, 0.8901961, 1), Color(0.9882353, 0.95686275, 0.6666667, 1), Color(0.96862745, 0.96862745, 0.8235294, 1), Color(0.6745098, 0.69411767, 0.94509804, 1), Color(0.9882353, 0.95686275, 0.6666667, 1), Color(0.84705883, 0.92941177, 0.9098039, 1), Color(0.6745098, 0.69411767, 0.94509804, 1), Color(0.8, 0.9098039, 0.9647059, 1), Color(0.84705883, 0.92941177, 0.9098039, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g1omr"]
+_data = {
+&"RESET": SubResource("Animation_mvfl2"),
+&"flare": SubResource("Animation_qvn4f")
+}
+
+[node name="MainMenu" type="Node2D" unique_id=753640145]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1120628296]
+
+[node name="bg" type="ColorRect" parent="CanvasLayer" unique_id=732638040]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.96862745, 0.972549, 0.8, 1)
+
+[node name="Polygon2D" type="Polygon2D" parent="CanvasLayer/bg" unique_id=1821982155]
+color = Color(0.10980392, 0.20392157, 0.5411765, 1)
+polygon = PackedVector2Array(424, 120, 424, 200, 435, 204, 450, 208, 468, 210, 488, 213, 516, 212, 538, 206, 558, 200, 588, 198, 617, 198, 652, 197, 673, 202, 698, 209, 733, 217, 728, 128, 698, 118, 685, 116, 660, 114, 641, 115, 610, 112, 577, 115, 554, 122, 536, 126, 515, 127, 495, 125, 463, 120, 439, 117, 424, 112)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=910370358]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/VBoxContainer" unique_id=1153118561]
+custom_minimum_size = Vector2(288, 322)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+texture = ExtResource("4_qvn4f")
+stretch_mode = 3
+
+[node name="Control" type="Control" parent="CanvasLayer/VBoxContainer" unique_id=272761828]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Tabs" type="VBoxContainer" parent="CanvasLayer/VBoxContainer/Control" unique_id=2095505305]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_3shxk")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/Control/Tabs" unique_id=1683858101]
+layout_mode = 2
+
+[node name="VSCPU" type="Button" parent="CanvasLayer/VBoxContainer/Control/Tabs/HBoxContainer" unique_id=1877847180]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "VERSUS CPU"
+
+[node name="Control" type="Control" parent="CanvasLayer/VBoxContainer/Control/Tabs/HBoxContainer" unique_id=1470546850]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/Control/Tabs" unique_id=134275380]
+layout_mode = 2
+
+[node name="TA" type="Button" parent="CanvasLayer/VBoxContainer/Control/Tabs/HBoxContainer2" unique_id=1404704747]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "TIME ATTACK"
+
+[node name="Control" type="Control" parent="CanvasLayer/VBoxContainer/Control/Tabs/HBoxContainer2" unique_id=387248787]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/Control/Tabs" unique_id=259909385]
+layout_mode = 2
+
+[node name="Online" type="Button" parent="CanvasLayer/VBoxContainer/Control/Tabs/HBoxContainer3" unique_id=567082307]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "ONLINE"
+
+[node name="Control" type="Control" parent="CanvasLayer/VBoxContainer/Control/Tabs/HBoxContainer3" unique_id=1607280844]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/Control/Tabs" unique_id=166616765]
+layout_mode = 2
+
+[node name="Settings" type="Button" parent="CanvasLayer/VBoxContainer/Control/Tabs/HBoxContainer5" unique_id=1703183560]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SETTINGS"
+
+[node name="Control" type="Control" parent="CanvasLayer/VBoxContainer/Control/Tabs/HBoxContainer5" unique_id=555552383]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/Control/Tabs" unique_id=1270599281]
+layout_mode = 2
+
+[node name="Credits" type="Button" parent="CanvasLayer/VBoxContainer/Control/Tabs/HBoxContainer6" unique_id=1478857048]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CREDITS"
+
+[node name="Control" type="Control" parent="CanvasLayer/VBoxContainer/Control/Tabs/HBoxContainer6" unique_id=1795399856]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/VBoxContainer/Control/Tabs" unique_id=584220475]
+layout_mode = 2
+
+[node name="Quit" type="Button" parent="CanvasLayer/VBoxContainer/Control/Tabs/HBoxContainer4" unique_id=1107413829]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "QUIT"
+script = ExtResource("2_d3a7t")
+
+[node name="Control" type="Control" parent="CanvasLayer/VBoxContainer/Control/Tabs/HBoxContainer4" unique_id=1723965748]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="Settings" type="PanelContainer" parent="CanvasLayer/VBoxContainer/Control" unique_id=232821574]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.55
+anchor_right = 0.9
+anchor_bottom = 0.8
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/VBoxContainer/Control/Settings" unique_id=338966067]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/VBoxContainer/Control/Settings/MarginContainer" unique_id=1146468373]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/Control/Settings/MarginContainer/VBoxContainer" unique_id=883424501]
+layout_mode = 2
+text = "MASTER VOLUME:"
+
+[node name="Master" type="HSlider" parent="CanvasLayer/VBoxContainer/Control/Settings/MarginContainer/VBoxContainer" unique_id=668235877]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+script = ExtResource("4_bws42")
+
+[node name="Label2" type="Label" parent="CanvasLayer/VBoxContainer/Control/Settings/MarginContainer/VBoxContainer" unique_id=1356711859]
+layout_mode = 2
+text = "MUSIC VOLUME:"
+
+[node name="Music" type="HSlider" parent="CanvasLayer/VBoxContainer/Control/Settings/MarginContainer/VBoxContainer" unique_id=1394426915]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+script = ExtResource("4_bws42")
+
+[node name="Label3" type="Label" parent="CanvasLayer/VBoxContainer/Control/Settings/MarginContainer/VBoxContainer" unique_id=2051155897]
+layout_mode = 2
+text = "SFX VOLUME:"
+
+[node name="SFX" type="HSlider" parent="CanvasLayer/VBoxContainer/Control/Settings/MarginContainer/VBoxContainer" unique_id=395889741]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+script = ExtResource("4_bws42")
+
+[node name="Credits" type="PanelContainer" parent="CanvasLayer/VBoxContainer/Control" unique_id=944196653]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.55
+anchor_right = 0.9
+anchor_bottom = 0.8
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/VBoxContainer/Control/Credits" unique_id=1537937764]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/VBoxContainer/Control/Credits/MarginContainer" unique_id=183511200]
+layout_mode = 2
+bbcode_enabled = true
+text = "DESIGN —
+	[color=#e7cd5c][url=https://github.com/Clouud9]Clouudy[/url][/color][font_size=8]
+
+[/font_size]GRAPHICS —
+	[color=#e7cd5c][url=https://x.com/sky_gears]Skygears[/url][/color][font_size=8]
+
+[/font_size]MUSIC —
+	[color=#e7cd5c][url=https://www.youtube.com/channel/UC30XzDOOFPD1zPzoRYLPgEA]Nandon[/url][/color][font_size=8]
+
+[/font_size]PROGRAMMING —
+	[color=#e7cd5c][url=https://github.com/StellatedCUBE]StellatedCUBE[/url][/color]"
+meta_underlined = false
+script = ExtResource("7_mvfl2")
+metadata/_custom_type_script = "uid://cd1u06g3aenim"
+
+[node name="Online" type="VBoxContainer" parent="CanvasLayer/VBoxContainer/Control" unique_id=1302652785]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.55
+anchor_right = 0.9
+anchor_bottom = 0.8
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/VBoxContainer/Control/Online" unique_id=1334338599]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/VBoxContainer/Control/Online/PanelContainer" unique_id=209518297]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/VBoxContainer/Control/Online/PanelContainer/MarginContainer" unique_id=1157557565]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/Control/Online/PanelContainer/MarginContainer/VBoxContainer" unique_id=1934073203]
+layout_mode = 2
+text = "NAME:"
+
+[node name="Name" type="LineEdit" parent="CanvasLayer/VBoxContainer/Control/Online/PanelContainer/MarginContainer/VBoxContainer" unique_id=78074983]
+unique_name_in_owner = true
+layout_mode = 2
+max_length = 32
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer/Control/Online" unique_id=1785256664]
+layout_mode = 2
+text = "CONNECT"
+script = ExtResource("7_t6bnd")
+
+[node name="NameFlash" type="AnimationPlayer" parent="CanvasLayer/VBoxContainer/Control/Online/Button" unique_id=1850787402]
+libraries/ = SubResource("AnimationLibrary_ia84y")
+speed_scale = 10.0
+
+[node name="TA|VSCPU" type="VBoxContainer" parent="CanvasLayer/VBoxContainer/Control" unique_id=1208998997]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.55
+anchor_right = 0.9
+anchor_bottom = 0.8
+
+[node name="Button2" type="Button" parent="CanvasLayer/VBoxContainer/Control/TA|VSCPU" unique_id=1637171256]
+layout_mode = 2
+text = "GRAN PRIX TRACK"
+script = ExtResource("8_ia84y")
+track = ExtResource("9_og6xe")
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer/Control/TA|VSCPU" unique_id=48786476]
+layout_mode = 2
+text = "LUMI TRACK"
+script = ExtResource("8_ia84y")
+track = ExtResource("9_6at21")
+
+[node name="Button3" type="Button" parent="CanvasLayer/VBoxContainer/Control/TA|VSCPU" unique_id=632417322]
+layout_mode = 2
+text = "DIZZY TRACK"
+script = ExtResource("8_ia84y")
+track = ExtResource("11_mvfl2")
+
+[node name="ModalContainer" type="Control" parent="CanvasLayer" unique_id=1322596223]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer" unique_id=275151835]
+position = Vector2(895, 158)
+texture = ExtResource("10_mvfl2")
+hframes = 4
+region_enabled = true
+region_rect = Rect2(0, 0, 1024, 256)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Sprite2D" unique_id=228290443]
+show_behind_parent = true
+position = Vector2(0, 100)
+texture = ExtResource("10_mvfl2")
+region_enabled = true
+region_rect = Rect2(0, 448, 256, 64)
+
+[node name="fly" type="AnimationPlayer" parent="CanvasLayer/Sprite2D" unique_id=1647781657]
+libraries/ = SubResource("AnimationLibrary_n70vs")
+autoplay = &"loop"
+
+[node name="flare" type="AnimationPlayer" parent="." unique_id=1230133390]
+libraries/ = SubResource("AnimationLibrary_g1omr")
+autoplay = &"flare"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=203692591]
+stream = ExtResource("10_og6xe")
+volume_db = -10.0
