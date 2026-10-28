@@ -13,4 +13,7 @@ roughness_texture_channel = 1
 normal_enabled = true
 normal_scale = 0.37
 normal_texture = ExtResource("3_m1e2x")
+uv1_scale = Vector3(1, 0.5, 1)
+uv1_triplanar = true
+uv1_world_triplanar = true
 texture_filter = 2

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://6k1gn74pb3l6" path="res://meshes/SM_Doorway_Standard.fbx" id="1_nwa4y"]
 [ext_resource type="Material" uid="uid://f7pb3wu04tx7" path="res://materials/PlasterWall.tres" id="2_r3wmm"]
-[ext_resource type="Material" uid="uid://cqmf76ra2vssu" path="res://materials/Bricks_triplanar.tres" id="3_r3wmm"]
+[ext_resource type="Material" uid="uid://dpvkxkn0ksvru" path="res://materials/Bricks.tres" id="3_r3wmm"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_do1ig"]
 _surfaces = [{

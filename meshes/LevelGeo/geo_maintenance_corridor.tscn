@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bqa3j5c136vqd" path="res://meshes/LevelGeo/SM_geo_MaintenanceCorridor.fbx" id="1_onm2l"]
 [ext_resource type="Material" uid="uid://ctmgj6eqnpye5" path="res://materials/Concrete.tres" id="2_i6kwm"]
-[ext_resource type="Material" uid="uid://cqmf76ra2vssu" path="res://materials/Bricks_triplanar.tres" id="3_412tj"]
+[ext_resource type="Material" uid="uid://dpvkxkn0ksvru" path="res://materials/Bricks.tres" id="3_412tj"]
 [ext_resource type="PackedScene" uid="uid://5d25caorg1ew" path="res://meshes/LevelGeo/stairwell_railing.tscn" id="4_ex75a"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2sytv"]

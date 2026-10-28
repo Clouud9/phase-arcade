@@ -2,7 +2,7 @@
 
 [ext_resource type="ArrayMesh" uid="uid://fpj2fejo4tlb" path="res://meshes/sm_door_windowed.tres" id="1_gygjo"]
 [ext_resource type="Script" uid="uid://kfkmmy1cvuxu" path="res://meshes/PropScenes/door.gd" id="1_q5lxy"]
-[ext_resource type="Material" uid="uid://cqmf76ra2vssu" path="res://materials/Bricks_triplanar.tres" id="2_0bukc"]
+[ext_resource type="Material" uid="uid://dpvkxkn0ksvru" path="res://materials/Bricks.tres" id="2_0bukc"]
 [ext_resource type="Material" uid="uid://c2su0p7ytbnnf" path="res://materials/Construction.tres" id="3_5cnxy"]
 [ext_resource type="PackedScene" uid="uid://ciofuhj1xxdb7" path="res://stuff/interact_zone.tscn" id="3_qhktn"]
 [ext_resource type="ArrayMesh" uid="uid://do8fanvchttdo" path="res://meshes/sm_FloorJoint.tres" id="4_knowe"]
