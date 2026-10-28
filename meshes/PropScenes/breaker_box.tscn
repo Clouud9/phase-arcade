@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://b53p4w7v2f8be"]
+
+[ext_resource type="PackedScene" uid="uid://0n4byly5fpm4" path="res://meshes/breaker_box.glb" id="1_rrqw1"]
+[ext_resource type="Script" uid="uid://hodstuv75ddh" path="res://meshes/PropScenes/breaker_box.gd" id="2_3wh67"]
+[ext_resource type="PackedScene" uid="uid://ciofuhj1xxdb7" path="res://stuff/interact_zone.tscn" id="3_2bu8f"]
+[ext_resource type="AudioStream" uid="uid://dwa1rb7rh7rho" path="res://Arcade Games/Invaders/audio/sfx/breaker_switch.wav" id="4_y1ke1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nuajr"]
+albedo_color = Color(0.936822, 0.9168808, 0.8566705, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_33glo"]
+albedo_color = Color(0.8949247, 0.8949214, 0.8949224, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hetsb"]
+albedo_color = Color(0.446777, 0.44677705, 0.44677705, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q4uo0"]
+resource_local_to_scene = true
+size = Vector3(0.41259766, 0.36547852, 0.072509766)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_cyoet"]
+viewport_path = NodePath("Tooltip/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_y5kpn"]
+viewport_path = NodePath("Tooltip/SubViewport")
+
+[node name="breaker_box" unique_id=651519386 instance=ExtResource("1_rrqw1")]
+script = ExtResource("2_3wh67")
+
+[node name="Breaker Panel" parent="." index="0" unique_id=1114220546]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, -1, -1, -4.371139e-08, 0, -4.371139e-08, 1, -4.371139e-08, 0, 0, -0.046004143)
+surface_material_override/0 = SubResource("StandardMaterial3D_nuajr")
+
+[node name="Breaker Panel_001" parent="Breaker Panel" index="0" unique_id=886614353]
+surface_material_override/0 = SubResource("StandardMaterial3D_nuajr")
+
+[node name="Breakers" parent="Breaker Panel" index="1" unique_id=1588152892]
+surface_material_override/0 = SubResource("StandardMaterial3D_33glo")
+
+[node name="Breakers_001" parent="Breaker Panel" index="2" unique_id=1431381295]
+unique_name_in_owner = true
+transform = Transform3D(0.46033302, 0.8877464, -3.5264602e-08, -0.8877464, 0.46033302, 6.953957e-08, 7.7966945e-08, -7.05338e-10, 1, 0.03019623, 0.09747261, 0.08934881)
+surface_material_override/0 = SubResource("StandardMaterial3D_hetsb")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Breaker Panel" index="3" unique_id=1877136671]
+visible = false
+light_bake_mode = 1
+
+[node name="InteractZone" parent="." index="1" unique_id=1828705782 instance=ExtResource("3_2bu8f")]
+tooltip = "[LMB]
+turn on"
+oneshot = true
+
+[node name="CollisionShape3D" parent="InteractZone" index="0" unique_id=1398816554]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009521484, -0.0025634766, 0.049438477)
+shape = SubResource("BoxShape3D_q4uo0")
+
+[node name="Tooltip" parent="InteractZone" index="1" unique_id=1310991000]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10471022, 0.002608873, 0)
+texture = SubResource("ViewportTexture_cyoet")
+
+[node name="SubViewport" parent="InteractZone/Tooltip" index="0" unique_id=1414188419]
+size = Vector2i(67, 52)
+
+[node name="Label" parent="InteractZone/Tooltip/SubViewport" index="0" unique_id=238621318]
+text = "[LMB]
+turn on"
+horizontal_alignment = 0
+
+[node name="Shadow" parent="InteractZone/Tooltip" index="1" unique_id=1306854022]
+texture = SubResource("ViewportTexture_y5kpn")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="2" unique_id=1204920246]
+stream = ExtResource("4_y1ke1")
+
+[editable path="InteractZone"]

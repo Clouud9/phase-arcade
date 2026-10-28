@@ -54,6 +54,7 @@
 [ext_resource type="ArrayMesh" uid="uid://criucr6vfnphg" path="res://meshes/sm_FireExtinguisher_co2.tres" id="49_7byvj"]
 [ext_resource type="PackedScene" uid="uid://c178lfbqyyhpv" path="res://meshes/SM_Payphone.fbx" id="50_7byvj"]
 [ext_resource type="ArrayMesh" uid="uid://ciee7b4u3lmru" path="res://meshes/sm_FireExtinguisher_water.tres" id="50_e1iq1"]
+[ext_resource type="PackedScene" uid="uid://b53p4w7v2f8be" path="res://meshes/PropScenes/breaker_box.tscn" id="55_hyikb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jay6p"]
 size = Vector3(69, 4, 34)
@@ -396,6 +397,7 @@ spot_angle = 50.209652
 
 [node name="SpotLight3D3" type="SpotLight3D" parent="LightmapGI" unique_id=460004642]
 transform = Transform3D(1.3113417e-07, -1, -4.371138e-08, 6.7762637e-22, -4.371138e-08, 1, -1, -1.3113417e-07, -5.732055e-15, 1.8, 2.95, 4.5)
+visible = false
 light_color = Color(1, 0.7688637, 0.6060114, 1)
 light_bake_mode = 1
 shadow_enabled = true
@@ -415,6 +417,7 @@ area_size = Vector2(1.84132, 4.830592)
 
 [node name="SpotLight3D4" type="SpotLight3D" parent="LightmapGI" unique_id=634882432]
 transform = Transform3D(1.3113417e-07, -1, -4.3711378e-08, 6.7762637e-22, -4.3711378e-08, 1, -1, -1.3113417e-07, -5.7320545e-15, -1.8, 2.850078, 4.5)
+visible = false
 light_color = Color(1, 0.7688637, 0.6060114, 1)
 light_bake_mode = 1
 shadow_enabled = true
@@ -1176,3 +1179,15 @@ mesh = ExtResource("49_7byvj")
 [node name="SmFireExtinguisherWater" type="MeshInstance3D" parent="." unique_id=429551851]
 transform = Transform3D(-0.07755434, 0.9969881, 4.3579735e-08, 0, -4.371139e-08, 1, 0.9969881, 0.07755434, 3.3900078e-09, 14.997796, 0, -2.2957962)
 mesh = ExtResource("50_e1iq1")
+
+[node name="breaker_box" parent="." unique_id=651519386 instance=ExtResource("55_hyikb")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9.802578, 1.2757885, -0.81791675)
+circuit = &"lobby"
+
+[node name="SpotLight3D" type="SpotLight3D" parent="breaker_box" unique_id=1785710624]
+transform = Transform3D(1, -2.243559e-08, -6.1969914e-09, 2.243559e-08, 0.85822934, 0.51326644, -6.1969914e-09, -0.51326644, 0.85822934, 1.1920929e-07, 2.8685343, 4.8624763)
+shadow_enabled = true
+shadow_reverse_cull_face = true
+spot_range = 7.7928443
+spot_angle = 13.557642
+spot_angle_attenuation = 0.2588163
