@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://samwjuw67shl" path="res://levels/gridmap-level/level.tscn" id="1_bewde"]
 [ext_resource type="PackedScene" uid="uid://85wyfucors5h" path="res://Cabinets/presets/rushn_attack.tscn" id="2_d0ker"]
-[ext_resource type="PackedScene" uid="uid://b4n6bgrypboh2" path="res://Arcade Games/Lightgun Game/lightgun_game.tscn" id="3_wvv42"]
+[ext_resource type="PackedScene" uid="uid://b2k2bryekk71r" path="res://Arcade Games/Jracing/game.tscn" id="3_wvv42"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_b253r"]
 viewport_path = NodePath("Tooltip/SubViewport")
@@ -22,6 +22,9 @@ transform = Transform3D(0.9876726, 0, 0.15653388, 0, 1, 0, -0.15653388, 0, 0.987
 game_name = &"closet"
 game_scene = ExtResource("3_wvv42")
 test_mode = true
+
+[node name="SubViewport" parent="Cabinet" index="1" unique_id=599290243]
+size = Vector2i(1024, 768)
 
 [node name="Tooltip" parent="Cabinet/ScreenContainer/ScreenInteractZone" parent_id_path=PackedInt32Array(1752319625, 1828705782) index="1" unique_id=1310991000]
 texture = SubResource("ViewportTexture_b253r")
