@@ -32,13 +32,7 @@ texture = SubResource("ViewportTexture_b253r")
 [node name="Shadow" parent="Cabinet/ScreenContainer/ScreenInteractZone/Tooltip" index="1" unique_id=1306854022]
 texture = SubResource("ViewportTexture_j06l2")
 
-[node name="FireButton" parent="Cabinet/ControlPlane" parent_id_path=PackedInt32Array(1752319625, 872288392) index="0" unique_id=1609050805]
-visible = false
-
-[node name="BombButton" parent="Cabinet/ControlPlane" parent_id_path=PackedInt32Array(1752319625, 872288392) index="1" unique_id=1920776179]
-visible = false
-
-[node name="Joystick" parent="Cabinet/ControlPlane" parent_id_path=PackedInt32Array(1752319625, 872288392) index="2" unique_id=1619350208]
+[node name="Lightgun" parent="Cabinet/ControlPlane" parent_id_path=PackedInt32Array(1752319625, 872288392) index="3" unique_id=152386206]
 visible = false
 
 [node name="TextureRect" parent="Cabinet/Downsample" parent_id_path=PackedInt32Array(1752319625, 2094865604) index="0" unique_id=1900591909]
