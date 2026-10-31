@@ -108,6 +108,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_mkj3n")
 
 [node name="TrackVP" type="SubViewport" parent="Track" unique_id=2122577310]
 unique_name_in_owner = true
+physics_interpolation_mode = 2
 disable_3d = true
 transparent_bg = true
 handle_input_locally = false
