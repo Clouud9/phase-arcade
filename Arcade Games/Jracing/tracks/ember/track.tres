@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="TrackData" format=3 uid="uid://o0rabq6vinc0"]
+
+[ext_resource type="Script" uid="uid://dqvpeskcds4n0" path="res://race/track_data.gd" id="1_qx3te"]
+
+[resource]
+script = ExtResource("1_qx3te")
+metadata/_custom_type_script = "uid://dqvpeskcds4n0"

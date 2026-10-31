@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://y5fyj6kflnbr"
+path="res://.godot/imported/luminengine.wav-67387b979f3c255767c57c3142e3939e.sample"
+
+[deps]
+
+source_file="res://Arcade Games/Jracing/music/luminengine.wav"
+dest_files=["res://.godot/imported/luminengine.wav-67387b979f3c255767c57c3142e3939e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

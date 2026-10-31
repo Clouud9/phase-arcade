@@ -1,0 +1,295 @@
+[gd_scene format=3 uid="uid://cvkqnan46r6wj"]
+
+[ext_resource type="Script" uid="uid://cr7jqx1v18poi" path="res://race/race_manager.gd" id="1_a1ujo"]
+[ext_resource type="Script" uid="uid://cy0ngi26ionns" path="res://race/camera.gd" id="2_lorhl"]
+[ext_resource type="Texture2D" uid="uid://c63hf6xswt2cy" path="res://race/countdown.png" id="3_ddpug"]
+[ext_resource type="AudioStream" uid="uid://dbn276ldkeabx" path="res://race/countdown.wav" id="4_lip1t"]
+[ext_resource type="Texture2D" uid="uid://de3gukcl0lcvt" path="res://race/finish.png" id="5_iqn4a"]
+[ext_resource type="AudioStream" uid="uid://cjyynyx6n1nlw" path="res://race/finish1.wav" id="6_g1gks"]
+[ext_resource type="AudioStream" uid="uid://besjtfwsv7svj" path="res://race/finishx.wav" id="7_c8320"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_a1ujo"]
+orientation = 1
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_es0gr"]
+viewport_path = NodePath("Track/TrackVP")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mkj3n"]
+resource_local_to_scene = true
+transparency = 2
+alpha_scissor_threshold = 0.125
+alpha_antialiasing_mode = 0
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_es0gr")
+texture_filter = 0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lip1t"]
+atlas = ExtResource("3_ddpug")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqn4a"]
+atlas = ExtResource("3_ddpug")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0dry"]
+atlas = ExtResource("3_ddpug")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1gks"]
+atlas = ExtResource("3_ddpug")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c8320"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lip1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqn4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0dry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1gks")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="Animation" id="Animation_g1gks"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_c8320"]
+resource_name = "flash"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vhq2c"]
+_data = {
+&"RESET": SubResource("Animation_g1gks"),
+&"flash": SubResource("Animation_c8320")
+}
+
+[node name="RaceManager" type="Node3D" unique_id=974107379]
+script = ExtResource("1_a1ujo")
+
+[node name="Track" type="MeshInstance3D" parent="." unique_id=186557423]
+unique_name_in_owner = true
+transform = Transform3D(128, 0, 0, 0, 128, 0, 0, 0, 128, 0, 0, 0)
+mesh = SubResource("QuadMesh_a1ujo")
+surface_material_override/0 = SubResource("StandardMaterial3D_mkj3n")
+
+[node name="TrackVP" type="SubViewport" parent="Track" unique_id=2122577310]
+unique_name_in_owner = true
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(2048, 2048)
+
+[node name="TrackCamera" type="Camera2D" parent="Track/TrackVP" unique_id=1876504080]
+unique_name_in_owner = true
+
+[node name="Camera" type="Camera3D" parent="." unique_id=850176842]
+unique_name_in_owner = true
+transform = Transform3D(-0.7245772, 0, -0.68919367, 0, 1, 0, 0.68919367, 0, -0.7245772, 0, 9.081412, -0.16087055)
+fov = 90.0
+near = 1.0
+far = 64.0
+script = ExtResource("2_lorhl")
+distance = 4.0
+height = 1.0
+
+[node name="Countdown" type="AnimatedSprite2D" parent="." unique_id=875101164]
+unique_name_in_owner = true
+modulate = Color(1, 1, 0, 1)
+sprite_frames = SubResource("SpriteFrames_c8320")
+speed_scale = 0.0
+
+[node name="CountdownSFX" type="AudioStreamPlayer" parent="Countdown" unique_id=1751616822]
+unique_name_in_owner = true
+stream = ExtResource("4_lip1t")
+bus = &"SFX"
+
+[node name="Finish" type="Sprite2D" parent="." unique_id=1073065673]
+unique_name_in_owner = true
+visible = false
+texture = ExtResource("5_iqn4a")
+
+[node name="Finish1" type="AudioStreamPlayer" parent="Finish" unique_id=2078031767]
+unique_name_in_owner = true
+stream = ExtResource("6_g1gks")
+bus = &"Music"
+
+[node name="FinishX" type="AudioStreamPlayer" parent="Finish" unique_id=1679811325]
+unique_name_in_owner = true
+stream = ExtResource("7_c8320")
+bus = &"Music"
+
+[node name="TimerFinal" type="PanelContainer" parent="." unique_id=1601778187]
+unique_name_in_owner = true
+visible = false
+offset_right = 146.0
+offset_bottom = 45.0
+
+[node name="Label" type="Label" parent="TimerFinal" unique_id=2068454353]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TimerFinal" unique_id=823855721]
+libraries/ = SubResource("AnimationLibrary_vhq2c")
+speed_scale = 1.5
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=837362252]
+unique_name_in_owner = true
+bus = &"Music"
+
+[node name="Container" type="MarginContainer" parent="." unique_id=806768677]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Control" type="Control" parent="Container" unique_id=1724401097]
+layout_mode = 2
+
+[node name="Quit" type="Button" parent="Container/Control" unique_id=1190670868]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.8
+anchor_right = 0.5
+anchor_bottom = 0.8
+offset_left = -64.0
+offset_top = -31.0
+offset_right = 64.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "BACK TO MENU"
+
+[node name="PanelContainer" type="PanelContainer" parent="Container/Control" unique_id=1367662018]
+layout_mode = 1
+offset_right = 58.0
+offset_bottom = 23.0
+
+[node name="Lap" type="Label" parent="Container/Control/PanelContainer" unique_id=242934369]
+unique_name_in_owner = true
+layout_mode = 2
+text = " LAP 1/2 "
+
+[node name="PanelContainer2" type="PanelContainer" parent="Container/Control" unique_id=710529960]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_right = 32.0
+offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="Timer" type="Label" parent="Container/Control/PanelContainer2" unique_id=611627721]
+unique_name_in_owner = true
+layout_mode = 2
+text = " 00:00.00 "
+horizontal_alignment = 1
+
+[node name="PanelContainer3" type="PanelContainer" parent="Container/Control" unique_id=843998142]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+offset_right = 64.0
+grow_vertical = 0
+
+[node name="Rank" type="RichTextLabel" parent="Container/Control/PanelContainer3" unique_id=468206235]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "[font_size=48]1[/font_size][table=1,t][cell]st[/cell][/table]"
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Results" type="PanelContainer" parent="." unique_id=1505094055]
+unique_name_in_owner = true
+visible = false
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.5
+anchor_right = 0.7
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Results" unique_id=486232321]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Results/MarginContainer" unique_id=1178759105]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Results/MarginContainer/VBoxContainer" unique_id=1359141712]
+layout_mode = 2
+text = "Results"
+
+[node name="PanelContainer" type="PanelContainer" parent="Results/MarginContainer/VBoxContainer" unique_id=188090928]
+layout_mode = 2
+
+[node name="ResultsInner" type="VBoxContainer" parent="Results/MarginContainer/VBoxContainer/PanelContainer" unique_id=1631356196]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="ButtonsMP" type="HBoxContainer" parent="Results/MarginContainer/VBoxContainer" unique_id=415290996]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="QuitMP" type="Button" parent="Results/MarginContainer/VBoxContainer/ButtonsMP" unique_id=1881686682]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "BACK TO MENU"
+
+[node name="NextMP" type="Button" parent="Results/MarginContainer/VBoxContainer/ButtonsMP" unique_id=1751766621]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "PLAY AGAIN"

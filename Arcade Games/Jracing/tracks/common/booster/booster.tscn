@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dc687uw6ndpdk"]
+
+[ext_resource type="Texture2D" uid="uid://bffwim0yn7f24" path="res://tracks/common/booster/booster.png" id="1_vbh0g"]
+[ext_resource type="Script" uid="uid://b8udhvjygxru8" path="res://tracks/common/booster/booster.gd" id="2_ftckj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehuoo"]
+atlas = ExtResource("1_vbh0g")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fobej"]
+atlas = ExtResource("1_vbh0g")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vuql8"]
+atlas = ExtResource("1_vbh0g")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vpk2x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehuoo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fobej")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vuql8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_88lk8"]
+size = Vector2(28, 32)
+
+[node name="Booster" type="AnimatedSprite2D" unique_id=1815526386]
+sprite_frames = SubResource("SpriteFrames_vpk2x")
+autoplay = "default"
+frame_progress = 0.6340601
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1016726722]
+collision_mask = 3
+script = ExtResource("2_ftckj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=700129007]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_88lk8")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="touch"]

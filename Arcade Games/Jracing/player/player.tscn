@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://co1hjtoir5tes"]
+
+[ext_resource type="Script" uid="uid://dxsmvjvvehs0b" path="res://player/player.gd" id="1_oul6g"]
+[ext_resource type="AudioStream" uid="uid://b1e8hpup5htgv" path="res://player/engine.wav" id="2_rkbax"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kqu6x"]
+
+[node name="Player" type="RigidBody2D" unique_id=1932255940]
+collision_layer = 2
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_oul6g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=431951747]
+shape = SubResource("CircleShape2D_kqu6x")
+
+[node name="Engine" type="AudioStreamPlayer" parent="." unique_id=767530475]
+stream = ExtResource("2_rkbax")
+volume_db = -2.0
+bus = &"SFX"
