@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://c7pl6qt4v37ja"]
 
-[ext_resource type="Script" uid="uid://dyjht8iyongq6" path="res://online/online_match_setup.gd" id="1_td5ew"]
-[ext_resource type="Script" uid="uid://dqvpeskcds4n0" path="res://race/track_data.gd" id="2_41q0u"]
-[ext_resource type="Resource" uid="uid://dsh7lk2ykm1bm" path="res://tracks/test/track.tres" id="3_kl8y6"]
+[ext_resource type="Script" uid="uid://dyjht8iyongq6" path="res://Arcade Games/Jracing/online/online_match_setup.gd" id="1_td5ew"]
+[ext_resource type="Script" uid="uid://dqvpeskcds4n0" path="res://Arcade Games/Jracing/race/track_data.gd" id="2_41q0u"]
+[ext_resource type="Resource" uid="uid://dsh7lk2ykm1bm" path="res://Arcade Games/Jracing/tracks/test/track.tres" id="3_kl8y6"]
 
 [node name="OnlineMatchSetup" type="PanelContainer" unique_id=442210345]
 anchors_preset = 8

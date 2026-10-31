@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://dqflas5gk2wn8"]
 
-[ext_resource type="Texture2D" uid="uid://yl0gjosohy0m" path="res://tracks/ember/tiles.png" id="1_xn26d"]
-[ext_resource type="PackedScene" uid="uid://dc687uw6ndpdk" path="res://tracks/common/booster/booster.tscn" id="2_pdhj8"]
+[ext_resource type="Texture2D" uid="uid://yl0gjosohy0m" path="res://Arcade Games/Jracing/tracks/ember/tiles.png" id="1_xn26d"]
+[ext_resource type="PackedScene" uid="uid://dc687uw6ndpdk" path="res://Arcade Games/Jracing/tracks/common/booster/booster.tscn" id="2_pdhj8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pdhj8"]
 texture = ExtResource("1_xn26d")

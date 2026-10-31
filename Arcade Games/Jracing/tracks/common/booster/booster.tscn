@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dc687uw6ndpdk"]
 
-[ext_resource type="Texture2D" uid="uid://bffwim0yn7f24" path="res://tracks/common/booster/booster.png" id="1_vbh0g"]
-[ext_resource type="Script" uid="uid://b8udhvjygxru8" path="res://tracks/common/booster/booster.gd" id="2_ftckj"]
+[ext_resource type="Texture2D" uid="uid://bffwim0yn7f24" path="res://Arcade Games/Jracing/tracks/common/booster/booster.png" id="1_vbh0g"]
+[ext_resource type="Script" uid="uid://b8udhvjygxru8" path="res://Arcade Games/Jracing/tracks/common/booster/booster.gd" id="2_ftckj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ehuoo"]
 atlas = ExtResource("1_vbh0g")

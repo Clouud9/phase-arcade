@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dh025ijc36cla"]
 
-[ext_resource type="Script" uid="uid://kb6m6dcwu8i1" path="res://tracks/test/enemy.gd" id="1_dw3ku"]
-[ext_resource type="Texture2D" uid="uid://i36flxaq6ccr" path="res://tracks/test/enemy.png" id="2_wuqel"]
+[ext_resource type="Script" uid="uid://kb6m6dcwu8i1" path="res://Arcade Games/Jracing/tracks/test/enemy.gd" id="1_dw3ku"]
+[ext_resource type="Texture2D" uid="uid://i36flxaq6ccr" path="res://Arcade Games/Jracing/tracks/test/enemy.png" id="2_wuqel"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_je35a"]
 radius = 16.0

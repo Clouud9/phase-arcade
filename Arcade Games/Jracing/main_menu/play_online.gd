@@ -5,7 +5,7 @@ func _pressed() -> void:
     OnlineMatchSetup.player_name = (%Name as LineEdit).text.strip_edges()
     if len(OnlineMatchSetup.player_name) > 0:
         var setup: OnlineMatchSetup = (
-            load("res://online/online_match_setup.tscn") as PackedScene).instantiate()
+            load("res://Arcade Games/Jracing/online/online_match_setup.tscn") as PackedScene).instantiate()
         %ModalContainer.add_child(setup)
         disabled = true
         for button in (%Tabs as MainMenuTabs).buttons:

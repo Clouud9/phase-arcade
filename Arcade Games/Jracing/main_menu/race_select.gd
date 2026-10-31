@@ -5,4 +5,4 @@ extends Button
 func _pressed() -> void:
 	MenuBeep.play_for(self)
 	RaceManager.track_data = track
-	get_tree().change_scene_to_file("res://race/race.tscn")
+	JracingGame.switch_to(self, JracingGame.RACE_SCENE)
