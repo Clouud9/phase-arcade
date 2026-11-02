@@ -1,0 +1,270 @@
+[gd_scene format=3 uid="uid://hhld35bb63hy"]
+
+[ext_resource type="Script" uid="uid://l5xrlkijqmwh" path="res://scenes/jorb.gd" id="1_i8rjf"]
+[ext_resource type="Texture2D" uid="uid://bmhmc38d3kbqh" path="res://assets/textures/jorbface.png" id="2_8kxqu"]
+[ext_resource type="FontFile" uid="uid://yk45knfmaoo6" path="res://assets/TwinkleStar-Regular.ttf" id="4_8kxqu"]
+[ext_resource type="FontFile" uid="uid://ddx8b4b78w31f" path="res://assets/Diplomata-Regular.ttf" id="5_je0g3"]
+[ext_resource type="StyleBox" uid="uid://c06cgcbaeq2qs" path="res://scenes/jerrybuttons_hover.tres" id="6_5dtqq"]
+[ext_resource type="StyleBox" uid="uid://b8ukcvrncmbsu" path="res://scenes/jerrybuttons.tres" id="7_m6gqd"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_i8rjf"]
+friction = 4.0
+rough = true
+bounce = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8kxqu"]
+radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i8rjf"]
+albedo_texture = ExtResource("2_8kxqu")
+
+[sub_resource type="SphereMesh" id="SphereMesh_8kxqu"]
+radius = 1.0
+height = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ypmx"]
+bg_color = Color(0.96026343, 0.9269316, 0.6107137, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.09772719, 0.7289141, 0.7872858, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="Theme" id="Theme_bycr2"]
+default_font = ExtResource("4_8kxqu")
+default_font_size = 28
+Button/colors/font_color = Color(0.09772719, 0.7289141, 0.7872858, 1)
+Button/colors/font_disabled_color = Color(0.0948, 0.7320666, 0.79, 0.5019608)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.09772719, 0.7289141, 0.7872858, 1)
+Button/colors/font_pressed_color = Color(0.06811602, 0.5672329, 0.612765, 1)
+Button/styles/hover = ExtResource("6_5dtqq")
+Button/styles/normal = ExtResource("7_m6gqd")
+Button/styles/pressed = ExtResource("6_5dtqq")
+
+[node name="Jorb" type="RigidBody3D" unique_id=1954707302]
+physics_material_override = SubResource("PhysicsMaterial_i8rjf")
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("1_i8rjf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=747967866]
+shape = SubResource("SphereShape3D_8kxqu")
+
+[node name="jorbMesh" type="MeshInstance3D" parent="." unique_id=966152416]
+material_override = SubResource("StandardMaterial3D_i8rjf")
+mesh = SubResource("SphereMesh_8kxqu")
+
+[node name="CameraRig" type="Marker3D" parent="." unique_id=261590368]
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig" unique_id=1882770986]
+transform = Transform3D(1, 0, 0, 0, 0.83485746, 0.5504662, 0, -0.5504662, 0.83485746, 0, 2.1502156, 2.7587984)
+
+[node name="JUI" type="CanvasLayer" parent="." unique_id=1040816188]
+
+[node name="JailLabel" type="Label" parent="JUI" unique_id=323475843]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -11.5
+offset_right = 121.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_8kxqu")
+theme_override_font_sizes/font_size = 24
+text = "Jou Jave Jailed. Jress J(R) to Jestart"
+
+[node name="JuccessLabel" type="Label" parent="JUI" unique_id=998169918]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = -11.5
+offset_right = 62.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_8kxqu")
+theme_override_font_sizes/font_size = 28
+text = "Jevel Jompleted!"
+
+[node name="Jime" type="Label" parent="JUI" unique_id=1523109933]
+anchors_preset = -1
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 460.0
+offset_bottom = 74.0
+theme_override_colors/font_color = Color(1, 1, 0.6313726, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0.43529412, 0.34901962)
+theme_override_colors/font_outline_color = Color(0.9999996, 0.94225025, 0.8762628, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/font = ExtResource("5_je0g3")
+theme_override_font_sizes/font_size = 60
+text = "06:07,67"
+
+[node name="LevelCompletedMenu" type="CanvasLayer" parent="." unique_id=1885943223]
+process_mode = 3
+layer = 2
+
+[node name="Background" type="Panel" parent="LevelCompletedMenu" unique_id=986962301]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuModal" type="Panel" parent="LevelCompletedMenu" unique_id=1349982033]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -250.0
+offset_right = 200.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ypmx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelCompletedMenu/MenuModal" unique_id=1693926652]
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -252.0
+offset_top = -105.0
+offset_right = 252.0
+offset_bottom = 195.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="HBoxTime" type="HBoxContainer" parent="LevelCompletedMenu/MenuModal/VBoxContainer" unique_id=970634130]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="LevelCompletedMenu/MenuModal/VBoxContainer/HBoxTime" unique_id=1995404773]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.09772719, 0.7289141, 0.7872858, 1)
+theme_override_colors/font_outline_color = Color(0.09772719, 0.7289141, 0.7872858, 1)
+theme_override_fonts/font = ExtResource("4_8kxqu")
+theme_override_font_sizes/font_size = 38
+text = "Time:"
+
+[node name="Value" type="Label" parent="LevelCompletedMenu/MenuModal/VBoxContainer/HBoxTime" unique_id=1955030012]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.09772719, 0.7289141, 0.7872858, 1)
+theme_override_colors/font_outline_color = Color(0.09772719, 0.7289141, 0.7872858, 1)
+theme_override_fonts/font = ExtResource("4_8kxqu")
+theme_override_font_sizes/font_size = 38
+text = "67:67`67"
+
+[node name="HBoxRetries" type="HBoxContainer" parent="LevelCompletedMenu/MenuModal/VBoxContainer" unique_id=953435653]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="LevelCompletedMenu/MenuModal/VBoxContainer/HBoxRetries" unique_id=1290218296]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.09772719, 0.7289141, 0.7872858, 1)
+theme_override_colors/font_outline_color = Color(0.09772719, 0.7289141, 0.7872858, 1)
+theme_override_fonts/font = ExtResource("4_8kxqu")
+theme_override_font_sizes/font_size = 38
+text = "Jorbs: "
+
+[node name="Value" type="Label" parent="LevelCompletedMenu/MenuModal/VBoxContainer/HBoxRetries" unique_id=790263085]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.09772719, 0.7289141, 0.7872858, 1)
+theme_override_colors/font_outline_color = Color(0.09772719, 0.7289141, 0.7872858, 1)
+theme_override_fonts/font = ExtResource("4_8kxqu")
+theme_override_font_sizes/font_size = 38
+text = "67"
+
+[node name="HBoxBlows" type="HBoxContainer" parent="LevelCompletedMenu/MenuModal/VBoxContainer" unique_id=2058521262]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="LevelCompletedMenu/MenuModal/VBoxContainer/HBoxBlows" unique_id=1944602273]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.09772719, 0.7289141, 0.7872858, 1)
+theme_override_colors/font_outline_color = Color(0.09772719, 0.7289141, 0.7872858, 1)
+theme_override_fonts/font = ExtResource("4_8kxqu")
+theme_override_font_sizes/font_size = 38
+text = "Blows: "
+
+[node name="Value" type="Label" parent="LevelCompletedMenu/MenuModal/VBoxContainer/HBoxBlows" unique_id=2128627212]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.09772719, 0.7289141, 0.7872858, 1)
+theme_override_colors/font_outline_color = Color(0.09772719, 0.7289141, 0.7872858, 1)
+theme_override_fonts/font = ExtResource("4_8kxqu")
+theme_override_font_sizes/font_size = 38
+text = "67"
+
+[node name="HBoxButtons" type="HBoxContainer" parent="LevelCompletedMenu/MenuModal/VBoxContainer" unique_id=25908410]
+layout_mode = 2
+theme_override_constants/separation = 33
+alignment = 1
+
+[node name="nextButton" type="Button" parent="LevelCompletedMenu/MenuModal/VBoxContainer/HBoxButtons" unique_id=1899853289]
+custom_minimum_size = Vector2(145, 55)
+layout_mode = 2
+theme = SubResource("Theme_bycr2")
+theme_override_font_sizes/font_size = 48
+text = "next :)"
+
+[node name="quitButton" type="Button" parent="LevelCompletedMenu/MenuModal/VBoxContainer/HBoxButtons" unique_id=644724852]
+custom_minimum_size = Vector2(145, 55)
+layout_mode = 2
+theme = SubResource("Theme_bycr2")
+theme_override_font_sizes/font_size = 48
+text = "quit :("
+
+[node name="Label" type="Label" parent="LevelCompletedMenu/MenuModal" unique_id=1887889370]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -161.5
+offset_top = 40.0
+offset_right = 164.5
+offset_bottom = 102.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.15294118)
+theme_override_colors/font_outline_color = Color(0.09772719, 0.7289141, 0.7872858, 1)
+theme_override_constants/shadow_offset_x = 6
+theme_override_constants/shadow_offset_y = 8
+theme_override_constants/outline_size = 18
+theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("4_8kxqu")
+theme_override_font_sizes/font_size = 48
+text = "Jevel Jomplete!!"
+
+[node name="LevelCompleteTimer" type="Timer" parent="." unique_id=2121738079]
+wait_time = 2.0
+one_shot = true

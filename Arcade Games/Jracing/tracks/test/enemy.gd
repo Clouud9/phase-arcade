@@ -8,7 +8,7 @@ var time: float = 0
 
 func _process(delta: float) -> void:
 	if follower == null:
-		follower = preload("res://player/follower_3d.tscn").instantiate()
+		follower = preload("res://Arcade Games/Jracing/player/follower_3d.tscn").instantiate()
 		follower.target = self
 		follower.hframes = 3
 		follower.vframes = 1

@@ -1,0 +1,219 @@
+[remap]
+
+importer="scene"
+importer_version=1
+type="PackedScene"
+uid="uid://0lajscm1h0j8"
+path="res://.godot/imported/asset-kit.glb-efc9fea8453372775059d8b0cde13db4.scn"
+
+[deps]
+
+source_file="res://Arcade Games/Wippa's Curse/Assets/3D/Raw/asset-kit.glb"
+dest_files=["res://.godot/imported/asset-kit.glb-efc9fea8453372775059d8b0cde13db4.scn"]
+
+[params]
+
+nodes/root_type=""
+nodes/root_name=""
+nodes/root_script=null
+mesh_library/use_node_names_as_mesh_names=false
+array_mesh/deduplicate_surfaces=true
+nodes/apply_root_scale=true
+nodes/root_scale=1.0
+nodes/import_as_skeleton_bones=false
+nodes/use_name_suffixes=true
+nodes/use_node_type_suffixes=true
+meshes/ensure_tangents=true
+meshes/generate_lods=true
+meshes/create_shadow_meshes=true
+meshes/light_baking=1
+meshes/lightmap_texel_size=0.2
+meshes/force_disable_compression=false
+skins/use_named_skins=true
+animation/import=true
+animation/fps=30
+animation/trimming=false
+animation/remove_immutable_tracks=true
+animation/import_rest_as_RESET=false
+import_script/path="uid://de4lx54fyloec"
+materials/extract=0
+materials/extract_format=0
+materials/extract_path=""
+_subresources={
+"meshes": {
+"asset-kit_Cube": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Arcade Games/Wippa's Curse/Assets/3D/L-wall-1.res",
+"save_to_file/path": "uid://cvnl5liel8wq"
+},
+"asset-kit_Cube_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Arcade Games/Wippa's Curse/Assets/3D/U-Wall-1.res",
+"save_to_file/path": "uid://b2kfumq3so2o6"
+},
+"asset-kit_Cube_002": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Arcade Games/Wippa's Curse/Assets/3D/O-Wall-1.res",
+"save_to_file/path": "uid://3jev1bnt7nhl"
+},
+"asset-kit_Cube_003": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Arcade Games/Wippa's Curse/Assets/3D/U-Wall-2.res",
+"save_to_file/path": "uid://cq3pjl6rsft10"
+},
+"asset-kit_Cube_004": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Arcade Games/Wippa's Curse/Assets/3D/L-Wall-2.res",
+"save_to_file/path": "uid://tlyef2g3so5p"
+},
+"asset-kit_Cube_005": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Arcade Games/Wippa's Curse/Assets/3D/L-Wall-3.res",
+"save_to_file/path": "uid://tmlcu2v782i8"
+},
+"asset-kit_Cube_007": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Arcade Games/Wippa's Curse/Assets/3D/U-Wall-3.res",
+"save_to_file/path": "uid://cwi2yvfsc35ym"
+},
+"asset-kit_Cube_008": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Arcade Games/Wippa's Curse/Assets/3D/L-Wall-4.res",
+"save_to_file/path": "uid://bjjeeouswadkt"
+},
+"asset-kit_Cube_009": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Arcade Games/Wippa's Curse/Assets/3D/L-Wall-5.res",
+"save_to_file/path": "uid://b48wa42d6sy13"
+},
+"asset-kit_Cube_010": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Arcade Games/Wippa's Curse/Assets/3D/U-Wall-4.res",
+"save_to_file/path": "uid://cn5ctkp7vlwm7"
+},
+"asset-kit_Cube_011": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Arcade Games/Wippa's Curse/Assets/3D/L-Wall-6.res",
+"save_to_file/path": "uid://lvjg4p8hju25"
+},
+"asset-kit_Cube_012": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Arcade Games/Wippa's Curse/Assets/3D/L-Wall-7.res",
+"save_to_file/path": "uid://dy0kbbjyab5mi"
+},
+"asset-kit_Cube_013": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Arcade Games/Wippa's Curse/Assets/3D/U-Wall-5.res",
+"save_to_file/path": "uid://bce7a8703meyt"
+},
+"asset-kit_Cube_014": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Arcade Games/Wippa's Curse/Assets/3D/O-Wall-2.res",
+"save_to_file/path": "uid://b6d6jifja2bq4"
+},
+"asset-kit_Cube_015": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Arcade Games/Wippa's Curse/Assets/3D/U-Wall-6.res",
+"save_to_file/path": "uid://5sjh0ublojhj"
+},
+"asset-kit_Cube_016": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Arcade Games/Wippa's Curse/Assets/3D/L-Wall-8.res",
+"save_to_file/path": "uid://dipajx547bvsw"
+},
+"asset-kit_Cube_017": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Arcade Games/Wippa's Curse/Assets/3D/sword.res",
+"save_to_file/path": "uid://dxd3172dmmjvp"
+},
+"asset-kit_Plane": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Arcade Games/Wippa's Curse/Assets/3D/ground.res",
+"save_to_file/path": "uid://5fecm2kyb1na"
+},
+"asset-kit_Sphere": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://Arcade Games/Wippa's Curse/Assets/3D/Mellon.res",
+"save_to_file/path": "uid://doim323p3biyd"
+}
+}
+}
+gltf/naming_version=2
+gltf/embedded_image_handling=0
+gltf/texture_map_mode=1

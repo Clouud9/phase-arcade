@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://bv8mw05f1jevk"]
+
+[ext_resource type="Script" uid="uid://bmvl3xohbl1n3" path="res://Arcade Games/Blowjorb/scenes/levels/high_scores.gd" id="1_f415k"]
+[ext_resource type="Theme" uid="uid://7t0b1nlxdxnb" path="res://Arcade Games/Blowjorb/blowjorb_theme_extra_sparkly.tres" id="1_vng32"]
+[ext_resource type="Texture2D" uid="uid://bmhmc38d3kbqh" path="res://Arcade Games/Blowjorb/assets/textures/jorbface.png" id="2_w0758"]
+[ext_resource type="Texture2D" uid="uid://b212j4n44q41x" path="res://Arcade Games/Blowjorb/assets/sprites/Hand-Pointer-Right--Streamline-Ultimate.png" id="6_7815h"]
+
+[node name="HighScores" type="Control" unique_id=972313716]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vng32")
+script = ExtResource("1_f415k")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1107611038]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -379.0
+offset_top = -227.0
+offset_right = 338.0
+offset_bottom = 1213.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_w0758")
+expand_mode = 1
+stretch_mode = 4
+flip_v = true
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1273117573]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5529412)
+
+[node name="Label" type="Label" parent="." unique_id=800156619]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -265.75
+offset_top = -109.5
+offset_right = 265.75
+offset_bottom = 109.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 24
+text = "...and that´s the whole thing. I´m not even a staknight, the word \"blowjorb\" just popped into my head and it compelled me to make it exist"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Title" type="Label" parent="." unique_id=108198758]
+custom_minimum_size = Vector2(200, 100)
+custom_maximum_size = Vector2(320, 100)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_top = -16.0
+offset_right = 160.0
+offset_bottom = 84.0
+grow_horizontal = 2
+theme_type_variation = &"Title"
+theme_override_font_sizes/font_size = 26
+text = "HIGH SCORES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Menu" type="VBoxContainer" parent="." unique_id=1124429635]
+custom_minimum_size = Vector2(300, 180)
+custom_maximum_size = Vector2(320, 240)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -60.0
+offset_right = 160.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 2
+
+[node name="HBoxTime" type="HBoxContainer" parent="Menu" unique_id=50471644]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Menu/HBoxTime" unique_id=184167129]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "Total Time:"
+
+[node name="Value" type="Label" parent="Menu/HBoxTime" unique_id=1302609532]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "67:67`67"
+
+[node name="Cursor" type="Control" parent="." unique_id=1657157041]
+modulate = Color(0.99687475, 0.8861014, 0.7328199, 1)
+anchors_preset = 0
+offset_left = 442.0
+offset_top = 508.0
+offset_right = 482.0
+offset_bottom = 548.0
+
+[node name="Cursor" type="Sprite2D" parent="Cursor" unique_id=1418988145]
+modulate = Color(0.83440983, 0.31780702, 0.574819, 1)
+self_modulate = Color(0.99992055, 0, 0.023298556, 1)
+position = Vector2(180, 90)
+rotation = -1.5707964
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_7815h")

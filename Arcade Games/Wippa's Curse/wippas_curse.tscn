@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://bxfpgkvtr6s7w"]
+
+[ext_resource type="PackedScene" uid="uid://byoon1u641x6p" path="res://Arcade Games/Wippa's Curse/game.tscn" id="1_axhl5"]
+[ext_resource type="Script" uid="uid://jfoix847i1wm" path="res://Arcade Games/Wippa's Curse/title_screen/title_screen.gd" id="1_ry7s0"]
+[ext_resource type="Script" uid="uid://p1665ck2r2dx" path="res://Arcade Games/Wippa's Curse/title_screen/pivot.gd" id="2_ry7s0"]
+[ext_resource type="Theme" uid="uid://bnc4gesw2cmsb" path="res://Arcade Games/Invaders/ui/theme.tres" id="4_0p826"]
+[ext_resource type="Material" uid="uid://et7b1r3joipt" path="res://addons/jodot/transition/dither_curtain.tres" id="4_kccly"]
+[ext_resource type="Script" uid="uid://crs1s25mbl4em" path="res://addons/jodot/transition/curtain.gd" id="5_8jlif"]
+[ext_resource type="Script" uid="uid://lpbqkuxqeam0" path="res://Arcade Games/Invaders/ui/screens/insert_coin.gd" id="5_v1crw"]
+[ext_resource type="Script" uid="uid://dumdjlccc2bx7" path="res://Game Components/screen_switcher/transition.gd" id="6_nmhb1"]
+[ext_resource type="AudioStream" uid="uid://clqhgw6vjyxol" path="res://Arcade Games/Wippa's Curse/Audio/pickup.mp3" id="7_lawyc"]
+[ext_resource type="Texture2D" uid="uid://dg2gfn2ygs733" path="res://Arcade Games/Wippa's Curse/title_screen/title.png" id="8_nmhb1"]
+
+[sub_resource type="Resource" id="Resource_hetsb"]
+script = ExtResource("6_nmhb1")
+mode = 1
+duration = 3.0
+metadata/_custom_type_script = "uid://dumdjlccc2bx7"
+
+[node name="WippasCurse" type="Node3D" unique_id=94410945]
+script = ExtResource("1_ry7s0")
+game_name = &"wippas_curse"
+
+[node name="Game" parent="." unique_id=913553725 instance=ExtResource("1_axhl5")]
+
+[node name="Pivot" type="Node3D" parent="." unique_id=1559645958]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.089172, 4.7647133, 29.692741)
+script = ExtResource("2_ry7s0")
+speed = 0.079
+
+[node name="TitleCam" type="Camera3D" parent="Pivot" unique_id=498363885]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.645, 0, 5.63)
+current = true
+
+[node name="Curtain" type="ColorRect" parent="Pivot/TitleCam" unique_id=289366099]
+unique_name_in_owner = true
+visible = false
+z_index = 10
+material = ExtResource("4_kccly")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("5_8jlif")
+transition = SubResource("Resource_hetsb")
+
+[node name="TitleUI" type="Control" parent="Pivot/TitleCam" unique_id=1110761598]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CenterContainer" type="CenterContainer" parent="Pivot/TitleCam/TitleUI" unique_id=1685963539]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 308.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_0p826")
+
+[node name="MarginContainer" type="MarginContainer" parent="Pivot/TitleCam/TitleUI/CenterContainer" unique_id=16785277]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 160
+
+[node name="TextureRect" type="TextureRect" parent="Pivot/TitleCam/TitleUI/CenterContainer/MarginContainer" unique_id=1173343406]
+layout_mode = 2
+texture = ExtResource("8_nmhb1")
+
+[node name="InsertCoinLabel" type="Label" parent="Pivot/TitleCam/TitleUI/CenterContainer" unique_id=949024799]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 39.865)
+text = "Insert Coin"
+script = ExtResource("5_v1crw")
+pulse_rate = 0.7
+pulse_width = 0.7
+metadata/_custom_type_script = "uid://lpbqkuxqeam0"
+
+[node name="InsertCoinAudio" type="AudioStreamPlayer" parent="." unique_id=1498073297]
+stream = ExtResource("7_lawyc")
+pitch_scale = 0.15

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bv1k3sq236ecq"
+path="res://.godot/imported/BellHit-206700 - Railroad Crossing Signal Bell - Loop.wav-0eeaff8b51e9292cd350154644b3770c.sample"
+
+[deps]
+
+source_file="res://Arcade Games/AirHockey/BellHit-206700 - Railroad Crossing Signal Bell - Loop.wav"
+dest_files=["res://.godot/imported/BellHit-206700 - Railroad Crossing Signal Bell - Loop.wav-0eeaff8b51e9292cd350154644b3770c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

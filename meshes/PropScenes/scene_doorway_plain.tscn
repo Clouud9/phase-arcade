@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://csvyrqpwx17q8" path="res://meshes/PropScenes/scene_doorway_windowed.tscn" id="1_27vip"]
 [ext_resource type="ArrayMesh" uid="uid://cepb3yf6ingef" path="res://meshes/sm_door.tres" id="2_sqyys"]
 [ext_resource type="Material" uid="uid://f7pb3wu04tx7" path="res://materials/PlasterWall.tres" id="4_uacm6"]
-[ext_resource type="Material" uid="uid://cqmf76ra2vssu" path="res://materials/Bricks_triplanar.tres" id="5_kb52q"]
+[ext_resource type="Material" uid="uid://dpvkxkn0ksvru" path="res://materials/Bricks.tres" id="5_kb52q"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6cpso"]
 resource_name = "MatA"

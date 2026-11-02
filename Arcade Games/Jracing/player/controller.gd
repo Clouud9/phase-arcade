@@ -284,10 +284,14 @@ class LocalInputPlayerController extends DrivenPlayerController:
 	
 	func get_controls() -> DriverControlState:
 		var input := DriverControlState.new()
-		input.accelerate = Input.is_action_pressed("accelerate")
-		input.brake = Input.is_action_pressed("brake")
-		input.steer = Input.get_axis("ui_left", "ui_right")
-		
+		# Read the cabinet's controls, not the Input singleton, which sees every
+		# key in the arcade: fire accelerates, bomb brakes, the stick steers.
+		var cabinet_input := ArcadeCabinet.get_input_state(player)
+		if cabinet_input != null:
+			input.accelerate = cabinet_input.firing
+			input.brake = cabinet_input.bombing
+			input.steer = cabinet_input.movement.x
+
 		return input
 
 class AIData:

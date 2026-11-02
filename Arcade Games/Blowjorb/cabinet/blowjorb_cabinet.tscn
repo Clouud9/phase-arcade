@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bahx37ok8je0c"]
+
+[ext_resource type="PackedScene" uid="uid://l1lqhwdi3iv0" path="res://Cabinets/presets/cabinet_pong.tscn" id="1_1s0yi"]
+[ext_resource type="PackedScene" uid="uid://ty5su5c8x0py" path="res://Arcade Games/Blowjorb/game.tscn" id="2_rs5au"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_tu2ui"]
+viewport_path = NodePath("Tooltip/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_04ov8"]
+viewport_path = NodePath("Tooltip/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ountk"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Cabinet" unique_id=1752319625 instance=ExtResource("1_1s0yi")]
+game_scene = ExtResource("2_rs5au")
+test_mode = true
+
+[node name="Speaker" parent="." index="0" unique_id=1188406260]
+bus = &"Master"
+
+[node name="Tooltip" parent="ScreenContainer/ScreenInteractZone" parent_id_path=PackedInt32Array(1828705782) index="1" unique_id=1310991000]
+texture = SubResource("ViewportTexture_tu2ui")
+
+[node name="Shadow" parent="ScreenContainer/ScreenInteractZone/Tooltip" index="1" unique_id=1306854022]
+texture = SubResource("ViewportTexture_04ov8")
+
+[node name="FireButton" parent="ControlPlane" parent_id_path=PackedInt32Array(872288392) index="0" unique_id=1609050805]
+transform = Transform3D(1.475, 0, 0, 0, 1.4749999, 0, 0, 0, 1.4749999, 0.11406349, 0, 0.0029999316)
+
+[node name="BombButton" parent="ControlPlane" parent_id_path=PackedInt32Array(872288392) index="1" unique_id=1920776179]
+visible = false
+
+[node name="Joystick" parent="ControlPlane" parent_id_path=PackedInt32Array(872288392) index="2" unique_id=1619350208]
+transform = Transform3D(1.348, 0, 0, 0, 1.348, 0, 0, 0, 1.348, -0.10820203, 0, 0)
+visible = true
+
+[node name="TextureRect" parent="Downsample" parent_id_path=PackedInt32Array(2094865604) index="0" unique_id=1900591909]
+texture = SubResource("ViewportTexture_ountk")
+
+[editable path="ScreenContainer/ScreenInteractZone"]

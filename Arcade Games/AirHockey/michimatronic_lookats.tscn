@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://cxy2okexwe6v8"]
+
+[ext_resource type="PackedScene" uid="uid://dj6yvdcqhv24x" path="res://Arcade Games/AirHockey/Sk_Michimatronic.fbx" id="1_kw0om"]
+[ext_resource type="Script" uid="uid://bp3ixrajm4co6" path="res://michimatronic_IK.gd" id="2_8orrm"]
+[ext_resource type="Material" uid="uid://nmkjqx5bopne" path="res://Arcade Games/AirHockey/Michimatronic.tres" id="3_vaxij"]
+[ext_resource type="PackedScene" path="res://addons/debug_draw/debug_draw_3d.tscn" id="4_1126g"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_72uko"]
+radius = 0.05
+height = 0.1
+
+[node name="Michimatronic" unique_id=324659224 instance=ExtResource("1_kw0om")]
+script = ExtResource("2_8orrm")
+
+[node name="TargetDummy" type="Node3D" parent="Skeleton3D" parent_id_path=PackedInt32Array(128487553) index="0" unique_id=275807753]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22631115, 1.0055311, 0.45223007)
+
+[node name="Target_hand" type="Node3D" parent="Skeleton3D/TargetDummy" index="0" unique_id=1036100785]
+transform = Transform3D(-0.14520703, 8.335398e-08, 0.9894012, 1.3977125e-08, -1, 8.6298215e-08, 0.9894012, 2.6360093e-08, 0.14520703, -0.028030112, 0.094597936, 0.01661688)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Skeleton3D/TargetDummy/Target_hand" index="0" unique_id=1100336397]
+transform = Transform3D(0.15987968, 1.3977126e-08, 0.9871366, 8.7422784e-08, -1, -8.881785e-16, 0.9871366, 8.629822e-08, -0.15987968, 0, 0, 0)
+mesh = SubResource("SphereMesh_72uko")
+
+[node name="Target_UpperArm" type="Node3D" parent="Skeleton3D/TargetDummy" index="1" unique_id=484151220]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.31279528, 0.08047533, -0.022333324)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Skeleton3D/TargetDummy/Target_UpperArm" index="0" unique_id=2026320927]
+transform = Transform3D(1, 7.1054274e-15, 0, 0, 1, 8.881784e-16, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("SphereMesh_72uko")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Skeleton3D/TargetDummy" index="2" unique_id=160764572]
+mesh = SubResource("SphereMesh_72uko")
+
+[node name="LookAtModifier3D_Clav" type="LookAtModifier3D" parent="Skeleton3D" parent_id_path=PackedInt32Array(128487553) index="1" unique_id=1794283938]
+target_node = NodePath("../TargetDummy")
+bone_name = "Bip001 R Clavicle"
+bone = 5
+forward_axis = 3
+primary_rotation_axis = 2
+use_secondary_rotation = false
+relative = true
+
+[node name="LookAtModifier3D_Upper" type="LookAtModifier3D" parent="Skeleton3D" parent_id_path=PackedInt32Array(128487553) index="2" unique_id=939546916]
+target_node = NodePath("../TargetDummy/Target_UpperArm")
+bone_name = "Bip001 R UpperArm"
+bone = 6
+forward_axis = 0
+primary_rotation_axis = 2
+use_secondary_rotation = false
+relative = true
+
+[node name="LookAtModifier3D_Fore" type="LookAtModifier3D" parent="Skeleton3D" parent_id_path=PackedInt32Array(128487553) index="3" unique_id=68695093]
+target_node = NodePath("../TargetDummy/Target_hand")
+bone_name = "Bip001 R Forearm"
+bone = 7
+forward_axis = 0
+primary_rotation_axis = 2
+
+[node name="ConvertTransformModifier3D" type="ConvertTransformModifier3D" parent="Skeleton3D" parent_id_path=PackedInt32Array(128487553) index="4" unique_id=1131588352]
+transform = Transform3D(0.5879855, -0.30660725, 0.7485087, -0.5459767, -0.8332095, 0.087585256, 0.5968102, -0.46016717, -0.65731573, -0.08996512, 1.0476984, 0.283688)
+setting_count = 1
+settings/0/amount = 1.0
+settings/0/apply_bone_name = "Bip001 R Hand"
+settings/0/apply_bone = 8
+settings/0/reference_type = 0
+settings/0/reference_bone_name = "Bip001"
+settings/0/reference_bone = 0
+settings/0/apply/transform_mode = 0
+settings/0/apply/axis = 0
+settings/0/apply/range_min = 0.0
+settings/0/apply/range_max = 0.0
+settings/0/reference/transform_mode = 0
+settings/0/reference/axis = 0
+settings/0/reference/range_min = 0.0
+settings/0/reference/range_max = 0.0
+settings/0/relative = true
+settings/0/additive = false
+
+[node name="ModifierBoneTarget3D" type="ModifierBoneTarget3D" parent="Skeleton3D" parent_id_path=PackedInt32Array(128487553) index="5" unique_id=1546747454]
+transform = Transform3D(-0.07517837, -0.007993229, 0.99713826, -0.16701958, -0.9857407, -0.020494185, 0.98308337, -0.1680823, 0.072771385, -0.2540148, 1.1296239, 0.3714357)
+bone_name = "Bip001 R Hand"
+bone = 8
+
+[node name="LookAtModifier3D_Hand" type="LookAtModifier3D" parent="Skeleton3D" parent_id_path=PackedInt32Array(128487553) index="6" unique_id=1452144673]
+target_node = NodePath("../TargetDummy/Target_hand")
+forward_axis = 0
+primary_rotation_axis = 2
+
+[node name="MichiArm" parent="Skeleton3D" parent_id_path=PackedInt32Array(128487553) index="7" unique_id=539370047]
+surface_material_override/0 = ExtResource("3_vaxij")
+
+[node name="SkeletonIK3D" type="SkeletonIK3D" parent="Skeleton3D" parent_id_path=PackedInt32Array(128487553) index="8" unique_id=687942728]
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=767108543]
+active = false
+
+[node name="DebugDraw3D" parent="." index="2" unique_id=1979686385 instance=ExtResource("4_1126g")]
+
+[node name="Camera3D" type="Camera3D" parent="." index="3" unique_id=1189100012]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2519143, 0.8605273)

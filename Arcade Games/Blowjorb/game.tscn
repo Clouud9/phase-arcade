@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://ty5su5c8x0py"]
+
+[ext_resource type="PackedScene" uid="uid://bfq5t634bvk1c" path="res://Arcade Games/_Game3D.tscn" id="1_76637"]
+[ext_resource type="Script" uid="uid://5b4f62mcc2vo" path="res://Arcade Games/Blowjorb/blowjorb_game.gd" id="2_b7q01"]
+[ext_resource type="Resource" uid="uid://dlemgwjo54mnb" path="res://Arcade Games/Blowjorb/scenes/blowjorb_highscores.tres" id="3_gnvb6"]
+[ext_resource type="PackedScene" uid="uid://bf22x456ex815" path="res://Arcade Games/Blowjorb/globals/music_player.tscn" id="5_gnvb6"]
+[ext_resource type="PackedScene" uid="uid://tbgblv3a5sp" path="res://Arcade Games/Blowjorb/globals/sfx_player.tscn" id="6_dqb1w"]
+[ext_resource type="Script" uid="uid://njw47a2k21b3" path="res://Arcade Games/Blowjorb/globals/data_keeper.gd" id="7_dqb1w"]
+
+[node name="Game" unique_id=913553725 node_paths=PackedStringArray("my_music_player", "my_sfx_player", "data_keeper") instance=ExtResource("1_76637")]
+script = ExtResource("2_b7q01")
+my_music_player = NodePath("MusicPlayer")
+my_sfx_player = NodePath("SFXPlayer")
+data_keeper = NodePath("DataKeeper")
+game_name = &"Blowjorb"
+highscores = ExtResource("3_gnvb6")
+
+[node name="MusicPlayer" parent="." index="1" unique_id=1504684717 instance=ExtResource("5_gnvb6")]
+
+[node name="SFXPlayer" parent="." index="2" unique_id=2130498836 instance=ExtResource("6_dqb1w")]
+
+[node name="DataKeeper" type="Node" parent="." index="3" unique_id=37100892]
+script = ExtResource("7_dqb1w")
+
+[editable path="MusicPlayer"]

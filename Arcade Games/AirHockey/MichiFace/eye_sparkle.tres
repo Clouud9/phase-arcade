@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bas5jx5k752av"]
+
+[ext_resource type="Shader" uid="uid://r3ocwpy2oyux" path="res://Arcade Games/AirHockey/MichiFace/shd_particle_sparkle.tres" id="1_8lpui"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_8lpui")

@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cdr3orck5b632"]
+
+[ext_resource type="Texture2D" uid="uid://cf8chmsouwppj" path="res://Arcade Games/Wippa's Curse/Assets/2D/Colorsheet.png" id="1_hk58k"]
+
+[resource]
+albedo_texture = ExtResource("1_hk58k")

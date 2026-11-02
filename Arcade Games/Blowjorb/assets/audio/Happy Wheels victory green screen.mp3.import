@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dwalhelbq7mo"
+path="res://.godot/imported/Happy Wheels victory green screen.mp3-3bcb6f3e5262e04a6979be61b32a8953.mp3str"
+
+[deps]
+
+source_file="res://Arcade Games/Blowjorb/assets/audio/Happy Wheels victory green screen.mp3"
+dest_files=["res://.godot/imported/Happy Wheels victory green screen.mp3-3bcb6f3e5262e04a6979be61b32a8953.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

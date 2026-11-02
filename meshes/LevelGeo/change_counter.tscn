@@ -1,6 +1,13 @@
 [gd_scene format=4 uid="uid://c3wtaj3flt31l"]
 
 [ext_resource type="PackedScene" uid="uid://bjpdsck1glrjp" path="res://meshes/SM_ChangeCounter.fbx" id="1_sm0u4"]
+[ext_resource type="Material" uid="uid://dpvkxkn0ksvru" path="res://materials/Bricks.tres" id="2_1s7oo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_72uko"]
+size = Vector3(0.2, 3, 0.9)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sm0u4"]
+size = Vector3(0.2, 1.55, 3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ee666"]
 
@@ -38,5 +45,25 @@ shadow_mesh = SubResource("ArrayMesh_0nmdy")
 
 [node name="ChangeCounter" unique_id=1711632563 instance=ExtResource("1_sm0u4")]
 
-[node name="ChangeCounter" parent="." index="0" unique_id=248776937]
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="0" unique_id=943458230]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+
+[node name="Lower" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1647159986]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.45)
+shape = SubResource("BoxShape3D_72uko")
+
+[node name="Upper" type="CollisionShape3D" parent="StaticBody3D" index="1" unique_id=1906477669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.6)
+shape = SubResource("BoxShape3D_72uko")
+
+[node name="Side1" type="CollisionShape3D" parent="StaticBody3D" index="2" unique_id=234965638]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.225, 1.5)
+shape = SubResource("BoxShape3D_sm0u4")
+
+[node name="Side2" type="CollisionShape3D" parent="StaticBody3D" index="3" unique_id=1701589182]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.225, 1.5)
+shape = SubResource("BoxShape3D_sm0u4")
+
+[node name="ChangeCounter" parent="." index="1" unique_id=162555689]
 mesh = SubResource("ArrayMesh_sm0u4")
+surface_material_override/0 = ExtResource("2_1s7oo")

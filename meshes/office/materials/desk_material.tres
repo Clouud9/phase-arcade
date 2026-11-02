@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://1j4e61t7vpii"]
+
+[ext_resource type="Shader" uid="uid://uumo0ulebjth" path="res://meshes/office/materials/occlusion_mix.tres" id="1_x0yon"]
+[ext_resource type="Texture2D" uid="uid://dwqbh71aaicly" path="res://meshes/office/materials/Credenza-occlusion.png" id="2_x0yon"]
+[ext_resource type="Texture2D" uid="uid://c5qsg4vw44x02" path="res://textures/fine_wood/fine_wood2.png" id="3_f5fu2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5asom"]
+roughness = 0.0
+
+[resource]
+render_priority = 0
+next_pass = SubResource("StandardMaterial3D_5asom")
+shader = ExtResource("1_x0yon")
+shader_parameter/TilingScale = 1.0
+shader_parameter/TilingColor = ExtResource("3_f5fu2")
+shader_parameter/OcclusionMap = ExtResource("2_x0yon")
+shader_parameter/OcclusionStrength = 1.0
+shader_parameter/Roughness = 0.2000000095

@@ -1,7 +1,8 @@
 [gd_scene format=4 uid="uid://bbnn0ppc6doud"]
 
 [ext_resource type="PackedScene" uid="uid://b4tsop16mpm1w" path="res://meshes/LevelGeo/SM_geo_Foyer.fbx" id="1_uhisc"]
-[ext_resource type="Material" uid="uid://f7pb3wu04tx7" path="res://materials/PlasterWall.tres" id="2_ya2bt"]
+[ext_resource type="PackedScene" uid="uid://bvd707wrnkrhd" path="res://meshes/LevelGeo/geo_foyer_north_wall.tscn" id="3_5p43x"]
+[ext_resource type="PackedScene" uid="uid://dorlyulbnobqd" path="res://meshes/LevelGeo/geo_mezzanine.tscn" id="4_jtirh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dvwsc"]
 resource_name = "MatB"
@@ -85,11 +86,15 @@ shadow_mesh = SubResource("ArrayMesh_0sc37")
 
 [node name="geo_Foyer" unique_id=179184050 instance=ExtResource("1_uhisc")]
 
-[node name="Foyer_BackWall" parent="." index="0" unique_id=651736097]
+[node name="Foyer_BackWall" parent="." index="0" unique_id=2044040882]
 mesh = SubResource("ArrayMesh_ya2bt")
-surface_material_override/0 = ExtResource("2_ya2bt")
 
-[node name="UsefulWallPiece" parent="." index="1" unique_id=2076416189]
-transform = Transform3D(-4.371139e-08, -1, 0, 0, 0, 1, -1, 4.371139e-08, 0, 6, 0, 9.9)
+[node name="UsefulWallPiece" parent="." index="1" unique_id=821027742]
+transform = Transform3D(-4.371139e-08, -1, 0, 0, 0, 1, -1, 4.371139e-08, 0, 6, -3, 9.9)
 mesh = SubResource("ArrayMesh_jtirh")
-surface_material_override/0 = ExtResource("2_ya2bt")
+
+[node name="geo_foyerNorthWall" parent="." index="2" unique_id=598259158 instance=ExtResource("3_5p43x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 14)
+
+[node name="geo_Mezzanine" parent="." index="3" unique_id=1873148602 instance=ExtResource("4_jtirh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 14)

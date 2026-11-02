@@ -43,7 +43,7 @@ func _process(_delta: float) -> void:
 		connection.send_text("{\"act\":\"name\",\"index\":%s,\"name\":\"%s\"}" % [
 			player_index, player_name.json_escape()])
 		
-		get_tree().change_scene_to_file("res://race/race.tscn")
+		JracingGame.switch_to(self, JracingGame.RACE_SCENE)
 
 func _exit_tree() -> void:
 	if RaceManager.network_connection != connection:

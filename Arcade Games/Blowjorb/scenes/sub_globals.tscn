@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dqhl61iqgs6sk"]
+
+[ext_resource type="Script" uid="uid://njw47a2k21b3" path="res://Arcade Games/Blowjorb/globals/data_keeper.gd" id="1_07jw2"]
+[ext_resource type="Script" uid="uid://ci5fhpiy6lpci" path="res://Arcade Games/Blowjorb/globals/shaker.gd" id="2_30pkw"]
+[ext_resource type="Script" uid="uid://dniqdf7ee1skp" path="res://Arcade Games/Blowjorb/globals/settings_manager.gd" id="3_30pkw"]
+
+[node name="SubGlobals" type="Node" unique_id=1735311548]
+
+[node name="DataKeeper" type="Node" parent="." unique_id=1234560196]
+script = ExtResource("1_07jw2")
+
+[node name="Shaker" type="Node" parent="." unique_id=1098052615]
+script = ExtResource("2_30pkw")
+
+[node name="SettingsManager" type="Node" parent="." unique_id=1773308934]
+script = ExtResource("3_30pkw")

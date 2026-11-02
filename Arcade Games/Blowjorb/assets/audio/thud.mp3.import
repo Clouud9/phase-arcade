@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://duxah1r3kofo6"
+path="res://.godot/imported/thud.mp3-2abee1982c14ddfebf57516e5580aee2.mp3str"
+
+[deps]
+
+source_file="res://Arcade Games/Blowjorb/assets/audio/thud.mp3"
+dest_files=["res://.godot/imported/thud.mp3-2abee1982c14ddfebf57516e5580aee2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

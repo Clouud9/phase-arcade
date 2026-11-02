@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cpuipqg66xoqk" path="res://Arcade Games/Invaders/ui/screens/title_screen.tscn" id="11_kv4wm"]
 [ext_resource type="AudioStream" uid="uid://2eu65vihpb4i" path="res://Arcade Games/Invaders/audio/soundtrack.ogg" id="11_uxjvs"]
 [ext_resource type="Script" uid="uid://bn8bpshcm5u4k" path="res://Arcade Games/Invaders/spawn_point.gd" id="12_r0y7k"]
-[ext_resource type="Shader" uid="uid://comte6u7scsf7" path="res://Arcade Games/Invaders/curtain_dither.gdshader" id="12_vf4al"]
+[ext_resource type="Shader" uid="uid://comte6u7scsf7" path="res://addons/jodot/transition/curtain_dither.gdshader" id="12_vf4al"]
 [ext_resource type="Script" uid="uid://crs1s25mbl4em" path="res://addons/jodot/transition/curtain.gd" id="13_kv4wm"]
 [ext_resource type="Script" uid="uid://cnaebjqiyqlv1" path="res://addons/jodot/effects/sfx.gd" id="14_v0e1x"]
 

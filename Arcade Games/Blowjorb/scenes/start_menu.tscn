@@ -1,0 +1,504 @@
+[gd_scene format=3 uid="uid://bsf32jw677u3"]
+
+[ext_resource type="Script" uid="uid://j5n72b3x5v2r" path="res://Arcade Games/Blowjorb/scenes/start_menu_ui.gd" id="1_4v6gu"]
+[ext_resource type="Theme" uid="uid://7t0b1nlxdxnb" path="res://Arcade Games/Blowjorb/blowjorb_theme_extra_sparkly.tres" id="1_rreho"]
+[ext_resource type="Texture2D" uid="uid://bmhmc38d3kbqh" path="res://Arcade Games/Blowjorb/assets/textures/jorbface.png" id="1_thu50"]
+[ext_resource type="Script" uid="uid://c7h8kpeib6iwd" path="res://Arcade Games/Blowjorb/scenes/video_settings.gd" id="6_nxjfj"]
+[ext_resource type="Script" uid="uid://c48aus25thim6" path="res://Arcade Games/Blowjorb/scenes/audio_settings.gd" id="7_u4qax"]
+[ext_resource type="Script" uid="uid://moe84j5hxl5i" path="res://Arcade Games/Blowjorb/scenes/controls_settings.gd" id="8_5byqq"]
+[ext_resource type="Script" uid="uid://dmkcm58amayqb" path="res://Arcade Games/Blowjorb/scenes/language_settings.gd" id="9_5byqq"]
+
+[node name="StartMenu" type="Control" unique_id=658254259 node_paths=PackedStringArray("start_button", "menu", "main_settings", "video_settings", "audio_settings", "controls_settings", "language_settings")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_rreho")
+script = ExtResource("1_4v6gu")
+start_button = NodePath("Menu/Control/StartButton")
+menu = NodePath("Menu")
+main_settings = NodePath("Settings")
+video_settings = NodePath("VideoSettings")
+audio_settings = NodePath("AudioSettings")
+controls_settings = NodePath("ControlsSettings")
+language_settings = NodePath("LanguageSettings")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=707639073]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -432.0
+offset_top = -219.0
+offset_right = 592.0
+offset_bottom = 261.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_thu50")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Menu" type="VBoxContainer" parent="." unique_id=1781364156]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Control" type="Control" parent="Menu" unique_id=627412854]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StartButton" type="Button" parent="Menu/Control" unique_id=1079023149]
+custom_minimum_size = Vector2(250, 55)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = 74.0
+offset_right = 90.0
+offset_bottom = 129.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "INSERT COIN"
+
+[node name="Control2" type="Control" parent="Menu" unique_id=1342202704]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control3" type="Control" parent="Menu" unique_id=1088338489]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Settings" type="VBoxContainer" parent="." unique_id=67998769]
+visible = false
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Control" type="Control" parent="Settings" unique_id=1670787565]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VideoButton" type="Button" parent="Settings/Control" unique_id=206187042]
+custom_minimum_size = Vector2(250, 55)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -15.5
+offset_right = 23.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Video
+"
+
+[node name="Control2" type="Control" parent="Settings" unique_id=470335321]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AudioButton" type="Button" parent="Settings/Control2" unique_id=698718585]
+custom_minimum_size = Vector2(250, 55)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -15.5
+offset_right = 35.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Audio"
+
+[node name="Control3" type="Control" parent="Settings" unique_id=313685512]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ControlsButton" type="Button" parent="Settings/Control3" unique_id=567665991]
+custom_minimum_size = Vector2(250, 55)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -15.5
+offset_right = 21.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Controls"
+
+[node name="Control4" type="Control" parent="Settings" unique_id=1590148613]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LanguageButton" type="Button" parent="Settings/Control4" unique_id=1625467565]
+custom_minimum_size = Vector2(250, 55)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -15.5
+offset_right = 21.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Language"
+
+[node name="VideoSettings" type="VBoxContainer" parent="." unique_id=381406608]
+visible = false
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+script = ExtResource("6_nxjfj")
+
+[node name="Control4" type="HBoxContainer" parent="VideoSettings" unique_id=857269384]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 3
+
+[node name="ResolutionLabel" type="Label" parent="VideoSettings/Control4" unique_id=1628496269]
+custom_minimum_size = Vector2(150, 55)
+layout_mode = 2
+theme_override_font_sizes/font_size = 39
+text = "resolution:"
+
+[node name="resolution" type="OptionButton" parent="VideoSettings/Control4" unique_id=1632411462]
+custom_minimum_size = Vector2(10, 20)
+layout_mode = 2
+
+[node name="Control7" type="HBoxContainer" parent="VideoSettings" unique_id=660583288]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 3
+
+[node name="BorderlessLabel" type="Label" parent="VideoSettings/Control7" unique_id=1041559438]
+custom_minimum_size = Vector2(150, 55)
+layout_mode = 2
+theme_override_font_sizes/font_size = 39
+text = "borderless:"
+
+[node name="borderless" type="CheckBox" parent="VideoSettings/Control7" unique_id=18183784]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+alignment = 1
+
+[node name="Control5" type="HBoxContainer" parent="VideoSettings" unique_id=97678388]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 3
+
+[node name="FullscreenLabel" type="Label" parent="VideoSettings/Control5" unique_id=1345125038]
+custom_minimum_size = Vector2(150, 55)
+layout_mode = 2
+theme_override_font_sizes/font_size = 39
+text = "full screen:"
+
+[node name="fullscreen" type="CheckBox" parent="VideoSettings/Control5" unique_id=1926074938]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+alignment = 1
+
+[node name="Control6" type="HBoxContainer" parent="VideoSettings" unique_id=20477375]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 3
+
+[node name="VSyncLabel" type="Label" parent="VideoSettings/Control6" unique_id=1618872801]
+custom_minimum_size = Vector2(150, 55)
+layout_mode = 2
+theme_override_font_sizes/font_size = 39
+text = "VSync:"
+
+[node name="VSync" type="CheckBox" parent="VideoSettings/Control6" unique_id=428967755]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+alignment = 1
+
+[node name="AudioSettings" type="VBoxContainer" parent="." unique_id=1842192522 node_paths=PackedStringArray("master_slider", "music_slider", "sfx_slider")]
+visible = false
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+script = ExtResource("7_u4qax")
+master_slider = NodePath("Control/MasterSlider")
+music_slider = NodePath("Control2/MusicSilder")
+sfx_slider = NodePath("Control3/SFXSlider")
+
+[node name="Control" type="HBoxContainer" parent="AudioSettings" unique_id=1714076613]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MasterLabel" type="Label" parent="AudioSettings/Control" unique_id=181696240]
+custom_minimum_size = Vector2(150, 55)
+layout_mode = 2
+text = "Master:
+"
+
+[node name="MasterSlider" type="HSlider" parent="AudioSettings/Control" unique_id=890623670]
+custom_minimum_size = Vector2(200, 55)
+layout_mode = 2
+
+[node name="Control2" type="HBoxContainer" parent="AudioSettings" unique_id=102570681]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MusicLabel" type="Label" parent="AudioSettings/Control2" unique_id=948900506]
+custom_minimum_size = Vector2(150, 55)
+layout_mode = 2
+text = "Music:
+"
+
+[node name="MusicSilder" type="HSlider" parent="AudioSettings/Control2" unique_id=1413636836]
+custom_minimum_size = Vector2(200, 55)
+layout_mode = 2
+
+[node name="Control3" type="HBoxContainer" parent="AudioSettings" unique_id=893099676]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SFXLabel" type="Label" parent="AudioSettings/Control3" unique_id=220857967]
+custom_minimum_size = Vector2(150, 55)
+layout_mode = 2
+text = "SFX:
+"
+
+[node name="SFXSlider" type="HSlider" parent="AudioSettings/Control3" unique_id=1299665144]
+custom_minimum_size = Vector2(200, 55)
+layout_mode = 2
+
+[node name="ControlsSettings" type="VBoxContainer" parent="." unique_id=1186620156 node_paths=PackedStringArray("up_button", "down_button", "left_button", "right_button")]
+visible = false
+custom_minimum_size = Vector2(300, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+script = ExtResource("8_5byqq")
+up_button = NodePath("Control/UpButton")
+down_button = NodePath("Control2/UpButton")
+left_button = NodePath("Control3/UpButton")
+right_button = NodePath("Control4/UpButton")
+
+[node name="Label" type="Label" parent="ControlsSettings" unique_id=1677615051]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 42
+text = "none of these work lol"
+
+[node name="Control" type="HBoxContainer" parent="ControlsSettings" unique_id=2130674840]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+
+[node name="UpLabel" type="Label" parent="ControlsSettings/Control" unique_id=244327180]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "UP:"
+
+[node name="UpButton" type="Button" parent="ControlsSettings/Control" unique_id=740229203]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "W
+"
+
+[node name="Control2" type="HBoxContainer" parent="ControlsSettings" unique_id=199057524]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+
+[node name="DownLabel" type="Label" parent="ControlsSettings/Control2" unique_id=954418133]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "DOWN:"
+
+[node name="UpButton" type="Button" parent="ControlsSettings/Control2" unique_id=957856672]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "S
+"
+
+[node name="Control3" type="HBoxContainer" parent="ControlsSettings" unique_id=1832439152]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+
+[node name="LeftLabel" type="Label" parent="ControlsSettings/Control3" unique_id=1691456313]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "LEFT:"
+
+[node name="UpButton" type="Button" parent="ControlsSettings/Control3" unique_id=2095807019]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "A
+"
+
+[node name="Control4" type="HBoxContainer" parent="ControlsSettings" unique_id=1247978702]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+
+[node name="RightLabel" type="Label" parent="ControlsSettings/Control4" unique_id=1251715491]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "RIGHT:"
+
+[node name="UpButton" type="Button" parent="ControlsSettings/Control4" unique_id=1147441629]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+text = "D
+"
+
+[node name="LanguageSettings" type="VBoxContainer" parent="." unique_id=179574555 node_paths=PackedStringArray("language_option")]
+visible = false
+custom_minimum_size = Vector2(300, 90)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -215.0
+offset_top = -100.0
+offset_right = 215.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+script = ExtResource("9_5byqq")
+language_option = NodePath("Control/LanguageSelector")
+
+[node name="Label" type="Label" parent="LanguageSettings" unique_id=2055080281]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 42
+text = "none of these work lol"
+
+[node name="Label" type="Label" parent="LanguageSettings/Label" unique_id=1210535441]
+layout_mode = 0
+size_flags_horizontal = 4
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 42
+text = "none of these work lol"
+
+[node name="Control" type="HBoxContainer" parent="LanguageSettings" unique_id=18907739]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+alignment = 1
+
+[node name="LanguageLabel" type="Label" parent="LanguageSettings/Control" unique_id=2010775684]
+layout_mode = 2
+theme_override_font_sizes/font_size = 42
+text = "Language:"
+
+[node name="LanguageSelector" type="OptionButton" parent="LanguageSettings/Control" unique_id=1212535404]
+custom_minimum_size = Vector2(10, 20)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="." unique_id=1704342578]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -362.0
+offset_top = -17.0
+offset_right = 363.0
+offset_bottom = 183.0
+grow_horizontal = 2
+theme_type_variation = &"Title"
+theme_override_font_sizes/font_size = 45
+text = "BLOWJORB"
+horizontal_alignment = 1
+vertical_alignment = 1

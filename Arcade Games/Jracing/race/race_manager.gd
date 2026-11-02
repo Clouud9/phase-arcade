@@ -173,7 +173,8 @@ func lap_progress(position: Vector2) -> float:
 	return closest_line + segment_progress
 
 func _exit_tree() -> void:
-	instance = null
+	if instance == self:
+		instance = null
 
 func display_rank(rank: int) -> void:
 	var text: String
@@ -223,6 +224,9 @@ func on_local_player_finish(player: JracingPlayer) -> void:
 	if network_connection == null:
 		(%Quit as Button).visible = true
 		%Quit.connect("pressed", quit)
+		# Wait a moment so fire held or mashed at the finish doesn't skip the result
+		await get_tree().create_timer(1).timeout
+		(%Quit as Button).grab_focus()
 	else:
 		network_connection.send_text("{\"act\":\"goal\",\"index\":%s,\"time\":%.2f}" % [
 			player.index,
@@ -234,7 +238,7 @@ func on_local_player_finish(player: JracingPlayer) -> void:
 
 func quit() -> void:
 	MenuBeep.play_for(self)
-	get_tree().change_scene_to_file("res://Arcade Games/Jracing/main_menu/main_menu.tscn")
+	JracingGame.switch_to(self, JracingGame.MENU_SCENE)
 
 func maybe_reveal_results() -> void:
 	if time < results_time_show_min: return
@@ -267,6 +271,7 @@ func reveal_results() -> void:
 	MenuBeep.play_for(self)
 	%QuitMP.connect("pressed", quit)
 	%NextMP.connect("pressed", next_mp)
+	(%NextMP as Button).grab_focus()
 
 func next_mp() -> void:
 	(%QuitMP as Button).disabled = true

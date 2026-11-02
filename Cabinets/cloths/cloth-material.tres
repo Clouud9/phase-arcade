@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dwbuxireyorqo"]
+
+[ext_resource type="Texture2D" uid="uid://bmqxpk1x2g1ms" path="res://Cabinets/cloths/cloth-occlusion.png" id="1_gbvk7"]
+[ext_resource type="Texture2D" uid="uid://cw1jsjli4jro7" path="res://Cabinets/cloths/cloth-normal.png" id="2_u6ljj"]
+
+[resource]
+resource_name = "Material"
+cull_mode = 2
+albedo_color = Color(0.3692057, 0.45090318, 0.51850843, 1)
+albedo_texture = ExtResource("1_gbvk7")
+normal_enabled = true
+normal_texture = ExtResource("2_u6ljj")
+texture_filter = 2
+grow_amount = 0.018
+metadata/_gltf_primary_texture_coord = 0

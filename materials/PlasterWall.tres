@@ -12,7 +12,6 @@ width = 4
 
 [resource]
 resource_name = "Bricks"
-cull_mode = 2
 albedo_color = Color(1, 0.94, 0.88, 1)
 detail_enabled = true
 detail_mask = SubResource("GradientTexture1D_g806g")

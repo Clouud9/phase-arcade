@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://bqarxof46e5na"]
+
+[ext_resource type="MeshLibrary" uid="uid://ccywdsdsmdhrn" path="res://Arcade Games/Blowjorb/scenes/blocks.meshlib" id="1_ksju7"]
+[ext_resource type="Shader" uid="uid://7wr1l8wa2k1t" path="res://Arcade Games/Blowjorb/assets/sky_shader.gdshader" id="1_nsrm0"]
+[ext_resource type="Script" uid="uid://cpaeidk6s3h60" path="res://Arcade Games/Blowjorb/scenes/levels/level.gd" id="1_x42e6"]
+[ext_resource type="PackedScene" uid="uid://hhld35bb63hy" path="res://Arcade Games/Blowjorb/scenes/jorb.tscn" id="2_6iamk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x42e6"]
+shader = ExtResource("1_nsrm0")
+shader_parameter/sky_color = Color(0.03, 0.05, 0.11, 1)
+shader_parameter/star_base_color = Color(0.8, 1, 0.3, 1)
+shader_parameter/star_hue_offset = 0.6
+shader_parameter/star_intensity = 0.08
+shader_parameter/star_twinkle_speed = 0.8
+shader_parameter/star_twinkle_intensity = 0.2
+shader_parameter/layer_scale = 20.0
+shader_parameter/layer_scale_step = 10.0
+shader_parameter/layers_count = 3
+
+[sub_resource type="Sky" id="Sky_6761a"]
+sky_material = SubResource("ShaderMaterial_x42e6")
+
+[sub_resource type="Environment" id="Environment_sk5k4"]
+background_mode = 2
+sky = SubResource("Sky_6761a")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nsrm0"]
+size = Vector3(4, 0.5, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x42e6"]
+size = Vector3(250, 100, 250)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6761a"]
+size = Vector3(200, 100, 1)
+
+[node name="Level1" type="Node3D" unique_id=532814973]
+script = ExtResource("1_x42e6")
+level_name = "level_1"
+next_level = "res://Arcade Games/Blowjorb/scenes/levels/level_2.tscn"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=371906742]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1145524412]
+environment = SubResource("Environment_sk5k4")
+
+[node name="GridMap" type="GridMap" parent="." unique_id=793276050]
+mesh_library = ExtResource("1_ksju7")
+cell_size = Vector3(4, 4, 4)
+data = {
+"cells": PackedInt32Array(1, 65534, 2, 1, 1, 1441794, 65534, 1, 655362, 65534, 65534, 1048578, 1, 65535, 1, 1, 0, 1, 65535, 1, 1441793, 0, 1, 1441793, 65534, 0, 655361, 65534, 65535, 655361, 0, 65533, 1, 0, 65532, 1, 0, 65531, 1, 0, 65530, 1, 65535, 65533, 0, 65535, 65532, 0, 65535, 65531, 0, 65535, 65530, 0, 65535, 65529, 0, 65535, 65534, 0, 65535, 65535, 0, 65535, 0, 0, 0, 0, 0, 0, 65535, 0, 0, 65534, 0, 65535, 65528, 4, 0, 65528, 4, 0, 65529, 0, 65536, 65527, 655360, 131071, 65527, 655360, 131071, 65526, 655360, 131070, 65526, 655360, 131070, 65525, 655360, 131070, 65524, 655360, 131070, 65523, 1048579, 131071, 65523, 655360, 131071, 65522, 655360, 65535, 65521, 655364, 65535, 65520, 655360, 65535, 65519, 655360, 65535, 65518, 655360, 65534, 65518, 655360, 65534, 65517, 655360, 65533, 65517, 655360, 65532, 65517, 655360, 65531, 65517, 655360, 65531, 65518, 655360, 65530, 65518, 655360, -7, 65520, 655360, -6, 65520, 655360, -6, 65521, 655360, -6, 65522, 655360, -7, 65522, 655360, -8, 65523, 655360, -9, 65523, 655360, -9, 65522, 655360, -9, 65521, 655360, -9, 65520, 655360, -8, 65520, 655360, -6, 65523, 655360, -7, 65523, 655360, -8, 65522, 655365, -8, 65521, 655360, -7, 65521, 655360, 65530, 65519, 655364, 65527, 65523, 655362)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Jorb" parent="." unique_id=1954707302 instance=ExtResource("2_6iamk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.4632444, 0)
+
+[node name="SuccessArea3D" type="Area3D" parent="." unique_id=1417555632]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.018583, -3.1090546, -54.027084)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SuccessArea3D" unique_id=606937648]
+shape = SubResource("BoxShape3D_nsrm0")
+
+[node name="FailureArea3D" type="Area3D" parent="." unique_id=1991275287]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, -100, -20)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FailureArea3D" unique_id=1780391381]
+shape = SubResource("BoxShape3D_x42e6")
+
+[node name="Walls" type="StaticBody3D" parent="." unique_id=1946171089]
+
+[node name="Walls" type="CollisionShape3D" parent="Walls" unique_id=125916112]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.355415, -116.55653)
+shape = SubResource("BoxShape3D_6761a")
+
+[node name="Walls2" type="CollisionShape3D" parent="Walls" unique_id=1514183984]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.355415, 75.45366)
+shape = SubResource("BoxShape3D_6761a")
+
+[node name="Walls3" type="CollisionShape3D" parent="Walls" unique_id=644529299]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -96.49385, 12.355415, -19.878044)
+shape = SubResource("BoxShape3D_6761a")
+
+[node name="Walls4" type="CollisionShape3D" parent="Walls" unique_id=860456149]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 89.721725, 12.355415, -19.878044)
+shape = SubResource("BoxShape3D_6761a")
+
+[connection signal="body_entered" from="SuccessArea3D" to="." method="_on_success_area_3d_body_entered"]
+[connection signal="body_entered" from="FailureArea3D" to="." method="_on_failure_area_3d_body_entered"]

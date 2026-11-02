@@ -1,0 +1,163 @@
+[gd_scene format=3 uid="uid://dhtvae1lihoni"]
+
+[ext_resource type="Theme" uid="uid://odu3f7crm4jo" path="res://Arcade Games/Blowjorb/blowjorb_theme.tres" id="1_7knuf"]
+[ext_resource type="Theme" uid="uid://7t0b1nlxdxnb" path="res://Arcade Games/Blowjorb/blowjorb_theme_extra_sparkly.tres" id="2_io4xg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ypmx"]
+bg_color = Color(0.96026343, 0.9269316, 0.6107137, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.09772719, 0.7289141, 0.7872858, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_left = 12
+
+[node name="MenuModal" type="Panel" unique_id=1203399445]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -110.0
+offset_right = 129.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7knuf")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8ypmx")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1217491744]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer" unique_id=777283647]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VSplitContainer" unique_id=490766581]
+layout_mode = 2
+theme = ExtResource("2_io4xg")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.15294118)
+theme_override_constants/shadow_offset_x = 6
+theme_override_constants/shadow_offset_y = 8
+theme_override_constants/outline_size = 18
+theme_override_constants/shadow_outline_size = 6
+theme_override_font_sizes/font_size = 28
+text = "Jevel Jomplete!!"
+horizontal_alignment = 1
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/VSplitContainer" unique_id=197615044]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VSplitContainer/HSplitContainer" unique_id=245009574]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("2_io4xg")
+alignment = 1
+
+[node name="HBoxTime" type="HBoxContainer" parent="MarginContainer/VSplitContainer/HSplitContainer/VBoxContainer" unique_id=1933838089]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VSplitContainer/HSplitContainer/VBoxContainer/HBoxTime" unique_id=928321118]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Time:"
+
+[node name="Value" type="Label" parent="MarginContainer/VSplitContainer/HSplitContainer/VBoxContainer/HBoxTime" unique_id=349059977]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "67:67`67"
+
+[node name="HBoxBlows" type="HBoxContainer" parent="MarginContainer/VSplitContainer/HSplitContainer/VBoxContainer" unique_id=1060738058]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VSplitContainer/HSplitContainer/VBoxContainer/HBoxBlows" unique_id=1489025685]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Blows: "
+
+[node name="Value" type="Label" parent="MarginContainer/VSplitContainer/HSplitContainer/VBoxContainer/HBoxBlows" unique_id=1589926289]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "67"
+
+[node name="HBoxRetries" type="HBoxContainer" parent="MarginContainer/VSplitContainer/HSplitContainer/VBoxContainer" unique_id=201122672]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VSplitContainer/HSplitContainer/VBoxContainer/HBoxRetries" unique_id=266490484]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Jorbs: "
+
+[node name="Value" type="Label" parent="MarginContainer/VSplitContainer/HSplitContainer/VBoxContainer/HBoxRetries" unique_id=1734745769]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "67"
+
+[node name="HBoxButtons" type="HBoxContainer" parent="MarginContainer/VSplitContainer/HSplitContainer/VBoxContainer" unique_id=675001344]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="nextButton" type="Button" parent="MarginContainer/VSplitContainer/HSplitContainer/VBoxContainer/HBoxButtons" unique_id=583604281]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+text = "next :)"
+
+[node name="quitButton" type="Button" parent="MarginContainer/VSplitContainer/HSplitContainer/VBoxContainer/HBoxButtons" unique_id=143341351]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+text = "reset :("
+
+[node name="ScoreValues" type="VBoxContainer" parent="MarginContainer/VSplitContainer/HSplitContainer" unique_id=1210078679]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="BaseScore2" type="Label" parent="MarginContainer/VSplitContainer/HSplitContainer/ScoreValues" unique_id=2018869028]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "SCORE"
+
+[node name="BaseScore" type="Label" parent="MarginContainer/VSplitContainer/HSplitContainer/ScoreValues" unique_id=523293811]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 12
+text = "6700(BASE)"
+
+[node name="TimeValue" type="Label" parent="MarginContainer/VSplitContainer/HSplitContainer/ScoreValues" unique_id=566597747]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 12
+text = "6700"
+
+[node name="BlowValue" type="Label" parent="MarginContainer/VSplitContainer/HSplitContainer/ScoreValues" unique_id=1195939]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 12
+text = "6700"
+
+[node name="JorbValue" type="Label" parent="MarginContainer/VSplitContainer/HSplitContainer/ScoreValues" unique_id=1196934664]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 12
+text = "6700"
+
+[node name="FinalScore" type="Label" parent="MarginContainer/VSplitContainer/HSplitContainer/ScoreValues" unique_id=1554395658]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "6700"

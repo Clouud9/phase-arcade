@@ -1,0 +1,214 @@
+[gd_scene format=3 uid="uid://djl8gnxd8xdwc"]
+
+[ext_resource type="Texture2D" uid="uid://c6pqxueu7tkhc" path="res://assets/sprites/jelly_idle_sheet_test_transparent.png" id="1_vhdqh"]
+[ext_resource type="Script" uid="uid://b7rv5swqiok6h" path="res://scenes/fishing_game.gd" id="1_vox6q"]
+[ext_resource type="Texture2D" uid="uid://n0yd1rcpehbb" path="res://assets/sprites/pippa_idle.png" id="2_vox6q"]
+[ext_resource type="Texture2D" uid="uid://t5tqxrn56uvx" path="res://assets/sprites/tenma_idle.png" id="3_7x2r5"]
+
+[sub_resource type="Gradient" id="Gradient_d6015"]
+offsets = PackedFloat32Array(0.09638554, 0.74698794)
+colors = PackedColorArray(0.24615003, 0.12690002, 0.27, 1, 1, 0.80833334, 0.5, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lwet7"]
+gradient = SubResource("Gradient_d6015")
+width = 32
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1p0f0"]
+atlas = ExtResource("1_vhdqh")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_af1mv"]
+atlas = ExtResource("1_vhdqh")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dikf5"]
+atlas = ExtResource("1_vhdqh")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sncfb"]
+atlas = ExtResource("1_vhdqh")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0v2r4"]
+atlas = ExtResource("2_vox6q")
+region = Rect2(0, 0, 32, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n64yd"]
+atlas = ExtResource("2_vox6q")
+region = Rect2(32, 0, 32, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vk0vk"]
+atlas = ExtResource("2_vox6q")
+region = Rect2(64, 0, 32, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqnqi"]
+atlas = ExtResource("2_vox6q")
+region = Rect2(96, 0, 32, 35)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ia4or"]
+atlas = ExtResource("3_7x2r5")
+region = Rect2(0, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h8ky6"]
+atlas = ExtResource("3_7x2r5")
+region = Rect2(32, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xj0p8"]
+atlas = ExtResource("3_7x2r5")
+region = Rect2(64, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pni3n"]
+atlas = ExtResource("3_7x2r5")
+region = Rect2(96, 0, 32, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wxb5j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1p0f0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_af1mv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dikf5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sncfb")
+}],
+"loop": true,
+"name": &"jelly_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0v2r4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n64yd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vk0vk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqnqi")
+}],
+"loop": true,
+"name": &"pippa_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ia4or")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h8ky6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xj0p8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pni3n")
+}],
+"loop": true,
+"name": &"tenma_idle",
+"speed": 5.0
+}]
+
+[node name="FishingGame" type="Node2D" unique_id=1401383343]
+texture_filter = 1
+script = ExtResource("1_vox6q")
+
+[node name="ColorRect" type="TextureRect" parent="." unique_id=2142399181]
+offset_left = 481.93005
+offset_top = 1.000007
+offset_right = 737.93005
+offset_bottom = 481.93005
+rotation = 1.5707964
+texture = SubResource("GradientTexture1D_lwet7")
+
+[node name="FishingRod" type="Node2D" parent="." unique_id=1267265048]
+position = Vector2(147.00002, 186)
+rotation = -0.7853982
+
+[node name="RodSprite" type="ColorRect" parent="FishingRod" unique_id=1271144341]
+offset_left = 2.0
+offset_top = -0.003982544
+offset_right = 41.0
+offset_bottom = 2.9960175
+color = Color(0.6, 0.4848, 0.384, 1)
+
+[node name="Tip" type="Marker2D" parent="FishingRod/RodSprite" unique_id=1317751107]
+position = Vector2(38.36056, 0.16005325)
+
+[node name="Jerry" type="AnimatedSprite2D" parent="." unique_id=413408663]
+position = Vector2(138, 166)
+sprite_frames = SubResource("SpriteFrames_wxb5j")
+animation = &"jelly_idle"
+autoplay = "jelly_idle"
+frame_progress = 0.045163464
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=367821260]
+offset_top = 196.0
+offset_right = 165.0
+offset_bottom = 210.0
+color = Color(0.6, 0.4848, 0.384, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="." unique_id=2018021866]
+offset_left = 14.0
+offset_top = 210.0
+offset_right = 26.0
+offset_bottom = 274.0
+color = Color(0.6, 0.4848, 0.384, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="." unique_id=1561460505]
+offset_left = 67.0
+offset_top = 210.0
+offset_right = 79.0
+offset_bottom = 274.0
+color = Color(0.6, 0.4848, 0.384, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="." unique_id=1581417752]
+offset_left = 131.0
+offset_top = 210.0
+offset_right = 143.0
+offset_bottom = 274.0
+color = Color(0.6, 0.4848, 0.384, 1)
+
+[node name="Line2D" type="Line2D" parent="." unique_id=896114898]
+points = PackedVector2Array(177, 160, 248, 257)
+width = 2.0
+
+[node name="water" type="ColorRect" parent="." unique_id=1169324472]
+offset_left = 1.0
+offset_top = 243.0
+offset_right = 482.0
+offset_bottom = 372.0
+color = Color(0.4404187, 0.49591208, 0.7245659, 1)
+
+[node name="End" type="Marker2D" parent="." unique_id=206850366]
+position = Vector2(249, 261)
+
+[node name="Exclamation" type="Node2D" parent="." unique_id=1610537083]
+visible = false
+position = Vector2(139, 158)
+
+[node name="ColorRect6" type="ColorRect" parent="Exclamation" unique_id=1032459690]
+offset_left = -8.0
+offset_top = -15.0
+offset_right = 4.0
+offset_bottom = -5.0
+scale = Vector2(0.84684414, 0.68409234)
+color = Color(0.95091814, 0, 0.19052309, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="Exclamation" unique_id=1697227279]
+offset_left = -8.0
+offset_top = -60.0
+offset_right = 4.0
+offset_bottom = -9.0
+scale = Vector2(0.84684414, 0.68409234)
+color = Color(0.95091814, 0, 0.19052309, 1)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=4630030]
+position = Vector2(243, 138)
+zoom = Vector2(2.3, 2.3)

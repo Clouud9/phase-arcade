@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://c0077apyffeke" path="res://meshes/LevelGeo/SM_geo_ChangeRoomAndVent.fbx" id="1_ynjbn"]
 [ext_resource type="Material" uid="uid://ctmgj6eqnpye5" path="res://materials/Concrete.tres" id="2_v5sw8"]
-[ext_resource type="Material" uid="uid://cqmf76ra2vssu" path="res://materials/Bricks_triplanar.tres" id="3_ma23d"]
+[ext_resource type="Material" uid="uid://dpvkxkn0ksvru" path="res://materials/Bricks.tres" id="3_ma23d"]
 [ext_resource type="Material" uid="uid://dnvgetg74i2co" path="res://materials/Metal.tres" id="4_yxs1m"]
 [ext_resource type="Material" uid="uid://cn5nd0wh7xw5k" path="res://materials/Metal_rough.tres" id="5_v5sw8"]
 [ext_resource type="PackedScene" uid="uid://qkgwsow7b2ek" path="res://meshes/PropScenes/scene_vent_fan.tscn" id="6_ma23d"]

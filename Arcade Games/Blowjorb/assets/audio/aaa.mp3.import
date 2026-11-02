@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cnw244od4h4t5"
+path="res://.godot/imported/aaa.mp3-c624cb1485a5b3bc13d8175670e3eaec.mp3str"
+
+[deps]
+
+source_file="res://Arcade Games/Blowjorb/assets/audio/aaa.mp3"
+dest_files=["res://.godot/imported/aaa.mp3-c624cb1485a5b3bc13d8175670e3eaec.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

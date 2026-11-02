@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dpq2pb5mevtpd"
+path="res://.godot/imported/universfield-message-ping-351298.mp3-e169d4913449a9fd786040c6ca137842.mp3str"
+
+[deps]
+
+source_file="res://Arcade Games/Blowjorb/assets/audio/universfield-message-ping-351298.mp3"
+dest_files=["res://.godot/imported/universfield-message-ping-351298.mp3-e169d4913449a9fd786040c6ca137842.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

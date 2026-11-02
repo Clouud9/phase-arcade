@@ -27,10 +27,12 @@ viewport_path = NodePath("SubViewport")
 script = ExtResource("1_gqhhl")
 
 [node name="Speaker" type="AudioStreamPlayer3D" parent="." unique_id=1188406260]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0.28)
-attenuation_model = 1
-unit_size = 3.0
-max_distance = 30.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3336526, -0.065611154)
+volume_db = -42.0
+max_db = 1.0
+max_distance = 10.0
+panning_strength = 2.0
+bus = &"CabinetSpeaker"
 script = ExtResource("7_sound")
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=599290243 node_paths=PackedStringArray("screen")]

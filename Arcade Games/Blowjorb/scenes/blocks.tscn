@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cg74qbb5bourl"]
+
+[ext_resource type="PackedScene" uid="uid://djokng3exh5ug" path="res://assets/models/blocks.gltf" id="1_wv7cx"]
+[ext_resource type="Material" uid="uid://bmlw18k6dtuwl" path="res://scenes/jerry_blue.tres" id="2_giubl"]
+
+[node name="blocks" unique_id=58149463 instance=ExtResource("1_wv7cx")]
+
+[node name="floor-corner-borders" parent="." index="2" unique_id=1882022429]
+material_override = ExtResource("2_giubl")

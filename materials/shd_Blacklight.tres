@@ -172,7 +172,7 @@ default_input_values = [0, 0.0, 1, 0.5]
 operator = 2
 
 [sub_resource type="VisualShaderNodeCompare" id="VisualShaderNodeCompare_riptp"]
-default_input_values = [0, 0.0, 1, 0.0, 2, 0.1]
+default_input_values = [0, 0.0, 1, 0.0, 2, 0.01]
 
 [sub_resource type="VisualShaderNodeColorFunc" id="VisualShaderNodeColorFunc_xkeyu"]
 function = 4

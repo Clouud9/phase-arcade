@@ -48,6 +48,6 @@ shadow_mesh = SubResource("ArrayMesh_4nofi")
 
 [node name="SM_RollerShutter" unique_id=1836176340 instance=ExtResource("1_vfv87")]
 
-[node name="RollerShutter" parent="." index="0" unique_id=793469259]
+[node name="RollerShutter" parent="." index="0" unique_id=587816259]
 material_override = ExtResource("2_jlu5l")
 mesh = SubResource("ArrayMesh_jlu5l")

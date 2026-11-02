@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://tbgblv3a5sp"]
+
+[ext_resource type="Script" uid="uid://d2gqj7hbdg4l7" path="res://globals/sound_player.gd" id="1_2riew"]
+
+[node name="SFXPlayer" type="Node" unique_id=1504684717]
+script = ExtResource("1_2riew")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1235344063]
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=1976761568]
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="." unique_id=1434497542]
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="." unique_id=2004498961]
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="." unique_id=2081926713]
+
+[node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="." unique_id=1165422115]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://chm26rhas3pw6"
+path="res://.godot/imported/Jelly Supermassive Butt hole-Muse.mp3-1cca33f23e86e0e18111b848f2d83aa8.mp3str"
+
+[deps]
+
+source_file="res://Arcade Games/Blowjorb/assets/audio/Jelly Supermassive Butt hole-Muse.mp3"
+dest_files=["res://.godot/imported/Jelly Supermassive Butt hole-Muse.mp3-1cca33f23e86e0e18111b848f2d83aa8.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
